@@ -2,7 +2,7 @@ class GenericFile < ActiveFedora::Base
 
   include Sufia::GenericFile
 
-  # This is an aictype:Resource
+  type AICType.Resource
 
   property :aic_type, predicate: ::RDF::DC.type do |index|
     index.as :stored_searchable
@@ -22,29 +22,27 @@ class GenericFile < ActiveFedora::Base
   property :pref_label, predicate: ::RDF::SKOS.prefLabel do |index|
     index.as :stored_searchable
   end  
-  property :batch_uid, predicate: ::AIC.batchUid do |index|
+  property :batch_uid, predicate: AIC.batchUid do |index|
     index.as :stored_searchable
   end 
-  property :dept_created, predicate: ::AIC.deptCreated do |index|
+  property :dept_created, predicate: AIC.deptCreated do |index|
     index.as :stored_searchable
   end 
-  property :has_comment, predicate: ::AIC.hasComment do |index|
+  property :has_location, predicate: AIC.hasLocation do |index|
     index.as :stored_searchable
   end 
-  property :has_location, predicate: ::AIC.hasLocation do |index|
+  property :has_metadata, predicate: AIC.hasMetadata do |index|
     index.as :stored_searchable
   end 
-  property :has_metadata, predicate: ::AIC.hasMetadata do |index|
+  property :has_publishing_context, predicate: AIC.hasPublishingContext do |index|
     index.as :stored_searchable
   end 
-  property :has_publishing_context, predicate: ::AIC.hasPublishingContext do |index|
+  property :uid, predicate: AIC.uid do |index|
     index.as :stored_searchable
   end 
-  property :has_tag, predicate: ::AIC.hasTag do |index|
-    index.as :stored_searchable
-  end 
-  property :uid, predicate: ::AIC.uid do |index|
-    index.as :stored_searchable
-  end 
+  
+  has_and_belongs_to_many :comments, predicate: AIC.hasComment, class_name: "Comment", inverse_of: :generic_files
+  has_and_belongs_to_many :tags, predicate: AIC.hasTag, class_name: "Tag", inverse_of: :generic_files
+  accepts_nested_attributes_for :comments, :tags
 
 end

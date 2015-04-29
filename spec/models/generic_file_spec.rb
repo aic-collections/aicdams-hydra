@@ -26,24 +26,59 @@ describe GenericFile do
       it { is_expected.to respond_to(:date) }
       it { is_expected.to respond_to(:format) }
       it { is_expected.to respond_to(:relation) }
-      # Sufia type is reserved to http://pcdm.org/models#Object
       it { is_expected.to respond_to(:aic_type) }
     end
 
     context "AIC terms" do
       it { is_expected.to respond_to(:batch_uid) }
       it { is_expected.to respond_to(:dept_created) }
-      it { is_expected.to respond_to(:has_comment) }
       it { is_expected.to respond_to(:has_location) }
       it { is_expected.to respond_to(:has_metadata) }
       it { is_expected.to respond_to(:has_publishing_context) }
-      it { is_expected.to respond_to(:has_tag) }
       it { is_expected.to respond_to(:uid) }
     end
 
     context "SKOS terms" do
       it { is_expected.to respond_to(:pref_label) }
     end
+  end
+
+  describe "comments" do
+
+    let(:commented_resource) do
+      GenericFile.create.tap do |file|
+        file.title = ["Commented thing"]
+        file.apply_depositor_metadata "user"
+        file.comments_attributes = [{content: ["foo comment"], category: ["bar category"]}]
+      end
+    end
+
+    subject { commented_resource.comments.first }
+    it { is_expected.to be_kind_of Comment }
+    specify "has content and a category" do
+      expect(subject.category.first).to eql "bar category"
+      expect(subject.content.first).to eql "foo comment"
+    end
+
+  end
+
+  describe "tags" do
+
+    let(:tagged_resource) do
+      GenericFile.create.tap do |file|
+        file.title = ["Tagged thing"]
+        file.apply_depositor_metadata "user"
+        file.tags_attributes = [{content: ["foo tag"], category: ["bar category"]}]
+      end
+    end
+
+    subject { tagged_resource.tags.first }
+    it { is_expected.to be_kind_of Tag }
+    specify "has content and a category" do
+      expect(subject.category.first).to eql "bar category"
+      expect(subject.content.first).to eql "foo tag"
+    end
+
   end
 
 end
