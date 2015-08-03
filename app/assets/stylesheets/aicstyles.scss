@@ -1,4 +1,73 @@
+#wrapper {
+  background-image: linear-gradient(to bottom, #ffffff 0%, #FFFFFF 100%);
+  }
+  
+.row {
+  margin-left: -30px;
+  }
+
 #masthead {
-  background: #cc0000;
+  background: #9d1c33;
   min-height: 4em;
+  }
+
+#masthead_controls .navbar-default .navbar-nav > .active > a,
+#masthead_controls .navbar-default .navbar-nav > .active > a:hover,
+#masthead_controls .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #eeeeee;
+  color: #9d1c33;
+  font-weight: bold;
+  }
+
+#masthead_controls {
+  border-top: #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  background-color: #eeeeee;
+  top: 15px;
+  position: relative;
+  }
+
+#masthead_controls .navbar {
+  background-color: #eeeeee;
+  margin-bottom: 0;
+  }
+
+#masthead_controls .navbar li {
+  border-right: 2px solid #eeeeee;
+  }
+  
+.nav > li > a {
+  display: inline-block;
 }
+  
+#masthead_controls .navbar li:after {
+  content: " / ";
+  color: #ccc;
+  display: inline-block;
+  font-size: 100%;
+  margin: 0 0 0 .5em;
+}
+
+#masthead_controls .navbar li:last-child:after { content: " "; }
+
+#masthead_controls .navbar li:first-child {
+  border-left: 2px solid #eeeeee;
+  }
+
+#masthead_controls .navbar a:link, #masthead_controls .navbar a:visited {
+  background-color: #eeeeee;
+  color: #000;
+  }
+
+#masthead_controls .navbar a:hover {
+  color: #9d1c33;
+  }
+  
+#masthead .institution_name {
+  font-size: 2em;
+  }
+
+#footer {
+  background: #9d1c33;
+  }
+
