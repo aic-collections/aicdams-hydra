@@ -50,6 +50,12 @@ describe WorksController do
     before { get :show, id: work }
     subject { response }
     it { is_expected.to be_successful }
-  end  
+  end
+
+  describe "#index" do
+    before { get :index }
+    subject { response }
+    it { is_expected.to be_redirect }
+  end
 
 end

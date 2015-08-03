@@ -7,13 +7,17 @@ module WorksControllerBehavior
 
     layout "sufia-one-column"
 
-    before_action :authenticate_user!, except: [:show]
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :has_access?, except: [:show]
     before_action :set_work, only: [:update, :edit, :show]
     before_action :build_breadcrumbs
 
     # TODO
     #load_and_authorize_resource except: [:index, :show]
+  end
+
+  def index
+    redirect_to catalog_index_path(params.except(:controller, :action).merge(f: { Solrizer.solr_name("aic_type", :facetable) => ["Work"] }))
   end
 
   def new
