@@ -9,8 +9,29 @@ en:
       form:
         option:
           all:
-            label_short:  "All"
-            label_long:   "All Resources"
+            label_short:    "All"
+            label_long:     "All Resources"
           my_files:
-            label_short:  "My Assets"
-            label_long:   "My Assets"
+            label_short:    "My Assets"
+            label_long:     "My Assets"
+    upload:
+      my_computer:
+        sr_tab_label:       "Access Assets from"
+        sr_instructions:    "Agree to the deposit agreement and then select assets.  Press the Start Upload Button once all assets have been selected."
+      browse_everything:
+        sr_tab_label:       "Access Assets from"
+        browse_files_button: "Browse cloud assets"
+        files_selected:     "assets selected"
+      alert:
+        fail_html:          "There was a problem during upload, none of your assets uploaded correctly. Please %{reload_href}.  Use the %{contact_href} to report the error if it persists."
+      partial_fail_html:  "One or more assets did not upload successfully. To continue using the assets that uploaded %{metadata_href}. <br /> Use the %{contact_href} to report the error if it persists."
+      cloud_timeout_message: "Please note that if you upload a large number of assets within a short period of time, the cloud provider may not be able to accommodate your request. If you experience any errors uploading from the cloud, let us know via the %{contact_href}."
+    dashboard:
+      view_files:           "View Assets"
+      my:
+        files:              "My Assets"
+        shares:             "Assets Shared with Me"
+        facet_label:
+          files:            "Filter your assets"
+        sr:
+          check_all_label: "Select all assets to be added to a collection or edited"
