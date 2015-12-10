@@ -28,6 +28,10 @@ class WorkPresenter
     :publ_ver_level,
     :publication_history,
   ] + CitiResourceTerms.all
+  
+  def summary_terms
+    [ :uid, :main_ref_number, :created_by, :resource_created, :resource_updated ]
+  end
 
   def assets
     self.to_model.assets
