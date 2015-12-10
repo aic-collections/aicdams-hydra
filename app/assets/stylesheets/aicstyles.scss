@@ -1,6 +1,17 @@
 $grey: #f2f2f3;
 $aicred: #9d1c33;
 $yellow: #F0CA00;
+$linkcolor: #337ab7;
+
+a {
+  color: $linkcolor;
+  text-decoration: none;
+}
+
+.underline {
+  border-bottom: 2px solid #DDD;
+  padding-bottom: .25em;
+}
 
 @font-face {
   font-family:'ideallight';

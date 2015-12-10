@@ -7,8 +7,9 @@
   </div>
   <div class="col-xs-12 col-sm-8">
     <h1 class="visibility"><%= @presenter.pref_label %> <%= render_resource_visibility_badge %></h1>
-    <%= render 'citi_resources/list_assets' unless @presenter.related_assets.empty? %>
-    <%= render 'generic_files/show_descriptions' %>
+	<%= render 'citi_resources/show_brief_descriptions' %>
+    <%= render 'citi_resources/list_assets' %>
+    <%= render 'citi_resources/show_descriptions' %>
   </div><!-- /columns second -->
 </div> <!-- /.row -->
 </div><!-- /.container-fluid -->

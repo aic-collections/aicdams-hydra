@@ -1,4 +1,8 @@
-<h2>Relationships</h2>
+<h2 class="underline">Asset Relationships</h2>
+<% if @presenter.related_assets.empty? %>
+<p>No assets related to this resource.</p>
+<%= link_to "Manage Asset Relationships", edit_resource_path %>
+<% end %>
 <% unless @presenter.assets.empty? %>
   <h3>Assets</h3>
   <% @presenter.assets.each do |asset| %>
