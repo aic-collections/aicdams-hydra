@@ -24,13 +24,15 @@ describe List do
     end
   end
 
-  context "when adding duplicate items" do
-    let(:status_list) { described_class.where(pref_label: "Status").first }
+  context "when creating duplicated items in a new list" do
+    let(:list) { described_class.create(pref_label: "Duplicates") }
     before do
-      status_list.members << StatusType.new(pref_label: "Active")
-      status_list.save
+      list.add_item(ListItem.new(pref_label: "Used"))
+      list.add_item(ListItem.new(pref_label: "Used"))
     end
-    subject { status_list.errors }
-    its(:full_messages) { is_expected.to include("Members must be unique") }
+    it "does not add the duplicate member" do
+      expect(list.errors.full_messages).to contain_exactly("Members must be unique")
+      expect(list.members.map(&:pref_label)).to contain_exactly("Used")
+    end
   end
 end

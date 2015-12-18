@@ -51,6 +51,13 @@ describe ListItemsController do
       subject { list.reload.members.first }
       its(:description) { is_expected.to contain_exactly("a description") }
     end
+
+    context "when adding another item with the same label" do
+      let(:duplicate_item) { { pref_label: "Foo", description: ["Duplicate list item"] } }
+      before { xhr :post, :create, list_id: list, list_item: duplicate_item }
+      subject { flash[:error] }
+      it { is_expected.to contain_exactly("Members must be unique") }
+    end
   end
 
   describe "#destroy" do

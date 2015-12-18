@@ -2,7 +2,7 @@ require 'active_fedora/cleaner'
 require 'jettywrapper'
 require './spec/support/fixture_loader'
 require './spec/support/list_loader'
-require 'rubocop/rake_task'
+require 'rubocop/rake_task' unless Rails.env.production?
 
 class DevelopmentLoader
   include FixtureLoader
@@ -11,10 +11,12 @@ end
 
 Jettywrapper.hydra_jetty_version = "v8.5.0"
 
-desc 'Run style checker'
-RuboCop::RakeTask.new(:rubocop) do |task|
-  task.requires << 'rubocop-rspec'
-  task.fail_on_error = true
+unless Rails.env.production?
+  desc 'Run style checker'
+  RuboCop::RakeTask.new(:rubocop) do |task|
+    task.requires << 'rubocop-rspec'
+    task.fail_on_error = true
+  end
 end
 
 desc "Run continuous integration test"

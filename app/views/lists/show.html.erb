@@ -6,15 +6,17 @@
   <tr><th>Label</th><th>Comment</th><th colspan="2">Action</th></tr>
   <% @presenter.member_list.each do |item| %>
     <tr>
-      <td><%= item[0] %></td>
-      <td><%= item[1] %></td>
+      <td><%= item.pref_label %></td>
+      <td><%= item.description %></td>
       <td><%= link_to "Edit", nil, class: "btn btn-primary btn-sm list_item",
-              data: { class: "lists", list: params[:id], id: item[2], action: "edit" } %></td>
-      <td><%= link_to "Delete", list_list_item_path(params[:id], item[2]), method: :delete, 
+              data: { class: "lists", list: params[:id], id: item.id, action: "edit" } %></td>
+      <td>
+        <% if item.deletable? %>
+          <%= link_to "Delete", list_list_item_path(params[:id], item.id), method: :delete, 
               class: "btn btn-danger btn-sm", data: { confirm: "Are you sure?" } %></td>
+        <% end %>
     </tr>
   <% end %>
 </table>
 
 <%= link_to "Add items", nil, class: "btn btn-primary list_item", data: { class: "lists", list: params[:id], action: "new" } %>
-

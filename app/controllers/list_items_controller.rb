@@ -32,8 +32,12 @@ class ListItemsController < ApplicationController
   end
 
   def create
-    @list.members << ListItem.create(sanitized_attributes)
-    flash[:notice] = "Successfully added item to list"
+    @list.add_item(ListItem.create(sanitized_attributes))
+    if @list.errors
+      flash[:error] = @list.errors.full_messages
+    else
+      flash[:notice] = "Successfully added item to list"
+    end
     respond_to do |format|
       format.html { redirect_to list_path(params[:list_id]) }
       format.js   { render nothing: true }

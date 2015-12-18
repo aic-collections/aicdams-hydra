@@ -18,7 +18,7 @@
 <% end %>
 
 <% unless @presenter.preferred_representations.empty? %>
-  <h3>Preferred Representations</h3>
+  <h3>Preferred Representation</h3>
   <% @presenter.preferred_representations.each do |asset| %>
     <%= render partial: 'generic_files/asset_display', locals: { asset: asset } %>
   <% end %>

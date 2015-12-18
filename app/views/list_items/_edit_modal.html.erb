@@ -8,7 +8,7 @@
       <%= simple_form_for @form, url: list_list_item_path, html: { multipart: true } do |f| %>
         <div class="well">
           <% @form.terms.each do |term| %>
-            <%= render_edit_field_partial(term, f: f) %>
+            <%= render_edit_field_partial(term, f: f) if @form.editable?(term) %>
           <% end %>
         </div>
         <div>
