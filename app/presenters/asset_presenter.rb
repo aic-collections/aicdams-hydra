@@ -21,8 +21,9 @@ class AssetPresenter < Sufia::GenericFilePresenter
     [
       #:relation,
       :asset_type,
-      :identifier
-    ]
+      :uid,
+      :pref_label
+    ]  
   end
 
   def asset_type
