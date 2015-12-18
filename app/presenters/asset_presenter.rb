@@ -20,8 +20,9 @@ class AssetPresenter < Sufia::GenericFilePresenter
   def brief_terms
     [
       #:relation,
-      :asset_type,
-      :identifier
+       :asset_type,
+       :uid,
+       :pref_label
     ]
   end
 
