@@ -52,7 +52,7 @@ describe "CITI works", order: :defined do
       click_link("View Work")
       expect(page).to have_content("Assets")
       expect(page).to have_content("Representations")
-      expect(page).to have_content("Preferred Representations")
+      expect(page).to have_content("Preferred Representation")
       expect(page).to have_content("Documents")
     end
   end

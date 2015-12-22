@@ -55,7 +55,7 @@ describe "CITI exhibitions", order: :defined do
       expect(first(:field, "exhibition[preferred_representation_ids][]").value).to eql asset.id
       click_link("View Exhibition")
       expect(page).to have_content("Representations")
-      expect(page).to have_content("Preferred Representations")
+      expect(page).to have_content("Preferred Representation")
       expect(page).to have_content("Documents")
     end
   end
