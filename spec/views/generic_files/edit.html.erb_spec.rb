@@ -40,7 +40,6 @@ describe "generic_files/edit.html.erb" do
   # TODO: Flesh this out based on more feedback and add additional test to display
   # fields based on StillImage or Text type.
   it "shows the fields" do
-    expect(page).to have_selector("input#generic_file_contributor", count: 1)
     expect(page).to have_select("generic_file[status_id]", selected: 'Active')
     expect(page).to have_select("generic_file[digitization_source_id]", selected: 'Sample Digitization Source List Item')
     expect(page).to have_select("generic_file[compositing_id]", selected: 'Sample Compositing List Item')
