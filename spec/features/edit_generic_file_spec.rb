@@ -20,6 +20,7 @@ describe "Editing generic files" do
     let(:comment2) { "The third comment"  }
 
     it "supports adding and removing" do
+      skip "disabled for beta1 release"
       visit sufia.edit_generic_file_path(file)
       expect(page).to have_content("Edit #{title}")
       expect(page).not_to have_button("Category")
