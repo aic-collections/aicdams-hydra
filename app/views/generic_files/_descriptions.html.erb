@@ -4,7 +4,7 @@
     <h1>Descriptions <span class="pull-right required"><abbr title="required">*</abbr> indicates required fields</span></h1>
       <div class="well">
 
-        <% f.object.terms.each do |term| %>
+        <% (f.object.terms - [:batch_uid, :contributor, :resource_created, :described_by, :pref_label, :resource_label, :legacy_uid, :rights, :same_as, :resource_updated, :icon, :document_ids, :representation_ids, :preferred_representation_ids, :transcript, :comments ]).each do |term| %>
           <%= render_edit_field_partial(term, f: f) %>
         <% end %>
 
