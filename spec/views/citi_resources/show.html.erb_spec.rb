@@ -29,6 +29,7 @@ describe "citi_resources/show.html.erb" do
     expect(subject).to include('<h2 class="underline">Asset Relationships</h2>')
     expect(subject).to include('src="/downloads/abc?file=thumbnail"')
     expect(subject).to include('<dt>Asset type</dt>')
-    expect(subject).to include('<dt>Identifier</dt>')
+    expect(subject).to include('<dt>Uid</dt>')
+	expect(subject).to include('<dt>Pref label</dt>')
   end
 end

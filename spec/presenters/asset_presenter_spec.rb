@@ -12,7 +12,7 @@ describe AssetPresenter do
   # TODO: needs to show either representation, preferred representation, or document
   describe "#brief_terms" do
     subject { presenter.brief_terms }
-    it { is_expected.to contain_exactly(:asset_type, :identifier) }
+    it { is_expected.to contain_exactly(:asset_type, :uid, :pref_label) }
   end
 
   describe "#asset_type" do
