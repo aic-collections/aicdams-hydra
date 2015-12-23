@@ -14,7 +14,7 @@ class AssetPresenter < Sufia::GenericFilePresenter
   end
 
   # TODO: :status should be added back to ResourceTerms, see #127
-  self.terms = ResourceTerms.all + still_image_terms + text_terms + asset_terms + [:title, :status]
+  self.terms = [:title] + ResourceTerms.all + still_image_terms + text_terms + asset_terms + [:status]
 
   # TODO: needs to show either representation, preferred representation, or document
   def brief_terms
