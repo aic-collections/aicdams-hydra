@@ -211,3 +211,7 @@ button.dropdown-toggle {
 figure {
   max-width: 100%;
 }
+
+.pagination a.disabled {
+  font-weight: bold;
+}
