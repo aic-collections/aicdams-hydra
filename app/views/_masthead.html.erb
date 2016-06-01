@@ -12,9 +12,15 @@
     </div>
 
     <div class="collapse navbar-collapse" id="top-navbar-collapse">
-      <%= render partial: '/toolbar' %>
-
-      <%= render partial: '/user_util_links' %>
+	  <div class="navbar-right row col-sm-7 col-md-8">
+        <%= render partial: 'catalog/search_form' %>
+      </div>
+	  <div class="row col-md-12">
+	    <div class="navbar-right col-sm-7 col-md-8">
+		  <%= render partial: '/toolbar' %>
+      	  <%= render partial: '/user_util_links' %>
+	    </div>
+	  </div>
     </div>
   </div>
 </nav>
