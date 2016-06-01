@@ -1,2 +1,48 @@
 /* Scss Document */
 
+@font-face {
+  font-family: 'idealsans';
+  src: url('IdealSans-Thin.otf') format('truetype');
+}
+
+$aicred: #9d1c33;
+$white: #ffffff;
+$linkcolor: #337ab7;
+
+a, a:link, a:visited, a:hover, a:active {
+	color: $linkcolor;
+	text-decoration: none;
+}
+
+#search-form-header, .navbar-header {
+    margin-top: 15px;
+}
+
+.institution_name {
+  	font-family: 'idealsans';
+   	font-size: 1.5em;
+    display: inline-block;
+    left: 115px;
+    top: 25px;
+    position: absolute;
+    line-height: 30px;
+    color: $white;
+    letter-spacing: 1px;
+    font-weight: 100;
+	text-decoration: none;
+}
+
+a.institution_name, a:link.institution_name, a:visited.institution_name, a:hover.institution_name, a:active.institution_name {
+	color: $white;
+	text-decoration: none;
+}
+
+.advance-search {
+    top: 30px;
+    position: absolute;
+}
+
+.btn-primary {
+    background-color: #9d1c33;
+    border-color: #9d1c33;
+}
