@@ -16,6 +16,7 @@ a, a:link, a:visited, a:hover, a:active {
 
 #search-form-header, .navbar-header {
     margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .institution_name {
@@ -55,4 +56,26 @@ a.institution_name, a:link.institution_name, a:visited.institution_name, a:hover
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
 	border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+}
+
+.navbar-default {
+    background-color: #222;
+    border-color: #222;
+}
+
+.navbar-nav > li > a {
+	padding-top: 0px;
+}
+
+.navbar-text { 
+	margin-bottom: 0px;
+}
+
+#footer .navbar {
+	margin-bottom: 0px;
+	min-height: 25px;
+}
+
+ul.nav {
+	padding-right: 0px;
 }
