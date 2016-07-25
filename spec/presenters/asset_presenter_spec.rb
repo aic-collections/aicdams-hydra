@@ -50,4 +50,8 @@ describe AssetPresenter do
   describe "#has_representations?" do
     it { is_expected.not_to have_representations }
   end
+
+  describe "#is_citi_presenter?" do
+    it { is_expected.not_to be_citi_presenter }
+  end
 end

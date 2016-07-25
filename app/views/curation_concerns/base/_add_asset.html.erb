@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="add-asset-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Add asset
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="add-asset-menu">
+    <li><%= link_to "Add Representation",
+                    new_polymorphic_path([main_app, GenericWork], representation_for: params[:id]) %></li>
+    <li><%= link_to "Add Documentation",
+                    new_polymorphic_path([main_app, GenericWork], document_for: params[:id]) %></li>
+    <li><%= link_to "Batch Add Representation",
+                    sufia.new_batch_upload_path(representation_for: params[:id]) %></li>
+    <li><%= link_to "Batch Add Documentation",
+                    sufia.new_batch_upload_path(document_for: params[:id]) %></li>
+  </ul>
+</div>

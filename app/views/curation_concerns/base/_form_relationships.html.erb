@@ -1,0 +1,17 @@
+<h3>Relationships for this asset</h3>
+
+<div id="representations">
+  <% if params.fetch(:representation_for, nil) %>
+    <p>CITI resource <%= params.fetch(:representation_for) %> will be added as a representation</p>
+    <%= f.hidden_field :additional_representation, value: params.fetch(:representation_for) %>
+  <% end %>
+  <%= f.input :representations_for, as: :multi_value, input_html: { class: 'form-control' } %>
+</div>
+
+<div id="documents">
+  <% if params.fetch(:document_for, nil) %>
+    <p>CITI resource <%= params.fetch(:document_for) %> will be added as a document</p>
+    <%= f.hidden_field :additional_document, value: params.fetch(:document_for) %>
+  <% end %>
+  <%= f.input :documents_for, as: :multi_value, input_html: { class: 'form-control' } %>
+</div>

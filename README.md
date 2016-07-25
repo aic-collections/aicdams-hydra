@@ -1,47 +1,65 @@
-# Art Institute of Chicago
+# Art Institute of Chicago - LAKEshore
 
 [![Build Status](https://travis-ci.org/aic-collections/aicdams-lakeshore.svg?branch=master)](https://travis-ci.org/aic-collections/aicdams-lakeshore)
 
-## Lakeshore
+## Local Setup
 
-## Local Testing
+To prepare the development environment, ensure that all of Sufia's requirements are met.
+See [Getting Started](https://github.com/projecthydra/sufia#getting-started)
 
-To prepare the development environment, ensure that all of Sufia's requirements are met, then:
+Clone the repository
 
     git clone https://github.com/aic-collections/aicdams-lakeshore
     cd aicdams-lakeshore
     bundle install
     bundle exec rake db:migrate
-    bundle exec rake aic:jetty:prep
-    bundle exec rake aic:jetty:solr_config
-    bundle exec rake jetty:start
-    
-To register all the namespaces with Fedora, with Fedora running
 
-    bundle exec rake fedora:config
+Startup Solr and Fedora using the included wrappers
 
-To run the test suite
+    bundle exec solr_wrapper
+    bundle exec fcrepo_wrapper
 
-    bundle exec rspec spec
+Once they are running, you will need to load sample users and resources
 
-### Configuring SSL
+    bundle exec rake dev:prep
 
-Generate a keystore
+Before you can use the web application, you will need to mimic the Shibboleth environment. See the
+[wiki page](https://github.com/aic-collections/aicdams-lakeshore/wiki/Faking-Shibboleth-Authentication)
+about how to do that.
 
-    keytool -keystore keystore -alias jetty -genkey -keyalg RSA
-    cp keystore jetty_config
+Then start the web application
 
-Make sure the common name is set to `localhost` or whatever is specified in fedora.yml
+    bundle exec rails server
+
+And visit http://localhost:3000
+
+## Testing
+
+The test environment will use the same Fedora instance, but you will need to start another Solr instance
+for testing
+
+    bundle exec solr_wrapper --config config/solr_wrapper_test.yml
+
+Then you can run the entire suite
+
+    bundle exec rspec
+
+Or individual tests
+
+    bundle exec rspec path/to/spec.rb
 
 ## Deployment
 
 ### Development Server
 
-A cloned repo is deployed directly to the development server and run in development mode, i.e. not the
-usual way Capistrano is used.
+A cloned repository is deployed to the development server and run in development mode.
+This is not the usual way Capistrano is used, but is done so to enable development work directly on the
+server. By default, it will update to the latest commit in the develop branch.
 
-    bundle exec cap dev repo:clone
+    bundle exec cap dev repo:update
     bundle exec cap dev repo:config
+
+If this a is new deployment, use `bundle exec cap dev repo:update`
 
 ### Test Server
 

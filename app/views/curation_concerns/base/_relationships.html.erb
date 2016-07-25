@@ -1,4 +1,5 @@
 <h2>Relationships</h2>
+<%= render 'add_asset' if presenter.citi_presenter? %>
 <% if presenter.has_representations? %>
   <%= render_documents(presenter) %>
   <%= render_representations(presenter) %>

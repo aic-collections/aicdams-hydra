@@ -62,8 +62,11 @@ class AssetPresenter < Sufia::WorkShowPresenter
     PermissionBadge
   end
 
-  # TODO
   def has_representations?
+    false
+  end
+
+  def citi_presenter?
     false
   end
 

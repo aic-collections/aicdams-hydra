@@ -33,6 +33,10 @@ module CitiPresenterBehaviors
     document_presenters.present? || representation_presenters.present? || preferred_representation_presenter.present?
   end
 
+  def citi_presenter?
+    true
+  end
+
   private
 
     def ids_for_representation(solr_field)

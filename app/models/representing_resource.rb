@@ -1,9 +1,12 @@
 # frozen_string_literal: true
+# Tells us what CITI resources a given asset is representing.
 class RepresentingResource
   attr_reader :id
 
-  def initialize(id)
-    @id = id
+  # @param asset [String, GenericWork] the asset in question
+  def initialize(asset)
+    return unless asset
+    @id = asset.is_a?(String) ? asset : asset.id
   end
 
   def representing?

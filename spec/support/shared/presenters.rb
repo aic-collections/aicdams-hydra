@@ -3,6 +3,7 @@ shared_examples "a citi presenter" do
   it { is_expected.to delegate_method(:uid).to(:solr_document) }
   it { is_expected.not_to be_deleteable }
   its(:id) { is_expected.to eq('1234') }
+  it { is_expected.to be_citi_presenter }
 end
 
 shared_examples "a citi presenter with related assets" do

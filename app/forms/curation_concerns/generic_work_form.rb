@@ -39,18 +39,45 @@ module CurationConcerns
       model.send(term).uri.to_s
     end
 
+    def representations_for
+      representing_resource.representations
+    end
+
+    def documents_for
+      representing_resource.documents
+    end
+
+    # Overrides hydra-editor MultiValueInput#collection
+    def [](term)
+      if [:representations_for, :documents_for].include? term
+        send(term)
+      else
+        super
+      end
+    end
+
     def self.build_permitted_params
       super + [
         { document_type_uris: [] },
         { rights_holder_uris: [] },
         { view_uris: [] },
         { keyword_uris: [] },
+        { representations_for: [] },
+        { documents_for: [] },
         :digitization_source_uri,
         :compositing_uri,
         :light_type_uri,
         :status_uri,
-        :asset_type
+        :asset_type,
+        :additional_representation,
+        :additional_document
       ]
     end
+
+    private
+
+      def representing_resource
+        @representing_resource ||= RepresentingResource.new(model.id)
+      end
   end
 end
