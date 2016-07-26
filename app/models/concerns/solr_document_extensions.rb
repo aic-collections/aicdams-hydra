@@ -36,6 +36,10 @@ module SolrDocumentExtensions
     Array(self[Solrizer.solr_name('representations', :symbol)])
   end
 
+  def aic_type
+    Array(self[Solrizer.solr_name('aic_type', :symbol)]).first
+  end
+
   def preferred_representation_id
     Array(self[Solrizer.solr_name('preferred_representation', :symbol)]).first
   end
@@ -52,4 +56,13 @@ module SolrDocumentExtensions
   def title_or_label
     pref_label
   end
+
+  def date_created
+    Array(self[Solrizer.solr_name('date_created', :stored_searchable)]).first
+  end
+
+  def dept_created
+    Array(self[Solrizer.solr_name('dept_created', :stored_searchable)]).first
+  end
+
 end
