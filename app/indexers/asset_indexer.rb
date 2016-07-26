@@ -7,6 +7,9 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("aic_depositor", :symbol)] = object.depositor
       solr_doc[Solrizer.solr_name("document_type", :symbol)] = object.document_type.map(&:pref_label)
       solr_doc[Solrizer.solr_name("fedora_uri", :symbol)] = object.uri.to_s
+      solr_doc[Solrizer.solr_name("dept_created", :stored_searchable)] = object.dept_created.pref_label
+      solr_doc[Solrizer.solr_name("date_created", :stored_searchable)] = object.date_created.pref_label
+      solr_doc[Solrizer.solr_name("date_modified", :stored_searchable)] = object.date_modified.pref_label
     end
   end
 
