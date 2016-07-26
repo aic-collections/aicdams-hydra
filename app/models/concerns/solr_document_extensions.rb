@@ -17,7 +17,7 @@ module SolrDocumentExtensions
   end
 
   def citi_uid
-    Array(self[Solrizer.solr_name('uid', :symbol)]).first
+    Array(self[Solrizer.solr_name('citi_uid', :symbol)]).first
   end
 
   def fedora_uri
