@@ -2,8 +2,6 @@
 class AssetPresenter < Sufia::WorkShowPresenter
   self.file_presenter_class = FileSetPresenter
 
-  delegate :documents, :representations, :preferred_representation, :assets, :representing?, to: :representing_resource
-
   def self.terms
     [
       :uid,
@@ -34,6 +32,7 @@ class AssetPresenter < Sufia::WorkShowPresenter
   end
 
   delegate(*presenter_terms, to: :solr_document)
+  delegate :document_ids, :representation_ids, :preferred_representation_ids, to: :relationships
 
   def title
     [pref_label]
@@ -41,16 +40,6 @@ class AssetPresenter < Sufia::WorkShowPresenter
 
   def deleteable?
     current_ability.can?(:delete, GenericWork)
-  end
-
-  # TODO: needs to show either representation, preferred representation, or document
-  def brief_terms
-    [
-      #:relation,
-      :asset_type,
-      :uid,
-      :pref_label
-    ]
   end
 
   def asset_type
@@ -62,17 +51,35 @@ class AssetPresenter < Sufia::WorkShowPresenter
     PermissionBadge
   end
 
-  def has_representations?
-    false
-  end
-
   def citi_presenter?
     false
   end
 
+  def has_relationships?
+    !relationships.ids.empty?
+  end
+
+  def document_presenters
+    CurationConcerns::PresenterFactory.build_presenters(document_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def representation_presenters
+    CurationConcerns::PresenterFactory.build_presenters(representation_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def preferred_representation_presenters
+    CurationConcerns::PresenterFactory.build_presenters(preferred_representation_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
   private
 
-    def representing_resource
-      @representing_resource ||= RepresentingResource.new(model.id)
+    def relationships
+      @relationships ||= InboundRelationships.new(id)
     end
 end

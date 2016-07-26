@@ -1,20 +1,22 @@
 # frozen_string_literal: true
-class CitiResourcePresenter
-  attr_reader :resource
-
-  def initialize(resource = nil)
-    @resource = resource
+# Used for displaying Citi resources in relationship lists or other view where only common
+# fields are known. No outbound relationships are presented.
+class CitiResourcePresenter < Sufia::WorkShowPresenter
+  def self.terms
+    CitiResourceTerms.all
   end
 
-  def display_name
-    return unless resource.respond_to?(:pref_label)
-    return resource.pref_label unless resource.is_a?(AICUser)
-    display_name_for_user
+  delegate(*terms, to: :solr_document)
+
+  def title
+    [pref_label]
   end
 
-  private
+  def citi_presenter?
+    true
+  end
 
-    def display_name_for_user
-      "#{[resource.given_name, resource.family_name].compact.join(' ')} (#{resource.nick})".lstrip
-    end
+  def deleteable?
+    false
+  end
 end

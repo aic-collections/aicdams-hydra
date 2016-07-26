@@ -35,7 +35,7 @@ class AICUser < CitiResource
       def json_result(doc)
         {
           id: doc.fetch("nick_tesim").first,
-          text: CitiResourcePresenter.new(find_by_nick(doc.fetch("nick_tesim"))).display_name
+          text: AICUserPresenter.new(find_by_nick(doc.fetch("nick_tesim"))).display_name
         }
       end
   end

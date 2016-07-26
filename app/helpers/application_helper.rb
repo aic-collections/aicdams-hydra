@@ -14,8 +14,8 @@ module ApplicationHelper
     render 'representations', representation: "Representations", presenters: presenter.representation_presenters
   end
 
-  def render_preferred_representation(presenter)
-    return unless presenter.preferred_representation_presenter.present?
-    render 'representations', representation: "Preferred Representation", presenters: [presenter.preferred_representation_presenter]
+  def render_preferred_representations(presenter)
+    return unless presenter.preferred_representation_presenters.present?
+    render 'representations', representation: "Preferred Representation", presenters: presenter.preferred_representation_presenters
   end
 end

@@ -38,8 +38,45 @@ describe 'curation_concerns/base/_relationships.html.erb' do
 
     context "with preferred representations" do
       before do
-        allow(citi_presenter).to receive(:preferred_representation_presenter).and_return(asset_presenter)
+        allow(citi_presenter).to receive(:preferred_representation_presenters).and_return([asset_presenter])
         render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter
+      end
+      it { is_expected.to have_content("Preferred Representation") }
+    end
+  end
+
+  describe "an asset" do
+    let(:citi_resource)  { build(:exhibition, id: '999') }
+    let(:citi_presenter) { CitiResourcePresenter.new(solr_document, ability) }
+
+    context "with no relationships" do
+      before { render 'curation_concerns/base/relationships.html.erb', presenter: asset_presenter }
+      it { is_expected.to have_content("No relationships found for this Asset") }
+    end
+
+    context "when related as a representation" do
+      before do
+        allow(asset_presenter).to receive(:has_relationships?).and_return(true)
+        allow(asset_presenter).to receive(:representation_presenters).and_return([citi_presenter])
+        render 'curation_concerns/base/relationships.html.erb', presenter: asset_presenter
+      end
+      it { is_expected.to have_content("Relationships") }
+    end
+
+    context "when related as a document" do
+      before do
+        allow(asset_presenter).to receive(:has_relationships?).and_return(true)
+        allow(asset_presenter).to receive(:document_presenters).and_return([citi_presenter])
+        render 'curation_concerns/base/relationships.html.erb', presenter: asset_presenter
+      end
+      it { is_expected.to have_content("Documents") }
+    end
+
+    context "when related as a preferred representation" do
+      before do
+        allow(asset_presenter).to receive(:has_relationships?).and_return(true)
+        allow(asset_presenter).to receive(:preferred_representation_presenters).and_return([citi_presenter])
+        render 'curation_concerns/base/relationships.html.erb', presenter: asset_presenter
       end
       it { is_expected.to have_content("Preferred Representation") }
     end

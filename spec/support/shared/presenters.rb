@@ -25,16 +25,16 @@ shared_examples "a citi presenter with related assets" do
     its(:representation_presenters) { is_expected.to contain_exactly(asset_presenter) }
   end
 
-  describe "#preferred_representation_presenter" do
+  describe "#preferred_representation_presenters" do
     before do
       allow(solr_doc).to receive(:preferred_representation_id).and_return("asset-id")
       allow(CurationConcerns::PresenterFactory).to receive(:build_presenters).with(
         ["asset-id"], AssetPresenter, ability, nil).and_return([asset_presenter])
     end
-    its(:preferred_representation_presenter) { is_expected.to eq(asset_presenter) }
+    its(:preferred_representation_presenters) { is_expected.to contain_exactly(asset_presenter) }
   end
 
-  describe "#has_representations?" do
-    it { is_expected.not_to have_representations }
+  describe "#has_relationships?" do
+    it { is_expected.not_to have_relationships }
   end
 end

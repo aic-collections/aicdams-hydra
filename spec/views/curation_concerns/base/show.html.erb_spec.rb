@@ -27,7 +27,7 @@ describe 'curation_concerns/base/show.html.erb' do
     end
   end
 
-  context "with a department asset" do
+  context "with a registered asset" do
     let(:asset)     { build(:registered_asset, id: '999', pref_label: 'Department Asset') }
     let(:presenter) { AssetPresenter.new(solr_document, ability) }
     specify do

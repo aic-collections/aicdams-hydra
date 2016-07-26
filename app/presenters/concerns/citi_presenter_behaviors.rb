@@ -23,14 +23,14 @@ module CitiPresenterBehaviors
                                                         *presenter_factory_arguments)
   end
 
-  def preferred_representation_presenter
+  def preferred_representation_presenters
     CurationConcerns::PresenterFactory.build_presenters([preferred_representation_id],
                                                         AssetPresenter,
-                                                        *presenter_factory_arguments).first
+                                                        *presenter_factory_arguments)
   end
 
-  def has_representations?
-    document_presenters.present? || representation_presenters.present? || preferred_representation_presenter.present?
+  def has_relationships?
+    document_presenters.present? || representation_presenters.present? || preferred_representation_presenters.present?
   end
 
   def citi_presenter?
@@ -40,8 +40,7 @@ module CitiPresenterBehaviors
   private
 
     def ids_for_representation(solr_field)
-      ActiveFedora::SolrService.query("{!field f=#{solr_field}}#{id}",
-                                      fl: ActiveFedora.id_field)
+      ActiveFedora::SolrService.query("{!field f=#{solr_field}}#{id}", fl: ActiveFedora.id_field)
                                .map { |x| x.fetch(ActiveFedora.id_field) }
     end
 end
