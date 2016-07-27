@@ -2,6 +2,10 @@
 module SolrDocumentExtensions::Work
   extend ActiveSupport::Concern
 
+  def aic_type
+    Array(self[Solrizer.solr_name('aic_type', :symbol)]).first
+  end
+
   def artist
     Array(self[Solrizer.solr_name('artist', :symbol)])
   end

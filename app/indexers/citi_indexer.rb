@@ -4,7 +4,7 @@ class CitiIndexer < ActiveFedora::IndexingService
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc["read_access_group_ssim"] = ["group", "registered"]
-      solr_doc[Solrizer.solr_name("aic_type", :facetable)] = object.class.to_s
+      solr_doc[Solrizer.solr_name("aic_type", :symbol)] = object.class.to_s
       solr_doc[Solrizer.solr_name("status", :symbol)] = [object.status.pref_label] if object.status
       #solr_doc[Solrizer.solr_name("artist", :symbol)] = [object.artist.pref_label] if object.artist
       #solr_doc[Solrizer.solr_name("department", :symbol)] = [object.department.pref_label] if object.department
