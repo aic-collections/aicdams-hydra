@@ -68,7 +68,21 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
 
     # Index view fields
-    config.add_index_field solr_name("pref_label", :stored_searchable), label: ::RDF::Vocab::SKOS.prefLabel.label
+    config.add_index_field solr_name("aic_type", :facetable),        label: "Asset Type"
+    config.add_index_field solr_name("aic_type", :symbol),        label: "Resource Type"
+    config.add_index_field solr_name("uid", :stored_searchable),             label: AIC.uid.label
+    config.add_index_field solr_name("citi_uid", :stored_searchable),        label: AIC.citiUid.label
+    config.add_index_field solr_name("main_ref_number", :stored_searchable), label: AIC.mainRefNumber.label
+    config.add_index_field solr_name("tag", :stored_searchable),             label: "Keyword"
+    config.add_index_field solr_name("creator_display", :stored_searchable),   label: AIC.creatorDisplay.label
+    config.add_index_field solr_name("document_type", :symbol),              label: AIC.documentType.label
+    #@TODO Number of related assets
+    # @FIXME Label should be ::RDF::Vocab::MARCRelators.dpt but that yields no human readable label
+    config.add_index_field solr_name("aic_depositor", :symbol),              label: "Depositor"
+    config.add_index_field solr_name("credit_line", :stored_searchable),     label: AIC.creditLine.label
+    config.add_index_field solr_name("dept_created", :stored_searchable),    label: AIC.deptCreated.label
+    #config.add_index_field solr_name("date_created", :stored_searchable),    label: AIC.created.label
+    config.add_index_field solr_name("date_modified", :stored_searchable),   label: AIC.updated.label
 
     # Resource fields
     config.add_show_field solr_name("contributor", :stored_searchable),   label: AIC.contributor.label

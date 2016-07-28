@@ -2,8 +2,12 @@
 module SolrDocumentExtensions::Work
   extend ActiveSupport::Concern
 
+  def aic_type
+    Array(self[Solrizer.solr_name('aic_type', :symbol)]).first
+  end
+
   def artist
-    # TODO: needs to display an AIC.Agent
+    Array(self[Solrizer.solr_name('artist', :symbol)])
   end
 
   def creator_display
@@ -19,7 +23,7 @@ module SolrDocumentExtensions::Work
   end
 
   def department
-    # TODO: need to display an AIC.Department
+    Array(self[Solrizer.solr_name('department', :symbol)]).first
   end
 
   def dimensions_display
@@ -73,4 +77,5 @@ module SolrDocumentExtensions::Work
   def publ_ver_level
     Array(self[Solrizer.solr_name('publ_ver_level', :stored_searchable)]).first
   end
+
 end
