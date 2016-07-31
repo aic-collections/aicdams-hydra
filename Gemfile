@@ -17,6 +17,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '~> 3.0'
+gem 'openseadragon', github: 'IIIF/openseadragon-rails', ref: '684d56ffe1049fe0f637ffe63e78ec9376c3cc29'
 
 group :development, :test do
   gem 'better_errors'

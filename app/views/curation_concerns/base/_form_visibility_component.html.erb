@@ -6,15 +6,38 @@
 <% else %>
   <div class="form-group visibility">
     <label class="radio">
-      <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED %>
+      <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC, data: { 'target': '#collapsePublic' }  %>
+		<%= t('curation_concerns.visibility.open.label_html') %>
+		<div class="collapse" id="collapsePublic">
+		  <p>
+			Please note, marking something as published means that it may be made available on the Web or other public channels. You should mark this permission if you want to be able to publish this asset to an artwork page, tour, resource or other AIC digital forum.
+		  </p>
+		</div>
+    </label>
+    <label class="radio">
+      <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED, data: { 'target': '#collapseAuthenticated' } %>
       <%= t('curation_concerns.visibility.authenticated.label_html', institution: t('curation_concerns.institution.name')) %>
+	  <div class="collapse" id="collapseAuthenticated">
+	    <p>
+		  This resource will be marked as <strong>internal use only</strong>. It will only be visible to AIC staff.
+		</p>
+	  </div>
+    </label>
+	<label class="radio">
+      <%= f.radio_button :visibility, Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT, data: { 'target': '#collapseDepartment' } %>
+      <%= t('curation_concerns.visibility.department.label_html') %>
+	  <div class="collapse" id="collapseDepartment">
+	    <p>
+		  This resource will be marked as <strong>internal use only</strong>. It will only be visible to the owner's department. Individual staff can still search the resource, view basic information such as title and thumbnail, and request access to the owner.
+		</p>
+	  </div>
     </label>
     <label class="radio">
       <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO, data: { 'target': '#collapseEmbargo' } %>
       <%= t('curation_concerns.visibility.embargo.label_html') %>
       <div class="collapse" id="collapseEmbargo">
         <div class="form-inline">
-          <%= f.input :visibility_during_embargo, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
+          <%= f.input :visibility_during_embargo, wrapper: :inline, collection: visibility_options(:variant), include_blank: false %>
           <%= f.date_field :embargo_release_date, wrapper: :inline, value: f.object.embargo_release_date || Date.tomorrow, class: 'datepicker form-control' %>
           <%= f.input :visibility_after_embargo, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
         </div>
@@ -27,14 +50,10 @@
         <div class="form-inline">
           <%= f.input :visibility_during_lease, wrapper: :inline, collection: visibility_options(:loosen), include_blank: false %>
           <%= f.date_field :lease_expiration_date, wrapper: :inline, value: f.object.lease_expiration_date || Date.tomorrow, class: 'datepicker form-control' %>
-          <%= f.input :visibility_after_lease, wrapper: :inline, collection: visibility_options(:restrict), include_blank: false %>
+          <%= f.input :visibility_after_lease, wrapper: :inline, collection: visibility_options(:variant), include_blank: false %>
         </div>
       </div>
 
-    </label>
-    <label class="radio">
-      <%= f.radio_button :visibility, Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT %>
-      <%= t('curation_concerns.visibility.department.label_html') %>
     </label>
   </div>
 <% end %>

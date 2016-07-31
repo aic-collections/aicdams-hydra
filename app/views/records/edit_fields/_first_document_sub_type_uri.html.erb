@@ -1,3 +1,5 @@
-<%= f.input key, as: :select, collection: DocumentType.options, include_blank: true,
-    selected: f.object.uri_for(:first_document_sub_type),
-    input_html: { class: 'form-control', multiple: false }, required: f.object.required?(key) %>
+<% if action_name == 'edit' %>
+  <div class="form-group select required generic_work_first_document_sub_type_uri"
+       data-uri="<%= f.object.uri_for(:first_document_sub_type) %>">
+  </div>
+<% end %>

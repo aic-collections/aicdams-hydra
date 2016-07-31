@@ -6,6 +6,8 @@ en:
     institution_name_full:  "The Art Institute of Chicago"
     sort_label:             "Sort the listing of items"
     share_button:           "Upload Your Assets"
+    deposit_agreement:      "LAKE Deposit Agreement"
+    passive_consent_to_agreement: "By clicking 'Save' you agree to the"
     search:
       form:
         option:
@@ -177,3 +179,5 @@ en:
       department:
         text: "Department"
         label_html: "Department"
+      open:
+         label_html: Open Access

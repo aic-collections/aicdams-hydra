@@ -89,7 +89,7 @@ Sufia.config do |config|
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active.
   # The default is true.
-  # config.active_deposit_agreement_acceptance = true
+  config.active_deposit_agreement_acceptance = false
 
   # Should a button with "Share my work" show on the front page to all users (even those not logged in)?
   # config.always_display_share_button = true

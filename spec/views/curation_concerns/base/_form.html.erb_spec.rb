@@ -44,14 +44,33 @@ describe 'curation_concerns/base/_form.html.erb' do
 
   context "when editing an existing asset" do
     let(:work) { create(:asset) }
-    before do
-      render
-    end
+    before { render }
+
     it "renders the asset type as a hidden field with the current value" do
       expect(rendered).to include("type=\"hidden\" value=\"#{AICType.StillImage}\"")
     end
     it "renders the existing status selected" do
       expect(rendered).to include("<option selected=\"selected\" value=\"#{StatusType.active.uri}\">Active</option>")
+    end
+  end
+
+  context "with existing document types" do
+    let(:work) do
+      create(:asset,
+             document_type_uri: "http://doctype-uri",
+             first_document_sub_type_uri: "http://first-sub-type-uri",
+             second_document_sub_type_uri: "http://second-sub-type-uri"
+            )
+    end
+    before do
+      view.stub(:action_name).and_return('edit')
+      render
+    end
+
+    it "renders existing uris as data attributes" do
+      expect(rendered).to include('data-uri="http://doctype-uri">')
+      expect(rendered).to include('data-uri="http://first-sub-type-uri">')
+      expect(rendered).to include('data-uri="http://second-sub-type-uri">')
     end
   end
 
