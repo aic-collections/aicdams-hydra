@@ -1,9 +1,14 @@
-<%= image = [document["thumbnail_path_ss"]] %>
+<% image = [{ tileSources: {
+    type: "image",
+    url: "/235852_3679631.jpg",
+    #url: "/235852_3679631.jpg",
+    #crossOriginPolicy: "Anonymous",
+    #ajaxWithCredentials: false
+}}] %>
 
 <%# image = document.to_openseadragon(blacklight_config.view_config(:show)) %>
 <%
   osd_config = {
-    crossOriginPolicy: false,
     zoomInButton:     "osd-zoom-in",
     zoomOutButton:    "osd-zoom-out",
     homeButton:       "osd-home",
