@@ -1,0 +1,5 @@
+<% if presenter.representative_id.present? && presenter.representative_presenter.present? %>
+  <%= render 'catalog/openseadragon_default', document: presenter.representative_presenter.solr_document %>
+<% else %>
+  <%= image_tag 'nope.png', class: "canonical-image" %>
+<% end %>

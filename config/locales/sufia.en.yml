@@ -140,7 +140,7 @@ en:
 
     hints:
       generic_work:
-        description: "Free-text notes about the Asset, e.g. description of the subject of an image or abstract of a text document. This text can be used for an ADA-compliant description about an image or document."
+        description: "Free-text notes about the Asset, e.g. description of the subject of an image or abstract of a text document."
     metadata_help:
       generic_file:
         resource_type_html: "Pre-defined categories to describe the type of asset content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
