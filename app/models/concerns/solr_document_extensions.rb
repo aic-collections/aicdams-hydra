@@ -52,7 +52,9 @@ module SolrDocumentExtensions
   end
 
   def visibility
-    @visibility ||= if read_groups.include? Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_AUTHENTICATED
+    @visibility ||= if read_groups.include? Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_PUBLIC
+                      Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+                    elsif read_groups.include? Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_AUTHENTICATED
                       Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
                     else
                       Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT
