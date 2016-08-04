@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 
 # Hydra Gems
-gem 'sufia', '7.0.0.rc1'
+gem 'sufia', '~> 7.0'
 
 gem 'blacklight_range_limit'
 gem 'coffee-rails', '~> 4.1'

@@ -23,20 +23,23 @@
   }
 %>
 
+<%= link_to "Download the full-sized image", main_app.download_path(document),
+                 target: "_new", title: "Download the full-sized image" %>
+
 <% unless image.nil? %>
   <% count = Array(image).length %>
-  <div class="openseadragon-container <%= osd_container_class %>">
+  <div class="openseadragon-container">
     <div class="osd-toolbar row">
       <% if count > 1 %>
         <% osd_config = osd_config_referencestrip.merge(osd_config) %>
 
-        <div class="col-md-6 pagination">
+        <div class="pagination">
           <a id="osd-previous"><span class="glyphicon glyphicon-chevron-left"></span></a>
           <span id="osd-page">1</span>  of <%= count %>
           <a id="osd-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
       <% end %>
-        <div class="col-md-6 controls">
+        <div class="controls">
           <a id="osd-zoom-in"><span class="glyphicon glyphicon-plus-sign"></span></a>
           <a id="osd-zoom-out"><span class="glyphicon glyphicon-minus-sign"></span></a>
           <a id="osd-home"><span class="glyphicon glyphicon-resize-small"></span></a>

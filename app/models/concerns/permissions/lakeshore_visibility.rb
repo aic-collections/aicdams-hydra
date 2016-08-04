@@ -7,13 +7,13 @@ module Permissions::LakeshoreVisibility
   VISIBILITY_TEXT_VALUE_DEPARTMENT = "department"
 
   included do
-    # Overrides Hydra::AccessControls::Visibility to allow only registered or department visibilities
+    # Overrides Hydra::AccessControls::Visibility to not allow private visibility
     def visibility=(value)
       return if value.nil?
       # only set explicit permissions
       case value
       when Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-        errors[:visibility] = "cannot be #{Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC}"
+        public_visibility!
       when Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
         registered_visibility!
       when Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
