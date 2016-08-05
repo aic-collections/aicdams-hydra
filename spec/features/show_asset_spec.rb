@@ -40,9 +40,9 @@ describe "Displaying an asset" do
     end
 
     # Show page view
-    expect(page).to have_selector("h3", text: "Documents")
-    expect(page).to have_selector("h3", text: "Representations")
-    expect(page).to have_selector("h3", text: "Preferred Representation")
+    expect(page).to have_selector("h3", text: "Preferred Representation Of")
+    expect(page).to have_selector("h3", text: "Representation Of")
+    expect(page).to have_selector("h3", text: "Documentation For")
     expect(page).to have_link("Sample Exhibition")
     expect(page).to have_link("Sample Work")
     expect(page).to have_link("Sample Shipment")

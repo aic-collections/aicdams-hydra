@@ -17,6 +17,7 @@
   </div>
 </div>
 
+<% if !@presenter.citi_presenter? %>
 <div class="row">
   <div class="col-sm-12">
     <%= render 'items', presenter: @presenter %>
@@ -25,5 +26,6 @@
     <%#= render 'user_activity', presenter: @presenter %>
   </div>
 </div>
+<% end %>
 <div id="osd_modal_bg"><div id="osd_canvas"></div></div>
 
