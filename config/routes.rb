@@ -67,4 +67,6 @@ Rails.application.routes.draw do
 
   # Sufia should come last because in production it will 404 any unknown routes
   mount Sufia::Engine => '/'
+
+  get "/login_confirm" => "dummy#login_confirm"
 end
