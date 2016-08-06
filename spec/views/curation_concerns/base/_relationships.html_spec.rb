@@ -25,7 +25,7 @@ describe 'curation_concerns/base/_relationships.html.erb' do
         allow(citi_presenter).to receive(:representation_presenters).and_return([asset_presenter])
         render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter
       end
-      it { is_expected.to have_content("Relationships") }
+      it { is_expected.to have_content("Representations") }
     end
 
     context "with documents" do
@@ -33,7 +33,7 @@ describe 'curation_concerns/base/_relationships.html.erb' do
         allow(citi_presenter).to receive(:document_presenters).and_return([asset_presenter])
         render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter
       end
-      it { is_expected.to have_content("Documents") }
+      it { is_expected.to have_content("Documentation") }
     end
 
     context "with preferred representations" do
@@ -69,7 +69,7 @@ describe 'curation_concerns/base/_relationships.html.erb' do
         allow(asset_presenter).to receive(:document_presenters).and_return([citi_presenter])
         render 'curation_concerns/base/relationships.html.erb', presenter: asset_presenter
       end
-      it { is_expected.to have_content("Documents") }
+      it { is_expected.to have_content("Documentation") }
     end
 
     context "when related as a preferred representation" do
