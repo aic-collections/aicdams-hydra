@@ -26,7 +26,7 @@ class RelationshipPresenterBuilder
 
     def resource
       return unless citi_uid && model
-      @resource ||= ActiveFedora::SolrService.query("citi_uid_ssim:#{citi_uid}",
+      @resource ||= ActiveFedora::SolrService.query("citi_uid_ssim:\"#{citi_uid}\"",
                                                     fq: "has_model_ssim:#{model}").first
     end
 end
