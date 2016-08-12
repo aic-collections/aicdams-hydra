@@ -13,6 +13,9 @@
 				if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Text') {
 					totalDocTypes = data.asset_types.Text.doctypes;
 				}
+				if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Other') {
+					totalDocTypes = data.asset_types.Other.doctypes;
+				}
 				return totalDocTypes;
 			},
 
@@ -74,7 +77,7 @@
 Blacklight.onLoad(function() {
 
   var select_doctype = $.fn.selectDoctype();
-	var docTypeJson = "/sample_doctypes.json";
+	var docTypeJson = "/lake_doctypes.json";
 	var totalDocTypes;
 	var totalSubtypes;
 	var docType;
