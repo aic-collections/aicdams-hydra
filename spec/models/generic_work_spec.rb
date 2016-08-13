@@ -47,8 +47,8 @@ describe GenericWork do
     end
     describe "minting uids" do
       before { subject.save }
-      it "uses a UID for still images" do
-        expect(subject.id).to start_with("SI")
+      it "uses a checksum as a path" do
+        expect(subject.id).to match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}/)
         expect(subject.uri).not_to match(/\/-/)
         expect(subject.uid).to eql(subject.id)
       end
@@ -70,8 +70,8 @@ describe GenericWork do
     end
     describe "minting uids" do
       before { subject.save }
-      it "uses a UID for still images" do
-        expect(subject.id).to start_with("TX")
+      it "uses a checksum as a path" do
+        expect(subject.id).to match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}/)
         expect(subject.uri).not_to match(/\/-/)
       end
     end
