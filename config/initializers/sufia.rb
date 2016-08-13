@@ -107,7 +107,7 @@ Sufia.config do |config|
   # Method of converting ids into URIs for storage in Fedora
   # config.translate_uri_to_id = lambda { |uri| uri.to_s.split('/')[-1] }
   config.translate_id_to_uri = lambda { |id|
-    "#{ActiveFedora.fedora.host}#{ActiveFedora.fedora.base_path}/#{UidTranslator.id_to_uri(id)}"
+    "#{ActiveFedora.fedora.host}#{ActiveFedora.fedora.base_path}/#{UidTranslator.id_to_hash_uri(id)}"
   }
 
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
