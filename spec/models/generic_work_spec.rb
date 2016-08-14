@@ -27,8 +27,8 @@ describe GenericWork do
   describe "asserting StillImage" do
     subject { build(:asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.StillImage) }
-    let(:hash) {Digest::MD5.hexdigest(subject.uid)}
-    let(:dhash) {[hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-')}
+    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
+    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
     context "and re-asserting StillImage" do
       before  { subject.assert_still_image }
       specify { expect(subject).not_to receive(:set_value) }
@@ -59,8 +59,8 @@ describe GenericWork do
   describe "setting type to Text" do
     subject { build(:text_asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.Text) }
-    let(:hash) {Digest::MD5.hexdigest(subject.uid)}
-    let(:dhash) {[hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-')}
+    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
+    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
     context "and re-asserting Text" do
       before  { subject.assert_text }
       specify { expect(subject).not_to receive(:set_value) }
