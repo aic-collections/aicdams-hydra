@@ -21,7 +21,7 @@ class UidTranslator
   def self.id_to_hash_uri(id)
     return original_uri(id) unless id =~ /^[A-Z]{2,2}/
     hash = Digest::MD5.hexdigest(id)
-    path = [hash[0,8], hash[8,4], hash[12,4], hash[16,4], hash[20..-1]].join('-')
+    path = [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-')
     (path.scan(/..?/).first(4) + [path]).join('/')
   end
 
