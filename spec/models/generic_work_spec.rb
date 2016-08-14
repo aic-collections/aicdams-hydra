@@ -27,6 +27,8 @@ describe GenericWork do
   describe "asserting StillImage" do
     subject { build(:asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.StillImage) }
+    let(:hash) {Digest::MD5.hexdigest(subject.uid)}
+    let(:dhash) {[hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-')}
     context "and re-asserting StillImage" do
       before  { subject.assert_still_image }
       specify { expect(subject).not_to receive(:set_value) }
@@ -48,9 +50,8 @@ describe GenericWork do
     describe "minting uids" do
       before { subject.save }
       it "uses a checksum as a path" do
-        expect(subject.id).to match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}/)
-        expect(subject.uri).not_to match(/\/-/)
-        expect(subject.uid).to eql(subject.id)
+        expect(subject.id).to match(/^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}/)
+        expect(subject.id).to eql(dhash)
       end
     end
   end
@@ -58,6 +59,8 @@ describe GenericWork do
   describe "setting type to Text" do
     subject { build(:text_asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.Text) }
+    let(:hash) {Digest::MD5.hexdigest(subject.uid)}
+    let(:dhash) {[hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-')}
     context "and re-asserting Text" do
       before  { subject.assert_text }
       specify { expect(subject).not_to receive(:set_value) }
@@ -71,8 +74,8 @@ describe GenericWork do
     describe "minting uids" do
       before { subject.save }
       it "uses a checksum as a path" do
-        expect(subject.id).to match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}/)
-        expect(subject.uri).not_to match(/\/-/)
+        expect(subject.id).to match(/^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}/)
+        expect(subject.id).to eql(dhash)
       end
     end
   end
