@@ -17,7 +17,7 @@ class GenericWork < Resource
   type type + aic_type
 
   before_create :status_is_active
-  validate :uid_matches_id, on: :update
+  validate :id_matches_uid_checksum, on: :update
   before_destroy :asset_cannot_be_referenced
 
   def still_image?
@@ -50,17 +50,18 @@ class GenericWork < Resource
     raise ArgumentError, "Can't assign a prefix without a type"
   end
 
-  # Overrides CurationConcerns::Noid to set both #id and #uid to the minted uid
+  # Overrides CurationConcerns::Noid to set #id to be a MD5 checksum of #uid.
   def assign_id
     self.uid = service.mint
+    self.id = service.hash(self.uid)
   end
 
   def status_is_active
     self.status = StatusType.active
   end
 
-  def uid_matches_id
-    errors.add :uid, 'must match id' if uid != id
+  def id_matches_uid_checksum
+    errors.add :uid, 'must match checksum' if id != service.hash(uid)
   end
 
   def asset_cannot_be_referenced
