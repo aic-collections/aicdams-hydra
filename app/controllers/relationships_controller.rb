@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
   layout "bare"
 
   def show
-    render_401 unless presenter
+    render_404 unless presenter
     respond_to do |wants|
       wants.html { presenter }
     end

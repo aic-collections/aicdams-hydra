@@ -4,6 +4,6 @@ class UpdateIndexJob < ActiveJob::Base
 
   def perform(id)
     return unless ActiveFedora::Base.exists?(id)
-    ActiveFedora::Base.find(id).update_index
+    ActiveFedora::SolrService.add(ActiveFedora::Base.find(id).to_solr, softCommit: false)
   end
 end

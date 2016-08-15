@@ -12,7 +12,7 @@ describe RelationshipsController do
     end
     context "with an unsuccessful request" do
       subject { get :show, id: "1234", model: 'foo' }
-      it { is_expected.to be_unauthorized }
+      it { is_expected.to be_not_found }
     end
   end
 end
