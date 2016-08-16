@@ -2,12 +2,12 @@
 require 'rails_helper'
 
 describe 'curation_concerns/base/_add_asset.html.erb' do
-  let(:page) { rendered }
+  let(:asset)     { build(:asset, id: 'asset-id') }
+  let(:user)      { create(:user1) }
+  let(:presenter) { AssetPresenter.new(SolrDocument.new(asset.to_solr), user) }
+  let(:page)      { rendered }
 
-  before do
-    controller.params = { id: 'asset-id' }
-    render
-  end
+  before { render 'curation_concerns/base/add_asset.html.erb', presenter: presenter }
 
   it "renders links for creating new assets from CITI resources" do
     expect(page).not_to include("/concern/generic_works/new?representation_for=asset-id")

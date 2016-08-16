@@ -1,0 +1,654 @@
+{
+    "asset_types" : {
+        "StillImage" : {
+            "doctypes" : [
+                {
+                    "label" : "Marketing",
+                    "value" : "http://definitions.artic.edu/doctypes/MarketingStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Design File",
+                            "value" : "http://definitions.artic.edu/doctypes/DesignFile"
+                        },
+                        {
+                            "label" : "Ad Material",
+                            "value" : "http://definitions.artic.edu/doctypes/AdMaterial"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Imaging",
+                    "value" : "http://definitions.artic.edu/doctypes/Imaging",
+                    "subtypes" : [
+                        {
+                            "label" : "Archive Document",
+                            "value" : "http://definitions.artic.edu/doctypes/ArchiveDocument"
+                        },
+                        {
+                            "label" : "Object Photography",
+                            "value" : "http://definitions.artic.edu/doctypes/ObjectPhotography"
+                        },
+                        {
+                            "label" : "Event Photography",
+                            "value" : "http://definitions.artic.edu/doctypes/EventPhotography",
+                            "subtypes" : [
+                                {
+                                    "label" : "Lecture",
+                                    "value" : "http://definitions.artic.edu/doctypes/Lecture"
+                                },
+                                {
+                                    "label" : "Committee Meeting",
+                                    "value" : "http://definitions.artic.edu/doctypes/CommitteeMeeting"
+                                },
+                                {
+                                    "label" : "Membership event",
+                                    "value" : "http://definitions.artic.edu/doctypes/MembershipEvent"
+                                },
+                                {
+                                    "label" : "Gallery Tour",
+                                    "value" : "http://definitions.artic.edu/doctypes/GalleryTour"
+                                },
+                                {
+                                    "label" : "Education Program",
+                                    "value" : "http://definitions.artic.edu/doctypes/EducationProgram"
+                                },
+                                {
+                                    "label" : "Behind-the-scenes",
+                                    "value" : "http://definitions.artic.edu/doctypes/BehindTheScenes"
+                                },
+                                {
+                                    "label" : "Seminar",
+                                    "value" : "http://definitions.artic.edu/doctypes/Seminar"
+                                },
+                                {
+                                    "label" : "Donor event",
+                                    "value" : "http://definitions.artic.edu/doctypes/DonorEvent"
+                                },
+                                {
+                                    "label" : "Mellon Program",
+                                    "value" : "http://definitions.artic.edu/doctypes/MellonProgram"
+                                },
+                                {
+                                    "label" : "SupportGroup",
+                                    "value" : "http://definitions.artic.edu/doctypes/SupportGroup"
+                                },
+                                {
+                                    "label" : "Marketing",
+                                    "value" : "http://definitions.artic.edu/doctypes/Marketing"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label" : "Ryerson Library",
+                    "value" : "http://definitions.artic.edu/doctypes/RyersonLibraryStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Ryerson Special Collections",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsStillImage"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Design and Construction",
+                    "value" : "http://definitions.artic.edu/doctypes/DesignConstructionStillImage"
+                },
+                {
+                    "label" : "Museum Education",
+                    "value" : "http://definitions.artic.edu/doctypes/MuseumEducationStillImage"
+                },
+                {
+                    "label" : "Development",
+                    "value" : "http://definitions.artic.edu/doctypes/DevelopmentStillImage"
+                }
+            ]
+        },
+        "Text" : {
+            "doctypes" : [
+                {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/General",
+                    "subtypes" : [
+                        {
+                            "label" : "Correspondence",
+                            "value" : "http://definitions.artic.edu/doctypes/Correspondence"
+                        },
+                        {
+                            "label" : "Acquisition Document",
+                            "value" : "http://definitions.artic.edu/doctypes/AcquisitionDocument"
+                        },
+                        {
+                            "label" : "Contract",
+                            "value" : "http://definitions.artic.edu/doctypes/Contract",
+                            "subtypes" : [
+                                {
+                                    "label" : "Master Vendor Contract",
+                                    "value" : "http://definitions.artic.edu/doctypes/MasterVendorContract"
+                                },
+                                {
+                                    "label" : "Exhibition Contract",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibitionContract"
+                                },
+                                {
+                                    "label" : "Art Commission Contract",
+                                    "value" : "http://definitions.artic.edu/doctypes/ArtCommissionContract"
+                                },
+                                {
+                                    "label" : "Auction Sales Contract",
+                                    "value" : "http://definitions.artic.edu/doctypes/AuctionSalesContract"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Fundraising",
+                            "value" : "http://definitions.artic.edu/doctypes/Fundraising"
+                        }
+                        ,
+                        {
+                            "label" : "Ephemera",
+                            "value" : "http://definitions.artic.edu/doctypes/Ephemera"
+                        }
+                        ,
+                        {
+                            "label" : "Confidential",
+                            "value" : "http://definitions.artic.edu/doctypes/Confidential"
+                        }
+                        ,
+                        {
+                            "label" : "Institutional Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/InstitutionalArchive"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Registration Document",
+                    "value" : "http://definitions.artic.edu/doctypes/RegistrationDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Exhibition Receipt",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionReceipt"
+                        },
+                        {
+                            "label" : "Incoming Receipt",
+                            "value" : "http://definitions.artic.edu/doctypes/IncomingReceipt"
+                        },
+                        {
+                            "label" : "Outgoing Receipt",
+                            "value" : "http://definitions.artic.edu/doctypes/OutgoingReceipt"
+                        },
+                        {
+                            "label" : "Shipping (out and in)",
+                            "value" : "http://definitions.artic.edu/doctypes/Shipping",
+                            "subtypes" : [
+                                {
+                                    "label" : "Bill of Lading",
+                                    "value" : "http://definitions.artic.edu/doctypes/BillLading"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "General Liability Certificate",
+                            "value" : "http://definitions.artic.edu/doctypes/GeneralLiabilityCertificate"
+                        },
+                        {
+                            "label" : "Power of Attorney",
+                            "value" : "http://definitions.artic.edu/doctypes/PowerAttorney"
+                        },
+                        {
+                            "label" : "Certificate of Insurance",
+                            "value" : "http://definitions.artic.edu/doctypes/CertificateInsurance"
+                        },
+                        {
+                            "label" : "Loan Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/LoanAgreement"
+                        },
+                        {
+                            "label" : "Borrower's Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/BorrowersAgreement"
+                        },
+                        {
+                            "label" : "Facility Report",
+                            "value" : "http://definitions.artic.edu/doctypes/FacilityReport"
+                        },
+                        {
+                            "label" : "Yellow Sheets",
+                            "value" : "http://definitions.artic.edu/doctypes/YellowSheets"
+                        },
+                        {
+                            "label" : "Valuation",
+                            "value" : "http://definitions.artic.edu/doctypes/Valuation"
+                        },
+                        {
+                            "label" : "Schedule",
+                            "value" : "http://definitions.artic.edu/doctypes/Schedule",
+                            "subtypes" : [
+                                {
+                                    "label" : "Installation",
+                                    "value" : "http://definitions.artic.edu/doctypes/Installation"
+                                },
+                                {
+                                    "label" : "Deinstallation",
+                                    "value" : "http://definitions.artic.edu/doctypes/Deinstallation"
+                                },
+                                {
+                                    "label" : "Exhibition",
+                                    "value" : "http://definitions.artic.edu/doctypes/Exhibition"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Exhibition Request Form",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionRequestForm"
+                        },
+                        {
+                            "label" : "Warranty",
+                            "value" : "http://definitions.artic.edu/doctypes/Warranty"
+                        },
+                        {
+                            "label" : "Indemnification",
+                            "value" : "http://definitions.artic.edu/doctypes/Indemnification"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Acquisition Paperwork",
+                    "value" : "http://definitions.artic.edu/doctypes/AcquisitionPaperwork",
+                    "subtypes" : [
+                        {
+                            "label" : "Justification",
+                            "value" : "http://definitions.artic.edu/doctypes/Justification"
+                        },
+                        {
+                            "label" : "Appraisal",
+                            "value" : "http://definitions.artic.edu/doctypes/Appraisal"
+                        },
+                        {
+                            "label" : "Purchase Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/PurchaseAgreement"
+                        },
+                        {
+                            "label" : "Executive Committee Poll Form",
+                            "value" : "http://definitions.artic.edu/doctypes/ExecutiveCommitteePollForm"
+                        },
+                        {
+                            "label" : "Bargain Sale Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/BargainSaleAgreement"
+                        },
+                        {
+                            "label" : "Joint Gift",
+                            "value" : "http://definitions.artic.edu/doctypes/JointGift"
+                        },
+                        {
+                            "label" : "Pledge of Funds Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/PledgeFundsAgreement"
+                        },
+                        {
+                            "label" : "Promised Gift Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/PromisedGiftAgreement"
+                        },
+                        {
+                            "label" : "Partial Interest Deed of Gift",
+                            "value" : "http://definitions.artic.edu/doctypes/PartialInterestDeedGift"
+                        },
+                        {
+                            "label" : "Deed of Gift",
+                            "value" : "http://definitions.artic.edu/doctypes/DeedGift"
+                        },
+                        {
+                            "label" : "Bequest",
+                            "value" : "http://definitions.artic.edu/doctypes/Bequest",
+                            "subtypes" : [
+                                {       
+                                    "label" : "Will",
+                                    "value" : "http://definitions.artic.edu/doctypes/Will"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ConditionReport"
+                        },
+                        {
+                            "label" : "Provenance",
+                            "value" : "http://definitions.artic.edu/doctypes/Provenance",
+                            "subtypes" : [
+                                {       
+                                    "label" : "Auction Document",
+                                    "value" : "http://definitions.artic.edu/doctypes/AuctionDocument"
+                                },
+                                {       
+                                    "label" : "Unclaimed Property Documentation",
+                                    "value" : "http://definitions.artic.edu/doctypes/UnclaimedPropertyDocumentation"
+                                },
+                                {       
+                                    "label" : "Correspondence",
+                                    "value" : "http://definitions.artic.edu/doctypes/CorrespondenceOther"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Cultural Document",
+                            "value" : "http://definitions.artic.edu/doctypes/CulturalDocument",
+                            "subtypes" : [
+                                {       
+                                    "label" : "NAGPRA",
+                                    "value" : "http://definitions.artic.edu/doctypes/NAGPRA"
+                                },
+                                {       
+                                    "label" : "Treaty",
+                                    "value" : "http://definitions.artic.edu/doctypes/Treaty"
+                                },
+                                {       
+                                    "label" : "Cultural Consideration",
+                                    "value" : "http://definitions.artic.edu/doctypes/CulturalConsideration"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Art Loss Certificate",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtLossCertificate"
+                        },
+                        {
+                            "label" : "Invoice Payment Request",
+                            "value" : "http://definitions.artic.edu/doctypes/InvoicePaymentRequest"
+                        },
+                        {
+                            "label" : "Certificate of Authenticity",
+                            "value" : "http://definitions.artic.edu/doctypes/CertificateAuthenticity",
+                            "subtypes" : [
+                                {       
+                                    "label" : "Authentication Document",
+                                    "value" : "http://definitions.artic.edu/doctypes/AuthenticationDocument"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Year-End Gift Document",
+                            "value" : "http://definitions.artic.edu/doctypes/YearEndGiftDocument"
+                        },
+                        {
+                            "label" : "Photograph Information Record",
+                            "value" : "http://definitions.artic.edu/doctypes/PhotographInformationRecord"
+                        },
+                        {
+                            "label" : "Copyright",
+                            "value" : "http://definitions.artic.edu/doctypes/Copyright",
+                            "subtypes" : [
+                                {       
+                                    "label" : "Copyright license",
+                                    "value" : "http://definitions.artic.edu/doctypes/CopyrightLicense"
+                                },
+                                {       
+                                    "label" : "Copyright Correspondence",
+                                    "value" : "http://definitions.artic.edu/doctypes/CopyrightCorrespondence"
+                                },
+                                {       
+                                    "label" : "Correspondence",
+                                    "value" : "http://definitions.artic.edu/doctypes/Correspondence"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Unclaimed Property Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/UnclaimedPropertyDocumentation"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Administrative",
+                    "value" : "http://definitions.artic.edu/doctypes/Administrative",
+                    "subtypes" : [
+                        {
+                            "label" : "Committee Meeting Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/CommitteeMeetingDocumentation",
+                            "subtypes" : [
+                                {       
+                                    "label" : "Meeting Minutes",
+                                    "value" : "http://definitions.artic.edu/doctypes/MeetingMinutes"
+                                },
+                                {       
+                                    "label" : "Meeting Presentation",
+                                    "value" : "http://definitions.artic.edu/doctypes/MeetingPresentation"
+                                },
+                                {       
+                                    "label" : "Meeting Agenda",
+                                    "value" : "http://definitions.artic.edu/doctypes/MeetingAgenda"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Board of Trustees",
+                            "value" : "http://definitions.artic.edu/doctypes/BoardTrustees"
+                        },
+                        {
+                            "label" : "Executive Committee",
+                            "value" : "http://definitions.artic.edu/doctypes/ExecutiveCommittee"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Curatorial Document",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Artist Biography",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtistBiography"
+                        },
+                        {
+                            "label" : "Article",
+                            "value" : "http://definitions.artic.edu/doctypes/Article"
+                        },
+                        {
+                            "label" : "Artist Work Specs",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtistWorkSpecs"
+                        },
+                        {
+                            "label" : "Scholarly Research",
+                            "value" : "http://definitions.artic.edu/doctypes/ScholarlyResearch",
+                            "subtypes" : [
+                                {
+                                    "label" : "Curatorial",
+                                    "value" : "http://definitions.artic.edu/doctypes/Curatorial"
+                                },
+                                {
+                                    "label" : "Outside Researcher",
+                                    "value" : "http://definitions.artic.edu/doctypes/OutsideResearcher"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Old Object Card",
+                            "value" : "http://definitions.artic.edu/doctypes/OldObjectCard"
+                        },
+                        {
+                            "label" : "Loan Approval Letter",
+                            "value" : "http://definitions.artic.edu/doctypes/LoanApprovalLetter"
+                        },
+                        {
+                            "label" : "Loan Decline Letter",
+                            "value" : "http://definitions.artic.edu/doctypes/LoanDeclineLetter"
+                        },
+                        {
+                            "label" : "Frame Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/FrameDocumentation"
+                        },
+                        {
+                            "label" : "Stolen Art Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/StolenArtDocumentation"
+                        },
+                        {
+                            "label" : "Cataloging Worksheet",
+                            "value" : "http://definitions.artic.edu/doctypes/CatalogingWorksheet"
+                        },
+                        {
+                            "label" : "Artist Questionnaire",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtistQuestionnaire"
+                        },
+                        {
+                            "label" : "Auction Catalogue",
+                            "value" : "http://definitions.artic.edu/doctypes/AuctionCatalogue"
+                        },
+                        {
+                            "label" : "Non-lending Document",
+                            "value" : "http://definitions.artic.edu/doctypes/NonLendingDocument"
+                        },
+                        {
+                            "label" : "Indemnity Document",
+                            "value" : "http://definitions.artic.edu/doctypes/IndemnityDocument"
+                        },
+                        {
+                            "label" : "Bibliography",
+                            "value" : "http://definitions.artic.edu/doctypes/Bibliography"
+                        },
+                        {
+                            "label" : "Lecture",
+                            "value" : "http://definitions.artic.edu/doctypes/LectureOther"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Deaccession Document",
+                    "value" : "http://definitions.artic.edu/doctypes/DeaccessionDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Auction House",
+                            "value" : "http://definitions.artic.edu/doctypes/AuctionHouse"
+                        },
+                        {
+                            "label" : "Conservation",
+                            "value" : "http://definitions.artic.edu/doctypes/Conservation"
+                        },
+                        {
+                            "label" : "Gift (Donation) Agreement",
+                            "value" : "http://definitions.artic.edu/doctypes/GiftDonationAgreement"
+                        },
+                        {
+                            "label" : "Bill of Sale",
+                            "value" : "http://definitions.artic.edu/doctypes/BillSale"
+                        },
+                        {
+                            "label" : "Private Sale",
+                            "value" : "http://definitions.artic.edu/doctypes/PrivateSale"
+                        },
+                        {
+                            "label" : "Directors Approval Form",
+                            "value" : "http://definitions.artic.edu/doctypes/DirectorsApprovalForm"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Publications Document",
+                    "value" : "http://definitions.artic.edu/doctypes/PublicationsDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Label",
+                            "value" : "http://definitions.artic.edu/doctypes/Label"
+                        },
+                        {
+                            "label" : "Catalogue",
+                            "value" : "http://definitions.artic.edu/doctypes/Catalogue"
+                        },
+                        {
+                            "label" : "DSC (Digital Scholarly Catalogue)",
+                            "value" : "http://definitions.artic.edu/doctypes/DigitalScholarlyCatalogue"
+                        },
+                        {
+                            "label" : "Book",
+                            "value" : "http://definitions.artic.edu/doctypes/Book"
+                        },
+                        {
+                            "label" : "Pamphlet",
+                            "value" : "http://definitions.artic.edu/doctypes/Pamphlet"
+                        },
+                        {
+                            "label" : "Annual Report",
+                            "value" : "http://definitions.artic.edu/doctypes/AnnualReport"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Conservation Document",
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Examination Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationReport"
+                        },
+                        {
+                            "label" : "Conservation Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationReport"
+                        },
+                        {
+                            "label" : "Treatment Proposal",
+                            "value" : "http://definitions.artic.edu/doctypes/TreatmentProposal"
+                        },
+                        {
+                            "label" : "Treatment Report",
+                            "value" : "http://definitions.artic.edu/doctypes/TreatmentReport"
+                        },
+                        {
+                            "label" : "Note to file",
+                            "value" : "http://definitions.artic.edu/doctypes/NoteFile"
+                        },
+                        {
+                            "label" : "Pre-loan Examination",
+                            "value" : "http://definitions.artic.edu/doctypes/PreLoanExamination"
+                        },
+                        {
+                            "label" : "Outgoing Examination",
+                            "value" : "http://definitions.artic.edu/doctypes/OutgoingExamination"
+                        },
+                        {
+                            "label" : "Incoming Examination",
+                            "value" : "http://definitions.artic.edu/doctypes/IncomingExamination"
+                        },
+                        {
+                            "label" : "Analysis Report",
+                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport"
+                        },
+                        {
+                            "label" : "Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ConditionReportOther"
+                        },
+                        {
+                            "label" : "After Treatment Report",
+                            "value" : "http://definitions.artic.edu/doctypes/AfterTreatmentReport"
+                        },
+                        {
+                            "label" : "Outside Conservator Report",
+                            "value" : "http://definitions.artic.edu/doctypes/OutsideConservatorReport"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Ryerson Library",
+                    "value" : "http://definitions.artic.edu/doctypes/RyersonLibraryText",
+                    "subtypes" : [
+                        {
+                            "label" : "Ryerson Special Collections",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsText"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Design and Construction",
+                    "value" : "http://definitions.artic.edu/doctypes/DesignConstructionText"
+                },
+                {
+                    "label" : "Museum Education",
+                    "value" : "http://definitions.artic.edu/doctypes/MuseumEducationText"
+                },
+                {
+                    "label" : "Development",
+                    "value" : "http://definitions.artic.edu/doctypes/DevelopmentText"
+                }
+                ,
+                {
+                    "label" : "Marketing",
+                    "value" : "http://definitions.artic.edu/doctypes/MarketingText"
+                }
+            ]
+        }
+    }
+}

@@ -1,5 +1,10 @@
 <% if presenter.representative_id.present? && presenter.representative_presenter.present? %>
-  <%= render 'catalog/openseadragon_default', document: presenter.representative_presenter.solr_document %>
+  <% mime_type = presenter.representative_presenter.solr_document['mime_type_ssi']
+    if ['image/jpeg', 'image/png', 'image/tiff'].include? mime_type %>
+    <%= render 'catalog/openseadragon_default', document: presenter.representative_presenter.solr_document %>
+  <% else %>
+    <%= media_display presenter.representative_presenter %>
+  <% end %>
 <% else %>
   <%= image_tag 'nope.png', class: "canonical-image" %>
 <% end %>
