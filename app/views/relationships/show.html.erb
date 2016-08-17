@@ -1,1 +1,12 @@
-<%= render "curation_concerns/base/relationships", presenter: @presenter %>
+<p><%= link_to "Add Representations",
+    sufia.new_batch_upload_path(representation_for: @presenter), { class: "add_representations_btn" }%></p>
+<p><%= link_to "Add Documentation",
+    sufia.new_batch_upload_path(document_for: @presenter), { class: "add_document_btn" } %></p>
+
+<% if @presenter.has_relationships? %>
+  <%= render_preferred_representations(@presenter) %>
+  <%= render_representations(@presenter) %>
+  <%= render_documents(@presenter) %>
+<% else %>
+  <p>No relationships found for this <%= @presenter.human_readable_type.gsub('Work', 'Object') %></p>
+<% end %>
