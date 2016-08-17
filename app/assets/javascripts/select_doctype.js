@@ -74,7 +74,7 @@
 Blacklight.onLoad(function() {
 
   var select_doctype = $.fn.selectDoctype();
-	var docTypeJson = "/sample_doctypes.json";
+	var docTypeJson = "/lake_doctypes.json";
 	var totalDocTypes;
 	var totalSubtypes;
 	var docType;
