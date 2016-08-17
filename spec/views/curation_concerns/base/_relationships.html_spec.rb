@@ -19,8 +19,8 @@ describe 'curation_concerns/base/_relationships.html.erb' do
       before { render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter }
       specify do
         is_expected.to have_content("No relationships found for this Exhibition")
-        is_expected.to have_link("Batch Add Representation", href: "/batch_uploads/new?representation_for=999")
-        is_expected.to have_link("Batch Add Documentation", href: "/batch_uploads/new?document_for=999")
+        is_expected.to have_link("Add Representations", href: "/batch_uploads/new?representation_for=999")
+        is_expected.to have_link("Add Documentation", href: "/batch_uploads/new?document_for=999")
       end
     end
 
