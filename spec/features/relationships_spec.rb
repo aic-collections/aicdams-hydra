@@ -13,6 +13,5 @@ describe "Relationships of CITI resources" do
 
   it "renders a page with the resource's relationships" do
     expect(page).not_to have_selector("nav#masthead")
-    expect(page).to have_selector("h2", text: "Relationships")
   end
 end
