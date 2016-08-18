@@ -23,7 +23,7 @@
           <td><%= rel.resource_type.first %></td>
         <% else %>
           <%# @TODO This should be taken out of the condition once ticket #96 is resolved. %>
-          <td><%= render_thumbnail_tag(rel) %></td>
+          <td><%= image_tag(rel.solr_document['thumbnail_path_ss']) %></td>
           <%# @TODO This needs to be the human-readable label as per ticket #616 %>
           <td><%= rel.document_type %></td>
         <% end %>
