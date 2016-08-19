@@ -1,0 +1,92 @@
+{
+    "asset_types" : {
+        "StillImage" : {
+            "doctypes" : [
+                {
+                    "label" : "Marketing",
+                    "value" : "http://definitions.artic.edu/doctypes/Marketing",
+                    "subtypes" : [
+                        {
+                            "label" : "Design File",
+                            "value" : "http://definitions.artic.edu/doctypes/DesignFile"
+                        },
+                        {
+                            "label" : "Ad Material",
+                            "value" : "http://definitions.artic.edu/doctypes/AdMaterial"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Imaging",
+                    "value" : "http://definitions.artic.edu/doctypes/Imaging",
+                    "subtypes" : [
+                        {
+                            "label" : "Object Photography",
+                            "value" : "http://definitions.artic.edu/doctypes/ObjectPhotography"
+                        },
+                        {
+                            "label" : "Event Photography",
+                            "value" : "http://definitions.artic.edu/doctypes/EventPhotography",
+                            "subtypes" : [
+                                {
+                                    "label" : "Lecture",
+                                    "value" : "http://definitions.artic.edu/doctypes/Lecture"
+                                },
+                                {
+                                    "label" : "Committee Meeting",
+                                    "value" : "http://definitions.artic.edu/doctypes/CommitteeMeeting"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "Text" : {
+            "doctypes" : [
+                {
+                    "label" : "Registration Document",
+                    "value" : "http://definitions.artic.edu/doctypes/Registration",
+                    "subtypes" : [
+                        {
+                            "label" : "Incoming Receipt",
+                            "value" : "http://definitions.artic.edu/doctypes/IncomingReceipt"
+                        },
+                        {
+                            "label" : "Outgoing Receipt",
+                            "value" : "http://definitions.artic.edu/doctypes/OutgoingReceipt"
+                        },
+                        {
+                            "label" : "Shipping",
+                            "value" : "http://definitions.artic.edu/doctypes/Shipping",
+                            "subtypes" : [
+                                {
+                                    "label" : "Bill of Lading",
+                                    "value" : "http://definitions.artic.edu/doctypes/BillOfLading"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label" : "Conservation Document",
+                    "value" : "http://definitions.artic.edu/doctypes/Conservation",
+                    "subtypes" : [
+                        {
+                            "label" : "Examination Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationReport"
+                        },
+                        {
+                            "label" : "Conservation Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationReport"
+                        },
+                        {
+                            "label" : "Treatment Proposal",
+                            "value" : "http://definitions.artic.edu/doctypes/TreatmentProposal"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

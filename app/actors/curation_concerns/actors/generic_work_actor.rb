@@ -9,8 +9,13 @@ module CurationConcerns
         super
       end
 
+      def update(attributes)
+        attributes.delete("asset_type")
+        super
+      end
+
       def assert_asset_type(type)
-        if type == "text"
+        if type == AICType.Text
           curation_concern.assert_text
         else
           curation_concern.assert_still_image

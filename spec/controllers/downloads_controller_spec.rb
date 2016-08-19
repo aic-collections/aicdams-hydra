@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe DownloadsController do
   include_context "authenticated saml user"
-  let(:file)     { File.open(fedora_fixture('sun.png')) }
+  let(:file)     { File.open(File.join(fixture_path, 'sun.png')) }
   let(:file_set) { create(:file_with_work, user: user, content: file) }
 
   describe "#show" do

@@ -1,0 +1,37 @@
+<!-- The template to display files uploaded in the lakeshore batch create page -->
+<script id="lakeshore-batch-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+  <tr class="template-download fade">
+    <td>
+      <div class="row">
+        <div class="col-sm-6 name">
+          <span>{%=file.name%}</span>
+          <input type="hidden" name="uploaded_files[]" value="{%=file.id%}">
+        </div>
+        <div class="col-sm-6">
+          {% if (file.error) { %}
+              <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+          {% } %}
+          <span class="size">{%=o.formatFileSize(file.size)%}</span>
+          <button class="btn btn-danger delete pull-right" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+            <i class="glyphicon glyphicon-trash"></i>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 form-horizontal">
+          <div class="form-group">
+            <label for="pref_label_{%=file.id%}" class="col-sm-5 control-label">
+              <%= t('simple_form.labels.generic_work.pref_label') %>
+            </label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" name="pref_label[{%=file.id%}]" id="pref_label_{%=file.id%}" value="{%=file.name%}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% } %}
+</script>

@@ -15,7 +15,7 @@ describe Exhibition do
   end
 
   describe "cardinality" do
-    ExhibitionPresenter.model_terms.each do |term|
+    [:start_date, :end_date, :name_official, :name_working, :exhibition_type].each do |term|
       it "limits #{term} to a single value" do
         expect(described_class.properties[term.to_s].multiple?).to be false
       end
@@ -25,7 +25,7 @@ describe Exhibition do
   describe "#pref_label" do
     subject { exhibition.pref_label }
     context "by default" do
-      let(:exhibition) { build(:exhibition, name_working: "working name") }
+      let(:exhibition) { build(:exhibition, name_working: "working name", name_official: nil) }
       it { is_expected.to eq(exhibition.name_working) }
     end
     context "with an official name" do

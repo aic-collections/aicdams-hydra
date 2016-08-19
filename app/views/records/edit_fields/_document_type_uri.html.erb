@@ -1,0 +1,13 @@
+<%# TODO: this needs to be formalized as an input type via HydraEditor, ex:
+      <%= f.input :asset_type, as: :super_special_input
+%>
+<% form_class = f.object.class.model_class.to_s.underscore %>
+<div class="form-group select required <%= form_class %>_document_type_uri" data-uri="<%= f.object.uri_for(:document_type)%>">
+  <label class="multi_value required control-label" for="<%= form_class %>_document_type_uri">
+    Document type <span class="label label-info required-tag">required</span>
+  </label>    
+	
+	<select class="select required form-control form-control" required="required" aria-required="true" name="<%= form_class %>[document_type_uri]" id="<%= form_class %>_document_type_uri">
+		<option selected value="base">Please select asset type first</option>
+	</select>
+</div>

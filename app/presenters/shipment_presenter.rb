@@ -1,12 +1,8 @@
 # frozen_string_literal: true
-class ShipmentPresenter
-  include Hydra::Presenter
-  include RelatedAssetTerms
-
-  self.model_class = Shipment
-  self.terms = CitiResourceTerms.all
-
-  def summary_terms
-    [:uid, :created_by, :resource_created, :resource_updated]
+class ShipmentPresenter < Sufia::WorkShowPresenter
+  def self.terms
+    CitiResourceTerms.all
   end
+
+  include CitiPresenterBehaviors
 end

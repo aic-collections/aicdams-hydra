@@ -54,10 +54,10 @@ shared_examples "a controller for a Citi resource" do |resource_name|
           f.save
         end
       end
-      before { post :update, id: resource, param_key.to_sym => { preferred_representation_ids: [preferred_representation.id] } }
+      before { post :update, id: resource, param_key.to_sym => { preferred_representation_uri: [preferred_representation.uri] } }
       specify do
         expect(response).to be_redirect
-        expect(resource.reload.preferred_representation_ids).to contain_exactly(preferred_representation.id)
+        expect(resource.reload.preferred_representation).to eq(preferred_representation)
       end
     end
   end

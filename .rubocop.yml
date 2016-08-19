@@ -74,6 +74,11 @@ Style/SingleLineBlockParams:
 Style/SignalException:
   Enabled: false
 
+Style/PredicateName:
+  Exclude:
+    - 'app/presenters/asset_presenter.rb'
+    - 'app/presenters/concerns/citi_presenter_behaviors.rb'
+
 Rails:
   Enabled: true
 

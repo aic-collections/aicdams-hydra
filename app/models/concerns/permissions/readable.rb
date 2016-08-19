@@ -4,16 +4,11 @@ module Permissions
     extend ActiveSupport::Concern
 
     def department?
-      !registered?
+      !(public? || registered?)
     end
 
     # Private visibility is disabled. Overrides CurationConcerns::Permissions::Readable
     def private?
-      false
-    end
-
-    # Public visibility is disabled. Overrides CurationConcerns::Permissions::Readable
-    def public?
       false
     end
   end

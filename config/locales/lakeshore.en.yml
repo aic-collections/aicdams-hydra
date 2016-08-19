@@ -2,3 +2,7 @@ en:
   lakeshore:
     upload:
       restrictions_html: "<h3>Maximum Upload Restrictions</h3><ul><li>Individual File Size: 1 GB</li></ul>"
+    relationship:
+      add_assets: "Add New Assets to this Resource"
+      batch_add_representations: "Add Representations"
+      batch_add_documentation: "Add Documentation"

@@ -10,14 +10,6 @@ describe FileSet do
     it { is_expected.to be_department }
   end
 
-  describe "#lakeshore_paranoid_edit_permissions" do
-    before { subject.read_groups = ["public"] }
-    specify "the public cannot have read access" do
-      expect(subject.save).to be false
-      expect(subject.errors.messages[:read_users]).to include("Public cannot have read access")
-    end
-  end
-
   describe "visibility" do
     context "by default" do
       its(:visibility) { is_expected.to eq(Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT) }
@@ -31,7 +23,7 @@ describe FileSet do
 
     context "when setting to open" do
       before { subject.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
-      specify { expect(subject.errors.messages[:visibility]).to include("cannot be open") }
+      its(:read_groups) { is_expected.to include("public") }
     end
 
     context "when changing from department to registered" do

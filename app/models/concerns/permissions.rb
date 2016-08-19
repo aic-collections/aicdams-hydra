@@ -6,12 +6,8 @@ module Permissions
   include LakeshoreVisibility
   include WithAICDepositor
 
-  included do
-    validate :public_cannot_read
-
-    # TODO: Move to module if other classes require this
-    def public_cannot_read
-      errors[:read_users] = "Public cannot have read access" if read_groups.include?("public")
-    end
+  # Any authenticated user can discover assets
+  def discover_groups
+    super << Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_AUTHENTICATED
   end
 end

@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 class AssetPresenter < Sufia::WorkShowPresenter
-  delegate :documents, :representations, :preferred_representations, :assets, :representing?, to: :representing_resource
+  self.file_presenter_class = FileSetPresenter
 
   def self.terms
     [
       :uid,
       :legacy_uid,
       :document_type,
+      :first_document_sub_type,
+      :second_document_sub_type,
       :status,
-      :created,
       :dept_created,
+      :aic_depositor,
       :updated,
       :description,
       :batch_uid,
@@ -23,24 +25,28 @@ class AssetPresenter < Sufia::WorkShowPresenter
       :light_type,
       :view,
       :capture_device,
-      :digitization_source
+      :digitization_source,
+      :imaging_uid,
+      :transcript,
+      :modified_date,
+      :create_date
     ]
   end
 
-  delegate(*terms, to: :solr_document)
+  def self.presenter_terms
+    terms + [:fedora_uri]
+  end
+
+  delegate(*presenter_terms, to: :solr_document)
+  delegate :document_ids, :representation_ids, :preferred_representation_ids, to: :relationships
 
   def title
     [pref_label]
   end
 
-  # TODO: needs to show either representation, preferred representation, or document
-  def brief_terms
-    [
-      #:relation,
-      :asset_type,
-      :uid,
-      :pref_label
-    ]
+  # TODO: Does this cause a load from Fedora? Use solr_document instead?
+  def deleteable?
+    current_ability.can?(:delete, GenericWork)
   end
 
   def asset_type
@@ -48,9 +54,39 @@ class AssetPresenter < Sufia::WorkShowPresenter
     return "Text Document" if model.text?
   end
 
+  def permission_badge_class
+    PermissionBadge
+  end
+
+  def citi_presenter?
+    false
+  end
+
+  def has_relationships?
+    !relationships.ids.empty?
+  end
+
+  def document_presenters
+    CurationConcerns::PresenterFactory.build_presenters(document_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def representation_presenters
+    CurationConcerns::PresenterFactory.build_presenters(representation_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def preferred_representation_presenters
+    CurationConcerns::PresenterFactory.build_presenters(preferred_representation_ids,
+                                                        CitiResourcePresenter,
+                                                        *presenter_factory_arguments)
+  end
+
   private
 
-    def representing_resource
-      @representing_resource ||= RepresentingResource.new(model.id)
+    def relationships
+      @relationships ||= InboundRelationships.new(id)
     end
 end

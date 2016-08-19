@@ -4,6 +4,7 @@ FactoryGirl.define do
     factory :user1 do
       email 'user1'
       department '100'
+      initialize_with { User.find_or_create_by(email: 'user1') }
     end
 
     factory :user2 do

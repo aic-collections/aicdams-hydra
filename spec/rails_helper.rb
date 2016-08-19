@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'rspec/active_model/mocks'
 require 'active_fedora/cleaner'
 require 'database_cleaner'
-require 'factory_girl'
+require 'factory_girl_rails'
 require 'devise'
 
 # Require support files
@@ -57,8 +57,8 @@ RSpec.configure do |config|
   config.include InputSupport, type: :input
   config.include FactoryGirl::Syntax::Methods
   config.include SessionSupport, type: :feature
-  config.include FixtureLoader
   config.include CustomMatchers
+  config.include RakeHelper
 
   config.include Warden::Test::Helpers, type: :feature
   config.after(:each, type: :feature) { Warden.test_reset! }

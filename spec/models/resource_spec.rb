@@ -45,15 +45,30 @@ describe Resource do
 
   describe "::accepts_uris_for" do
     subject { described_class.new }
-    it { is_expected.to respond_to(:citi_icon_uri=) }
-    it { is_expected.to respond_to(:created_by_uri=) }
-    it { is_expected.to respond_to(:preferred_representation_uri=) }
-    it { is_expected.to respond_to(:icon_uri=) }
-    it { is_expected.to respond_to(:contributors_uris=) }
-    it { is_expected.to respond_to(:documents_uris=) }
-    it { is_expected.to respond_to(:representations_uris=) }
-    it { is_expected.to respond_to(:publisher_uris=) }
-    it { is_expected.to respond_to(:rights_statement_uris=) }
-    it { is_expected.to respond_to(:rights_holder_uris=) }
+    context "with setters" do
+      it { is_expected.to respond_to(:citi_icon_uri=) }
+      it { is_expected.to respond_to(:created_by_uri=) }
+      it { is_expected.to respond_to(:preferred_representation_uri=) }
+      it { is_expected.to respond_to(:icon_uri=) }
+      it { is_expected.to respond_to(:contributor_uris=) }
+      it { is_expected.to respond_to(:document_uris=) }
+      it { is_expected.to respond_to(:representation_uris=) }
+      it { is_expected.to respond_to(:publisher_uris=) }
+      it { is_expected.to respond_to(:rights_statement_uris=) }
+      it { is_expected.to respond_to(:rights_holder_uris=) }
+    end
+
+    context "with getters" do
+      it { is_expected.to respond_to(:citi_icon_uri) }
+      it { is_expected.to respond_to(:created_by_uri) }
+      it { is_expected.to respond_to(:preferred_representation_uri) }
+      it { is_expected.to respond_to(:icon_uri) }
+      it { is_expected.to respond_to(:contributor_uris) }
+      it { is_expected.to respond_to(:document_uris) }
+      it { is_expected.to respond_to(:representation_uris) }
+      it { is_expected.to respond_to(:publisher_uris) }
+      it { is_expected.to respond_to(:rights_statement_uris) }
+      it { is_expected.to respond_to(:rights_holder_uris) }
+    end
   end
 end

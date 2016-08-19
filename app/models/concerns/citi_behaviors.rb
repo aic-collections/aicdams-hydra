@@ -30,4 +30,9 @@ module CitiBehaviors
   def paranoid_permissions
     true
   end
+
+  # All authenticated users can edit Citi resources
+  def edit_groups
+    super << Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_AUTHENTICATED
+  end
 end

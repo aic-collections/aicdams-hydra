@@ -27,12 +27,12 @@ describe User do
   end
 
   context "with batchuser" do
-    subject { described_class.batchuser }
+    subject { described_class.batch_user }
     it { is_expected.to be_kind_of(described_class) }
   end
 
   context "with audituser" do
-    subject { described_class.audituser }
+    subject { described_class.audit_user }
     it { is_expected.to be_kind_of(described_class) }
   end
 end

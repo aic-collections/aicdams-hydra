@@ -1,0 +1,16 @@
+<div class="form-group select required generic_work_asset_type">
+  <label class="select required control-label" for="asset_type_select">
+    Asset type <span class="label label-info required-tag">required</span>
+  </label>
+  <select class="select required form-control form-control" id="asset_type_select"
+          required="required" aria-required="true" name="generic_work[asset_type]">
+    <option value=""></option>
+    <option value="still_image_type">Still Image</option>
+    <option value="text_type">Text</option>
+  </select>
+</div>
+
+<div class="form-group hidden generic_work_asset_type">
+  <input class="hidden form-control" type="hidden" name="generic_work[asset_type]"
+         id="hidden_asset_type" value="">
+</div>

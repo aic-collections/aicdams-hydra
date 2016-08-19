@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   # :index action is not added to concerns, so we're adding it here
   namespace :curation_concerns, path: :concern do
-    resources :agents, :exhibitions, :places, :shipments, :transactions, :works, only: [:index]
+    resources :agents, :exhibitions, :places, :shipments, :transactions, :works, :generic_works, only: [:index]
   end
 
   curation_concerns_embargo_management
@@ -58,13 +58,14 @@ Rails.application.routes.draw do
     resources :list_items, except: [:index, :show]
   end
 
-  # resources :generic_files, only: [:index]
-  resources :representations, only: [:index]
+  get 'relationships/:model/:id', to: 'relationships#show', as: 'relationship_model'
 
   # Lakeshore API
   scope "api" do
     post "reindex", to: "reindex#update"
   end
+
+  get "/login_confirm", to: "dummy#login_confirm"
 
   # Sufia should come last because in production it will 404 any unknown routes
   mount Sufia::Engine => '/'

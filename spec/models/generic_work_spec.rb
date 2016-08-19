@@ -27,6 +27,8 @@ describe GenericWork do
   describe "asserting StillImage" do
     subject { build(:asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.StillImage) }
+    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
+    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
     context "and re-asserting StillImage" do
       before  { subject.assert_still_image }
       specify { expect(subject).not_to receive(:set_value) }
@@ -47,10 +49,9 @@ describe GenericWork do
     end
     describe "minting uids" do
       before { subject.save }
-      it "uses a UID for still images" do
-        expect(subject.id).to start_with("SI")
-        expect(subject.uri).not_to match(/\/-/)
-        expect(subject.uid).to eql(subject.id)
+      it "uses a checksum as a path" do
+        expect(subject.id).to match(/^\h{8}-\h{4}-\h{4}-\h{4}-\h{12}/)
+        expect(subject.id).to eql(dhash)
       end
     end
   end
@@ -58,6 +59,8 @@ describe GenericWork do
   describe "setting type to Text" do
     subject { build(:text_asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.Text) }
+    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
+    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
     context "and re-asserting Text" do
       before  { subject.assert_text }
       specify { expect(subject).not_to receive(:set_value) }
@@ -70,9 +73,9 @@ describe GenericWork do
     end
     describe "minting uids" do
       before { subject.save }
-      it "uses a UID for still images" do
-        expect(subject.id).to start_with("TX")
-        expect(subject.uri).not_to match(/\/-/)
+      it "uses a checksum as a path" do
+        expect(subject.id).to match(/^\h{8}-\h{4}-\h{4}-\h{4}-\h{12}/)
+        expect(subject.id).to eql(dhash)
       end
     end
   end
@@ -111,7 +114,7 @@ describe GenericWork do
         example_file.save
         example_file.errors
       end
-      its(:full_messages) { is_expected.to include("Uid must match id") }
+      its(:full_messages) { is_expected.to include("Uid must match checksum") }
     end
   end
 
@@ -131,14 +134,16 @@ describe GenericWork do
     let(:work) { build(:asset) }
     let(:item) { create(:list_item) }
     context "using a multi-valued term" do
-      subject { work.keyword }
+      subject { work }
       context "with a string" do
         before { work.keyword_uris = [item.uri.to_s] }
-        it { is_expected.to contain_exactly(item) }
+        its(:keyword) { is_expected.to contain_exactly(item) }
+        its(:keyword_uris) { is_expected.to contain_exactly(item.uri.to_s) }
       end
       context "with a RDF::URI" do
         before { work.keyword_uris = [item.uri] }
-        it { is_expected.to contain_exactly(item) }
+        its(:keyword) { is_expected.to contain_exactly(item) }
+        its(:keyword_uris) { is_expected.to contain_exactly(item.uri.to_s) }
       end
       context "with a singular value" do
         it "raises an ArgumentError" do
@@ -147,33 +152,63 @@ describe GenericWork do
       end
       context "with empty strings" do
         before { work.keyword_uris = [""] }
-        it { is_expected.to be_empty }
+        its(:keyword) { is_expected.to be_empty }
+        its(:keyword_uris) { is_expected.to be_empty }
       end
       context "with empty arrays" do
         before { work.keyword_uris = [] }
-        it { is_expected.to be_empty }
+        its(:keyword) { is_expected.to be_empty }
+        its(:keyword_uris) { is_expected.to be_empty }
+      end
+      context "with existing values" do
+        before { work.keyword_uris = [item.uri.to_s] }
+        it "uses a null set to remote them" do
+          expect(subject.keyword).not_to be_empty
+          work.keyword_uris = []
+          expect(subject.keyword).to be_empty
+        end
       end
     end
     context "using a single-valued term" do
-      subject { work.digitization_source }
+      subject { work }
       context "with a string" do
         before { work.digitization_source_uri = item.uri.to_s }
-        it { is_expected.to eq(item) }
+        its(:digitization_source) { is_expected.to eq(item) }
+        its(:digitization_source_uri) { is_expected.to eq(item.uri.to_s) }
       end
       context "with a RDF::URI" do
         before { work.digitization_source_uri = item.uri }
-        it { is_expected.to eq(item) }
+        its(:digitization_source) { is_expected.to eq(item) }
+        its(:digitization_source_uri) { is_expected.to eq(item.uri.to_s) }
       end
       context "with an empty string" do
         before { work.digitization_source_uri = "" }
-        it { is_expected.to be_nil }
+        its(:digitization_source) { is_expected.to be_nil }
+        its(:digitization_source_uri) { is_expected.to be_nil }
+      end
+      context "with an existing value" do
+        before { work.digitization_source_uri = item.uri }
+        it "uses nil to remove it" do
+          expect { work.digitization_source_uri = nil }.to change { work.digitization_source }.to(nil)
+        end
+        it "uses an empty string to remove it" do
+          expect { work.digitization_source_uri = "" }.to change { work.digitization_source }.to(nil)
+        end
       end
     end
     context "with remaining terms" do
-      it { is_expected.to respond_to(:document_type_uris=) }
+      it { is_expected.to respond_to(:document_type_uri=) }
+      it { is_expected.to respond_to(:first_document_sub_type_uri=) }
+      it { is_expected.to respond_to(:second_document_sub_type_uri=) }
       it { is_expected.to respond_to(:compositing_uri=) }
       it { is_expected.to respond_to(:light_type_uri=) }
       it { is_expected.to respond_to(:view_uris=) }
+      it { is_expected.to respond_to(:document_type_uri) }
+      it { is_expected.to respond_to(:first_document_sub_type_uri) }
+      it { is_expected.to respond_to(:second_document_sub_type_uri) }
+      it { is_expected.to respond_to(:compositing_uri) }
+      it { is_expected.to respond_to(:light_type_uri) }
+      it { is_expected.to respond_to(:view_uris) }
     end
   end
 end

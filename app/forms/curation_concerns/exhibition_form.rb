@@ -4,5 +4,6 @@
 module CurationConcerns
   class ExhibitionForm < CurationConcerns::Forms::WorkForm
     self.model_class = ::Exhibition
+    include CitiFormBehaviors
   end
 end

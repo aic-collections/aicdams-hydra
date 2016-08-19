@@ -26,10 +26,10 @@ class ResourceTerms
   end
 
   def self.related_asset_ids
-    [:document_ids, :representation_ids, :preferred_representation_ids]
+    [:document_ids, :representation_ids, :preferred_representation_id]
   end
 
   def self.related_assets
-    [:documents, :representations, :preferred_representations]
+    [:documents, :representations, :preferred_representation]
   end
 end

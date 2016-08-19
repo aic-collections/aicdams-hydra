@@ -11,8 +11,18 @@ describe Sufia::Ability do
   context "with curation concerns" do
     subject { Ability.new(user1) }
     it { is_expected.to be_able_to(:create, GenericWork) }
-    it { is_expected.to be_able_to(:edit, Work) }
     it { is_expected.to be_able_to(:edit, Exhibition) }
+    it { is_expected.to be_able_to(:edit, Work) }
+    it { is_expected.to be_able_to(:edit, Place) }
+    it { is_expected.to be_able_to(:edit, Transaction) }
+    it { is_expected.to be_able_to(:edit, Shipment) }
+    it { is_expected.to be_able_to(:edit, Agent) }
+    it { is_expected.not_to be_able_to(:delete, Exhibition) }
+    it { is_expected.not_to be_able_to(:delete, Work) }
+    it { is_expected.not_to be_able_to(:delete, Place) }
+    it { is_expected.not_to be_able_to(:delete, Transaction) }
+    it { is_expected.not_to be_able_to(:delete, Shipment) }
+    it { is_expected.not_to be_able_to(:delete, Agent) }
   end
 
   context "with department visibility" do

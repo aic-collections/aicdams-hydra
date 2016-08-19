@@ -44,7 +44,7 @@ class CatalogController < ApplicationController
     }
 
     # solr field configuration for document/show views
-    config.index.title_field = solr_name("title", :stored_searchable)
+    config.index.title_field = solr_name("pref_label", :stored_searchable)
     config.index.display_type_field = solr_name("has_model", :symbol)
     config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -67,28 +67,18 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
-    # solr fields to be displayed in the index (search results) view
-    #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name'
-    config.add_index_field solr_name("description", :stored_searchable), label: "Description", itemprop: 'description'
-    config.add_index_field solr_name("tag", :stored_searchable), label: "Keyword", itemprop: 'keywords'
-    config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about'
-    config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator'
-    config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor'
-    config.add_index_field solr_name("publisher", :stored_searchable), label: "Publisher", itemprop: 'publisher'
-    config.add_index_field solr_name("based_near", :stored_searchable), label: "Location", itemprop: 'contentLocation'
-    config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage'
-    config.add_index_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded", itemprop: 'datePublished'
-    config.add_index_field solr_name("date_modified", :stored_searchable), label: "Date Modified", itemprop: 'dateModified'
-    config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
-    config.add_index_field solr_name("rights", :stored_searchable), label: "Rights"
-    config.add_index_field solr_name("resource_type", :stored_searchable), label: "Asset Type"
-    config.add_index_field solr_name("format", :stored_searchable), label: "File Format"
-    config.add_index_field solr_name("identifier", :stored_searchable), label: "Identifier"
+    # Index view fields
+    config.add_index_field solr_name("pref_label", :stored_searchable),      label: "Title"
+    config.add_index_field solr_name("uid", :symbol),                        label: AIC.uid.label
+    config.add_index_field solr_name("main_ref_number", :stored_searchable), label: AIC.mainRefNumber.label
+    config.add_index_field solr_name("document_type", :symbol),              label: AIC.documentType.label
+    config.add_index_field solr_name("first_document_sub_type", :symbol),    label: AIC.documentSubType1.label
+    config.add_index_field solr_name("second_document_sub_type", :symbol),   label: AIC.documentSubType2.label
+    config.add_index_field solr_name("resource_type", :stored_searchable),   label: "Resource Type"
+    config.add_index_field solr_name('credit_line', :stored_searchable),     label: AIC.creditLine.label
+    config.add_index_field solr_name('dept_created', :stored_searchable),    label: AIC.department.label
 
-    # solr fields to be displayed in the show (single result) view
-    #   The ordering of the field names is the order of the display
-    config.add_show_field solr_name("title", :stored_searchable), label: "Title"
+    config.add_index_field solr_name("relationships", :stored_searchable, type: :integer), label: "Related Assets"
 
     # Resource fields
     config.add_show_field solr_name("contributor", :stored_searchable),   label: AIC.contributor.label

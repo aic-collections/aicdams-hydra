@@ -2,6 +2,7 @@
 <p>
   You do not have the required authorization to access this page. Please contact your administrator.
 </p>
+<% unless Rails.env.production? %>
 <h2>Shibboleth Information</h2>
 <table class="table table-condensed">
 <% ["HTTP_SAML_UID", "HTTP_SAML_PRIMARY_AFFILIATION", "HTTP_SAML_UNSCOPED_AFFILIATION"].each do |k| %>
@@ -29,3 +30,4 @@
   <% end %>
 <% end %>
 </table>
+<% end %>
