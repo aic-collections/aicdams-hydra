@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     resources :list_items, except: [:index, :show]
   end
 
+  resources :autocomplete
+
   get 'relationships/:model/:id', to: 'relationships#show', as: 'relationship_model'
 
   # Lakeshore API
