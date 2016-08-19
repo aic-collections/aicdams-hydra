@@ -1,9 +1,9 @@
 audit: 2
 batch_update: 3
-characterize: 1
-derivatives: 1
+characterize: 2
+derivatives: 2
 event: 5
 import_url: 3
-resolrize: 1
-sufia: 1
-"*": 1
+resolrize: 4
+sufia: 2
+"*": 4
