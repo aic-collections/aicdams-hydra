@@ -7,10 +7,17 @@ class Definition < ActiveTriples::Resource
   end
 
   def pref_label
-    id
+    return id unless term
+    term.label
   end
 
   def uri
     id
   end
+
+  private
+
+    def term
+      @term ||= AICDocType.find_term(id)
+    end
 end

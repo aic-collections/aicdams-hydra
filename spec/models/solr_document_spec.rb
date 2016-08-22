@@ -95,9 +95,7 @@ describe SolrDocument do
   describe "Asset terms" do
     it { is_expected.to respond_to(:capture_device) }
     it { is_expected.to respond_to(:digitization_source) }
-    it { is_expected.to respond_to(:document_type) }
-    it { is_expected.to respond_to(:first_document_sub_type) }
-    it { is_expected.to respond_to(:second_document_sub_type) }
+    it { is_expected.to respond_to(:document_types) }
     it { is_expected.to respond_to(:legacy_uid) }
     it { is_expected.to respond_to(:keyword) }
     it { is_expected.to respond_to(:compositing) }

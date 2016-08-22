@@ -24,8 +24,7 @@
         <% else %>
           <%# @TODO This should be taken out of the condition once ticket #96 is resolved. %>
           <td><%= image_tag(rel.solr_document['thumbnail_path_ss']) %></td>
-          <%# @TODO This needs to be the human-readable label as per ticket #616 %>
-          <td><%= rel.document_type %></td>
+          <td><%= rel.document_types %></td>
         <% end %>
         <!--<td><%= rel.pref_label %></td>-->
         <td><%= link_to rel.to_s, polymorphic_path([main_app, rel]) %></td>

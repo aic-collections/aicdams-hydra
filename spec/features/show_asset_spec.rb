@@ -28,14 +28,10 @@ describe "Displaying an asset" do
       expect(page).to have_selector("td", text: asset.pref_label)
       expect(page).to have_selector("th", text: AIC.uid.label)
       expect(page).to have_selector("td", text: asset.uid)
-      expect(page).to have_selector("th", text: AIC.documentType.label)
-      expect(page).to have_selector("td", text: asset.document_type.pref_label)
-      expect(page).to have_selector("th", text: AIC.documentSubType1.label)
-      expect(page).to have_selector("td", text: asset.first_document_sub_type.pref_label)
-      expect(page).to have_selector("th", text: AIC.documentSubType2.label)
-      expect(page).to have_selector("td", text: asset.second_document_sub_type.pref_label)
       expect(page).to have_selector("th", text: AIC.department.label)
       expect(page).to have_selector("td", text: asset.dept_created.pref_label)
+      expect(page).to have_selector("th", text: AIC.documentType.label)
+      expect(page).to have_selector("td", text: "Imaging > Event Photography > Lecture")
       click_link(asset.pref_label)
     end
 
@@ -53,9 +49,7 @@ describe "Displaying an asset" do
 
     # Attributes
     within("table.attributes") do
-      expect(page).to have_selector("li.document_type", text: asset.document_type.pref_label)
-      expect(page).to have_selector("li.first_document_sub_type", text: asset.first_document_sub_type.pref_label)
-      expect(page).to have_selector("li.second_document_sub_type", text: asset.second_document_sub_type.pref_label)
+      expect(page).to have_selector("li.document_types", text: "Imaging > Event Photography > Lecture")
       expect(page).to have_selector("li.view", text: asset.view.first.pref_label)
       expect(page).to have_selector("li.keyword", text: asset.keyword.first.pref_label)
       expect(page).to have_selector("li.capture_device", text: asset.capture_device)

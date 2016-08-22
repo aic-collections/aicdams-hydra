@@ -23,7 +23,7 @@ describe AssetPresenter do
 
   it { is_expected.to delegate_method(:uid).to(:solr_document) }
   it { is_expected.to delegate_method(:legacy_uid).to(:solr_document) }
-  it { is_expected.to delegate_method(:document_type).to(:solr_document) }
+  it { is_expected.to delegate_method(:document_types).to(:solr_document) }
   it { is_expected.to delegate_method(:status).to(:solr_document) }
   it { is_expected.to delegate_method(:dept_created).to(:solr_document) }
   it { is_expected.to delegate_method(:updated).to(:solr_document) }
