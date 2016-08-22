@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.6.0'
 
 set :application, 'lakeshore'
 set :repo_url, 'https://github.com/aic-collections/aicdams-lakeshore.git'
@@ -49,6 +49,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'tmp/pids',
   'tmp/cache',
   'tmp/sockets',
+  'tmp/derivatives',
+  'tmp/uploads',
   'vendor/bundle',
   'public/system'
 )

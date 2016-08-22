@@ -4,14 +4,8 @@ require 'solr_wrapper'
 require 'fcrepo_wrapper'
 require 'active_fedora/cleaner'
 require 'active_fedora/rake_support'
-require './spec/support/fixture_loader'
-require './spec/support/list_loader'
-require 'rubocop/rake_task' unless Rails.env.production?
-
-class DevelopmentLoader
-  include FixtureLoader
-  include ListLoader
-end
+require 'rubocop/rake_task'
+require 'factory_girl_rails'
 
 desc 'Run style checker'
 RuboCop::RakeTask.new(:rubocop) do |task|
@@ -27,8 +21,13 @@ task ci: [:rubocop, 'db:migrate'] do
 end
 
 namespace :dev do
+  desc "Clean out Solr and Fedora"
+  task clean: :environment do
+    ActiveFedora::Cleaner.clean!
+  end
+
   desc "Prep dev environment"
-  task prep: ['db:migrate', 'fedora:load_fixtures', 'lakeshore:load_lists', 'fedora:create_users']
+  task prep: ['db:migrate', :clean, 'lakeshore:load_lists', 'fedora:create_users', 'fedora:create_citi_resources']
 end
 
 namespace :fedora do
@@ -36,20 +35,6 @@ namespace :fedora do
   task :config do
     puts "Registering namespace prefixes in Fedora"
     system("script/fedora_config.sh")
-  end
-
-  desc "Create fixture resources in Fedora from turtle files"
-  task load_fixtures: :environment do
-    ActiveFedora::Cleaner.clean!
-    loader = DevelopmentLoader.new
-    Dir.glob("spec/fixtures/*.ttl").each do |f|
-      loader.load_fedora_fixture(f, true)
-    end
-  end
-
-  desc "Load lists into Fedora"
-  task load_lists: :environment do
-    DevelopmentLoader.new.load_lists
   end
 
   desc "Create test users for AIC testing specifically, dependent on local Shibboleth settings"
@@ -64,5 +49,15 @@ namespace :fedora do
     Department.create(citi_uid: "87", pref_label: "Visitor Services")
     Department.create(citi_uid: "112", pref_label: "Information Services")
     Department.create(citi_uid: "6", pref_label: "European Decorative Arts")
+  end
+
+  desc "Create sample CITI resources"
+  task create_citi_resources: :environment do
+    FactoryGirl.create(:agent, :with_sample_metadata)
+    FactoryGirl.create(:exhibition, :with_sample_metadata)
+    FactoryGirl.create(:work, :with_sample_metadata)
+    FactoryGirl.create(:place, :with_sample_metadata)
+    FactoryGirl.create(:shipment, :with_sample_metadata)
+    FactoryGirl.create(:transaction, :with_sample_metadata)
   end
 end

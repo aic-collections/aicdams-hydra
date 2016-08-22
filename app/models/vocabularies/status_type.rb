@@ -10,10 +10,4 @@ class StatusType < ListItem
   def self.active
     find_by_label("Active")
   end
-
-  def self.options
-    options = {}
-    StatusType.all.map { |t| options[t.pref_label] = t.id }
-    options.sort.to_h
-  end
 end

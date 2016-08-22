@@ -5,4 +5,10 @@ class CurationConcerns::GenericWorksController < ApplicationController
   include CitiResourceBehavior
   self.curation_concern_type = GenericWork
   self.show_presenter = AssetPresenter
+
+  protected
+
+    def search_builder_class
+      AssetSearchBuilder
+    end
 end

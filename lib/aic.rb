@@ -75,6 +75,12 @@ class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
   term :documentType,
        label: "Document Type",
        comment: "Select one document type from the hierarchy"
+  term :documentSubType1,
+       label: "Document Sub-Type 1",
+       comment: "Select one document sub-type from the hierarchy"
+  term :documentSubType2,
+       label: "Document Sub-Type 2",
+       comment: "Select one document sub-type from the hierarchy"
   term :earliestDate,
        label: "Earliest Date",
        comment: "Earliest preferred date"

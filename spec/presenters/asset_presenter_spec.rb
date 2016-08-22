@@ -25,7 +25,6 @@ describe AssetPresenter do
   it { is_expected.to delegate_method(:legacy_uid).to(:solr_document) }
   it { is_expected.to delegate_method(:document_type).to(:solr_document) }
   it { is_expected.to delegate_method(:status).to(:solr_document) }
-  it { is_expected.to delegate_method(:created).to(:solr_document) }
   it { is_expected.to delegate_method(:dept_created).to(:solr_document) }
   it { is_expected.to delegate_method(:updated).to(:solr_document) }
   it { is_expected.to delegate_method(:description).to(:solr_document) }
@@ -43,4 +42,15 @@ describe AssetPresenter do
   it { is_expected.to delegate_method(:digitization_source).to(:solr_document) }
 
   its(:title) { is_expected.to eq(["Sample Label"]) }
+
+  its(:permission_badge_class) { is_expected.to eq(PermissionBadge) }
+  its(:file_presenter_class)   { is_expected.to eq(FileSetPresenter) }
+
+  describe "#has_relationships?" do
+    it { is_expected.not_to have_relationships }
+  end
+
+  describe "#is_citi_presenter?" do
+    it { is_expected.not_to be_citi_presenter }
+  end
 end

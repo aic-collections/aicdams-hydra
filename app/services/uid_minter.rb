@@ -14,6 +14,15 @@ class UidMinter
     uid_from_database
   end
 
+  # Returns the MD5 checksum of a UID, formatted as a pseudo-random UUID as per
+  # RFC 4122.
+  # @param [String] id
+  # @return [String] Hash (with dashes added) of original UID
+  def hash(id)
+    hash = Digest::MD5.hexdigest(id)
+    [hash[0..7], hash[8..11], hash[12..15], hash[16..19], hash[20..-1]].join('-')
+  end
+
   def uid_from_database
     response = new_uid
     response.rows.map(&:first).first

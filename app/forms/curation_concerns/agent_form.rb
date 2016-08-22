@@ -4,5 +4,6 @@
 module CurationConcerns
   class AgentForm < CurationConcerns::Forms::WorkForm
     self.model_class = ::Agent
+    include CitiFormBehaviors
   end
 end

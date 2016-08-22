@@ -17,9 +17,9 @@ describe "GenericFile" do
     it { is_expected.to be_active }
   end
 
-  describe "#status_id" do
+  describe "#status_uri" do
     let(:new_status) { create(:status_type, pref_label: "New") }
-    before { example_file.status_id = new_status.id }
+    before { example_file.status_uri = new_status.uri }
     its(:status) { is_expected.to eq(new_status) }
     it { is_expected.not_to be_active }
   end

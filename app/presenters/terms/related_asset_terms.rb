@@ -4,7 +4,7 @@ module RelatedAssetTerms
 
   delegate :representations, to: :to_model
 
-  delegate :preferred_representations, to: :to_model
+  delegate :preferred_representation, to: :to_model
 
   # Not all models have assets
   def assets
@@ -12,6 +12,6 @@ module RelatedAssetTerms
   end
 
   def related_assets
-    documents + representations + preferred_representations + assets
+    documents + representations + preferred_representation + assets
   end
 end

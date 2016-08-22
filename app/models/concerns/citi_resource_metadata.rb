@@ -4,6 +4,7 @@ module CitiResourceMetadata
 
   class_methods do
     def find_by_citi_uid(id)
+      return unless id
       where(Solrizer.solr_name("citi_uid", :symbol) => id).first
     end
   end

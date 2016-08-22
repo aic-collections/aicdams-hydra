@@ -29,10 +29,6 @@ namespace :repo do
   task :config do
     on roles(:app) do
       execute "cp #{fetch(:aic_config_dir)}/*.yml #{fetch(:base_dir)}/aicdams-lakeshore/config/"
-      execute "cp #{fetch(:aic_config_dir)}/fedora-cert.pem #{fetch(:base_dir)}/aicdams-lakeshore/config/"
-      #execute "cd #{fetch(:base_dir)}/aicdams-lakeshore && /usr/bin/env bundle exec rake fedora:load_fixtures"
-      execute "cd #{fetch(:base_dir)}/aicdams-lakeshore && /usr/bin/env bundle exec rake lakeshore:load_lists"
-      #execute "cd #{fetch(:base_dir)}/aicdams-lakeshore && /usr/bin/env bundle exec rake fedora:create_users"
     end
   end
 

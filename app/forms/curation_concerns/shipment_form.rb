@@ -4,5 +4,6 @@
 module CurationConcerns
   class ShipmentForm < CurationConcerns::Forms::WorkForm
     self.model_class = ::Shipment
+    include CitiFormBehaviors
   end
 end

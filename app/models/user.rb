@@ -38,25 +38,15 @@ class User < ActiveRecord::Base
     groups
   end
 
-  class << self
-    def find_by_email(query)
-      User.where(email: query).first
-    end
+  def self.find_by_email(query)
+    User.where(email: query).first
+  end
 
-    def batchuser
-      User.find_by_user_key(batchuser_key) || User.create!(email: batchuser_key)
-    end
+  def self.batch_user
+    User.find_by_user_key(batch_user_key) || User.create!(Devise.authentication_keys.first => batch_user_key)
+  end
 
-    def batchuser_key
-      'batchuser'
-    end
-
-    def audituser
-      User.find_by_user_key(audituser_key) || User.create!(email: audituser_key)
-    end
-
-    def audituser_key
-      'audituser'
-    end
+  def self.audit_user
+    User.find_by_user_key(audit_user_key) || User.create!(Devise.authentication_keys.first => audit_user_key)
   end
 end

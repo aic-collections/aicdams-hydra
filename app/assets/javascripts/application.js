@@ -12,9 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
+//= require twitter/typeahead.min
+// Required by Blacklight
 //= require blacklight/blacklight
-//= require blacklight_range_limit
-//= require sufia
-//= require_tree .
 
-var ROOT_PATH = "/";
+// Load Javascript < ES6
+//= require batch_edit
+//= require blacklight_gallery
+//= require new_asset
+//= require openseadragon
+//= require select_doctype
+
+// Load Sufia and ES6 Javascript
+//= require sufia
+//= require lakeshore
+//= require lakeshore/autocomplete
+//= require lakeshore/asset_type_control
+//= require lakeshore/deleted_files

@@ -1,4 +1,11 @@
 # frozen_string_literal: true
+
+# Log Fedora calls
+require 'http_logger'
+HttpLogger.logger = Logger.new(File.join(Rails.root, "log/fedora-dev.log"))
+HttpLogger.ignore = [/8983\/solr/]
+HttpLogger.colorize = false
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -39,7 +46,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  # Use Resque
-  config.active_job.queue_adapter = :resque
 end

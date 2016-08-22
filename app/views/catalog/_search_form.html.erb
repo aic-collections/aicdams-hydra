@@ -6,7 +6,7 @@
     <%= text_field_tag :q, current_search_parameters , class: "q form-control", id: "search-field-header", placeholder: t("sufia.search.form.q.placeholder") %>
 
     <div class="input-group-btn">
-	  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+  	  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
         <span data-search-element="label"><%= t("sufia.search.form.option.all.label_long") %></span>
         <span class="caret"></span>
       </button>
@@ -19,26 +19,41 @@
           <%= link_to t("sufia.search.form.option.all.label_long"), "#",
               data: { "search-option" => main_app.search_catalog_path, "search-label" => t("sufia.search.form.option.all.label_short") } %>
         </li>
-
-        <% if current_user %>
-          <li>
-            <%= link_to t("sufia.search.form.option.my_works.label_long"), "#",
-                data: { "search-option" => sufia.dashboard_works_path, "search-label" => t("sufia.search.form.option.my_works.label_short") } %>
+        <li>
+          <%= link_to "All Assets", "#",
+              data: { "search-option" => polymorphic_path([main_app, GenericWork]),
+                      "search-label" => "Assets" } %>
+        </li>
+        <li>
+          <%= link_to "Works", "#",
+              data: { "search-option" => polymorphic_path([main_app, Work]),
+                      "search-label" => "Works" } %>
+        </li>
+        <li>
+          <%= link_to "Agents", "#",
+              data: { "search-option" => polymorphic_path([main_app, Agent]),
+                      "search-label" => "Agents" } %>
           </li>
-          <li>
-            <%= link_to t("sufia.search.form.option.my_collections.label_long"), "#",
-                data: { "search-option" => sufia.dashboard_collections_path, "search-label" => t("sufia.search.form.option.my_collections.label_short") } %>
-          </li>
-          <li>
-            <%= link_to t("sufia.search.form.option.my_highlights.label_long"), "#",
-                data: { "search-option" => sufia.dashboard_highlights_path, "search-label" => t("sufia.search.form.option.my_highlights.label_short") } %>
-          </li>
-          <li>
-            <%= link_to t("sufia.search.form.option.my_shares.label_long"), "#",
-                data: { "search-option" => sufia.dashboard_shares_path, "search-label" => t("sufia.search.form.option.my_shares.label_short") } %>
-          </li>
-        <% end %>
-
+        <li>
+          <%= link_to "Exhibitions", "#",
+              data: { "search-option" => polymorphic_path([main_app, Exhibition]),
+                      "search-label" => "Exhibitions" } %>
+        </li>
+        <li>
+          <%= link_to "Shipments", "#",
+              data: { "search-option" => polymorphic_path([main_app, Shipment]),
+                      "search-label" => "Shipments" } %>
+        </li>
+        <li>
+          <%= link_to "Transactions", "#",
+              data: { "search-option" => polymorphic_path([main_app, Transaction]),
+                      "search-label" => "Transactions" } %>
+        </li>
+        <li>
+          <%= link_to "Places", "#",
+              data: { "search-option" => polymorphic_path([main_app, Place]),
+                      "search-label" => "Places" } %>
+        </li>
       </ul>
     </div><!-- /.input-group-btn -->
 

@@ -29,12 +29,12 @@ describe ListItemsController do
     end
     context "with a bogus list id" do
       before { xhr :post, :create, list_id: "bogus", list_item: new_list_item }
-      its(:response) { is_expected.to be_redirect }
+      its(:response) { is_expected.to be_not_found }
     end
     context "with a user without edit rights" do
       include_context "authenticated saml user"
       before { xhr :post, :create, list_id: list, list_item: new_list_item }
-      its(:response) { is_expected.to be_redirect }
+      its(:response) { is_expected.to be_not_found }
     end
   end
 

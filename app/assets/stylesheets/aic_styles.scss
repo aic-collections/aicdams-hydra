@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'idealsans';
-  src: url('IdealSans-Thin.otf') format('truetype');
+  src: font-url('IdealSans-Thin.otf') format('truetype');
 }
 
 $aicred: #9d1c33;
@@ -85,4 +85,29 @@ a.institution_name, a:link.institution_name, a:visited.institution_name, a:hover
 
 ul.nav {
 	padding-right: 0px;
+}
+
+#osd_modal_bg {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0,0,0,0.5);
+}
+
+#osd_canvas {
+        position: absolute;
+        top: 200px;
+        left: 100px;
+        bottom: 100px;
+        right: 100px;
+        z-index: 999;
+        background-color: white;
+}
+
+#home_header {
+    background-image: image-url('lakeshore-2.jpg');
+    background-position: 0% 50%;
 }

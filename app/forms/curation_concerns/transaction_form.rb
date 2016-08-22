@@ -4,5 +4,6 @@
 module CurationConcerns
   class TransactionForm < CurationConcerns::Forms::WorkForm
     self.model_class = ::Transaction
+    include CitiFormBehaviors
   end
 end

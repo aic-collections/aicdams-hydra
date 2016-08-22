@@ -16,5 +16,15 @@ describe "Visting the home page", type: :feature do
       expect(page).to have_content "Creator"
       expect(page).to have_content "Title"
     end
+    within("#search-form-header") do
+      expect(page).to have_link("All Resources")
+      expect(page).to have_link("All Assets")
+      expect(page).to have_link("Works")
+      expect(page).to have_link("Places")
+      expect(page).to have_link("Exhibitions")
+      expect(page).to have_link("Shipments")
+      expect(page).to have_link("Transactions")
+      expect(page).to have_link("Agents")
+    end
   end
 end

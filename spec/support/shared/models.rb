@@ -31,6 +31,10 @@ shared_examples "a model for a Citi resource" do
                                 Hydra::PCDM::Vocab::PCDMTerms.Object,
                                 Hydra::Works::Vocab::WorksTerms.Work) }
   end
+
+  describe "#edit_groups" do
+    its(:edit_groups) { is_expected.to include("registered") }
+  end
 end
 
 shared_examples "a featureable model" do
@@ -94,5 +98,10 @@ shared_examples "a resource that assign representations" do
       expect(asset.errors).to include(:representations)
       expect(asset).to be_persisted
     end
+  end
+  context "when reloading as a solr document" do
+    let(:solr_doc) { SolrDocument.new(resource.to_solr, nil) }
+    subject { solr_doc.to_model }
+    its(:preferred_representation) { is_expected.to eq(asset) }
   end
 end

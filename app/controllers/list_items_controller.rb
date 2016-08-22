@@ -56,8 +56,7 @@ class ListItemsController < ApplicationController
 
     def load_and_authorize_list
       return if list.present? && current_user.can?(:edit, list)
-      flash[:error] = "You do not have permissions to edit the list"
-      redirect_to(lists_path)
+      render_404
     end
 
     def sanitized_attributes

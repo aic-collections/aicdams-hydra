@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class CitiResource < Resource
   include CitiResourceMetadata
+  include Sufia::WithEvents
 
   def self.aic_type
     super << AICType.CitiResource

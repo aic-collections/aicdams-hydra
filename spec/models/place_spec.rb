@@ -15,7 +15,7 @@ describe Place do
   end
 
   describe "cardinality" do
-    PlacePresenter.model_terms.each do |term|
+    [:lat, :long].each do |term|
       it "limits #{term} to a single value" do
         expect(described_class.properties[term.to_s].multiple?).to be false
       end

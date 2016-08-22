@@ -13,6 +13,11 @@ describe RepresentingResource do
     subject { described_class.new(nil) }
     its(:documents) { is_expected.to be_empty }
     its(:representations) { is_expected.to be_empty }
-    its(:preferred_representations) { is_expected.to be_empty }
+    its(:preferred_representation) { is_expected.to be_nil }
+  end
+
+  context "with an asset object" do
+    subject { described_class.new(example_file) }
+    it { is_expected.not_to be_representing }
   end
 end

@@ -18,7 +18,8 @@
         <li><%= link_to 'View Profile', sufia.profile_path(current_user) %></li>
         <li><%= link_to 'Edit Profile', sufia.edit_profile_path(current_user) %></li>
         <li class="divider"></li>
-        <li><%= link_to 'Logout', '/Shibboleth.sso/Logout' %></li>
+        <%# @TODO This is crude, we need to put the host prefix in an environment-dependent variable. %>
+        <li><%= link_to 'Logout', 'https://coll-idp.artic.edu/saml2/idp/SingleLogoutService.php?ReturnTo=' + request.base_url %></li>
       </ul>
     </li><!-- /.btn-group -->
   <% else %>

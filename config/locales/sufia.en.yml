@@ -5,6 +5,9 @@ en:
     institution_name:       "AIC"
     institution_name_full:  "The Art Institute of Chicago"
     sort_label:             "Sort the listing of items"
+    share_button:           "Upload Your Assets"
+    deposit_agreement:      "LAKE Deposit Agreement"
+    passive_consent_to_agreement: "By clicking 'Save' you agree to the"
     search:
       form:
         option:
@@ -14,61 +17,112 @@ en:
           my_files:
             label_short:    "My Assets"
             label_long:     "My Assets"
+    toolbar:
+      admin:
+        menu: "Admin"
+        statistics: "Repository Statistics"
+      dashboard:
+        menu: "Dashboard"
+        my: "My Dashboard"
+        highlights: "Highlights"
+        transfers: "Transfers"
+        shares: "Shares"
+      works:
+        menu: "Assets"
+        new: "New"
+        my: "My Assets"
+        batch: "Create Assets"
+      collections:
+        menu: "Collections"
+        my: "My Collections"
+        new: "New Collection"
     dashboard:
-      view_files:           "View Assets"
-      transfer_files_link:  "Select assets to transfer"
-      no_transfers:         "You haven't transferred any assets"
+      title:                    "My Dashboard"
+      view_collections:         "View Collections"
+      create_collection:        "Create Collection"
+      view_files:               "View Files"
+      view_works:               "My Assets"
+      create_work:              "Create Asset"
+      user_activity:            "User Activity"
+      no_activity:              "User has no recent activity"
+      user_notifications:       "User Notifications"
+      no_notifications:         "User has no notifications"
+      additional_notifications: "See all notifications"
+      manage_proxies:           "Manage Proxies"
+      proxy_activity:           "Proxy Activity"
+      authorize_proxies:        "Authorize Proxies"
+      current_proxies:          "Current Proxies"
+      proxy_user:               "Proxy User"
+      transfer_of_ownership:    "Transfer of Ownership"
+      transfers_sent:           "Sent"
+      transfers_received:       "Received"
+      transfer_works_link:      "Select assets to transfer"
+      no_transfer_requests:     "You haven't received any asset transfer requests"
+      no_transfers:             "You haven't transferred any asset"
       stats:
-        files:              "Assets you've deposited"
+        heading:            "Your Statistics"
+        files:              "Files deposited"
+        file_views:         "View"
+        file_downloads:     "Download"
+        works:              "Assets created"
+        collections:        "Collections created"
+        following:          "People you follow"
+        followers:          "People who are following you"
       my:
-        files:              "My Assets"
-        shares:             "Assets Shared with Me"
+        works:        "My Assets"
+        collections:  "My Collections"
+        highlights:   "My Highlights"
+        shares:       "Files Shared with Me"
         facet_label:
-          files:            "Filter your assets"
-    file:
-      collections_list:
-        heading:   "This asset is in the following collections:"
-        empty:     "This asset is not currently in any collections."
-    messages:
-      success:
-        multiple:
-          link: "These assets"
-        title:  "Assets uploaded successfully"
-      failure:
-        multiple:
-          link: "These assets"
-        title:  "Assets failed"
-    batch:
-      help:
-        resource_type: "You may select multiple types to apply to all assets"
-    collection:
-      select_form:
-        select_heading: "Select the collection to add your assets to:"
-      show:
-        add_files:
-          label: "Add assets"
-          desc: "Add assets to this Collection"
-        upload_files:
-          label: "Upload assets"
-          desc: "Upload assets to this Collection"
-    admin:
-      stats:
-        deposited_form:
-          heading: "Display Assets Deposited:"
-        user_deposits:
-          heading: "Display assets deposited by users"
+          files:        "Filter your files"
+          collections:  "Filter your collections"
+          highlighted: "Filter your highlights"
+          shared:      "Filter your shares"
+          works:       "Filter your assets"
+        sr:
+          show_label:       "Display all details of"
+          detail_label:     "Display summary details of"
+          batch_checkbox:   "Check to add to a collection or edit list"
+          check_all_label:  "Select all assets to be added to a collection or edited"
+          listing:          "Listing of items you have deposited in"
+          press_to:         "Press to"
+        heading:
+          title:          "Title"
+          date_uploaded:  "Date Uploaded"
+          visibility:     "Visibility"
+          action:         "Action"
+        collection_list:
+          description:    "Description:"
+          edit_access:    "Edit Access:"
+          groups:         "Groups:"
+          users:          "Users:"
+        action:
+          select:                  "Select an action"
+          edit_collection:         "Edit Collection"
+          delete_collection:       "Delete Collection"
+          edit_work:               "Edit Asset"
+          delete_work:             "Delete Asset"
+          transfer:                "Transfer Ownership of Work"
+          work_confirmation:       "Deleting a work from %{application_name} is permanent. Click OK to delete this asset from %{application_name}, or Cancel to cancel this operation"
+          collection_confirmation: "Deleting a collection from %{application_name} is permanent. Click OK to delete this collection from %{application_name}, or Cancel to cancel this operation"
+    works:
+      new:
+        header: "Add New Asset"
+      edit:
+        header: "Edit Asset"
 
   simple_form:
     labels:
-      generic_file:
+      generic_work:
         uid:                  "UID"
         legacy_uid:           "Legacy UID"
         document_type:        "Document Type"
         status:               "Status"
+        pref_label:           "Preferred Title"
         resource_created:     "Resource Created"
         dept_created:         "Created By Department"
         resource_updated:     "Resource Updated"
-        description:          "Abstract or Summary"
+        description:          "Description"
         batch_uid:            "In Batch"
         language:             "Language"
         publisher:            "Publisher"
@@ -79,10 +133,15 @@ en:
         light_type:           "Image Capture Light Type"
         view:                 "Image View"
         asset_capture_device: "Asset Capture Device"
-        digitization_source:  "Digitization Source"
-        representation_for:   "Representation For"
-        document_for:         "Document For"
+        digitization_source:  "Original Source"
+        representation_for:   "Representation Of"
+        representations_for:   "Representation Of"
+        document_for:         "Documentation For"
+        documents_for:         "Documentation For"
 
+    hints:
+      generic_work:
+        description: "Free-text notes about the Asset, e.g. description of the subject of an image or abstract of a text document."
     metadata_help:
       generic_file:
         resource_type_html: "Pre-defined categories to describe the type of asset content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
@@ -110,3 +169,16 @@ en:
         view_ids: "Viewing angle, overall or detail, etc."
         representation_for: "A CITI resource for which these assets serve as representations."
         document_for: "A CITI resource for which these assets serve as documents."
+
+  curation_concerns:
+    institution:
+      name: "AIC"
+    institution_name: "AIC"
+    visibility:
+      authenticated:
+        text: "AIC"
+      department:
+        text: "Department"
+        label_html: "Department"
+      open:
+         label_html: Open Access
