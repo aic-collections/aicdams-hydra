@@ -768,6 +768,7 @@ DEPENDENCIES
   sqlite3
   sufia (~> 7.0)
   turbolinks
+  twitter-typeahead-rails
   uglifier (~> 3.0)
 
 BUNDLED WITH

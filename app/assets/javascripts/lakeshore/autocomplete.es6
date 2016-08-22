@@ -1,9 +1,16 @@
 export class AutocompleteControl {
-  loadMatches(min_length, endpoint, cb) {
-    return (evt) => {
-      if (evt.target.value.length >= min_length) {
-        $.getJSON(`${endpoint}?q=${evt.target.value}`, cb);
+
+  source(endpoint) {
+      return (query, sync, async) => {
+          $.getJSON(`${endpoint}?q=${query}`, async);
       }
-    }
+  }
+
+  suggestion(data) {
+      return `<div>${data["prefLabel"][0]}</div>`;
+  }
+
+  display(data) {
+      return data["uri"][0];
   }
 }

@@ -6,9 +6,10 @@ class AutocompleteController < ActionController::Base
     respond_to do |format|
       format.json do
         res = Blacklight.default_index.connection.get('select', params: build_query(params[:q]))
-        render json: res["response"]["docs"].map do |x|
+        data = res["response"]["docs"].map do |x|
           { uri: x["fedora_uri_ssim"], uid: x["uid_ssim"], prefLabel: x["pref_label_ssim"] }
         end
+        render json: data
       end
     end
   end
