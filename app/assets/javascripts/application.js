@@ -26,5 +26,6 @@
 // Load Sufia and ES6 Javascript
 //= require sufia
 //= require lakeshore
+//= require lakeshore/autocomplete
 //= require lakeshore/asset_type_control
 //= require lakeshore/deleted_files
