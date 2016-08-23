@@ -1,0 +1,7 @@
+<h2>
+  <% if current_user.cannot?(:read, document) %>
+    <%= document.title_or_label %>
+  <% else %>
+    <%= link_to document.title_or_label, document %>
+  <% end %>
+</h2>

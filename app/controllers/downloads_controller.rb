@@ -2,11 +2,20 @@
 class DownloadsController < ApplicationController
   include CurationConcerns::DownloadBehavior
 
-  # Overrides Hydra::Controller::DownloadBehavior due to an issue with self-signed certificates, see issue #113
-  # Uses Rails' ActionController::DataSteaming
-  def send_file_contents
-    self.status = 200
-    prepare_file_headers
-    send_data(file.content, filename: file_name)
+  def rights_for_file
+    return :read unless thumbnail?
+    :discover
   end
+
+  protected
+
+    def authorize_download!
+      authorize! rights_for_file, params[asset_param_key]
+    end
+
+  private
+
+    def thumbnail?
+      params.fetch(:file, nil) == "thumbnail"
+    end
 end
