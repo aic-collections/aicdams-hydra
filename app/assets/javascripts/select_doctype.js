@@ -32,7 +32,7 @@
 						var dataVals = [];
 						var selected;
 						dataVals = totalOptions[i];
-						selectListForm.append("<option value=" + dataVals['value'] + " label=" + dataVals['label'] + ">" + dataVals['label'] + "</option>");
+						selectListForm.append("<option value='" + dataVals['value'] + "' label='" + dataVals['label'] + "'>" + dataVals['label'] + "</option>");
 						if (selection == dataVals['value']) {
 							selected = i;
 							selectListForm.prop('selectedIndex', selected);
