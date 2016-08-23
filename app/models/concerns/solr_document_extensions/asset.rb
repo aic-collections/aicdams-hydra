@@ -10,16 +10,8 @@ module SolrDocumentExtensions::Asset
     Array(self[Solrizer.solr_name('digitization_source', :stored_searchable)]).first
   end
 
-  def document_type
-    Array(self[Solrizer.solr_name('document_type', :symbol)]).first
-  end
-
-  def first_document_sub_type
-    Array(self[Solrizer.solr_name('first_document_sub_type', :symbol)]).first
-  end
-
-  def second_document_sub_type
-    Array(self[Solrizer.solr_name('second_document_sub_type', :symbol)]).first
+  def document_types
+    Array(self[Solrizer.solr_name('document_types', :stored_searchable)]).first
   end
 
   def legacy_uid

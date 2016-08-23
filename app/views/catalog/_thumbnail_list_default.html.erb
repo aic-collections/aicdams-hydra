@@ -1,0 +1,7 @@
+<div class="col-sm-3">
+  <% if current_user.cannot?(:read, document) %>
+    <%= render_thumbnail_tag document, { class: "restricted_resource" }, { suppress_link: true } %>
+  <% else %>
+    <%= render_thumbnail_tag document %>
+  <% end %>
+</div>

@@ -6,9 +6,6 @@ class AssetPresenter < Sufia::WorkShowPresenter
     [
       :uid,
       :legacy_uid,
-      :document_type,
-      :first_document_sub_type,
-      :second_document_sub_type,
       :status,
       :dept_created,
       :aic_depositor,
@@ -34,7 +31,7 @@ class AssetPresenter < Sufia::WorkShowPresenter
   end
 
   def self.presenter_terms
-    terms + [:fedora_uri]
+    terms + [:fedora_uri, :document_types]
   end
 
   delegate(*presenter_terms, to: :solr_document)

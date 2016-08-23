@@ -18,9 +18,9 @@ describe "Searching" do
     click_button("Go")
     within("div#search-results") do
       expect(page).to have_link(registered_asset)
-      expect(page).to have_link(department_asset)
+      expect(page).not_to have_link(department_asset)
     end
-    click_link(department_asset)
+    visit(polymorphic_path(department_asset))
     expect(page).to have_content("The page you have tried to access is private")
   end
 end

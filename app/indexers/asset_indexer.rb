@@ -6,14 +6,12 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("representation", :facetable)] = representations
       solr_doc[Solrizer.solr_name("aic_depositor", :symbol)] = object.depositor
       solr_doc[Solrizer.solr_name("fedora_uri", :symbol)] = object.uri.to_s
-      solr_doc.merge!(pref_label_for(:document_type, as: :symbol))
-      solr_doc.merge!(pref_label_for(:first_document_sub_type, as: :symbol))
-      solr_doc.merge!(pref_label_for(:second_document_sub_type, as: :symbol))
-      solr_doc.merge!(pref_label_for(:digitization_source))
-      solr_doc.merge!(pref_label_for(:compositing))
-      solr_doc.merge!(pref_label_for(:light_type))
-      solr_doc.merge!(pref_label_for(:status))
-      solr_doc.merge!(pref_label_for(:dept_created))
+      solr_doc[Solrizer.solr_name("digitization_source", :stored_searchable)] = pref_label_for(:digitization_source)
+      solr_doc[Solrizer.solr_name("compositing", :stored_searchable)] = pref_label_for(:compositing)
+      solr_doc[Solrizer.solr_name("light_type", :stored_searchable)] = pref_label_for(:light_type)
+      solr_doc[Solrizer.solr_name("status", :stored_searchable)] = pref_label_for(:status)
+      solr_doc[Solrizer.solr_name("dept_created", :stored_searchable)] = pref_label_for(:dept_created)
+      solr_doc[Solrizer.solr_name("document_types", :stored_searchable)] = document_types_display
     end
   end
 
@@ -22,7 +20,10 @@ class AssetIndexer < Sufia::WorkIndexer
     def aic_types(types)
       types << "Still Image" if object.type.include?(AICType.StillImage)
       types << "Text" if object.type.include?(AICType.Text)
-      types
+      types << pref_label_for(:document_type)
+      types << pref_label_for(:first_document_sub_type)
+      types << pref_label_for(:second_document_sub_type)
+      types.compact
     end
 
     def representations(types = [])
@@ -34,8 +35,16 @@ class AssetIndexer < Sufia::WorkIndexer
       types
     end
 
-    def pref_label_for(term, opts = {})
-      return {} unless object.send(term)
-      { Solrizer.solr_name(term.to_s, opts.fetch(:as, :stored_searchable)) => object.send(term).pref_label }
+    def pref_label_for(term)
+      return unless object.send(term)
+      object.send(term).pref_label
+    end
+
+    def document_types_display
+      [
+        pref_label_for(:document_type),
+        pref_label_for(:first_document_sub_type),
+        pref_label_for(:second_document_sub_type)
+      ].compact.join(" > ")
     end
 end

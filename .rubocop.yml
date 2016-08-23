@@ -24,6 +24,7 @@ Metrics/ClassLength:
   Exclude:
     - 'lib/aic.rb'
     - 'lib/aic_type.rb'
+    - 'lib/aic_doc_type.rb'
     - 'app/controllers/catalog_controller.rb'
 
 Style/BlockDelimiters:

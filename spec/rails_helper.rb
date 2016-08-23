@@ -21,29 +21,15 @@ RSpec.configure do |config|
 
   # Clean out everything and create required fixtures
   config.before :suite do
-    ActiveFedora::Cleaner.clean!
-    FactoryGirl.create(:status)
-    FactoryGirl.create(:department100)
-    FactoryGirl.create(:department200)
-    FactoryGirl.create(:aic_user1)
-    FactoryGirl.create(:aic_user2)
-    FactoryGirl.create(:aic_admin)
+    LakeshoreTesting.restore
   end
 
-  # Clean out Redis before each feature test
+  # Clean out everything before each feature test
   config.before :each do |example|
-    if example.metadata[:type] == :feature
-      begin
-        $redis.keys('events:*').each { |key| $redis.del key }
-        $redis.keys('User:*').each { |key| $redis.del key }
-        $redis.keys('GenericFile:*').each { |key| $redis.del key }
-      rescue => e
-        Logger.new(STDOUT).warn "WARNING -- Redis might be down: #{e}"
-      end
-    end
+    LakeshoreTesting.restore if example.metadata[:type] == :feature
   end
 
-  config.before :each do |_example|
+  config.before :each do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
