@@ -29,7 +29,7 @@ module ResourceMetadata
     property :icon, predicate: AIC.icon, multiple: false, class_name: "ActiveFedora::Base"
 
     property :uid, predicate: AIC.uid, multiple: false do |index|
-      index.as :symbol
+      index.as :symbol, :stored_searchable
     end
 
     property :updated, predicate: AIC.updated, multiple: false do |index|
