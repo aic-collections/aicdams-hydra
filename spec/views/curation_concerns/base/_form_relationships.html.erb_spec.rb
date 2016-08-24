@@ -35,7 +35,7 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
     before { controller.params = { document_for: 'doc-id' } }
     it "place its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_document', visible: 'false')
-      expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource #rep-id.')
+      expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource #doc-id.')
     end
   end
 end
