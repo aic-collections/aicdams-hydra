@@ -4,6 +4,13 @@
     <header>
       <%= render 'work_title', presenter: @presenter %>
     </header>
+    <% if @presenter.citi_presenter? && !@presenter.solr_document['citi_uid_ssim'].nil? %>
+    <div>
+      <%= link_to_citi(
+          @presenter.solr_document['has_model_ssim'].first,
+          @presenter.solr_document['citi_uid_ssim'].first) %>
+    </div>
+    <% end %>
   </div>
   <div class="col-sm-8">
     <%= render 'work_description', presenter: @presenter %>

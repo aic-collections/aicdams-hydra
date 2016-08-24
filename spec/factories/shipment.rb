@@ -6,6 +6,7 @@ FactoryGirl.define do
     trait :with_sample_metadata do
       pref_label "SH-3469"
       uid "SH-3469"
+      citi_uid "3469"
     end
   end
 end

@@ -18,4 +18,17 @@ module ApplicationHelper
     return unless presenter.preferred_representation_presenters.present?
     render 'relationship', rel_term: "Preferred Representation", rel_term_asset: "Preferred Representation Of", presenters: presenter.preferred_representation_presenters
   end
+
+  def link_to_citi(model, citi_uid)
+    citi_tbl_ids = {
+      Work: 3,
+      Agent: 54,
+      Place: 7,
+      Exhibition: 151,
+      Transaction: 167,
+      Shipment: 180
+    }
+    citi_tbl_id = citi_tbl_ids[model.to_sym]
+    link_to "View this #{model} in CITI", "http://citiworker10.artic.edu:8080/edit/?tableID=" + citi_tbl_id.to_s + "&uid=" + citi_uid.to_s, target: "_blank", class: "btn btn-default citi-btn"
+  end
 end
