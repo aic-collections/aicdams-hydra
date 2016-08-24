@@ -27,7 +27,7 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
     before { controller.params = { representation_for: 'rep-id' } }
     it "place its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_representation', visible: 'false')
-      expect(page).to have_selector('p', text: 'CITI resource rep-id will be added as a representation')
+      expect(page).to have_selector('p', text: 'This Asset will be added as a representation of CITI resource #rep-id.')
     end
   end
 
@@ -35,7 +35,7 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
     before { controller.params = { document_for: 'doc-id' } }
     it "place its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_document', visible: 'false')
-      expect(page).to have_selector('p', text: 'CITI resource doc-id will be added as a document')
+      expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource #doc-id.')
     end
   end
 end

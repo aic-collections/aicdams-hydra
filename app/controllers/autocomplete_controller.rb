@@ -18,7 +18,8 @@ class AutocompleteController < ActionController::Base
 
     def build_query(query)
       {
-        q: "uid_ssim:" + (query || '') + "*",
+        q: "*" + (query || '') + "*",
+        df: "pref_label_tesim, uid_tesim",
         fl: "pref_label_ssim, uid_ssim, fedora_uri_ssim",
         fq: "human_readable_type_tesim:Asset"
       }

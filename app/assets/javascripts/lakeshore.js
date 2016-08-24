@@ -26,7 +26,7 @@ Lakeshore = {
     };
 
     $('.base-terms')
-      .find('input[class*="_representation_uris"],input[class*="_document_uris"]')
+      .find('input[class*="_representation_uris"],input[class*="_document_uris"],input[id$="_preferred_representation_uri"]')
       .each(init);
 
     // add the autocomplete control to the newly created DOM elements
