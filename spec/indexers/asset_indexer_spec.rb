@@ -14,11 +14,12 @@ describe AssetIndexer do
       expect(solr_doc["status_tesim"]).to eq(asset.status.pref_label)
       expect(solr_doc["aic_depositor_ssim"]).to eq(asset.aic_depositor.nick)
       expect(solr_doc["dept_created_tesim"]).to eq(asset.dept_created.pref_label)
+      expect(solr_doc["aic_type_sim"]).to contain_exactly("Asset", "Still Image")
     end
 
     context "with all three document types" do
       it "builds a facet list with three types" do
-        expect(solr_doc["aic_type_sim"]).to contain_exactly("Asset", "Still Image", "Event Photography", "Imaging", "Lecture")
+        expect(solr_doc["document_types_sim"]).to contain_exactly("Event Photography", "Imaging", "Lecture")
       end
       it "builds a display field with three types" do
         expect(solr_doc["document_types_tesim"]).to eq("Imaging > Event Photography > Lecture")
@@ -28,7 +29,7 @@ describe AssetIndexer do
     context "with one document type" do
       let(:asset) { build(:asset, document_type: AICDocType.AdMaterial) }
       it "builds a facet list with one type" do
-        expect(solr_doc["aic_type_sim"]).to contain_exactly("Asset", "Still Image", "Ad Material")
+        expect(solr_doc["document_types_sim"]).to contain_exactly("Ad Material")
       end
       it "builds a display field with one type" do
         expect(solr_doc["document_types_tesim"]).to eq("Ad Material")
@@ -38,7 +39,7 @@ describe AssetIndexer do
     context "with two document types" do
       let(:asset) { build(:asset, document_type: AICDocType.AdMaterial, first_document_sub_type: AICDocType.MembershipEvent) }
       it "builds a facet list with two types" do
-        expect(solr_doc["aic_type_sim"]).to contain_exactly("Asset", "Still Image", "Ad Material", "Membership event")
+        expect(solr_doc["document_types_sim"]).to contain_exactly("Ad Material", "Membership event")
       end
       it "builds a display field with two types" do
         expect(solr_doc["document_types_tesim"]).to eq("Ad Material > Membership event")

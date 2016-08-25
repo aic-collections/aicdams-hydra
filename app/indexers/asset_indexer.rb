@@ -12,6 +12,7 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("status", :stored_searchable)] = pref_label_for(:status)
       solr_doc[Solrizer.solr_name("dept_created", :stored_searchable)] = pref_label_for(:dept_created)
       solr_doc[Solrizer.solr_name("document_types", :stored_searchable)] = document_types_display
+      solr_doc[Solrizer.solr_name("document_types", :facetable)] = document_types_facet
     end
   end
 
@@ -20,6 +21,10 @@ class AssetIndexer < Sufia::WorkIndexer
     def aic_types(types)
       types << "Still Image" if object.type.include?(AICType.StillImage)
       types << "Text" if object.type.include?(AICType.Text)
+      types
+    end
+
+    def document_types_facet(types = [])
       types << pref_label_for(:document_type)
       types << pref_label_for(:first_document_sub_type)
       types << pref_label_for(:second_document_sub_type)
