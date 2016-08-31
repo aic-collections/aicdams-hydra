@@ -16,30 +16,27 @@ describe 'curation_concerns/agents/_form.html.erb' do
     let(:resource) { build(:agent) }
     before { render }
     it "renders fields for representations" do
-      expect(page).to have_selector('input#agent_document_uris')
-      expect(page).to have_selector('input#agent_representation_uris')
-      expect(page).to have_selector('input#agent_preferred_representation_uri')
+      expect(page).to have_selector('table.document_uris')
+      expect(page).to have_selector('table.representation_uris')
+      expect(page).to have_selector('input#agent_preferred_representation_uri', visible: false)
     end
   end
 
   context "when editing with existing representations" do
-    let(:asset) { build(:asset) }
-    let(:resource) do
-      build(:agent, documents: [asset], representations: [asset], preferred_representation: asset)
+    let(:asset1)   { build(:asset, id: '1', pref_label: "First asset", uid: "uid-1") }
+    let(:asset2)   { build(:asset, id: '2', pref_label: "Second asset") }
+    let(:resource) { build(:agent) }
+
+    before do
+      allow_any_instance_of(HiddenMultiSelectInput).to receive(:render_thumbnail).and_return("thumbnail")
+      allow(resource).to receive(:representations).and_return([asset1, asset2])
+      allow(resource).to receive(:preferred_representation).and_return(asset1)
+      render
     end
 
-    before { render }
-
     it "displays the existing uris" do
-      within("div.agent_document_uris") do
-        expect(page).to have_selector("input[value='#{asset.uri}']")
-      end
-      within("div.agent_representation_uris") do
-        expect(page).to have_selector("input[value='#{asset.uri}']")
-      end
-      within("div.agent_preferred_representation_uri") do
-        expect(page).to have_selector("input[value='#{asset.uri}']")
-      end
+      expect(rendered).to include("data-label=\"First asset\" data-uid=\"uid-1\"")
+      expect(rendered).to include("<input value=\"#{asset1.uri}\" name=\"agent[representation_uris][]\" type=\"hidden\" id=\"agent_representation_uris\" />")
     end
   end
 end

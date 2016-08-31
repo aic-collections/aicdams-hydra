@@ -3,9 +3,9 @@ require 'rails_helper'
 
 describe 'curation_concerns/base/_form_relationships.html.erb' do
   let(:user)    { create(:user1) }
-  let(:work)    { create(:department_asset) }
+  let(:asset)   { create(:department_asset) }
   let(:ability) { double }
-  let(:form)    { CurationConcerns::GenericWorkForm.new(work, ability) }
+  let(:form)    { CurationConcerns::GenericWorkForm.new(asset, ability) }
 
   let(:page) do
     view.simple_form_for form do |f|
@@ -36,6 +36,23 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
     it "place its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_document', visible: 'false')
       expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource #doc-id.')
+    end
+  end
+
+  context "with existing relationships" do
+    let(:work)  { build(:work, id: "1234") }
+    let(:agent) { build(:agent, id: "5678") }
+    before do
+      allow_any_instance_of(HiddenMultiSelectInput).to receive(:render_thumbnail).and_return("thumbnail")
+      allow(form).to receive(:documents_for).and_return([work])
+      allow(form).to receive(:representations_for).and_return([agent])
+    end
+
+    it "renders the form" do
+      expect(page).to have_selector("input#generic_work_documents_for", visible: false)
+      expect(page).to have_selector("input#generic_work_representations_for", visible: false)
+      expect(page.find("input#generic_work_documents_for", visible: false).value).to eq(work.id)
+      expect(page.find("input#generic_work_representations_for", visible: false).value).to eq(agent.id)
     end
   end
 end

@@ -65,4 +65,8 @@ module SolrDocumentExtensions
   def title_or_label
     pref_label
   end
+
+  def thumbnail_path
+    Array(self['thumbnail_path_ss']).first
+  end
 end

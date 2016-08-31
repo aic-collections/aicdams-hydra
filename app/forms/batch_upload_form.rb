@@ -22,6 +22,14 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
     # noop
   end
 
+  def representations_for
+    []
+  end
+
+  def documents_for
+    []
+  end
+
   def self.build_permitted_params
     super + [
       { rights_holder_uris: [] },
