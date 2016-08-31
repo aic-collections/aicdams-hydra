@@ -119,3 +119,8 @@ ul.nav {
   background-size: 16px 16px;
   padding-left: 32px;
 }
+
+// Hide batch edit button until batch edit functionality is fully functional.
+input#batch-edit {
+    display: none;
+}
