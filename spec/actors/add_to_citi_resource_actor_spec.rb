@@ -44,6 +44,20 @@ describe AddToCitiResourceActor do
         expect(work.reload.representations).to eq([asset])
         expect(work.reload.documents).to be_empty
       end
+
+      describe "removing only representations" do
+        let(:removal) do
+          { "representations_for" => [], "documents_for" => [exhibition.id] }
+        end
+
+        before { actor.update(removal) }
+
+        it "removes all representations and retains documents" do
+          expect(exhibition.reload.documents).to eq([asset])
+          expect(exhibition.reload.representations).to be_empty
+          expect(work.reload.representations).to be_empty
+        end
+      end
     end
   end
 
@@ -56,7 +70,6 @@ describe AddToCitiResourceActor do
       let(:attributes) { { "other_attribute" => "value" } }
       its(:representation_ids) { is_expected.to be_empty }
       its(:document_ids) { is_expected.to be_empty }
-      it { is_expected.not_to be_related }
     end
 
     context "with some relationship attributes" do
@@ -71,7 +84,6 @@ describe AddToCitiResourceActor do
 
       its(:representation_ids) { is_expected.to contain_exactly("x", "y", "z") }
       its(:document_ids) { is_expected.to eq(["a"]) }
-      it { is_expected.to be_related }
     end
   end
 end
