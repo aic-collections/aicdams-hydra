@@ -4,7 +4,8 @@ module CitiFormBehaviors
 
   included do
     self.terms += [:document_uris, :representation_uris, :preferred_representation_uri]
-    delegate :document_uris, :representation_uris, :preferred_representation_uri, to: :model
+    delegate :documents, :document_uris, :representations, :representation_uris,
+             :preferred_representation, :preferred_representation_uri, to: :model
 
     def self.multiple?(term)
       return true if [:document_uris, :representation_uris].include? term
@@ -18,6 +19,21 @@ module CitiFormBehaviors
         :preferred_representation_uri
       ]
     end
+  end
+
+  def preferred_representation_thumbnail
+    return unless preferred_representation
+    Sufia::WorkThumbnailPathService.call(preferred_representation)
+  end
+
+  def preferred_representation_label
+    return unless preferred_representation
+    preferred_representation.pref_label
+  end
+
+  def preferred_representation_uid
+    return unless preferred_representation
+    preferred_representation.uid
   end
 
   # Overrides hydra-editor MultiValueInput#collection

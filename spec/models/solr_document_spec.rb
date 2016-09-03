@@ -50,6 +50,7 @@ describe SolrDocument do
   it { is_expected.to respond_to(:preferred_representation_id) }
   it { is_expected.to respond_to(:aic_depositor) }
   it { is_expected.to respond_to(:dept_created) }
+  it { is_expected.to respond_to(:thumbnail_path) }
 
   describe "Agent terms" do
     it { is_expected.to respond_to(:birth_year) }

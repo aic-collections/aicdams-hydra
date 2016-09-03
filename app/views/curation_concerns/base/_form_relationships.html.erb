@@ -1,11 +1,14 @@
 <h3>Relationships for this asset</h3>
 
+<%= select_tag "autocomplete_model", options_for_select(
+      [ "Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work" ], "Agent") %>
+
 <div id="representations">
   <% if params.fetch(:representation_for, nil) %>
     <p>This Asset will be added as a representation of CITI resource #<%= params.fetch(:representation_for) %>.</p>
     <%= f.hidden_field :additional_representation, value: params.fetch(:representation_for) %>
   <% end %>
-  <%= f.input :representations_for, as: :multi_value, input_html: { class: 'form-control' } %>
+  <%= f.input :representations_for, as: :hidden_multi_select, input_html: { class: 'form-control' }, required: false %>
 </div>
 
 <div id="documents">
@@ -13,5 +16,5 @@
     <p>This Asset will be added as documentation of CITI resource #<%= params.fetch(:document_for) %>.</p>
     <%= f.hidden_field :additional_document, value: params.fetch(:document_for) %>
   <% end %>
-  <%= f.input :documents_for, as: :multi_value, input_html: { class: 'form-control' } %>
+  <%= f.input :documents_for, as: :hidden_multi_select, input_html: { class: 'form-control' }, required: false %>
 </div>

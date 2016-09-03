@@ -1,0 +1,7 @@
+<% if presenter.has_relationships? %>
+  <%= render_preferred_representations(presenter) %>
+  <%= render_representations(presenter) %>
+  <%= render_documents(presenter) %>
+<% else %>
+  <p>No relationships found for this <%= presenter.human_readable_type %></p>
+<% end %>

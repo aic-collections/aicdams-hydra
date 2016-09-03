@@ -33,5 +33,13 @@ describe BatchUploadForm do
     describe "#secondary_terms" do
       its(:secondary_terms) { is_expected.to be_empty }
     end
+
+    describe "#representations_for" do
+      its(:representations_for) { is_expected.to be_empty }
+    end
+
+    describe "#documents_for" do
+      its(:documents_for) { is_expected.to be_empty }
+    end
   end
 end

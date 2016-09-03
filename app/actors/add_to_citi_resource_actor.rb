@@ -44,14 +44,9 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
     (Array.wrap(documents) + Array.wrap(additional_document)).uniq.delete_if(&:empty?)
   end
 
-  def related?
-    document_ids.present? || representation_ids.present?
-  end
-
   private
 
     def add_relationships
-      return true unless related?
       add_representations
       add_documents
       true
@@ -59,7 +54,6 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
 
     # TODO: Refactor into a new service
     def add_representations
-      return if representation_ids.empty?
       # remove representations
       (representing_resource.representations.map(&:id) - representation_ids).each do |old_id|
         resource = ActiveFedora::Base.find(old_id)
@@ -80,7 +74,6 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
 
     # TODO: Refactor into a new service
     def add_documents
-      return if document_ids.empty?
       # remove documents
       (representing_resource.documents.map(&:id) - document_ids).each do |old_id|
         resource = ActiveFedora::Base.find(old_id)
