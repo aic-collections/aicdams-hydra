@@ -124,3 +124,9 @@ ul.nav {
 input#batch-edit {
     display: none;
 }
+
+/* Temporarily hide individual upload button in home page until that is
+supported. */
+div.home_share_work {
+    display: none;
+}
