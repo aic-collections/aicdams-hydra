@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
   term :DesignFile,
        label: "Design File",

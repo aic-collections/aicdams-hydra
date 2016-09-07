@@ -21,7 +21,8 @@ end
 
 
 @output = File.open("lib/aic_doc_type.rb")
-File.open(@output, "w") { |f| f.write("class AICDocType < RDF::StrictVocabulary(\"http://definitions.artic.edu/doctypes/\")\n") }
+
+File.open(@output, "w") { |f| f.write("# frozen_string_literal: true\nclass AICDocType < RDF::StrictVocabulary(\"http://definitions.artic.edu/doctypes/\")\n") }
 data = JSON.parse(File.read("public/lake_doctypes.json"))
 image = data["asset_types"]["StillImage"]["doctypes"]
 image.map { |h| nested(h, "aicdoctype") }
