@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
   term :DesignFile,
        label: "Design File",
@@ -374,42 +373,6 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:PublicationsDocument"
   term :PublicationsDocument,
        label: "Publications Document"
-  term :ExaminationReport,
-       label: "Examination Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :ConservationReport,
-       label: "Conservation Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :TreatmentProposal,
-       label: "Treatment Proposal",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :TreatmentReport,
-       label: "Treatment Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :NoteFile,
-       label: "Note to file",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :PreLoanExamination,
-       label: "Pre-loan Examination",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :OutgoingExamination,
-       label: "Outgoing Examination",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :IncomingExamination,
-       label: "Incoming Examination",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :AnalysisReport,
-       label: "Analysis Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :ConditionReportOther,
-       label: "Condition Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :AfterTreatmentReport,
-       label: "After Treatment Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
-  term :OutsideConservatorReport,
-       label: "Outside Conservator Report",
-       "skos:broader": "aicdoctype:ConservationDocument"
   term :ConservationDocument,
        label: "Conservation Document"
   term :RyersonSpecialCollectionsText,

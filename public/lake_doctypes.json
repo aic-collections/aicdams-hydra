@@ -299,7 +299,7 @@
                             "label" : "Bequest",
                             "value" : "http://definitions.artic.edu/doctypes/Bequest",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "Will",
                                     "value" : "http://definitions.artic.edu/doctypes/Will"
                                 }
@@ -313,15 +313,15 @@
                             "label" : "Provenance",
                             "value" : "http://definitions.artic.edu/doctypes/Provenance",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "Auction Document",
                                     "value" : "http://definitions.artic.edu/doctypes/AuctionDocument"
                                 },
-                                {       
+                                {
                                     "label" : "Unclaimed Property Documentation",
                                     "value" : "http://definitions.artic.edu/doctypes/UnclaimedPropertyDocumentation"
                                 },
-                                {       
+                                {
                                     "label" : "Correspondence",
                                     "value" : "http://definitions.artic.edu/doctypes/CorrespondenceOther"
                                 }
@@ -331,15 +331,15 @@
                             "label" : "Cultural Document",
                             "value" : "http://definitions.artic.edu/doctypes/CulturalDocument",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "NAGPRA",
                                     "value" : "http://definitions.artic.edu/doctypes/NAGPRA"
                                 },
-                                {       
+                                {
                                     "label" : "Treaty",
                                     "value" : "http://definitions.artic.edu/doctypes/Treaty"
                                 },
-                                {       
+                                {
                                     "label" : "Cultural Consideration",
                                     "value" : "http://definitions.artic.edu/doctypes/CulturalConsideration"
                                 }
@@ -357,7 +357,7 @@
                             "label" : "Certificate of Authenticity",
                             "value" : "http://definitions.artic.edu/doctypes/CertificateAuthenticity",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "Authentication Document",
                                     "value" : "http://definitions.artic.edu/doctypes/AuthenticationDocument"
                                 }
@@ -375,15 +375,15 @@
                             "label" : "Copyright",
                             "value" : "http://definitions.artic.edu/doctypes/Copyright",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "Copyright license",
                                     "value" : "http://definitions.artic.edu/doctypes/CopyrightLicense"
                                 },
-                                {       
+                                {
                                     "label" : "Copyright Correspondence",
                                     "value" : "http://definitions.artic.edu/doctypes/CopyrightCorrespondence"
                                 },
-                                {       
+                                {
                                     "label" : "Correspondence",
                                     "value" : "http://definitions.artic.edu/doctypes/Correspondence"
                                 }
@@ -403,15 +403,15 @@
                             "label" : "Committee Meeting Documentation",
                             "value" : "http://definitions.artic.edu/doctypes/CommitteeMeetingDocumentation",
                             "subtypes" : [
-                                {       
+                                {
                                     "label" : "Meeting Minutes",
                                     "value" : "http://definitions.artic.edu/doctypes/MeetingMinutes"
                                 },
-                                {       
+                                {
                                     "label" : "Meeting Presentation",
                                     "value" : "http://definitions.artic.edu/doctypes/MeetingPresentation"
                                 },
-                                {       
+                                {
                                     "label" : "Meeting Agenda",
                                     "value" : "http://definitions.artic.edu/doctypes/MeetingAgenda"
                                 }
@@ -569,57 +569,7 @@
                 },
                 {
                     "label" : "Conservation Document",
-                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument",
-                    "subtypes" : [
-                        {
-                            "label" : "Examination Report",
-                            "value" : "http://definitions.artic.edu/doctypes/ExaminationReport"
-                        },
-                        {
-                            "label" : "Conservation Report",
-                            "value" : "http://definitions.artic.edu/doctypes/ConservationReport"
-                        },
-                        {
-                            "label" : "Treatment Proposal",
-                            "value" : "http://definitions.artic.edu/doctypes/TreatmentProposal"
-                        },
-                        {
-                            "label" : "Treatment Report",
-                            "value" : "http://definitions.artic.edu/doctypes/TreatmentReport"
-                        },
-                        {
-                            "label" : "Note to file",
-                            "value" : "http://definitions.artic.edu/doctypes/NoteFile"
-                        },
-                        {
-                            "label" : "Pre-loan Examination",
-                            "value" : "http://definitions.artic.edu/doctypes/PreLoanExamination"
-                        },
-                        {
-                            "label" : "Outgoing Examination",
-                            "value" : "http://definitions.artic.edu/doctypes/OutgoingExamination"
-                        },
-                        {
-                            "label" : "Incoming Examination",
-                            "value" : "http://definitions.artic.edu/doctypes/IncomingExamination"
-                        },
-                        {
-                            "label" : "Analysis Report",
-                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport"
-                        },
-                        {
-                            "label" : "Condition Report",
-                            "value" : "http://definitions.artic.edu/doctypes/ConditionReportOther"
-                        },
-                        {
-                            "label" : "After Treatment Report",
-                            "value" : "http://definitions.artic.edu/doctypes/AfterTreatmentReport"
-                        },
-                        {
-                            "label" : "Outside Conservator Report",
-                            "value" : "http://definitions.artic.edu/doctypes/OutsideConservatorReport"
-                        }
-                    ]
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument"
                 },
                 {
                     "label" : "Ryerson Library",

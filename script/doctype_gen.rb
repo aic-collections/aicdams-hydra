@@ -10,7 +10,7 @@ end
 
 def build_method(hash, aic_type=nil, parent=nil)
   str = "  term :#{uri_to_term(hash)},\n       label: \"#{hash['label']}\""
-  str = str + ",\n       :\"skos:broader\" => \"#{aic_type}:#{uri_to_term(parent)}\"" if parent
+  str = str + ",\n       \"skos:broader\": \"#{aic_type}:#{uri_to_term(parent)}\"" if parent
   File.open(@output, 'a') { |f| f.write(str) }
   File.open(@output, 'a') { |f| f.write("\n") }
 end
