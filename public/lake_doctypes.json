@@ -569,7 +569,69 @@
                 },
                 {
                     "label" : "Conservation Document",
-                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument"
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Analysis Report",
+                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport"
+                        },
+                        {
+                            "label" : "Article",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationArticle"
+                        },
+                        {
+                            "label" : "Examination For Acquisition Consideration",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationForAcquisitionConsideration"
+                        },
+                        {
+                            "label" : "Examination For Deaccession",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationForDeaccession"
+                        },
+                        {
+                            "label" : "Examination Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationReport"
+                        },
+                        {
+                            "label" : "Frame Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/FrameDocumentation"
+                        },
+                        {
+                            "label" : "Incident Report",
+                            "value" : "http://definitions.artic.edu/doctypes/IncidentReport"
+                        },
+                        {
+                            "label" : "Incoming Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/IncomingConditionReport"
+                        },
+                        {
+                            "label" : "Inter-Venue Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/InterVenueConditionReport"
+                        },
+                        {
+                            "label" : "Material And Techniques Information",
+                            "value" : "http://definitions.artic.edu/doctypes/MaterialAndTechniquesInformation"
+                        },
+                        {
+                            "label" : "Note To File",
+                            "value" : "http://definitions.artic.edu/doctypes/NoteToFile"
+                        },
+                        {
+                            "label" : "Outgoing Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/OutgoingConditionReport"
+                        },
+                        {
+                            "label" : "Request For Analysis",
+                            "value" : "http://definitions.artic.edu/doctypes/RequestForAnalysis"
+                        },
+                        {
+                            "label" : "Request For Loan Examination",
+                            "value" : "http://definitions.artic.edu/doctypes/RequestForLoanExamination"
+                        },
+                        {
+                            "label" : "Treatment Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/TreatmentDocumentation"
+                        }
+                    ]
                 },
                 {
                     "label" : "Ryerson Library",

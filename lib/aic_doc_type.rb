@@ -374,6 +374,51 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:PublicationsDocument"
   term :PublicationsDocument,
        label: "Publications Document"
+  term :AnalysisReport,
+       label: "Analysis Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ConservationArticle,
+       label: "Article",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationForAcquisitionConsideration,
+       label: "Examination For Acquisition Consideration",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationForDeaccession,
+       label: "Examination For Deaccession",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationReport,
+       label: "Examination Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :FrameDocumentation,
+       label: "Frame Documentation",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :IncidentReport,
+       label: "Incident Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :IncomingConditionReport,
+       label: "Incoming Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :InterVenueConditionReport,
+       label: "Inter-Venue Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :MaterialAndTechniquesInformation,
+       label: "Material And Techniques Information",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :NoteToFile,
+       label: "Note To File",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :OutgoingConditionReport,
+       label: "Outgoing Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :RequestForAnalysis,
+       label: "Request For Analysis",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :RequestForLoanExamination,
+       label: "Request For Loan Examination",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :TreatmentDocumentation,
+       label: "Treatment Documentation",
+       "skos:broader": "aicdoctype:ConservationDocument"
   term :ConservationDocument,
        label: "Conservation Document"
   term :RyersonSpecialCollectionsText,
