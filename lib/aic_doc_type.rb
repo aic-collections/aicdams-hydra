@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
+  term :CuratorialStudyPhoto,
+       label: "Study Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialExhibitionPhoto,
+       label: "Exhibition Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialDepartmentPhoto,
+       label: "Department Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialEventPhoto,
+       label: "Event Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialStillImage,
+       label: "Curatorial"
   term :DesignFile,
        label: "Design File",
        "skos:broader": "aicdoctype:MarketingStillImage"

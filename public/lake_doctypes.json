@@ -3,6 +3,28 @@
         "StillImage" : {
             "doctypes" : [
                 {
+                    "label" : "Curatorial",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Study Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialStudyPhoto"
+                        },
+                        {
+                            "label" : "Exhibition Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialExhibitionPhoto"
+                        },
+                        {
+                            "label" : "Department Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialDepartmentPhoto"
+                        },
+                        {
+                            "label" : "Event Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialEventPhoto"
+                        }
+                    ]
+                },
+                {
                     "label" : "Marketing",
                     "value" : "http://definitions.artic.edu/doctypes/MarketingStillImage",
                     "subtypes" : [
