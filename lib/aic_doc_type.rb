@@ -69,6 +69,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :RyersonSpecialCollectionsStillImage,
        label: "Ryerson Special Collections",
        "skos:broader": "aicdoctype:RyersonLibraryStillImage"
+  term :RyersonArchiveStillImage,
+       label: "Archive",
+       "skos:broader": "aicdoctype:RyersonLibraryStillImage"
   term :RyersonLibraryStillImage,
        label: "Ryerson Library"
   term :DesignConstructionStillImage,
@@ -437,6 +440,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        label: "Conservation Document"
   term :RyersonSpecialCollectionsText,
        label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibraryText"
+  term :RyersonArchiveText,
+       label: "Archive",
        "skos:broader": "aicdoctype:RyersonLibraryText"
   term :RyersonLibraryText,
        label: "Ryerson Library"

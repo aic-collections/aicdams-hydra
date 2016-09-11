@@ -109,6 +109,10 @@
                         {
                             "label" : "Ryerson Special Collections",
                             "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsStillImage"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveStillImage"
                         }
                     ]
                 },
@@ -662,6 +666,10 @@
                         {
                             "label" : "Ryerson Special Collections",
                             "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsText"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveText"
                         }
                     ]
                 },
