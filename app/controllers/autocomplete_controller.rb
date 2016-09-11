@@ -18,8 +18,8 @@ class AutocompleteController < ActionController::Base
       {
         qt: "search",
         q:  "*" + (query || '') + "*",
-        qf: "pref_label_tesim",
-        fl: "pref_label_tesim, uid_ssim, fedora_uri_ssim, thumbnail_path_ss, id",
+        qf: ["uid_tesim", "pref_label_tesim", "main_ref_number_tesim"],
+        fl: "pref_label_tesim, uid_ssim, fedora_uri_ssim, main_ref_number_tesim, thumbnail_path_ss, id",
         fq: "human_readable_type_tesim:#{aic_type}"
       }
     end
@@ -28,6 +28,7 @@ class AutocompleteController < ActionController::Base
       {
         id: (aic_type =~ /Asset/ ? doc.fedora_uri : doc.id),
         label: doc.pref_label,
+        main_ref_number: doc.main_ref_number,
         uid: doc.uid,
         thumbnail: doc.thumbnail_path
       }

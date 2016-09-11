@@ -2,7 +2,7 @@
 Lakeshore = {
   initialize: function () {
     this.assetTypeControl();
-    this.autocompleteControl(2, "/autocomplete");
+    this.autocompleteControl(3, "/autocomplete");
     this.assetManager();
   },
 

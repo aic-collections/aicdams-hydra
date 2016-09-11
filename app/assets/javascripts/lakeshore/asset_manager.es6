@@ -44,11 +44,10 @@ export class AssetManager {
   }
 
   get assetRow() {
+    var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : ''
     var html =
       '<tr>' +
-        '<td>' +
-          '<img src="' + this.selectedAssetImage + '" />' +
-        '</td>' +
+        '<td>' + image_tag + '</td>' +
         '<td>' +
            this.selectedAssetText + this.hiddenInput +
         '</td>' +
