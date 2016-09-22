@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
+  term :ConservationStillImage,
+       label: "Conservation"
   term :CuratorialStudyPhoto,
        label: "Study Photo",
        "skos:broader": "aicdoctype:CuratorialStillImage"
@@ -27,6 +29,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:Imaging"
   term :ObjectPhotography,
        label: "Object Photography",
+       "skos:broader": "aicdoctype:Imaging"
+  term :ExhibitionPhoto,
+       label: "Exhibition Photo",
        "skos:broader": "aicdoctype:Imaging"
   term :Lecture,
        label: "Lecture",
@@ -273,6 +278,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :UnclaimedPropertyDocumentation,
        label: "Unclaimed Property Documentation",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
+  term :SellerInvoice,
+       label: "Seller Invoice",
+       "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :AcquisitionPaperwork,
        label: "Acquisition Paperwork"
   term :MeetingMinutes,
@@ -345,6 +353,18 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:CuratorialDocument"
   term :Bibliography,
        label: "Bibliography",
+       "skos:broader": "aicdoctype:CuratorialDocument"
+  term :ObjectCard,
+       label: "Object Card",
+       "skos:broader": "aicdoctype:CuratorialDocument"
+  term :FinalChecklist,
+       label: "Final Checklist",
+       "skos:broader": "aicdoctype:ExhibitionDocumentation"
+  term :ExhibDocSummary,
+       label: "Summary",
+       "skos:broader": "aicdoctype:ExhibitionDocumentation"
+  term :ExhibitionDocumentation,
+       label: "Exhibition Documentation",
        "skos:broader": "aicdoctype:CuratorialDocument"
   term :LectureOther,
        label: "Lecture",
@@ -432,6 +452,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:ConservationDocument"
   term :RequestForLoanExamination,
        label: "Request For Loan Examination",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ConservationIncomingLoanExam,
+       label: "Incoming Loan Exam",
        "skos:broader": "aicdoctype:ConservationDocument"
   term :TreatmentDocumentation,
        label: "Treatment Documentation",
