@@ -3,6 +3,10 @@
         "StillImage" : {
             "doctypes" : [
                 {
+                    "label" : "Conservation",
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationStillImage"
+                },
+                {
                     "label" : "Curatorial",
                     "value" : "http://definitions.artic.edu/doctypes/CuratorialStillImage",
                     "subtypes" : [
@@ -49,6 +53,10 @@
                         {
                             "label" : "Object Photography",
                             "value" : "http://definitions.artic.edu/doctypes/ObjectPhotography"
+                        },
+                        {
+                            "label" : "Exhibition Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionPhoto"
                         },
                         {
                             "label" : "Event Photography",
@@ -418,6 +426,10 @@
                         {
                             "label" : "Unclaimed Property Documentation",
                             "value" : "http://definitions.artic.edu/doctypes/UnclaimedPropertyDocumentation"
+                        },
+                        {
+                            "label" : "Seller Invoice",
+                            "value" : "http://definitions.artic.edu/doctypes/SellerInvoice"
                         }
                     ]
                 },
@@ -526,6 +538,24 @@
                         {
                             "label" : "Bibliography",
                             "value" : "http://definitions.artic.edu/doctypes/Bibliography"
+                        },
+                        {
+                            "label" : "Object Card",
+                            "value" : "http://definitions.artic.edu/doctypes/ObjectCard"
+                        },
+                        {
+                            "label" : "Exhibition Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionDocumentation",
+                            "subtypes" : [
+                                {
+                                    "label" : "Final Checklist",
+                                    "value" : "http://definitions.artic.edu/doctypes/FinalChecklist"
+                                },
+                                {
+                                    "label" : "Summary",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibDocSummary"
+                                }
+                            ]
                         },
                         {
                             "label" : "Lecture",
@@ -652,6 +682,10 @@
                         {
                             "label" : "Request For Loan Examination",
                             "value" : "http://definitions.artic.edu/doctypes/RequestForLoanExamination"
+                        },
+                        {
+                            "label" : "Incoming Loan Exam",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationIncomingLoanExam"
                         },
                         {
                             "label" : "Treatment Documentation",
