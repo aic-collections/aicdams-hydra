@@ -12,10 +12,4 @@ describe FileSet do
       expect(subject.to_solr[Solrizer.solr_name("image_height", :searchable, type: :integer)]).to eq 12
     end
   end
-
-  describe "::load_instance_from_solr" do
-    let(:file) { create(:department_file) }
-    subject { ActiveFedora::Base.load_instance_from_solr(file.id) }
-    it { is_expected.to be_kind_of(described_class) }
-  end
 end

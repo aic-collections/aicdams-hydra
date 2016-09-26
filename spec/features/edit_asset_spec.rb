@@ -16,5 +16,9 @@ describe "Editing assets" do
     expect(selected_first_document_sub_type).to eq("http://definitions.artic.edu/doctypes/EventPhotography")
     expect(selected_second_document_sub_type).to eq("http://definitions.artic.edu/doctypes/Lecture")
     expect(generic_work_hidden_asset_type.value).to eq("http://definitions.artic.edu/ontology/1.0/type/StillImage")
+    click_link "Files"
+    expect(page).to have_selector("li", text: "Adobe Portable Document Format")
+    expect(page).to have_selector('.asset-image')
+    expect(page).not_to have_selector('.asset-text')
   end
 end

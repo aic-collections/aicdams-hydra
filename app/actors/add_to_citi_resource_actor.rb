@@ -58,7 +58,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
       (representing_resource.representations.map(&:id) - representation_ids).each do |old_id|
         resource = ActiveFedora::Base.find(old_id)
         new_list = resource.representations.map { |r| r unless r.id == curation_concern.id }.compact
-        resource.representations = new_list
+        resource.representation_uris = new_list.map(&:uri)
         resource.save
         resource.reload
       end
@@ -66,7 +66,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
       # add new ones
       representation_ids.each do |id|
         resource = ActiveFedora::Base.find(id)
-        resource.representations += [curation_concern]
+        resource.representation_uris += [curation_concern.uri]
         resource.save
         resource.reload
       end
@@ -78,7 +78,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
       (representing_resource.documents.map(&:id) - document_ids).each do |old_id|
         resource = ActiveFedora::Base.find(old_id)
         new_list = resource.documents.map { |r| r unless r.id == curation_concern.id }.compact
-        resource.documents = new_list
+        resource.document_uris = new_list.map(&:uri)
         resource.save
         resource.reload
       end
@@ -86,13 +86,13 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
       # add new ones
       document_ids.each do |id|
         resource = ActiveFedora::Base.find(id)
-        resource.documents += [curation_concern]
+        resource.document_uris += [curation_concern.uri]
         resource.save
         resource.reload
       end
     end
 
     def representing_resource
-      @representing_resource ||= RepresentingResource.new(curation_concern)
+      @representing_resource ||= InboundRelationships.new(curation_concern)
     end
 end

@@ -3,10 +3,12 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 describe Sufia::Ability do
-  let(:user1) { create(:user1) }
-  let(:user2) { create(:user2) }
-  let(:admin) { create(:admin) }
-  let(:file)  { create(:asset) }
+  let(:user1)    { create(:user1) }
+  let(:user2)    { create(:user2) }
+  let(:admin)    { create(:admin) }
+  let(:admin)    { create(:admin) }
+  let(:file)     { create(:asset) }
+  let(:solr_doc) { SolrDocument.new(file.to_solr) }
 
   context "with curation concerns" do
     subject { Ability.new(user1) }
@@ -25,10 +27,16 @@ describe Sufia::Ability do
     it { is_expected.not_to be_able_to(:delete, Agent) }
   end
 
-  context "with department visibility" do
-    context "registered users cannot read a GenericFile" do
+  describe "department visibility" do
+    context "when the user does not own the file" do
       subject { Ability.new(user2) }
       it { is_expected.not_to be_able_to(:read, file) }
+    end
+
+    context "with an admin" do
+      subject { Ability.new(admin) }
+      it { is_expected.to be_able_to(:read, file) }
+      it { is_expected.to be_able_to(:read, solr_doc) }
     end
   end
 

@@ -9,7 +9,7 @@ module Permissions::WithAICDepositor
     property :dept_created, predicate: AIC.deptCreated, multiple: false, class_name: "Department"
 
     def depositor=(depositor)
-      self.aic_depositor = AICUser.find_by_nick(depositor)
+      self.aic_depositor = AICUser.find_by_nick(depositor).uri
     end
 
     # To retain Sufia's expectations, #depositor will return the nick of the AICUser
@@ -28,8 +28,8 @@ module Permissions::WithAICDepositor
     private
 
       def apply_aic_user_metadata(user)
-        self.aic_depositor = AICUser.find_by_nick(user.email)
-        self.dept_created = Department.find_by_citi_uid(user.department)
+        self.aic_depositor = AICUser.find_by_nick(user.email).uri
+        self.dept_created = Department.find_by_citi_uid(user.department).uri
         self.edit_users += [user.email]
       end
   end

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 // Required by Blacklight
 //= require blacklight/blacklight
@@ -19,7 +21,6 @@
 // Load Javascript < ES6
 //= require batch_edit
 //= require blacklight_gallery
-//= require new_asset
 //= require openseadragon
 //= require select_doctype
 
@@ -30,3 +31,4 @@
 //= require lakeshore/asset_type_control
 //= require lakeshore/autocomplete
 //= require lakeshore/deleted_files
+//= require lakeshore/asset_workflow

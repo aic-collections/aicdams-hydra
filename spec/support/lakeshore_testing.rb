@@ -13,6 +13,7 @@ class LakeshoreTesting
       FactoryGirl.create(:status)
       FactoryGirl.create(:department100)
       FactoryGirl.create(:department200)
+      FactoryGirl.create(:admins)
       FactoryGirl.create(:aic_user1)
       FactoryGirl.create(:aic_user2)
       FactoryGirl.create(:aic_admin)

@@ -64,7 +64,7 @@ describe CurationConcerns::GenericWorkForm do
 
   context "when the asset has a relationship to a CITI resource" do
     let(:asset)    { create(:asset) }
-    let(:resource) { create(:exhibition, representations: [asset], documents: [asset]) }
+    let(:resource) { create(:exhibition, representations: [asset.uri], documents: [asset.uri]) }
 
     describe "#representations_for" do
       its(:representations_for) { is_expected.to eq([resource]) }

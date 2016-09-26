@@ -24,6 +24,12 @@
               data: { "search-option" => polymorphic_path([main_app, GenericWork]),
                       "search-label" => "Assets" } %>
         </li>
+        <% if current_user %>
+          <li>
+            <%= link_to t("sufia.search.form.option.my_works.label_long"), "#",
+                data: { "search-option" => sufia.dashboard_works_path, "search-label" => t("sufia.search.form.option.my_works.label_short") } %>
+          </li>
+        <% end %>
         <li>
           <%= link_to "Works", "#",
               data: { "search-option" => polymorphic_path([main_app, Work]),

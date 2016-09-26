@@ -24,6 +24,12 @@ module SufiaHelper
     options.map { |value| [visibility_text(value), value] }
   end
 
+  def user_display_name_and_key(key)
+    agent = AICUser.find_by_nick(key) || Department.find_by_department_key(key)
+    return agent.pref_label if agent.is_a?(Department)
+    AICUserPresenter.new(agent).display_name
+  end
+
   private
 
     def render_visibility_label(document)

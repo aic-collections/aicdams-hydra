@@ -23,7 +23,9 @@ class Work < CitiResource
     index.as :stored_searchable
   end
 
-  property :department, predicate: AIC.department, class_name: "Department"
+  property :department, predicate: AIC.department, class_name: "Department" do |index|
+    index.as :stored_searchable, using: :pref_label
+  end
 
   property :dimensions_display, predicate: AIC.dimensionsDisplay do |index|
     index.as :stored_searchable

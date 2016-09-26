@@ -3,9 +3,9 @@ require 'rails_helper'
 
 describe InboundRelationships do
   let!(:asset)                    { create(:asset) }
-  let!(:document)                 { create(:exhibition, documents: [asset]) }
-  let!(:representation)           { create(:exhibition, representations: [asset]) }
-  let!(:preferred_representation) { create(:exhibition, preferred_representation: asset) }
+  let!(:document)                 { create(:exhibition, documents: [asset.uri]) }
+  let!(:representation)           { create(:exhibition, representations: [asset.uri]) }
+  let!(:preferred_representation) { create(:exhibition, preferred_representation: asset.uri) }
 
   context "with an asset contain all the types of relationships" do
     let(:relationships) { described_class.new(asset) }
