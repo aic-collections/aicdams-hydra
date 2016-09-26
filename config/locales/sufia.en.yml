@@ -57,8 +57,8 @@ en:
       transfers_sent:           "Sent"
       transfers_received:       "Received"
       transfer_works_link:      "Select assets to transfer"
-      no_transfer_requests:     "You haven't received any asset transfer requests"
-      no_transfers:             "You haven't transferred any asset"
+      no_transfer_requests:     "You haven't received any asset transfer requests."
+      no_transfers:             "You haven't transferred any assets."
       stats:
         heading:            "Your Statistics"
         files:              "Files deposited"
@@ -110,7 +110,11 @@ en:
         header: "Add New Asset"
       edit:
         header: "Edit Asset"
-
+    collection:
+      actions:
+        add_works:
+          label: "Add assets"
+          desc: "Add assets to this Collection"
   simple_form:
     labels:
       generic_work:
