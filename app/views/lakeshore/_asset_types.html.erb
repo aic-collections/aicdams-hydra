@@ -1,21 +1,31 @@
 <div class="asset asset-text">
-  <p><%= t('lakeshore.upload.asset_types', type: "text") %></p>
-  <ul>
-    <% AssetType::Text.types.each do |type| %>
-      <% if type.friendly %>
-        <li><%= type.friendly %></li>
+  <div class="row col-sm-8 col-md-6 col-lg-6">
+      <%= t('lakeshore.upload.asset_type_descr_text_html') %>
+  </div>
+  <div class="row col-sm-4 col-md-6 col-lg-6">
+    <p><%= t('lakeshore.upload.asset_types', type: "text") %></p>
+    <ul>
+      <% AssetType::Text.types.each do |type| %>
+        <% if type.friendly %>
+          <li><%= type.friendly %></li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>
 
 <div class="asset asset-image">
-  <p><%= t('lakeshore.upload.asset_types', type: "image") %></p>
-  <ul>
-    <% AssetType::Image.types.each do |type| %>
-      <% if type.friendly %>
-        <li><%= type.friendly %></li>
+  <div class="row col-sm-8 col-md-6 col-lg-6">
+      <%= t('lakeshore.upload.asset_type_descr_still_image_html') %>
+  </div>
+  <div class="row col-sm-4 col-md-6 col-lg-6">
+    <p><%= t('lakeshore.upload.asset_types', type: "image") %></p>
+    <ul>
+      <% AssetType::Image.types.each do |type| %>
+        <% if type.friendly %>
+          <li><%= type.friendly %></li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

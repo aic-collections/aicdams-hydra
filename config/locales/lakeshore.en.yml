@@ -3,6 +3,8 @@ en:
     upload:
       restrictions_html: "<h3>Maximum Upload Restrictions</h3><ul><li>Individual File Size: 1 GB</li></ul>"
       asset_types: "The following %{type} file types can be uploaded:"
+      asset_type_descr_still_image_html: "<p>Use this type for files whose <strong>content</strong> is predominantly image-based. Line drawings and graphs also belong to this group.</p><p>For files with mixed content, e.g. a PDF with an image and a caption, it is appropriate to select this type.</p>"
+      asset_type_descr_text_html: "<p>Use this type for files whose <strong>content</strong> is predominantly text-based. Image files of scanned text also belong to this category.</p><p>For files with mixed content, e.g. a report with text and images, it is appropriate to selet this type.</p>"
     relationship:
       add_assets: "Add New Assets to this Resource"
       batch_add_representations: "Add Representations"
