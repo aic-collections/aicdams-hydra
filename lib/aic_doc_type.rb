@@ -71,6 +71,23 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:Imaging"
   term :Imaging,
        label: "Imaging"
+  term :InfoServicesArchitectureDrawing,
+       label: "Architecture Diagram",
+       "skos:broader": "aicdoctype:InfoServicesDiagramOrDrawing"
+  term :InfoServicesFlowChart,
+       label: "Flow Chart",
+       "skos:broader": "aicdoctype:InfoServicesDiagramOrDrawing"
+  term :InfoServicesDiagramOrDrawing,
+       label: "Diagram or Drawing",
+       "skos:broader": "aicdoctype:InfoServicesStillImage"
+  term :InfoServicesEquipmentInfrastructurePhoto,
+       label: "Equipment Or Infrastructure Documentation",
+       "skos:broader": "aicdoctype:InfoServicesPhotography"
+  term :InfoServicesPhotography,
+       label: "Photography",
+       "skos:broader": "aicdoctype:InfoServicesStillImage"
+  term :InfoServicesStillImage,
+       label: "Information Services"
   term :RyersonSpecialCollectionsStillImage,
        label: "Ryerson Special Collections",
        "skos:broader": "aicdoctype:RyersonLibraryStillImage"
@@ -477,4 +494,15 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        label: "Development"
   term :MarketingText,
        label: "Marketing"
+  term :InfoServicesSoftwareSpecs,
+       label: "Software Specs",
+       "skos:broader": "aicdoctype:InfoServicesSpecSheet"
+  term :InfoServicesHardwareSpecs,
+       label: "Hardware Specs",
+       "skos:broader": "aicdoctype:InfoServicesSpecSheet"
+  term :InfoServicesInfrastructureSpecs,
+       label: "Infrastructure Specs",
+       "skos:broader": "aicdoctype:InfoServicesSpecSheet"
+  term :InfoServicesSpecSheet,
+       label: "Spec Sheet"
 end
