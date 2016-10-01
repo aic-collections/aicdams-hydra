@@ -111,6 +111,36 @@
                     ]
                 },
                 {
+                    "label" : "Information Services",
+                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Diagram or Drawing",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesDiagramOrDrawing",
+                            "subtypes" : [
+                                {
+                                    "label" : "Architecture Diagram",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesArchitectureDrawing"
+                                },
+                                {
+                                    "label" : "Flow Chart",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesFlowChart"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Photography",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesPhotography",
+                            "subtypes" : [
+                                {
+                                    "label" : "Equipment Or Infrastructure Documentation",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesEquipmentInfrastructurePhoto"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
                     "label" : "Ryerson Library",
                     "value" : "http://definitions.artic.edu/doctypes/RyersonLibraryStillImage",
                     "subtypes" : [
@@ -723,6 +753,24 @@
                 {
                     "label" : "Marketing",
                     "value" : "http://definitions.artic.edu/doctypes/MarketingText"
+                },
+                {
+                    "label" : "Spec Sheet",
+                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesSpecSheet",
+                    "subtypes" : [
+                        {
+                            "label" : "Software Specs",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesSoftwareSpecs"
+                        },
+                        {
+                            "label" : "Hardware Specs",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesHardwareSpecs"
+                        },
+                        {
+                            "label" : "Infrastructure Specs",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesInfrastructureSpecs"
+                        }
+                    ]
                 }
             ]
         }
