@@ -5,6 +5,11 @@
               input_html: { class: 'form-control', multiple: false, id: 'asset_type_select' },
               required: true %>
   <%= f.input :asset_type, as: :hidden, input_html: { id: 'hidden_asset_type' } %>
+  <%= render 'lakeshore/asset_types' %>
 <% else %>
+  <%# Inject mime type information into the files tab of the edit view %>
+  <% content_for :files_tab do %>
+    <%= render 'lakeshore/asset_types' %>
+  <% end %>
   <%= f.input :asset_type, as: :hidden, value: f.object.asset_type %>
 <% end %>

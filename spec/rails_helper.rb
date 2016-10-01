@@ -38,7 +38,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Capybara::RSpecMatchers, type: :input
   config.include InputSupport, type: :input
   config.include FactoryGirl::Syntax::Methods

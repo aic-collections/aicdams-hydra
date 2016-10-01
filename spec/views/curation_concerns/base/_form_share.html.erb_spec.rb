@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe 'curation_concerns/base/_form_share.html.erb' do
   let(:user)    { create(:user1) }
-  let(:work)    { create(:department_asset) }
+  let(:work)    { create(:department_asset, edit_users: [user]) }
   let(:ability) { double }
   let(:form)    { CurationConcerns::GenericWorkForm.new(work, ability) }
 

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 // Required by Blacklight
 //= require blacklight/blacklight
@@ -19,7 +21,6 @@
 // Load Javascript < ES6
 //= require batch_edit
 //= require blacklight_gallery
-//= require new_asset
 //= require openseadragon
 //= require select_doctype
 
@@ -30,3 +31,13 @@
 //= require lakeshore/asset_type_control
 //= require lakeshore/autocomplete
 //= require lakeshore/deleted_files
+//= require lakeshore/asset_workflow
+
+// Set upload limits
+// Overrides defaults in CurationConcerns uploader.js
+// 1 GB  max file size 
+max_file_size = 1073741824;
+max_file_size_str = "1 GB";
+// 100 GB max total upload size
+max_total_file_size = 107374182400;
+max_total_file_size_str = "100 GB";

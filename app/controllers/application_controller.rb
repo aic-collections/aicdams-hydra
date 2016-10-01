@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include CurationConcerns::ThemedLayoutController
   include Devise::Behaviors::SamlAuthenticatableBehavior
 
-  layout 'sufia-one-column'
+  with_themed_layout '1_column'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

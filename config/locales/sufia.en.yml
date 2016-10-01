@@ -14,7 +14,7 @@ en:
           all:
             label_short:    "All"
             label_long:     "All Resources"
-          my_files:
+          my_works:
             label_short:    "My Assets"
             label_long:     "My Assets"
     toolbar:

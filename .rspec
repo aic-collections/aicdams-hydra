@@ -1,2 +1,5 @@
 --color
---require spec_helper
+--format progress
+--format html
+--out tmp/rspec_results.html
+--profile

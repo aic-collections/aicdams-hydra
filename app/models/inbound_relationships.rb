@@ -31,8 +31,16 @@ class InboundRelationships
     @preferred_representations ||= resources_with(:preferred_representation_ssim)
   end
 
+  def preferred_representation
+    preferred_representations.first
+  end
+
   def preferred_representation_ids
     @preferred_representation_ids ||= ids_with(:preferred_representation_ssim)
+  end
+
+  def preferred_representation_id
+    preferred_representation_ids.first
   end
 
   def representations

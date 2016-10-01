@@ -26,9 +26,9 @@ describe AddToCitiResourceActor do
 
   describe "#update" do
     let!(:other)      { create(:asset) }
-    let!(:work)       { create(:work, representations: [asset], documents: [asset]) }
-    let!(:exhibition) { create(:exhibition, representations: [asset]) }
-    let!(:shipment)   { create(:shipment, representations: [asset, other]) }
+    let!(:work)       { create(:work, representations: [asset.uri], documents: [asset.uri]) }
+    let!(:exhibition) { create(:exhibition, representations: [asset.uri]) }
+    let!(:shipment)   { create(:shipment, representations: [asset.uri, other.uri]) }
 
     context "with multiple representations and documents" do
       let(:attributes) do

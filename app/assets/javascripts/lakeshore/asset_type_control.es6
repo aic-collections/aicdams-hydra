@@ -18,12 +18,12 @@ export class AssetTypeControl {
 
   disableSelect() {
     if (this.uploads.hasFiles)
-      this.element.prop("disabled", true)
+      this.element.prop('disabled', true)
   }
 
   enableSelect() {
     if (this.deletes.lastFile) {
-      this.element.removeProp("disabled")
+      this.element.removeProp('disabled')
     }
   }
 }

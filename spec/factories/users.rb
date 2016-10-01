@@ -14,7 +14,7 @@ FactoryGirl.define do
 
     factory :admin do
       email 'admin'
-      department '100'
+      department '99'
     end
   end
 
@@ -27,6 +27,11 @@ FactoryGirl.define do
     factory :department200 do
       pref_label "Department 200"
       citi_uid   "200"
+    end
+
+    factory :admins do
+      pref_label "Administrators"
+      citi_uid   "99"
     end
   end
 

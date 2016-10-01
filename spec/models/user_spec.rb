@@ -10,7 +10,7 @@ describe User do
     end
     describe "#groups" do
       subject { user }
-      its(:groups) { is_expected.to contain_exactly("admin", "registered", "100") }
+      its(:groups) { is_expected.to contain_exactly("admin", "registered", "99") }
     end
   end
 

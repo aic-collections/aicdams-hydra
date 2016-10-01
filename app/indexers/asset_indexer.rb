@@ -32,8 +32,8 @@ class AssetIndexer < Sufia::WorkIndexer
     end
 
     def representations(types = [])
-      r = RepresentingResource.new(object.id)
-      return types unless r.representing?
+      r = InboundRelationships.new(object.id)
+      return types unless r.present?
       types << "Is Document" unless r.documents.empty?
       types << "Is Representation" unless r.representations.empty?
       types << "Is Preferred Representation" unless r.preferred_representation.nil?

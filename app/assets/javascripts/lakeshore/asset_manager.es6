@@ -10,7 +10,7 @@ export class AssetManager {
 
   // sets up listeners
   initialize() {
-    let $this = this;
+    let $this = this
 
     $('.am-add').on('click', function(event) {
       event.preventDefault()
@@ -20,7 +20,7 @@ export class AssetManager {
 
     $('.am').on('click', '.am-delete', function(event) {
       event.preventDefault()
-      $this.removeRow(this);
+      $this.removeRow(this)
     })
   }
 
@@ -39,16 +39,15 @@ export class AssetManager {
   // processes the deletions.
   nullInput(row) {
     var input = $(row).find('input')
-    input.val("")
+    input.val('')
     $(row).html($(input))
   }
 
   get assetRow() {
+    var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : ''
     var html =
       '<tr>' +
-        '<td>' +
-          '<img src="' + this.selectedAssetImage + '" />' +
-        '</td>' +
+        '<td>' + image_tag + '</td>' +
         '<td>' +
            this.selectedAssetText + this.hiddenInput +
         '</td>' +
