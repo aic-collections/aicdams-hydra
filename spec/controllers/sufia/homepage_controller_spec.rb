@@ -14,7 +14,7 @@ describe Sufia::HomepageController do
       include_context "authenticated saml user"
       it "sets the number of facet counts for resource type" do
         get :index
-        assigns(:resource_types).should_not be_nil
+        expect(assigns(:resource_types)).not_to be_nil
       end
     end
   end

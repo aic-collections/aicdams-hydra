@@ -2,7 +2,7 @@
 class ListsController < ApplicationController
   include Breadcrumbs
 
-  layout "sufia-one-column"
+  with_themed_layout '1_column'
   before_action :load_resource, except: [:index]
   before_action :build_breadcrumbs
 

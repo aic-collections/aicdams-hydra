@@ -19,7 +19,7 @@ module SolrDocumentExtensions::Work
   end
 
   def department
-    # TODO: need to display an AIC.Department
+    Array(self[Solrizer.solr_name('department', :stored_searchable)])
   end
 
   def dimensions_display

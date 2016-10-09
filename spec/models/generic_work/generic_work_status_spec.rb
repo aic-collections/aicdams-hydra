@@ -12,11 +12,6 @@ describe "GenericFile" do
     end
   end
 
-  describe "loading from solr" do
-    subject { ActiveFedora::Base.load_instance_from_solr(example_file.id) }
-    it { is_expected.to be_active }
-  end
-
   describe "#status_uri" do
     let(:new_status) { create(:status_type, pref_label: "New") }
     before { example_file.status_uri = new_status.uri }

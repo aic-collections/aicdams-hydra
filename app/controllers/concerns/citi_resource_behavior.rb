@@ -3,7 +3,7 @@ module CitiResourceBehavior
   extend ActiveSupport::Concern
 
   included do
-    layout "sufia-one-column"
+    with_themed_layout '1_column'
   end
 
   def index

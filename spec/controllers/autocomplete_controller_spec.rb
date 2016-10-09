@@ -27,19 +27,23 @@ describe AutocompleteController do
 
       context "with a partial UID query" do
         let(:query) { asset.uid.last(4) }
-        xit { is_expected.to include("label" => "Autocomplete example", "id" => start_with("http")) }
+        it { is_expected.to include("label" => "Autocomplete example", "id" => start_with("http")) }
       end
     end
 
     context "when searching for Citi resources" do
-      let!(:agent) { create(:agent, pref_label: "Agent to search") }
-
-      before { get :index, q: query, model: "Agent", format: :json }
       subject { JSON.parse(response.body).first }
 
       context "with a partial label query" do
-        let(:query) { "Age" }
+        let!(:agent) { create(:agent, pref_label: "Agent to search") }
+        before { get :index, q: "Age", model: "Agent", format: :json }
         it { is_expected.to include("label" => "Agent to search", "id" => agent.id) }
+      end
+
+      context "with a partial ref. number query" do
+        let!(:work)  { create(:work, pref_label: "Work to search", main_ref_number: "1999.678") }
+        before { get :index, q: "678", model: "Work", format: :json }
+        it { is_expected.to include("label" => "Work to search", "main_ref_number" => work.main_ref_number) }
       end
     end
   end

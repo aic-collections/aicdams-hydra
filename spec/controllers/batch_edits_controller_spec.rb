@@ -7,7 +7,7 @@ describe BatchEditsController do
   let(:image_asset) { create(:still_image_asset, user: user) }
 
   describe "#destroy" do
-    before { allow_any_instance_of(RepresentingResource).to receive(:representing?).and_return(true) }
+    before { allow_any_instance_of(InboundRelationships).to receive(:present?).and_return(true) }
 
     it "reports an error if the asset has resources linking to it" do
       put :update, update_type: "delete_all", return_controller: "my/works", batch_document_ids: [image_asset.id]

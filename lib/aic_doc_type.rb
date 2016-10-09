@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
+  term :ConservationStillImage,
+       label: "Conservation"
+  term :CuratorialStudyPhoto,
+       label: "Study Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialExhibitionPhoto,
+       label: "Exhibition Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialDepartmentPhoto,
+       label: "Department Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialEventPhoto,
+       label: "Event Photo",
+       "skos:broader": "aicdoctype:CuratorialStillImage"
+  term :CuratorialStillImage,
+       label: "Curatorial"
   term :DesignFile,
        label: "Design File",
        "skos:broader": "aicdoctype:MarketingStillImage"
@@ -13,6 +29,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:Imaging"
   term :ObjectPhotography,
        label: "Object Photography",
+       "skos:broader": "aicdoctype:Imaging"
+  term :ExhibitionPhoto,
+       label: "Exhibition Photo",
        "skos:broader": "aicdoctype:Imaging"
   term :Lecture,
        label: "Lecture",
@@ -54,6 +73,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        label: "Imaging"
   term :RyersonSpecialCollectionsStillImage,
        label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibraryStillImage"
+  term :RyersonArchiveStillImage,
+       label: "Archive",
        "skos:broader": "aicdoctype:RyersonLibraryStillImage"
   term :RyersonLibraryStillImage,
        label: "Ryerson Library"
@@ -256,6 +278,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :UnclaimedPropertyDocumentation,
        label: "Unclaimed Property Documentation",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
+  term :SellerInvoice,
+       label: "Seller Invoice",
+       "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :AcquisitionPaperwork,
        label: "Acquisition Paperwork"
   term :MeetingMinutes,
@@ -329,6 +354,18 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :Bibliography,
        label: "Bibliography",
        "skos:broader": "aicdoctype:CuratorialDocument"
+  term :ObjectCard,
+       label: "Object Card",
+       "skos:broader": "aicdoctype:CuratorialDocument"
+  term :FinalChecklist,
+       label: "Final Checklist",
+       "skos:broader": "aicdoctype:ExhibitionDocumentation"
+  term :ExhibDocSummary,
+       label: "Summary",
+       "skos:broader": "aicdoctype:ExhibitionDocumentation"
+  term :ExhibitionDocumentation,
+       label: "Exhibition Documentation",
+       "skos:broader": "aicdoctype:CuratorialDocument"
   term :LectureOther,
        label: "Lecture",
        "skos:broader": "aicdoctype:CuratorialDocument"
@@ -374,10 +411,61 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:PublicationsDocument"
   term :PublicationsDocument,
        label: "Publications Document"
+  term :AnalysisReport,
+       label: "Analysis Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ConservationArticle,
+       label: "Article",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationForAcquisitionConsideration,
+       label: "Examination For Acquisition Consideration",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationForDeaccession,
+       label: "Examination For Deaccession",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ExaminationReport,
+       label: "Examination Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :FrameDocumentation,
+       label: "Frame Documentation",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :IncidentReport,
+       label: "Incident Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :IncomingConditionReport,
+       label: "Incoming Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :InterVenueConditionReport,
+       label: "Inter-Venue Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :MaterialAndTechniquesInformation,
+       label: "Material And Techniques Information",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :NoteToFile,
+       label: "Note To File",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :OutgoingConditionReport,
+       label: "Outgoing Condition Report",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :RequestForAnalysis,
+       label: "Request For Analysis",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :RequestForLoanExamination,
+       label: "Request For Loan Examination",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :ConservationIncomingLoanExam,
+       label: "Incoming Loan Exam",
+       "skos:broader": "aicdoctype:ConservationDocument"
+  term :TreatmentDocumentation,
+       label: "Treatment Documentation",
+       "skos:broader": "aicdoctype:ConservationDocument"
   term :ConservationDocument,
        label: "Conservation Document"
   term :RyersonSpecialCollectionsText,
        label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibraryText"
+  term :RyersonArchiveText,
+       label: "Archive",
        "skos:broader": "aicdoctype:RyersonLibraryText"
   term :RyersonLibraryText,
        label: "Ryerson Library"

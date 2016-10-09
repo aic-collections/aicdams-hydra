@@ -4,12 +4,12 @@ require 'rails_helper'
 describe Department do
   describe "#citi_uid" do
     subject { described_class.all.map(&:citi_uid) }
-    it { is_expected.to contain_exactly("100", "200") }
+    it { is_expected.to contain_exactly("100", "200", "99") }
   end
 
   describe "::options" do
     subject { described_class.options }
-    it { is_expected.to eq("Department 100" => "100", "Department 200" => "200") }
+    it { is_expected.to eq("Administrators" => "99", "Department 100" => "100", "Department 200" => "200") }
   end
 
   describe "::find_by_department_key" do

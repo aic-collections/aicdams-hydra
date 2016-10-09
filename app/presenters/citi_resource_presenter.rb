@@ -6,6 +6,7 @@ class CitiResourcePresenter < Sufia::WorkShowPresenter
     CitiResourceTerms.all
   end
 
+  include ResourcePresenterBehaviors
   delegate(*terms, to: :solr_document)
 
   def title

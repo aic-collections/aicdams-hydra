@@ -14,7 +14,7 @@ en:
           all:
             label_short:    "All"
             label_long:     "All Resources"
-          my_files:
+          my_works:
             label_short:    "My Assets"
             label_long:     "My Assets"
     toolbar:
@@ -57,8 +57,8 @@ en:
       transfers_sent:           "Sent"
       transfers_received:       "Received"
       transfer_works_link:      "Select assets to transfer"
-      no_transfer_requests:     "You haven't received any asset transfer requests"
-      no_transfers:             "You haven't transferred any asset"
+      no_transfer_requests:     "You haven't received any asset transfer requests."
+      no_transfers:             "You haven't transferred any assets."
       stats:
         heading:            "Your Statistics"
         files:              "Files deposited"
@@ -72,7 +72,7 @@ en:
         works:        "My Assets"
         collections:  "My Collections"
         highlights:   "My Highlights"
-        shares:       "Files Shared with Me"
+        shares:       "Assets Shared with Me"
         facet_label:
           files:        "Filter your files"
           collections:  "Filter your collections"
@@ -105,12 +105,48 @@ en:
           transfer:                "Transfer Ownership of Work"
           work_confirmation:       "Deleting a work from %{application_name} is permanent. Click OK to delete this asset from %{application_name}, or Cancel to cancel this operation"
           collection_confirmation: "Deleting a collection from %{application_name} is permanent. Click OK to delete this collection from %{application_name}, or Cancel to cancel this operation"
-    works:
+    Exhibition:
+      new:
+        header: "Add New Exhibit"
+      edit:
+        header: "Edit Exhibit"
+    Agent:
+      new:
+        header: "Add New Agent"
+      edit:
+        header: "Edit Agent"
+    Place:
+      new:
+        header: "Add New Place"
+      edit:
+        header: "Edit Place"
+    Shipment:
+      new:
+        header: "Add New Shipment"
+      edit:
+        header: "Edit Shipment"
+    Transaction:
+      new:
+        header: "Add New Transaction"
+      edit:
+        header: "Edit Transaction"
+    Asset:
       new:
         header: "Add New Asset"
       edit:
         header: "Edit Asset"
-
+    Work:
+      new:
+        header: "Add New Work"
+      edit:
+        header: "Edit Work"
+    Batch Upload Item:
+      header: "Add New Asset"       
+    collection:
+      actions:
+        add_works:
+          label: "Add assets"
+          desc: "Add assets to this Collection"
   simple_form:
     labels:
       generic_work:

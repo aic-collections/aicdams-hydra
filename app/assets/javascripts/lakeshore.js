@@ -2,8 +2,9 @@
 Lakeshore = {
   initialize: function () {
     this.assetTypeControl();
-    this.autocompleteControl(2, "/autocomplete");
+    this.autocompleteControl(3, "/autocomplete");
     this.assetManager();
+    this.assetWorkflow();
   },
 
   autocompleteControl: function (length, endpoint) {
@@ -22,6 +23,12 @@ Lakeshore = {
     var atr = require('lakeshore/asset_manager');
     var asset_manager = new atr.AssetManager('.am');
     asset_manager.initialize();
+  },
+
+  assetWorkflow: function () {
+    var awf = require('lakeshore/asset_workflow');
+    var asset_workflow = new awf.AssetWorkflow();
+    asset_workflow.initialize();
   }
 };
 

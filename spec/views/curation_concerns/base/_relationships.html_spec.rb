@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe 'curation_concerns/base/_relationships.html.erb' do
-  let(:asset)           { build(:asset, id: '1234') }
+  let(:asset)           { build(:asset, id: '1234', pref_label: 'FineArt') }
   let(:asset_doc)       { SolrDocument.new(asset.to_solr) }
   let(:solr_document)   { SolrDocument.new(citi_resource.to_solr) }
   let(:asset_presenter) { AssetPresenter.new(asset_doc, ability) }
@@ -12,15 +12,18 @@ describe 'curation_concerns/base/_relationships.html.erb' do
   subject { page }
 
   describe "an exhibition" do
-    let(:citi_resource)  { build(:exhibition, id: '999') }
+    let(:citi_resource)  { build(:exhibition, id: '999', uid: '123', pref_label: 'FineArt') }
     let(:citi_presenter) { ExhibitionPresenter.new(solr_document, ability) }
 
     context "with no relationships" do
       before { render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter }
       specify do
         is_expected.to have_content("No relationships found for this Exhibition")
-        is_expected.to have_link("Add Representations", href: "/batch_uploads/new?representation_for=999")
-        is_expected.to have_link("Add Documentation", href: "/batch_uploads/new?document_for=999")
+
+        is_expected.to have_link("Add Representations", href:
+        "/batch_uploads/new?representation_for=999&resource_title=FineArt+%28123%29")
+
+        is_expected.to have_link("Add Documentation", href: "/batch_uploads/new?document_for=999&resource_title=FineArt+%28123%29")
       end
     end
 

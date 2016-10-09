@@ -60,11 +60,18 @@ describe SolrDocument do
   end
 
   describe "Work terms" do
+    describe "#department" do
+      let(:work)       { build(:work) }
+      let(:department) { build(:department, pref_label: "Department of Works") }
+      before { allow(work).to receive(:department).and_return([department]) }
+      subject { described_class.new(work.to_solr, id: "1234") }
+      its(:department) { is_expected.to contain_exactly("Department of Works") }
+    end
+
     it { is_expected.to respond_to(:artist) }
     it { is_expected.to respond_to(:creator_display) }
     it { is_expected.to respond_to(:credit_line) }
     it { is_expected.to respond_to(:date_display) }
-    it { is_expected.to respond_to(:department) }
     it { is_expected.to respond_to(:dimensions_display) }
     it { is_expected.to respond_to(:earliest_year) }
     it { is_expected.to respond_to(:exhibition_history) }

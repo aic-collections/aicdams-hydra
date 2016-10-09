@@ -2,22 +2,10 @@
 require 'rails_helper'
 
 describe AssetPresenter do
-  let(:solr_document) { SolrDocument.new(attributes) }
-  let(:request) { double }
-  let(:date_value) { Date.today }
-  let(:date_index) { date_value.to_s }
-  let(:attributes) do
-    { "pref_label_tesim" => "Sample Label",
-      "human_readable_type_tesim" => ["Asset"],
-      "has_model_ssim" => ["GenericWork"],
-      "date_created_tesim" => ['an unformatted date'],
-      "date_modified_dtsi" => date_index,
-      "date_uploaded_dtsi" => date_index }
-  end
-  let(:ability) { nil }
-  # You'll need this with the latest Sufia
-  # let(:presenter) { described_class.new(solr_document, ability, request) }
-  let(:presenter) { described_class.new(solr_document, ability) }
+  let(:asset)         { build(:department_asset, id: "1234", pref_label: "Sample Label") }
+  let(:solr_document) { SolrDocument.new(asset.to_solr) }
+  let(:ability)       { Ability.new(nil) }
+  let(:presenter)     { described_class.new(solr_document, ability) }
 
   subject { presenter }
 
@@ -52,5 +40,19 @@ describe AssetPresenter do
 
   describe "#is_citi_presenter?" do
     it { is_expected.not_to be_citi_presenter }
+  end
+
+  describe "#fedora_uri" do
+    subject { presenter.fedora_uri }
+
+    context "when the user is an admin" do
+      before { allow(ability).to receive(:admin?).and_return(true) }
+      it { is_expected.to end_with("/12/34/1234") }
+    end
+
+    context "when the user is not an admin" do
+      before { allow(ability).to receive(:admin?).and_return(false) }
+      it { is_expected.to be_nil }
+    end
   end
 end

@@ -24,18 +24,18 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
   end
 
   context "when passing a representation in the url" do
-    before { controller.params = { representation_for: 'rep-id' } }
-    it "place its id in a hidden field" do
+    before { controller.params = { representation_for: 'rep-id', resource_title: "preferred_label" } }
+    it "places its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_representation', visible: 'false')
-      expect(page).to have_selector('p', text: 'This Asset will be added as a representation of CITI resource #rep-id.')
+      expect(page).to have_selector('p', text: 'This Asset will be added as a representation of CITI resource preferred_label.')
     end
   end
 
   context "when passing a document in the url" do
-    before { controller.params = { document_for: 'doc-id' } }
-    it "place its id in a hidden field" do
+    before { controller.params = { document_for: 'doc-id', resource_title: "preferred_label" } }
+    it "places its id in a hidden field" do
       expect(page).to have_selector('#generic_work_additional_document', visible: 'false')
-      expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource #doc-id.')
+      expect(page).to have_selector('p', text: 'This Asset will be added as documentation of CITI resource preferred_label.')
     end
   end
 

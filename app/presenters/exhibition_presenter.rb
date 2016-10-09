@@ -11,4 +11,5 @@ class ExhibitionPresenter < Sufia::WorkShowPresenter
   end
 
   include CitiPresenterBehaviors
+  include ResourcePresenterBehaviors
 end

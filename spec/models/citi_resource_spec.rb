@@ -103,9 +103,9 @@ describe CitiResource do
       let(:facets_for_representations) { facets_for(Solrizer.solr_name("representation", :facetable), asset.id) }
 
       before do
-        resource.representations = [asset]
-        resource.preferred_representation = asset
-        resource.documents = [asset]
+        resource.representations = [asset.uri]
+        resource.preferred_representation = asset.uri
+        resource.documents = [asset.uri]
         resource.save
       end
       it "contains the correct kind of representations" do
@@ -135,9 +135,8 @@ describe CitiResource do
         end
       end
       context "when reloading as a solr document" do
-        let(:solr_doc) { SolrDocument.new(resource.to_solr, nil) }
-        subject { solr_doc.to_model }
-        its(:preferred_representation) { is_expected.to eq(asset) }
+        subject { SolrDocument.new(resource.to_solr, nil) }
+        its(:preferred_representation_id) { is_expected.to eq(asset.id) }
       end
     end
   end

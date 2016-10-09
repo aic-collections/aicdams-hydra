@@ -69,27 +69,31 @@ class CatalogController < ApplicationController
     config.add_facet_fields_to_solr_request!
 
     # Index view fields
+    config.add_index_field solr_name("depositor", :stored_searchable), label: "Depositor"
     config.add_index_field solr_name("pref_label", :stored_searchable),      label: "Title"
     config.add_index_field solr_name("uid", :symbol),                        label: AIC.uid.label
     config.add_index_field solr_name("main_ref_number", :stored_searchable), label: AIC.mainRefNumber.label
     config.add_index_field solr_name("document_types", :stored_searchable),  label: AIC.documentType.label
     config.add_index_field solr_name("resource_type", :stored_searchable),   label: "Resource Type"
     config.add_index_field solr_name('credit_line', :stored_searchable),     label: AIC.creditLine.label
-    config.add_index_field solr_name('dept_created', :stored_searchable),    label: AIC.department.label
-
+    config.add_index_field solr_name('dept_created', :stored_searchable),    label: AIC.deptCreated.label
+    config.add_index_field solr_name('department', :stored_searchable),      label: AIC.department.label
     config.add_index_field solr_name("relationships", :stored_searchable, type: :integer), label: "Related Assets"
+    config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), label: "Date Uploaded", itemprop: 'datePublished', helper_method: :human_readable_date
+    config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), label: "Date Modified", itemprop: 'dateModified', helper_method: :human_readable_date
 
     # Resource fields
     config.add_show_field solr_name("contributor", :stored_searchable),   label: AIC.contributor.label
     config.add_show_field solr_name("created_by", :stored_searchable),    label: AIC.createdBy.label
-    config.add_show_field solr_name("description", :stored_searchable),   label: ::RDF::DC.description.label
+    config.add_show_field solr_name("description", :stored_searchable),   label: ::RDF::Vocab::DC.description.label
     config.add_show_field solr_name("label", :stored_searchable),         label: ::RDF::RDFS.label.label
-    config.add_show_field solr_name("language", :stored_searchable),      label: ::RDF::DC.language.label
+    config.add_show_field solr_name("language", :stored_searchable),      label: ::RDF::Vocab::DC.language.label
     config.add_show_field solr_name("pref_label", :stored_searchable),    label: ::RDF::Vocab::SKOS.prefLabel.label
-    config.add_show_field solr_name("publisher", :stored_searchable),     label: ::RDF::DC.publisher.label
-    config.add_show_field solr_name("rights", :stored_searchable),        label: ::RDF::DC.rights.label
-    config.add_show_field solr_name("rights_holder", :stored_searchable), label: ::RDF::DC.rightsHolder.label
+    config.add_show_field solr_name("publisher", :stored_searchable),     label: ::RDF::Vocab::DC.publisher.label
+    config.add_show_field solr_name("rights", :stored_searchable),        label: ::RDF::Vocab::DC.rights.label
+    config.add_show_field solr_name("rights_holder", :stored_searchable), label: ::RDF::Vocab::DC.rightsHolder.label
     config.add_show_field solr_name("same_as", :stored_searchable),       label: ::RDF::OWL.sameAs.label
+    config.add_show_field solr_name("uid", :stored_searchable),           label: AIC.uid.label
 
     # Work fields
     config.add_show_field solr_name("citi_uid", :stored_searchable),            label: AIC.citiUid.label

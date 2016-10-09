@@ -24,7 +24,7 @@ describe ListItemsController do
       before { xhr :post, :create, list_id: list, list_item: new_list_item }
       it "adds a new list item to the list" do
         list.reload
-        expect(list.members.last.pref_label).to eq("New Thing")
+        expect(list.members.map(&:pref_label)).to include("New Thing")
       end
     end
     context "with a bogus list id" do
@@ -52,8 +52,8 @@ describe ListItemsController do
 
     describe "#update" do
       before { xhr :patch, :update, list_id: list, id: list.members.first, list_item: { description: ["a description"] } }
-      subject { list.reload.members.first }
-      its(:description) { is_expected.to contain_exactly("a description") }
+      subject { list.reload.members.map(&:description) }
+      it { is_expected.to contain_exactly(["a description"], []) }
     end
 
     context "when adding another item with the same label" do

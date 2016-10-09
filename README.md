@@ -20,7 +20,7 @@ Startup Solr and Fedora using the included wrappers
     bundle exec fcrepo_wrapper
 
 Once they are running, you will need to load sample users and resources
-
+    bundle exec rake rails:update:bin (to get bin rails)
     bundle exec rake dev:prep
 
 Before you can use the web application, you will need to mimic the Shibboleth environment. See the

@@ -9,4 +9,5 @@ class PlacePresenter < Sufia::WorkShowPresenter
   end
 
   include CitiPresenterBehaviors
+  include ResourcePresenterBehaviors
 end

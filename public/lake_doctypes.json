@@ -3,6 +3,32 @@
         "StillImage" : {
             "doctypes" : [
                 {
+                    "label" : "Conservation",
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationStillImage"
+                },
+                {
+                    "label" : "Curatorial",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Study Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialStudyPhoto"
+                        },
+                        {
+                            "label" : "Exhibition Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialExhibitionPhoto"
+                        },
+                        {
+                            "label" : "Department Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialDepartmentPhoto"
+                        },
+                        {
+                            "label" : "Event Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/CuratorialEventPhoto"
+                        }
+                    ]
+                },
+                {
                     "label" : "Marketing",
                     "value" : "http://definitions.artic.edu/doctypes/MarketingStillImage",
                     "subtypes" : [
@@ -27,6 +53,10 @@
                         {
                             "label" : "Object Photography",
                             "value" : "http://definitions.artic.edu/doctypes/ObjectPhotography"
+                        },
+                        {
+                            "label" : "Exhibition Photo",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionPhoto"
                         },
                         {
                             "label" : "Event Photography",
@@ -87,6 +117,10 @@
                         {
                             "label" : "Ryerson Special Collections",
                             "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsStillImage"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveStillImage"
                         }
                     ]
                 },
@@ -392,6 +426,10 @@
                         {
                             "label" : "Unclaimed Property Documentation",
                             "value" : "http://definitions.artic.edu/doctypes/UnclaimedPropertyDocumentation"
+                        },
+                        {
+                            "label" : "Seller Invoice",
+                            "value" : "http://definitions.artic.edu/doctypes/SellerInvoice"
                         }
                     ]
                 },
@@ -502,6 +540,24 @@
                             "value" : "http://definitions.artic.edu/doctypes/Bibliography"
                         },
                         {
+                            "label" : "Object Card",
+                            "value" : "http://definitions.artic.edu/doctypes/ObjectCard"
+                        },
+                        {
+                            "label" : "Exhibition Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitionDocumentation",
+                            "subtypes" : [
+                                {
+                                    "label" : "Final Checklist",
+                                    "value" : "http://definitions.artic.edu/doctypes/FinalChecklist"
+                                },
+                                {
+                                    "label" : "Summary",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibDocSummary"
+                                }
+                            ]
+                        },
+                        {
                             "label" : "Lecture",
                             "value" : "http://definitions.artic.edu/doctypes/LectureOther"
                         }
@@ -569,7 +625,73 @@
                 },
                 {
                     "label" : "Conservation Document",
-                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument"
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationDocument",
+                    "subtypes" : [
+                        {
+                            "label" : "Analysis Report",
+                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport"
+                        },
+                        {
+                            "label" : "Article",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationArticle"
+                        },
+                        {
+                            "label" : "Examination For Acquisition Consideration",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationForAcquisitionConsideration"
+                        },
+                        {
+                            "label" : "Examination For Deaccession",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationForDeaccession"
+                        },
+                        {
+                            "label" : "Examination Report",
+                            "value" : "http://definitions.artic.edu/doctypes/ExaminationReport"
+                        },
+                        {
+                            "label" : "Frame Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/FrameDocumentation"
+                        },
+                        {
+                            "label" : "Incident Report",
+                            "value" : "http://definitions.artic.edu/doctypes/IncidentReport"
+                        },
+                        {
+                            "label" : "Incoming Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/IncomingConditionReport"
+                        },
+                        {
+                            "label" : "Inter-Venue Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/InterVenueConditionReport"
+                        },
+                        {
+                            "label" : "Material And Techniques Information",
+                            "value" : "http://definitions.artic.edu/doctypes/MaterialAndTechniquesInformation"
+                        },
+                        {
+                            "label" : "Note To File",
+                            "value" : "http://definitions.artic.edu/doctypes/NoteToFile"
+                        },
+                        {
+                            "label" : "Outgoing Condition Report",
+                            "value" : "http://definitions.artic.edu/doctypes/OutgoingConditionReport"
+                        },
+                        {
+                            "label" : "Request For Analysis",
+                            "value" : "http://definitions.artic.edu/doctypes/RequestForAnalysis"
+                        },
+                        {
+                            "label" : "Request For Loan Examination",
+                            "value" : "http://definitions.artic.edu/doctypes/RequestForLoanExamination"
+                        },
+                        {
+                            "label" : "Incoming Loan Exam",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationIncomingLoanExam"
+                        },
+                        {
+                            "label" : "Treatment Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/TreatmentDocumentation"
+                        }
+                    ]
                 },
                 {
                     "label" : "Ryerson Library",
@@ -578,6 +700,10 @@
                         {
                             "label" : "Ryerson Special Collections",
                             "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsText"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveText"
                         }
                     ]
                 },

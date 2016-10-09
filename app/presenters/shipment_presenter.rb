@@ -5,4 +5,5 @@ class ShipmentPresenter < Sufia::WorkShowPresenter
   end
 
   include CitiPresenterBehaviors
+  include ResourcePresenterBehaviors
 end

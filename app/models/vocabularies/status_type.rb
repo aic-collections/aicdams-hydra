@@ -3,7 +3,7 @@
 class StatusType < ListItem
   type [AICType.Resource, AICType.ListItem, AICType.StatusType]
 
-  property :identifier, predicate: ::RDF::DC.identifier, multiple: false do |index|
+  property :identifier, predicate: ::RDF::Vocab::DC.identifier, multiple: false do |index|
     index.type :integer
   end
 

@@ -2,11 +2,10 @@ development:
   admin:
     - aweadadmin
     - scossuadmin
-    - admin
 test:
   admin:
     - admin
 production:
   admin:
-    - god@aic.org
-    - awead@aic.org
+    - aweadadmin
+    - scossuadmin

@@ -39,7 +39,7 @@ describe GenericWork do
     describe "#to_solr" do
       let(:keyword) { create(:list_item) }
 
-      before { subject.keyword = [keyword] }
+      before { subject.keyword = [keyword.uri] }
 
       it "contains our custom solr fields" do
         expect(subject.to_solr[Solrizer.solr_name("aic_type", :facetable)]).to include("Asset", "Still Image")
@@ -94,11 +94,6 @@ describe GenericWork do
         expect(described_class.properties[term.to_s].multiple?).to be false
       end
     end
-  end
-
-  describe "loading from solr" do
-    subject { ActiveFedora::Base.load_instance_from_solr(example_file.id) }
-    it { is_expected.to be_kind_of described_class }
   end
 
   describe "#destroy" do

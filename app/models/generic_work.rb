@@ -57,7 +57,7 @@ class GenericWork < Resource
   end
 
   def status_is_active
-    self.status = StatusType.active
+    self.status = StatusType.active.uri
   end
 
   def id_matches_uid_checksum
@@ -65,7 +65,7 @@ class GenericWork < Resource
   end
 
   def asset_cannot_be_referenced
-    if representing_resource.representing?
+    if representing_resource.present?
       errors[:representations] = "are assigned to this resource"
     end
     return false unless errors.empty?
@@ -91,6 +91,6 @@ class GenericWork < Resource
     end
 
     def representing_resource
-      @representing_resource ||= RepresentingResource.new(id)
+      @representing_resource ||= InboundRelationships.new(id)
     end
 end

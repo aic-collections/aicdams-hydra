@@ -79,7 +79,7 @@ module CurationConcerns
     private
 
       def representing_resource
-        @representing_resource ||= RepresentingResource.new(model.id)
+        @representing_resource ||= InboundRelationships.new(model.id)
       end
   end
 end

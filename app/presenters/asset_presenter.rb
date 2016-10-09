@@ -31,14 +31,21 @@ class AssetPresenter < Sufia::WorkShowPresenter
   end
 
   def self.presenter_terms
-    terms + [:fedora_uri, :document_types]
+    terms + [:document_types]
   end
+
+  include ResourcePresenterBehaviors
 
   delegate(*presenter_terms, to: :solr_document)
   delegate :document_ids, :representation_ids, :preferred_representation_ids, to: :relationships
 
   def title
     [pref_label]
+  end
+
+  def fedora_uri
+    return unless current_ability.admin?
+    solr_document.fedora_uri
   end
 
   # TODO: Does this cause a load from Fedora? Use solr_document instead?

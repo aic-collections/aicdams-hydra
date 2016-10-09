@@ -31,14 +31,14 @@ FactoryGirl.define do
       document_type_uri            "http://definitions.artic.edu/doctypes/Imaging"
       first_document_sub_type_uri  "http://definitions.artic.edu/doctypes/EventPhotography"
       second_document_sub_type_uri "http://definitions.artic.edu/doctypes/Lecture"
-      keyword                      { [create(:list_item, pref_label: "sample keyword")] }
-      view                         { [create(:list_item, pref_label: "sample view")] }
+      keyword                      { [create(:list_item, pref_label: "sample keyword").uri] }
+      view                         { [create(:list_item, pref_label: "sample view").uri] }
       capture_device               "capture device"
-      digitization_source          { create(:list_item, pref_label: "digitizaton source") }
+      digitization_source          { create(:list_item, pref_label: "digitizaton source").uri }
       legacy_uid                   ["legacy_uid1", "legacy_uid2"]
-      compositing                  { create(:list_item, pref_label: "compositing") }
+      compositing                  { create(:list_item, pref_label: "compositing").uri }
       imaging_uid                  ["imaging_uid"]
-      light_type                   { create(:list_item, pref_label: "light type") }
+      light_type                   { create(:list_item, pref_label: "light type").uri }
       transcript                   "a transcript"
       batch_uid                    "batch_uid"
       language                     ["English"]
