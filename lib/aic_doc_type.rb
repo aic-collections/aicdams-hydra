@@ -247,6 +247,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :CorrespondenceOther,
        label: "Correspondence",
        "skos:broader": "aicdoctype:Provenance"
+  term :ProvenanceWorksheet,
+       label: "Worksheet",
+       "skos:broader": "aicdoctype:Provenance"
   term :Provenance,
        label: "Provenance",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
@@ -374,6 +377,21 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :ObjectCard,
        label: "Object Card",
        "skos:broader": "aicdoctype:CuratorialDocument"
+  term :LoanApprovalLetter,
+       label: "Loan Approval Letter",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanRequestLetter,
+       label: "Loan Request Letter",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanRequestForm,
+       label: "Loan Request Form",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanRequestLetter,
+       label: "Loan Request Letter",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanDocument,
+       label: "Loan Document",
+       "skos:broader": "aicdoctype:CuratorialDocument"
   term :FinalChecklist,
        label: "Final Checklist",
        "skos:broader": "aicdoctype:ExhibitionDocumentation"
@@ -428,6 +446,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:PublicationsDocument"
   term :PublicationsDocument,
        label: "Publications Document"
+  term :AnalysisReportSummary,
+       label: "Summary",
+       "skos:broader": "aicdoctype:AnalysisReport"
   term :AnalysisReport,
        label: "Analysis Report",
        "skos:broader": "aicdoctype:ConservationDocument"

@@ -388,6 +388,10 @@
                                 {
                                     "label" : "Correspondence",
                                     "value" : "http://definitions.artic.edu/doctypes/CorrespondenceOther"
+                                },
+                                {
+                                    "label" : "Worksheet",
+                                    "value" : "http://definitions.artic.edu/doctypes/ProvenanceWorksheet"
                                 }
                             ]
                         },
@@ -574,6 +578,28 @@
                             "value" : "http://definitions.artic.edu/doctypes/ObjectCard"
                         },
                         {
+                            "label" : "Loan Document",
+                            "value" : "http://definitions.artic.edu/doctypes/LoanDocument",
+                            "subtypes" : [
+                                {
+                                    "label" : "Loan Approval Letter",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanApprovalLetter"
+                                },
+                                {
+                                    "label" : "Loan Request Letter",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanRequestLetter"
+                                },
+                                {
+                                    "label" : "Loan Request Form",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanRequestForm"
+                                },
+                                {
+                                    "label" : "Loan Request Letter",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanRequestLetter"
+                                }
+                            ]
+                        },
+                        {
                             "label" : "Exhibition Documentation",
                             "value" : "http://definitions.artic.edu/doctypes/ExhibitionDocumentation",
                             "subtypes" : [
@@ -659,7 +685,13 @@
                     "subtypes" : [
                         {
                             "label" : "Analysis Report",
-                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport"
+                            "value" : "http://definitions.artic.edu/doctypes/AnalysisReport",
+                            "subtypes" : [
+                                {
+                                    "label" : "Summary",
+                                    "value" : "http://definitions.artic.edu/doctypes/AnalysisReportSummary"
+                                }
+                            ]
                         },
                         {
                             "label" : "Article",
