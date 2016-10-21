@@ -1,3 +1,4 @@
 <%= f.input :digitization_source_uri, as: :select, label: t('simple_form.labels.generic_work.digitization_source'),
 	collection: DigitizationSource.options, include_blank: true, selected: @form.uri_for(:digitization_source),
+	wrapper_html: { class: 'selective-hide selective-show-stillimage' },
 	input_html: { class: 'form-control', multiple: false } %>

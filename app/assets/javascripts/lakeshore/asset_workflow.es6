@@ -28,6 +28,7 @@ export class AssetWorkflow {
       $this.type = $('#generic_work_asset_type').val()
       $('.asset').hide()
       $($this.assetTypeSelector).show()
+      $this.selectiveShowHideFields()
     }
 
     $($this.tab).on('click', function(evt) {
@@ -44,6 +45,7 @@ export class AssetWorkflow {
         $this.type = $(evt.target.selectedOptions).val()
         $this.enableFilesTab()
         $('#hidden_asset_type').val($this.type)
+        $this.selectiveShowHideFields()
       }
       else {
         $this.disableFilesTab()  
@@ -65,8 +67,17 @@ export class AssetWorkflow {
     $(this.assetTypeSelector).show()
   }
 
+  selectiveShowHideFields() {
+    $('.selective-hide').hide()
+    $('.selective-show-' + this.assetTypeClass).show()
+  }
+
   get assetTypeSelector() {
-    return '.asset-' + this.type.replace(this.aictype_ns, '').toLowerCase()
+    return '.asset-' + this.assetTypeClass
+  }
+
+  get assetTypeClass() {
+      return this.type.replace(this.aictype_ns, '').toLowerCase()
   }
 
 }
