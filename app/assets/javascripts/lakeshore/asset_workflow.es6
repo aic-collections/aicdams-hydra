@@ -3,18 +3,20 @@
 // about available mime types for the selected asset type.
 
 export class AssetWorkflow {
-  
+
   constructor () {
     this.tab = $('ul[role="tablist"] li')[1]
     this.buttonbar = $('div#fileupload')
+    this.tabContent = $('div.tab-content')
     this.type = null
+    this.aictype_ns = 'http://definitions.artic.edu/ontology/1.0/type/'
   }
 
   // setup listeners
   initialize () {
     let $this = this
 
-    // Disable the files tab when the page is loaded. It is only present for #new actions 
+    // Disable the files tab when the page is loaded. It is only present for #new actions
     if ($('select#asset_type_select').length) {
       if ($('select#asset_type_select option:selected').text() === '') {
         $this.disableFilesTab()
@@ -47,7 +49,7 @@ export class AssetWorkflow {
         $this.disableFilesTab()  
         $('#hidden_asset_type').val('')
       }
-    })  
+    })
   }
 
   disableFilesTab() {
@@ -64,12 +66,7 @@ export class AssetWorkflow {
   }
 
   get assetTypeSelector() {
-    if ( this.type === 'http://definitions.artic.edu/ontology/1.0/type/StillImage' ) {
-      return '.asset-image'
-    }
-    else {
-      return '.asset-text'
-    }
+    return '.asset-' + this.type.replace(this.aictype_ns, '').toLowerCase()
   }
 
 }
