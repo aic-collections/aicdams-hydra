@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
+  term :ActiveStaff,
+       label: "Active Staff",
+       comment: "Active staff."
+  term :ActiveUser,
+       label: "Active User",
+       comment: "Active user."
   term :agentType,
        label: "Agent Type",
        comment: "Type of agent: individual person, group, corporate entity"

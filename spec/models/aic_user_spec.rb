@@ -30,4 +30,22 @@ describe AICUser do
       it { is_expected.to be_empty }
     end
   end
+
+  describe "::indexer" do
+    subject { described_class }
+    its(:indexer) { is_expected.to eq(AICUserIndexer) }
+  end
+
+  describe "#active?" do
+    subject { user }
+    context "with an active user" do
+      let(:subject) { build(:active_user) }
+      it { is_expected.to be_active }
+    end
+
+    context "with an inactive user" do
+      let(:subject) { build(:inactive_user) }
+      it { is_expected.not_to be_active }
+    end
+  end
 end

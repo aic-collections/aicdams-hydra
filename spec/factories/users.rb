@@ -40,27 +40,42 @@ FactoryGirl.define do
     end
   end
 
-  factory :aic_user, class: AICUser do
+  factory :aic_user, aliases: [:inactive_user], class: AICUser do
     given_name 'Joe'
     family_name 'Bob'
     nick 'joebob'
 
-    factory :aic_user1 do
+    factory :aic_user1, aliases: [:active_user] do
       given_name 'First'
       family_name 'User'
       nick 'user1'
+      active
     end
 
     factory :aic_user2 do
       given_name 'Second'
       family_name 'User'
       nick 'user2'
+      active
+    end
+    
+    factory :aic_user3 do
+      given_name 'Third'
+      family_name 'User'
+      nick 'inactiveuser'
     end
 
     factory :aic_admin do
       given_name 'Admin'
       family_name 'User'
       nick 'admin'
+      active
+    end
+
+    trait :active do
+      after(:build) do |user|
+        user.type << AIC.ActiveUser
+      end
     end
   end
 end

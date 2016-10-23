@@ -16,6 +16,7 @@ class LakeshoreTesting
       FactoryGirl.create(:admins)
       FactoryGirl.create(:aic_user1)
       FactoryGirl.create(:aic_user2)
+      FactoryGirl.create(:aic_user3)
       FactoryGirl.create(:aic_admin)
     end
 
