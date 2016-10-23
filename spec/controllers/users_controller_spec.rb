@@ -28,6 +28,6 @@ describe UsersController do
         get :index, uq: "user", q: "all", format: :json
         expect(json).to include("id" => "inactiveuser", "text" => "Third User (inactiveuser)")
       end
-    end    
+    end
   end
 end

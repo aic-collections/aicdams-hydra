@@ -58,7 +58,7 @@ FactoryGirl.define do
       nick 'user2'
       active
     end
-    
+
     factory :aic_user3 do
       given_name 'Third'
       family_name 'User'
