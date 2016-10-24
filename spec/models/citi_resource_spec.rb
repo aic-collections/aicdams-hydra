@@ -112,8 +112,8 @@ describe CitiResource do
         expect(resource.representations).to include(asset)
         expect(resource.preferred_representation).to eq(asset)
         expect(resource.documents).to include(asset)
-        expect(solr_representations).to contain_exactly("Is Document", "Is Representation", "Is Preferred Representation")
-        expect(facets_for_representations).to contain_exactly("Is Document", 1, "Is Representation", 1, "Is Preferred Representation", 1)
+        expect(solr_representations).to contain_exactly("Documentation For", "Is Representation", "Is Preferred Representation")
+        expect(facets_for_representations).to contain_exactly("Documentation For", 1, "Is Representation", 1, "Is Preferred Representation", 1)
       end
       context "when removing the representation from the resource" do
         before do
@@ -123,8 +123,8 @@ describe CitiResource do
         it "retains the preferred representation" do
           expect(resource.representations).to be_empty
           expect(resource.preferred_representation).to eq(asset)
-          expect(solr_representations).to contain_exactly("Is Document", "Is Preferred Representation")
-          expect(facets_for_representations).to contain_exactly("Is Document", 1, "Is Preferred Representation", 1)
+          expect(solr_representations).to contain_exactly("Documentation For", "Is Preferred Representation")
+          expect(facets_for_representations).to contain_exactly("Documentation For", 1, "Is Preferred Representation", 1)
         end
       end
       context "when removing the asset" do
