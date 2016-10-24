@@ -12,13 +12,13 @@ class UsersController < ApplicationController
 
   private
 
-  def user_list
-    if params[:uq].blank?
-      User.all.references(:trophies).order(sort_value).page(params[:page]).per(10)
-    elsif params[:q].present? && params[:q] == 'all'
-      AICUser.search(params[:uq])
-    else
-      AICUser.active_users(params[:uq])
+    def user_list
+      if params[:uq].blank?
+        User.all.references(:trophies).order(sort_value).page(params[:page]).per(10)
+      elsif params[:q].present? && params[:q] == 'all'
+        AICUser.search(params[:uq])
+      else
+        AICUser.active_users(params[:uq])
+      end
     end
-  end
 end
