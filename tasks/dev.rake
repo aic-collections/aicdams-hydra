@@ -40,6 +40,7 @@ namespace :fedora do
   desc "Create test users for AIC testing specifically, dependent on local Shibboleth settings"
   task create_users: :environment do
     create_aic_user(nick: "laketest", pref_label: "US-1484", given_name: "lake", family_name: "test")
+    create_aic_user(nick: "inactivetest", pref_label: "US-2434", given_name: "inactive", family_name: "test")
     create_aic_user(nick: "scossu", pref_label: "US-1117", given_name: "Stefano", family_name: "Cossu")
     create_aic_user(nick: "scossuadmin", pref_label: "US-758", given_name: "[admin] Stefano", family_name: "Cossu")
     create_aic_user(nick: "awead", pref_label: "US-583", given_name: "Adam", family_name: "Wead")
@@ -65,7 +66,10 @@ namespace :fedora do
   end
 
   def create_aic_user(args)
-    AICUser.new(args).tap { |u| u.type << AIC.ActiveUser }.save
+    AICUser.new(args).tap do |u|
+      unless u.nick == "inactivetest"
+        u.type << AIC.ActiveUser
+      end
+    end.save
   end
 end
-
