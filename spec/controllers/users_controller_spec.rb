@@ -22,5 +22,12 @@ describe UsersController do
         expect(response).to be_successful
       end
     end
+    context "when searching both active and inactive users" do
+      let(:json) { JSON.parse(response.body) }
+      it "searches for all AICUser resources" do
+        get :index, uq: "user", q: "all", format: :json
+        expect(json).to include("id" => "inactiveuser", "text" => "Third User (inactiveuser)")
+      end
+    end    
   end
 end
