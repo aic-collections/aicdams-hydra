@@ -273,7 +273,13 @@
                         },
                         {
                             "label" : "Facility Report",
-                            "value" : "http://definitions.artic.edu/doctypes/FacilityReport"
+                            "value" : "http://definitions.artic.edu/doctypes/FacilityReport",
+                            "subtypes" : [
+                                {
+                                    "label" : "Light Level Questionnaire",
+                                    "value" : "http://definitions.artic.edu/doctypes/LightLevelQuestionnaire"
+                                }
+                            ]
                         },
                         {
                             "label" : "Yellow Sheets",
