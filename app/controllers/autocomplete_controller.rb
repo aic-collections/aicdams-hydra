@@ -26,7 +26,7 @@ class AutocompleteController < ActionController::Base
 
     def format_response(doc)
       {
-        id: (aic_type =~ /Asset/ ? doc.fedora_uri : doc.id),
+        id: ((aic_type =~ /Asset/) ? doc.fedora_uri : doc.id),
         label: doc.pref_label,
         main_ref_number: doc.main_ref_number,
         uid: doc.uid,

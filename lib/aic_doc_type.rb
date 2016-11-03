@@ -167,6 +167,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :BorrowersAgreement,
        label: "Borrower's Agreement",
        "skos:broader": "aicdoctype:RegistrationDocument"
+  term :LightLevelQuestionnaire,
+       label: "Light Level Questionnaire",
+       "skos:broader": "aicdoctype:FacilityReport"
   term :FacilityReport,
        label: "Facility Report",
        "skos:broader": "aicdoctype:RegistrationDocument"

@@ -19,6 +19,14 @@ module ApplicationHelper
     render 'relationship', rel_term: "Preferred Representation", rel_term_asset: "Preferred Representation Of", presenters: presenter.preferred_representation_presenters
   end
 
+  def render_linked_attributes(presenter, field_label:)
+    return unless presenter.present?
+    solr_doc = presenter.first.solr_document
+    label = field_label
+
+    render 'linked_attribute', attribute_doc: solr_doc, attribute_label: label
+  end
+
   def link_to_citi(model, citi_uid)
     citi_tbl_ids = {
       Work: 3,
