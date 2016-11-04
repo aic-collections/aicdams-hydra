@@ -3,6 +3,8 @@ class Place < CitiResource
   include ::CurationConcerns::WorkBehavior
   include CitiBehaviors
 
+  self.human_readable_type = "Current Location"
+
   def self.aic_type
     super << AICType.Place
   end

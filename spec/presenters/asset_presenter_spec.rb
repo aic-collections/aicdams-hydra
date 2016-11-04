@@ -42,6 +42,14 @@ describe AssetPresenter do
     it { is_expected.not_to be_citi_presenter }
   end
 
+  describe "#artist_presenters?" do
+    it { is_expected.not_to be_artist_presenters }
+  end
+
+  describe "#current_location_presenters?" do
+    it { is_expected.not_to be_current_location_presenters }
+  end
+
   describe "#fedora_uri" do
     subject { presenter.fedora_uri }
 

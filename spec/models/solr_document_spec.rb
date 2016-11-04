@@ -68,7 +68,6 @@ describe SolrDocument do
       its(:department) { is_expected.to contain_exactly("Department of Works") }
     end
 
-    it { is_expected.to respond_to(:artist) }
     it { is_expected.to respond_to(:creator_display) }
     it { is_expected.to respond_to(:credit_line) }
     it { is_expected.to respond_to(:date_display) }
