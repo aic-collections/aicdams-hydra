@@ -2,8 +2,8 @@
 module SolrDocumentExtensions::Work
   extend ActiveSupport::Concern
 
-  def artist
-    # TODO: needs to display an AIC.Agent
+  def artist_id
+    Array(self[Solrizer.solr_name('artist', :symbol)]).first
   end
 
   def creator_display
@@ -12,6 +12,10 @@ module SolrDocumentExtensions::Work
 
   def credit_line
     Array(self[Solrizer.solr_name('credit_line', :stored_searchable)]).first
+  end
+
+  def current_location_id
+    Array(self[Solrizer.solr_name('current_location', :symbol)]).first
   end
 
   def date_display

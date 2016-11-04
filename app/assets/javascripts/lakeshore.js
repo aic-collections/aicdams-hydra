@@ -2,15 +2,16 @@
 Lakeshore = {
   initialize: function () {
     this.assetTypeControl();
-    this.autocompleteControl(3, "/autocomplete");
+    $('.autocomplete').each(function (i) {
+      Lakeshore.autocompleteControl(this);
+    });
     this.assetManager();
     this.assetWorkflow();
   },
-
-  autocompleteControl: function (length, endpoint) {
+  autocompleteControl: function (element) {
     var ac = require('lakeshore/autocomplete');
     var controller = new ac.AutocompleteControl();
-    controller.initialize('.autocomplete', length, endpoint);
+    controller.initialize(element);
   },
 
   // This is copied after Sufia.saveWorkControl
@@ -42,4 +43,3 @@ Blacklight.onLoad(function () {
 function initOpenSeadragon() {
   $('picture[data-openseadragon]').openseadragon();
 }
-

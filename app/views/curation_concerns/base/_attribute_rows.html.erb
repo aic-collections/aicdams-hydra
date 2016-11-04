@@ -1,5 +1,5 @@
 <%= presenter.attribute_to_html(:aic_depositor) %>
-<%= presenter.attribute_to_html(:artist) %>
+<%= render_linked_attributes(presenter.artist_presenters) if presenter.artist_presenters? %>
 <%= presenter.attribute_to_html(:batch_uid) %>
 <%= presenter.attribute_to_html(:birth_date) %>
 <%= presenter.attribute_to_html(:birth_year) %>
@@ -9,6 +9,7 @@
 <%= presenter.attribute_to_html(:create_date) %>
 <%= presenter.attribute_to_html(:creator_display) %>
 <%= presenter.attribute_to_html(:credit_line, render_as: :multiline) %>
+<%= render_linked_attributes(presenter.current_location_presenters) if presenter.current_location_presenters? %>
 <%= presenter.attribute_to_html(:date_display) %>
 <%= presenter.attribute_to_html(:death_date) %>
 <%= presenter.attribute_to_html(:death_year) %>

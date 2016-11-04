@@ -48,6 +48,8 @@ describe SolrDocument do
   it { is_expected.to respond_to(:document_ids) }
   it { is_expected.to respond_to(:representation_ids) }
   it { is_expected.to respond_to(:preferred_representation_id) }
+  it { is_expected.to respond_to(:artist_id) }
+  it { is_expected.to respond_to(:current_location_id) }
   it { is_expected.to respond_to(:aic_depositor) }
   it { is_expected.to respond_to(:dept_created) }
   it { is_expected.to respond_to(:thumbnail_path) }
@@ -68,7 +70,6 @@ describe SolrDocument do
       its(:department) { is_expected.to contain_exactly("Department of Works") }
     end
 
-    it { is_expected.to respond_to(:artist) }
     it { is_expected.to respond_to(:creator_display) }
     it { is_expected.to respond_to(:credit_line) }
     it { is_expected.to respond_to(:date_display) }
