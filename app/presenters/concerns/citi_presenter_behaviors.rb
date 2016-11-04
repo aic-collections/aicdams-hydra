@@ -4,11 +4,31 @@ module CitiPresenterBehaviors
 
   included do
     delegate(*terms, to: :solr_document)
-    delegate(:document_ids, :representation_ids, :preferred_representation_id, to: :solr_document)
+    delegate(:document_ids, :representation_ids, :preferred_representation_id, :artist_id, :current_location_id, :artist_label, to: :solr_document)
   end
 
   def title
     [pref_label]
+  end
+
+  def artist_presenters?
+    true
+  end
+
+  def current_location_presenters?
+    true
+  end
+
+  def artist_presenters
+    CurationConcerns::PresenterFactory.build_presenters([artist_id],
+                                                        AgentPresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def current_location_presenters
+    CurationConcerns::PresenterFactory.build_presenters([current_location_id],
+                                                        PlacePresenter,
+                                                        *presenter_factory_arguments)
   end
 
   def document_presenters

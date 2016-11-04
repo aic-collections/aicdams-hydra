@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class AssetIndexer < Sufia::WorkIndexer
+  include PrefLabel
+
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc[Solrizer.solr_name("aic_type", :facetable)] = aic_types(["Asset"])
@@ -39,11 +41,6 @@ class AssetIndexer < Sufia::WorkIndexer
       types << "Is Representation" unless r.representations.empty?
       types << "Is Preferred Representation" unless r.preferred_representation.nil?
       types
-    end
-
-    def pref_label_for(term)
-      return unless object.send(term)
-      object.send(term).pref_label
     end
 
     def document_types_display
