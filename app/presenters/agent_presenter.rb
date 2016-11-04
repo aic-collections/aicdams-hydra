@@ -10,6 +10,10 @@ class AgentPresenter < Sufia::WorkShowPresenter
     ] + CitiResourceTerms.all
   end
 
+  def alt_display_label
+    "Artist"
+  end
+
   include CitiPresenterBehaviors
   include ResourcePresenterBehaviors
 end

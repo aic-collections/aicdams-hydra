@@ -2,15 +2,17 @@
 Lakeshore = {
   initialize: function () {
     this.assetTypeControl();
-    this.autocompleteControl(3, "/autocomplete");
+    this.autocompleteControl('#documents_data', 3, "/autocomplete", "doc_or_representation", "'Search for a Resource by title, ID or main ref. number...'");
+    this.autocompleteControl('#representations_data', 3, "/autocomplete", "doc_or_representation", "'Search for a Resource by title, ID or main ref. number...'");
+    this.autocompleteControl('#preferred_representation_data', 3, "/autocomplete", "doc_or_representation", "'Search for a Resource by title, ID or main ref. number...'");
     this.assetManager();
     this.assetWorkflow();
   },
 
-  autocompleteControl: function (length, endpoint) {
+  autocompleteControl: function (element, length, endpoint, model, placeholder) {
     var ac = require('lakeshore/autocomplete');
     var controller = new ac.AutocompleteControl();
-    controller.initialize('.autocomplete', length, endpoint);
+    controller.initialize(element, length, endpoint, model, placeholder);
   },
 
   // This is copied after Sufia.saveWorkControl
@@ -42,4 +44,3 @@ Blacklight.onLoad(function () {
 function initOpenSeadragon() {
   $('picture[data-openseadragon]').openseadragon();
 }
-
