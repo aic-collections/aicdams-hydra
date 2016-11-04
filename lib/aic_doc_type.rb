@@ -528,5 +528,8 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        label: "Infrastructure Specs",
        "skos:broader": "aicdoctype:InfoServicesSpecSheet"
   term :InfoServicesSpecSheet,
-       label: "Spec Sheet"
+       label: "Spec Sheet",
+       "skos:broader": "aicdoctype:InfoServicesText"
+  term :InfoServicesText,
+       label: "Information Services"
 end

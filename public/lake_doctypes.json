@@ -793,20 +793,26 @@
                     "value" : "http://definitions.artic.edu/doctypes/MarketingText"
                 },
                 {
-                    "label" : "Spec Sheet",
-                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesSpecSheet",
+                    "label" : "Information Services",
+                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesText",
                     "subtypes" : [
                         {
-                            "label" : "Software Specs",
-                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesSoftwareSpecs"
-                        },
-                        {
-                            "label" : "Hardware Specs",
-                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesHardwareSpecs"
-                        },
-                        {
-                            "label" : "Infrastructure Specs",
-                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesInfrastructureSpecs"
+                            "label" : "Spec Sheet",
+                            "value" : "http://definitions.artic.edu/doctypes/InfoServicesSpecSheet",
+                            "subtypes" : [
+                                {
+                                    "label" : "Software Specs",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesSoftwareSpecs"
+                                },
+                                {
+                                    "label" : "Hardware Specs",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesHardwareSpecs"
+                                },
+                                {
+                                    "label" : "Infrastructure Specs",
+                                    "value" : "http://definitions.artic.edu/doctypes/InfoServicesInfrastructureSpecs"
+                                }
+                            ]
                         }
                     ]
                 }
