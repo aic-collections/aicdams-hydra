@@ -1,17 +1,18 @@
 // lakeshore/autocomplete.es6
 export class AutocompleteControl {
-
   // initialize the provide HTMLElement with the jQuery select2 module
-  initialize(el, length, endpoint) {
+  initialize(el, length, endpoint, model, placeholder) {
     $(el).select2({
-      placeholder: 'Search for a Resource by title, ID or main ref. number...',
+      placeholder: placeholder,
       minimumInputLength: length,
       ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
         url: endpoint,
         dataType: 'json',
         data: function (term, page) {
-          if ( $('#autocomplete_model').length > 0 ) {
+          if ( model === "doc_or_representation" ) {
             return { q: term, model: $('#autocomplete_model').val() }
+          } else if (model.length > 0) {
+            return { q: term, model: model }
           }
           else {
             return { q: term }
@@ -45,7 +46,7 @@ export class AutocompleteControl {
                  '    <h4 class="media-heading">' + asset.uid + '</h4>' + asset.label +
                  main_ref_number_tag +
                  '  </div>' +
-                 '</div>' 
+                 '</div>'
     return markup
   }
 

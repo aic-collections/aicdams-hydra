@@ -3,7 +3,7 @@
     <% f.object.representation_terms.each do |term| %>
       <%= render_edit_field_partial(term, f: f) %>
     <% end %>
-    <%= f.submit 'Save', class: 'btn btn-primary', id: "with_representations_submit", 
+    <%= f.submit 'Save', class: 'btn btn-primary', id: "with_representations_submit",
     	name: "save_with_representations" %>
   </div>
 <% end %>

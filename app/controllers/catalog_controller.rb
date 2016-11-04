@@ -97,9 +97,11 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("uid", :stored_searchable),           label: AIC.uid.label
 
     # Work fields
+    config.add_show_field solr_name("artist", :stored_searchable), label: AIC.artist.label
     config.add_show_field solr_name("citi_uid", :stored_searchable),            label: AIC.citiUid.label
     config.add_show_field solr_name("creator_display", :stored_searchable),     label: AIC.creatorDisplay.label
     config.add_show_field solr_name("credit_line", :stored_searchable),         label: AIC.creditLine.label
+    config.add_show_field solr_name("current_location", :stored_searchable), label: AIC.currentLocation.label
     config.add_show_field solr_name("date_display", :stored_searchable),        label: AIC.dateDisplay.label
     config.add_show_field solr_name("dimensions_display", :stored_searchable),  label: AIC.dimensionsDisplay.label
     config.add_show_field solr_name("earliest_year", :stored_searchable),       label: AIC.earliestYear.label

@@ -8,7 +8,7 @@ class HiddenMultiSelectInput < MultiValueInput
 
     def outer_wrapper
       <<-HTML
-        <input type="hidden" class="autocomplete bigdrop #{attribute_name}" style="width: 600px;">
+        <input type="hidden" class="autocomplete bigdrop #{attribute_name}" id="#{input_html_options[:id]}" style="width: 600px;">
         <a href="#" class="am-add"
            data-attribute="#{attribute_name}"
            data-model="#{object.model.class.to_s.downcase}"
