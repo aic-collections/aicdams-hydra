@@ -2,6 +2,8 @@
 class Work < CitiResource
   include ::CurationConcerns::WorkBehavior
   include CitiBehaviors
+  include PrefLabel
+  self.indexer = WorkIndexer
 
   def self.aic_type
     super << AICType.Work
@@ -9,7 +11,15 @@ class Work < CitiResource
 
   type type + aic_type
 
-  property :artist, predicate: AIC.artist, class_name: "Agent"
+  property :artist, predicate: AIC.artist, class_name: "Agent" do |index|
+    index.as :stored_searchable, using: :pref_label
+  end
+  accepts_uris_for :artist
+
+  property :current_location, predicate: AIC.currentLocation, class_name: "Place" do |index|
+    index.as :stored_searchable, using: :pref_label
+  end
+  accepts_uris_for :current_location
 
   property :creator_display, predicate: AIC.creatorDisplay, multiple: false do |index|
     index.as :stored_searchable
@@ -26,6 +36,7 @@ class Work < CitiResource
   property :department, predicate: AIC.department, class_name: "Department" do |index|
     index.as :stored_searchable, using: :pref_label
   end
+  accepts_uris_for :department
 
   property :dimensions_display, predicate: AIC.dimensionsDisplay do |index|
     index.as :stored_searchable
