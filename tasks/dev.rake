@@ -63,6 +63,7 @@ namespace :fedora do
     FactoryGirl.create(:place, :with_sample_metadata)
     FactoryGirl.create(:shipment, :with_sample_metadata)
     FactoryGirl.create(:transaction, :with_sample_metadata)
+    add_artists_and_current_locations_to_work()
   end
 
   def create_aic_user(args)
@@ -71,5 +72,12 @@ namespace :fedora do
         u.type << AIC.ActiveUser
       end
     end.save
+  end
+
+  def add_artists_and_current_locations_to_work()
+    work = Work.last
+    work.artist_uris = [Agent.first.uri]
+    work.current_location_uris = [Place.first.uri]
+    work.save!
   end
 end

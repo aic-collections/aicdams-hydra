@@ -74,6 +74,14 @@ class AssetPresenter < Sufia::WorkShowPresenter
     !relationships.ids.empty?
   end
 
+  def artist_presenters?
+    false
+  end
+
+  def current_location_presenters?
+    false
+  end
+
   def document_presenters
     CurationConcerns::PresenterFactory.build_presenters(document_ids,
                                                         CitiResourcePresenter,

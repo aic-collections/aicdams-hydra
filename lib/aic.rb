@@ -57,6 +57,9 @@ class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
   term :creditLine,
        label: "Credit Line",
        comment: "Credit line"
+  term :currentLocation,
+       label: "Current Location",
+       comment: "Current Location"
   term :dateDisplay,
        label: "Date (display)",
        comment: "Collocation date(s)"

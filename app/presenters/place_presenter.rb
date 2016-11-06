@@ -8,6 +8,10 @@ class PlacePresenter < Sufia::WorkShowPresenter
     ] + CitiResourceTerms.all
   end
 
+  def alt_display_label
+    "Current Location"
+  end
+
   include CitiPresenterBehaviors
   include ResourcePresenterBehaviors
 end
