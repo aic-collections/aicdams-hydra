@@ -1,15 +1,13 @@
 // lakeshore/autocomplete.es6
 export class AutocompleteControl {
+
   // initialize the provide HTMLElement with the jQuery select2 module
-  // the initialize function assumes a single entity, or an array of entities that all get the same values.
-  // but select2 needs to be passed an array of unique values.
-  initialize(el) {
+  initialize(el, length, endpoint) {
     $(el).select2({
-      placeholder: ( el.dataset.placeholder !== undefined && el.dataset.placeholder.length > 0 ) ? el.dataset.placeholder : 'Search for a Resource by title, ID or main ref. number...',
-      minimumInputLength: ( el.dataset.minchars !== undefined && el.dataset.minchars.length > 0 ) ? el.dataset.minchars : 3,
+      placeholder: 'Search for a Resource by title, ID or main ref. number...',
+      minimumInputLength: length,
       ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-        url: ( el.dataset.endpoint !== undefined && el.dataset.endpoint.length > 0 ) ? el.dataset.endpoint :
-            '/autocomplete',
+        url: endpoint,
         dataType: 'json',
         data: function (term, page) {
           if ( $('#autocomplete_model').length > 0 ) {
@@ -34,6 +32,7 @@ export class AutocompleteControl {
       escapeMarkup: function (m) { return m }
     })
   }
+
   formatAssetResult(asset) {
     var image_tag = asset.thumbnail ? '      <img class="media-object" src="' + asset.thumbnail + '">' : ''
     var main_ref_number_tag = asset.main_ref_number ? '<span class="res_main_ref_no">&nbsp;(' + asset.main_ref_number + ')</span>' : ''

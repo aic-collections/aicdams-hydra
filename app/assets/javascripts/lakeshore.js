@@ -2,16 +2,15 @@
 Lakeshore = {
   initialize: function () {
     this.assetTypeControl();
-    $('.autocomplete').each(function (i) {
-      Lakeshore.autocompleteControl(this);
-    });
+    this.autocompleteControl(3, "/autocomplete");
     this.assetManager();
     this.assetWorkflow();
   },
-  autocompleteControl: function (element) {
+
+  autocompleteControl: function (length, endpoint) {
     var ac = require('lakeshore/autocomplete');
     var controller = new ac.AutocompleteControl();
-    controller.initialize(element);
+    controller.initialize('.autocomplete', length, endpoint);
   },
 
   // This is copied after Sufia.saveWorkControl

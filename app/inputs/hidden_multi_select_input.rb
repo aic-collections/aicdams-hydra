@@ -7,13 +7,8 @@ class HiddenMultiSelectInput < MultiValueInput
   protected
 
     def outer_wrapper
-      placeholder = get_data_attribute(html_input_options: input_html_options, data_attribute: 'placeholder')
-      endpoint = get_data_attribute(html_input_options: input_html_options, data_attribute: 'endpoint')
-      minchars = get_data_attribute(html_input_options: input_html_options, data_attribute: 'minchars')
-
       <<-HTML
-        <input type="hidden" class="autocomplete bigdrop #{attribute_name}" data-placeholder="#{placeholder}" data-endpoint="#{endpoint}" data-minchars="#{minchars}"
-           id="#{input_html_options[:id]}" style="width: 600px;">
+        <input type="hidden" class="autocomplete bigdrop #{attribute_name}" style="width: 600px;">
         <a href="#" class="am-add"
            data-attribute="#{attribute_name}"
            data-model="#{object.model.class.to_s.downcase}"
@@ -45,13 +40,6 @@ class HiddenMultiSelectInput < MultiValueInput
     end
 
   private
-
-    def get_data_attribute(html_input_options: options, data_attribute:)
-      if html_input_options && html_input_options[:data] && html_input_options[:data][data_attribute]
-
-        html_input_options[:data][data_attribute]
-      end
-    end
 
     def build_field_options(value)
       { value: value, name: input_html_options[:name] }
