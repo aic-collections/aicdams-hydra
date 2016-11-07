@@ -2,9 +2,10 @@
 
 require 'rails_helper'
 
-def add_artists_and_current_locations_to_work(work, agent, place)
+def add_artists_current_locations_and_gallery_locations_to_work(work, agent, place)
   work.artist_uris = [agent.uri]
   work.current_location_uris = [place.uri]
+  work.gallery_location_uris = [place.uri]
   work.save!
 end
 
@@ -14,7 +15,7 @@ describe "Displaying a Citi Work" do
   let(:agent) { create(:agent, :with_sample_metadata) }
   let(:place) { create(:place, :with_sample_metadata) }
   before do
-    add_artists_and_current_locations_to_work(work, agent, place)
+    add_artists_current_locations_and_gallery_locations_to_work(work, agent, place)
     sign_in(user)
   end
 
@@ -29,6 +30,9 @@ describe "Displaying a Citi Work" do
     expect(page).to have_selector("th", text: "Artist")
     expect(page).to have_selector("td", text: "Pablo Picasso (1881-1973)")
     expect(page).to have_selector("th", text: "Current Location")
+    expect(page).to have_selector("td", text: "Sample Place")
+
+    expect(page).to have_selector("th", text: "Gallery Location")
     expect(page).to have_selector("td", text: "Sample Place")
   end
 end

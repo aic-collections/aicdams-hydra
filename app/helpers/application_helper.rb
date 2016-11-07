@@ -19,10 +19,10 @@ module ApplicationHelper
     render 'relationship', rel_term: "Preferred Representation", rel_term_asset: "Preferred Representation Of", presenters: presenter.preferred_representation_presenters
   end
 
-  def render_linked_attributes(presenter)
+  def render_linked_attributes(presenter, alt_label: "")
     return unless presenter.present? && presenter.first.alt_display_label
     solr_doc = presenter.first.solr_document
-    label = presenter.first.alt_display_label
+    label = alt_label.present? ? alt_label :  presenter.first.alt_display_label
 
     render 'linked_attribute', attribute_doc: solr_doc, attribute_label: label
   end
