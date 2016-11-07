@@ -6,7 +6,7 @@ module CurationConcerns
     def self.aic_terms
       [
         :asset_type, :document_type_uri, :first_document_sub_type_uri, :second_document_sub_type_uri,
-        :pref_label, :description, :language, :publisher, :capture_device,
+        :pref_label, :alt_label, :description, :language, :publisher, :capture_device,
         :status_uri, :digitization_source_uri, :compositing_uri, :light_type_uri, :view_uris, :keyword_uris
       ]
     end

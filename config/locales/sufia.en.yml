@@ -141,7 +141,7 @@ en:
       edit:
         header: "Edit Work"
     Batch Upload Item:
-      header: "Add New Asset"       
+      header: "Add New Asset"
     collection:
       actions:
         add_works:
@@ -155,6 +155,7 @@ en:
         document_type:        "Document Type"
         status:               "Status"
         pref_label:           "Preferred Title"
+        alt_label:            "Alternative labels"
         resource_created:     "Resource Created"
         dept_created:         "Created By Department"
         resource_updated:     "Resource Updated"
@@ -178,6 +179,7 @@ en:
     hints:
       generic_work:
         description: "Free-text notes about the Asset, e.g. description of the subject of an image or abstract of a text document."
+        alt_label: "Optional titles or names for the resource. These fields will be added to the 'alt' tag of Web images. For longer text, please use the 'description' field."
     metadata_help:
       generic_file:
         resource_type_html: "Pre-defined categories to describe the type of asset content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."

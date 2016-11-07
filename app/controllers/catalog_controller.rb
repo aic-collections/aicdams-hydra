@@ -90,6 +90,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("label", :stored_searchable),         label: ::RDF::RDFS.label.label
     config.add_show_field solr_name("language", :stored_searchable),      label: ::RDF::Vocab::DC.language.label
     config.add_show_field solr_name("pref_label", :stored_searchable),    label: ::RDF::Vocab::SKOS.prefLabel.label
+    config.add_show_field solr_name("alt_label", :stored_searchable),    label: ::RDF::Vocab::SKOS.altLabel.label
     config.add_show_field solr_name("publisher", :stored_searchable),     label: ::RDF::Vocab::DC.publisher.label
     config.add_show_field solr_name("rights", :stored_searchable),        label: ::RDF::Vocab::DC.rights.label
     config.add_show_field solr_name("rights_holder", :stored_searchable), label: ::RDF::Vocab::DC.rightsHolder.label

@@ -36,6 +36,11 @@ describe SolrDocument do
     its(:title_or_label) { is_expected.to eq("Title or label") }
   end
 
+  describe "#alternative_label" do
+    before { subject[Solrizer.solr_name("alt_label", :stored_searchable)] = "Alternative labels" }
+    its(:alternative_label) { is_expected.to eq("Alternative labels") }
+  end
+
   describe "#hydra_model" do
     let(:asset) { build(:department_asset) }
     subject { described_class.new(asset.to_solr) }
@@ -124,6 +129,5 @@ describe SolrDocument do
     it { is_expected.to respond_to(:rights) }
     it { is_expected.to respond_to(:rights_statement) }
     it { is_expected.to respond_to(:rights_holder) }
-    it { is_expected.to respond_to(:alt_label) }
   end
 end

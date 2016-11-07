@@ -15,6 +15,7 @@ class AssetPresenter < Sufia::WorkShowPresenter
       :language,
       :publisher,
       :pref_label,
+      :alt_label,
       :rights_holder,
       :keyword,
       :created_by,
