@@ -38,8 +38,8 @@ module SolrDocumentExtensions::Work
     Array(self[Solrizer.solr_name('exhibition_history', :stored_searchable)]).first
   end
 
-  def gallery_location
-    Array(self[Solrizer.solr_name('gallery_location', :stored_searchable)]).first
+  def gallery_location_id
+    Array(self[Solrizer.solr_name('gallery_location', :symbol)]).first
   end
 
   def inscriptions

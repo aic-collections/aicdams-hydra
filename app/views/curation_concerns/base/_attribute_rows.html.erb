@@ -23,7 +23,7 @@
 <%= presenter.attribute_to_html(:exhibition_history, render_as: :multiline) %>
 <%= presenter.attribute_to_html(:exhibition_type) %>
 <%= presenter.attribute_to_html(:fedora_uri) %>
-<%= presenter.attribute_to_html(:gallery_location) %>
+<%= render_linked_attributes(presenter.gallery_location_presenters, alt_label: "Gallery Location") if presenter.gallery_location_presenters? %>
 <%= presenter.attribute_to_html(:imaging_uid) %>
 <%= presenter.attribute_to_html(:inscriptions, render_as: :multiline) %>
 <%= presenter.attribute_to_html(:keyword) %>

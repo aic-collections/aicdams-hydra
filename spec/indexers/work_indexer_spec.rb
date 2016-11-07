@@ -15,6 +15,7 @@ describe WorkIndexer do
         allow(work).to receive(:department).and_return([department])
         allow(work).to receive(:artist).and_return([agent])
         allow(work).to receive(:current_location).and_return([place])
+        allow(work).to receive(:gallery_location).and_return([place])
       }
 
       it "indexes the correct fields" do
@@ -24,6 +25,7 @@ describe WorkIndexer do
         expect(solr_doc["department_tesim"]).to contain_exactly("Department of Works")
         expect(solr_doc["artist_tesim"]).to eq(["Pablo Picasso (1881-1973)"])
         expect(solr_doc["current_location_tesim"]).to eq(["Sample Place"])
+        expect(solr_doc["gallery_location_tesim"]).to eq(["Sample Place"])
       end
     end
   end

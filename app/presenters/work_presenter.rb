@@ -9,7 +9,6 @@ class WorkPresenter < Sufia::WorkShowPresenter
       :dimensions_display,
       :earliest_year,
       :exhibition_history,
-      :gallery_location,
       :inscriptions,
       :latest_year,
       :main_ref_number,
