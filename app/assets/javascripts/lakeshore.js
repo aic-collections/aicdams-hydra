@@ -42,4 +42,3 @@ Blacklight.onLoad(function () {
 function initOpenSeadragon() {
   $('picture[data-openseadragon]').openseadragon();
 }
-

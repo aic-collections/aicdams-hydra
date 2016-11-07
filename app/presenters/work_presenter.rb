@@ -2,7 +2,6 @@
 class WorkPresenter < Sufia::WorkShowPresenter
   def self.model_terms
     [
-      :artist,
       :creator_display,
       :credit_line,
       :date_display,

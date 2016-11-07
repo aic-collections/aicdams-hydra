@@ -45,7 +45,7 @@ export class AutocompleteControl {
                  '    <h4 class="media-heading">' + asset.uid + '</h4>' + asset.label +
                  main_ref_number_tag +
                  '  </div>' +
-                 '</div>' 
+                 '</div>'
     return markup
   }
 

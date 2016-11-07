@@ -1,8 +1,8 @@
 <%= f.input key, as: :hidden_select,
-  input_html: { class: 'autocomplete bigdrop', style: "width: 600px;", 
-    data: { 
+  input_html: { class: 'autocomplete bigdrop', style: "width: 600px;",
+    data: {
       label: f.object.preferred_representation_label,
       uid: f.object.preferred_representation_uid,
-      thumbnail: f.object.preferred_representation_thumbnail 
-    } 
+      thumbnail: f.object.preferred_representation_thumbnail
+    }
   }, required: false %>
