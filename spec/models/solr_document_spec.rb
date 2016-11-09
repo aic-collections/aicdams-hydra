@@ -50,7 +50,6 @@ describe SolrDocument do
   it { is_expected.to respond_to(:preferred_representation_id) }
   it { is_expected.to respond_to(:artist_id) }
   it { is_expected.to respond_to(:current_location_id) }
-  it { is_expected.to respond_to(:gallery_location_id) }
   it { is_expected.to respond_to(:aic_depositor) }
   it { is_expected.to respond_to(:dept_created) }
   it { is_expected.to respond_to(:thumbnail_path) }
@@ -70,15 +69,14 @@ describe SolrDocument do
       subject { described_class.new(work.to_solr, id: "1234") }
       its(:department) { is_expected.to contain_exactly("Department of Works") }
     end
-    it { is_expected.to respond_to(:artist_id) }
-    it { is_expected.to respond_to(:current_location_id) }
-    it { is_expected.to respond_to(:gallery_location_id) }
+
     it { is_expected.to respond_to(:creator_display) }
     it { is_expected.to respond_to(:credit_line) }
     it { is_expected.to respond_to(:date_display) }
     it { is_expected.to respond_to(:dimensions_display) }
     it { is_expected.to respond_to(:earliest_year) }
     it { is_expected.to respond_to(:exhibition_history) }
+    it { is_expected.to respond_to(:gallery_location) }
     it { is_expected.to respond_to(:inscriptions) }
     it { is_expected.to respond_to(:latest_year) }
     it { is_expected.to respond_to(:main_ref_number) }

@@ -21,11 +21,6 @@ class Work < CitiResource
   end
   accepts_uris_for :current_location
 
-  property :gallery_location, predicate: AIC.galleryLocation, class_name: "Place" do |index|
-    index.as :stored_searchable, using: :pref_label
-  end
-  accepts_uris_for :gallery_location
-
   property :creator_display, predicate: AIC.creatorDisplay, multiple: false do |index|
     index.as :stored_searchable
   end
@@ -52,6 +47,10 @@ class Work < CitiResource
   end
 
   property :exhibition_history, predicate: AIC.exhibitionHistory, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :gallery_location, predicate: AIC.galleryLocation, multiple: false do |index|
     index.as :stored_searchable
   end
 

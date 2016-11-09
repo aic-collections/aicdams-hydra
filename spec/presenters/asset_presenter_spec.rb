@@ -50,10 +50,6 @@ describe AssetPresenter do
     it { is_expected.not_to be_current_location_presenters }
   end
 
-  describe "#gallery_location_presenters?" do
-    it { is_expected.not_to be_gallery_location_presenters }
-  end
-
   describe "#fedora_uri" do
     subject { presenter.fedora_uri }
 
