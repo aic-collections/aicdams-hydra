@@ -3,10 +3,9 @@ require 'rails_helper'
 
 describe CurationConcerns::GenericWorkForm do
   let(:user1)   { create(:user1) }
-  let(:asset)   { build(:asset) }
+  let(:asset)   { build(:asset, alt_label: ["A New Alternative"]) }
   let(:ability) { Ability.new(user1) }
   let(:form)    { described_class.new(asset, ability) }
-
   subject { form }
 
   describe "delegates" do
@@ -23,6 +22,12 @@ describe CurationConcerns::GenericWorkForm do
 
   describe "#asset_type" do
     its(:asset_type) { is_expected.to eq(AICType.StillImage) }
+  end
+
+  context "A Form with Metadata" do
+    describe "#alt_label" do
+      its(:alt_label) { is_expected.to eq(["A New Alternative"]) }
+    end
   end
 
   describe "::model_attributes" do
