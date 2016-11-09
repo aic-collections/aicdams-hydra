@@ -43,6 +43,7 @@ FactoryGirl.define do
       light_type                   { create(:list_item, pref_label: "light type").uri }
       transcript                   "a transcript"
       batch_uid                    "batch_uid"
+      alt_label                     ["A Different Label"]
       language                     ["English"]
     end
   end
