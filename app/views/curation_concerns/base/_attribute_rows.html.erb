@@ -1,6 +1,7 @@
 <%= presenter.attribute_to_html(:aic_depositor) %>
 <%= render_linked_attributes(presenter.artist_presenters) if presenter.artist_presenters? %>
-<%= presenter.attribute_to_html(:alt_label, render_as: :multiline) %>
+<%=
+ presenter.attribute_to_html(:alt_label, render_as: :multiline, label: "Alternative labels") %>
 <%= presenter.attribute_to_html(:batch_uid) %>
 <%= presenter.attribute_to_html(:birth_date) %>
 <%= presenter.attribute_to_html(:birth_year) %>
