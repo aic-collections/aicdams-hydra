@@ -12,7 +12,9 @@ module AssetMetadata
     property :document_type, predicate: AIC.documentType, multiple: false, class_name: "Definition"
     property :first_document_sub_type, predicate: AIC.documentSubType1, multiple: false, class_name: "Definition"
     property :second_document_sub_type, predicate: AIC.documentSubType2, multiple: false, class_name: "Definition"
-
+    property :alt_label, predicate: ::RDF::Vocab::SKOS.altLabel do |index|
+      index.as :stored_searchable, :symbol
+    end
     # Force these to singular terms
     def document_type=(value)
       if value.respond_to?(:each)
