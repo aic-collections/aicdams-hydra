@@ -82,10 +82,6 @@ class AssetPresenter < Sufia::WorkShowPresenter
     false
   end
 
-  def gallery_location_presenters?
-    false
-  end
-
   def document_presenters
     CurationConcerns::PresenterFactory.build_presenters(document_ids,
                                                         CitiResourcePresenter,

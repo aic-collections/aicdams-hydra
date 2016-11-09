@@ -21,7 +21,7 @@ describe Work do
   end
 
   describe "cardinality" do
-    (WorkPresenter.model_terms - [:artist, :department, :current_location, :gallery_location, :dimensions_display]).each do |term|
+    (WorkPresenter.model_terms - [:artist, :department, :current_location, :dimensions_display]).each do |term|
       it "limits #{term} to a single value" do
         expect(described_class.properties[term.to_s].multiple?).to be false
       end
@@ -55,16 +55,6 @@ describe Work do
 
     its(:current_location) { is_expected.to contain_exactly(place) }
     its(:to_solr) { is_expected.to include(Solrizer.solr_name("current_location", :stored_searchable) => [place.pref_label]) }
-    after { place.destroy }
-  end
-
-  describe "#gallery_location" do
-    let(:place) { create(:place) }
-    subject     { described_class.new }
-    before      { subject.gallery_location_uris = [place.uri] }
-
-    its(:gallery_location) { is_expected.to contain_exactly(place) }
-    its(:to_solr) { is_expected.to include(Solrizer.solr_name("gallery_location", :stored_searchable) => [place.pref_label]) }
     after { place.destroy }
   end
 end

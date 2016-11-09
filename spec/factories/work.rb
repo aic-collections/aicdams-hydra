@@ -12,6 +12,7 @@ FactoryGirl.define do
       dimensions_display ["1230 x 820 mm"]
       earliest_year "1990"
       exhibition_history "Group show at the Garage Gallery Association of Illinois"
+      gallery_location "Gallery 1234"
       inscriptions "Signed, recto, lower right, \"XYZ\""
       latest_year "1995"
       main_ref_number "1999.397"
