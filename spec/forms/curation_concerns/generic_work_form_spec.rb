@@ -24,7 +24,7 @@ describe CurationConcerns::GenericWorkForm do
     its(:asset_type) { is_expected.to eq(AICType.StillImage) }
   end
 
-  context "A Form with Metadata" do
+  context "A Form with Alt Label metadata" do
     describe "#alt_label" do
       its(:alt_label) { is_expected.to eq(["A New Alternative"]) }
     end
