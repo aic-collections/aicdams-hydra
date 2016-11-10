@@ -14,10 +14,6 @@ module SolrDocumentExtensions
     Array(self[Solrizer.solr_name('pref_label', :stored_searchable)]).first
   end
 
-  def alt_label
-    Array(self[Solrizer.solr_name('alt_label', :stored_searchable)]).first
-  end
-
   def citi_uid
     Array(self[Solrizer.solr_name('citi_uid', :symbol)]).first
   end

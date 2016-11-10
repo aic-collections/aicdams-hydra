@@ -30,6 +30,10 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
     []
   end
 
+  def alt_label
+    []
+  end
+
   def visibility
     ::Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT
   end
@@ -41,6 +45,7 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
       { keyword_uris: [] },
       { representations_for: [] },
       { documents_for: [] },
+      { alt_label: [] },
       :document_type_uri,
       :first_document_sub_type_uri,
       :second_document_sub_type_uri,
