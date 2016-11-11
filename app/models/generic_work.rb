@@ -14,6 +14,11 @@ class GenericWork < Resource
     super << AICType.Asset
   end
 
+  def alt_label
+    byebug
+    [""]
+  end
+
   type type + aic_type
 
   before_create :status_is_active

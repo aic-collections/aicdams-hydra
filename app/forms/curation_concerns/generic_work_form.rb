@@ -2,6 +2,7 @@
 module CurationConcerns
   class GenericWorkForm < Sufia::Forms::WorkForm
     delegate :dept_created, to: :model
+    delegate :alt_label, to: :model
 
     def self.aic_terms
       [

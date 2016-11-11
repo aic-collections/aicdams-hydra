@@ -52,9 +52,7 @@ module ResourceMetadata
 
     property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, class_name: "Agent"
 
-    property :alt_label, predicate: ::RDF::Vocab::SKOS.altLabel do |index|
-      index.as :stored_searchable, :symbol
-    end
+    property :alt_label, predicate: ::RDF::Vocab::SKOS.altLabel
 
     accepts_uris_for :citi_icon, :contributors, :created_by, :documents, :preferred_representation, :representations,
                      :icon, :publisher, :rights_statement, :rights_holder

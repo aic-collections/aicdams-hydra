@@ -30,22 +30,23 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
     []
   end
 
-  def alt_label
-    []
-  end
+  # def alt_label
+  #   @attributes.delete("alt_label")
+  #   @attributes["alt_label"] = [""]
+  # end
 
   def visibility
     ::Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT
   end
 
   def self.build_permitted_params
+    # this method doesn't get executed when the new action is called
     super + [
       { rights_holder_uris: [] },
       { view_uris: [] },
       { keyword_uris: [] },
       { representations_for: [] },
       { documents_for: [] },
-      { alt_label: [] },
       :document_type_uri,
       :first_document_sub_type_uri,
       :second_document_sub_type_uri,
