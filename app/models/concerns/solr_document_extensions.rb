@@ -66,10 +66,6 @@ module SolrDocumentExtensions
     pref_label || title.join(', ')
   end
 
-  def alternative_label
-    alt_label
-  end
-
   def thumbnail_path
     Array(self['thumbnail_path_ss']).first
   end

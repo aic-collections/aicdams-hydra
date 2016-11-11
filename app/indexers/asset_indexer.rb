@@ -29,7 +29,7 @@ class AssetIndexer < Sufia::WorkIndexer
     end
 
     def alt_label
-      #byebug
+      # byebug
       [object.alt_label]
     end
 

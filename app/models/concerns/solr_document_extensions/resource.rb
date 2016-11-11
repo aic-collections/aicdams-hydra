@@ -37,4 +37,8 @@ module SolrDocumentExtensions::Resource
   def rights_holder
     Array(self[Solrizer.solr_name('rights_holder', :stored_searchable)])
   end
+
+  def alt_label
+    Array(self[Solrizer.solr_name('alt_label', :stored_searchable)])
+  end
 end

@@ -36,9 +36,9 @@ describe SolrDocument do
     its(:title_or_label) { is_expected.to eq("Title or label") }
   end
 
-  describe "#alternative_label" do
+  describe "#alt_label" do
     before { subject[Solrizer.solr_name("alt_label", :stored_searchable)] = "Alternative labels" }
-    its(:alternative_label) { is_expected.to eq("Alternative labels") }
+    its(:alt_label) { is_expected.to eq(["Alternative labels"]) }
   end
 
   describe "#hydra_model" do
