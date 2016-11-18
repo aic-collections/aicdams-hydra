@@ -71,6 +71,23 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:Imaging"
   term :Imaging,
        label: "Imaging"
+  term :FacilityStillImage,
+       label: "Facility",
+       "skos:broader": "aicdoctype:RegistrationStillImage"
+  term :InstallationStillImage,
+       label: "Installation",
+       "skos:broader": "aicdoctype:RegistrationStillImage"
+  term :ShippingStillImage,
+       label: "Shipping (In And Out)",
+       "skos:broader": "aicdoctype:RegistrationStillImage"
+  term :RegistrationDocumentationStillImage,
+       label: "Documentation",
+       "skos:broader": "aicdoctype:RegistrationStillImage"
+  term :MiscRegistrationStillImage,
+       label: "Other Or Misc.",
+       "skos:broader": "aicdoctype:RegistrationStillImage"
+  term :RegistrationStillImage,
+       label: "Registration"
   term :InfoServicesArchitectureDrawing,
        label: "Architecture Diagram",
        "skos:broader": "aicdoctype:InfoServicesDiagramOrDrawing"
@@ -379,6 +396,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:LoanDocument"
   term :LoanDeclineLetter,
        label: "Loan Decline Letter",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanApprovalDeclineLetter,
+       label: "Loan Approval And Decline Letter",
        "skos:broader": "aicdoctype:LoanDocument"
   term :LoanRequestForm,
        label: "Loan Request Form",

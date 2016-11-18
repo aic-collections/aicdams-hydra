@@ -111,6 +111,32 @@
                     ]
                 },
                 {
+                    "label" : "Registration",
+                    "value" : "http://definitions.artic.edu/doctypes/RegistrationStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Facility",
+                            "value" : "http://definitions.artic.edu/doctypes/FacilityStillImage"
+                        },
+                        {
+                            "label" : "Installation",
+                            "value" : "http://definitions.artic.edu/doctypes/InstallationStillImage"
+                        },
+                        {
+                            "label" : "Shipping (In And Out)",
+                            "value" : "http://definitions.artic.edu/doctypes/ShippingStillImage"
+                        },
+                        {
+                            "label" : "Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/RegistrationDocumentationStillImage"
+                        },
+                        {
+                            "label" : "Other Or Misc.",
+                            "value" : "http://definitions.artic.edu/doctypes/MiscRegistrationStillImage"
+                        }
+                    ]
+                },
+                {
                     "label" : "Information Services",
                     "value" : "http://definitions.artic.edu/doctypes/InfoServicesStillImage",
                     "subtypes" : [
@@ -586,6 +612,10 @@
                                 {
                                     "label" : "Loan Decline Letter",
                                     "value" : "http://definitions.artic.edu/doctypes/LoanDeclineLetter"
+                                },
+                                {
+                                    "label" : "Loan Approval And Decline Letter",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanApprovalDeclineLetter"
                                 },
                                 {
                                     "label" : "Loan Request Form",
