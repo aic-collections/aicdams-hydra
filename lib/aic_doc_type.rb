@@ -406,6 +406,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :LoanRequestLetter,
        label: "Loan Request Letter",
        "skos:broader": "aicdoctype:LoanDocument"
+  term :LoanAcknowledgmentLetter,
+       label: "Loan Acknowledgment Letter",
+       "skos:broader": "aicdoctype:LoanDocument"
   term :LoanDocument,
        label: "Loan Document",
        "skos:broader": "aicdoctype:CuratorialDocument"
