@@ -8,7 +8,7 @@ class DerivativePath < CurationConcerns::DerivativePath
 
   # Returns the path with a file called a "access"
   def access_path
-    all_paths.map do |file|
+    all_paths.select do |file|
       file if File.basename(file, ".*") =~ /access/
     end.first
   end

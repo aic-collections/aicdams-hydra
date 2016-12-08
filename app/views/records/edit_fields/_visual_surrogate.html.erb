@@ -1,2 +1,4 @@
-<%= f.input :visual_surrogate, label: t('simple_form.labels.generic_work.visual_surrogate'),
-  wrapper_html: { class: 'selective-hide selective-show-stillimage' } %>
+<%= f.input :visual_surrogate, as: :text,
+  label: t('simple_form.labels.generic_work.visual_surrogate'),
+  wrapper_html: { class: 'selective-hide selective-show-stillimage' },
+  input_html: { rows: '14', type: 'textarea'} %>

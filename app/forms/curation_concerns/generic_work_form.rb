@@ -10,7 +10,7 @@ module CurationConcerns
         :asset_type, :document_type_uri, :first_document_sub_type_uri, :second_document_sub_type_uri,
         :pref_label, :alt_label, :description, :language, :publisher, :capture_device,
         :status_uri, :digitization_source_uri, :compositing_uri, :light_type_uri, :view_uris,
-        :keyword_uris, :publish_channel_uris, :imaging_uid, :view_notes, :visual_surrogate
+        :keyword_uris, :publish_channel_uris, :view_notes, :visual_surrogate
       ]
     end
 
