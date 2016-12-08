@@ -55,7 +55,7 @@ describe FileSet do
         let(:image_file) { File.join(fixture_path, "MockUp_Paper.psd") }
 
         it "uses MiniMagick's imagemagick cli" do
-          expect(MiniMagick).to receive(:with_cli).with(:imagemagick)
+          expect(MiniMagick).to receive(:with_cli).with(:imagemagick).at_least(:once)
           file.create_derivatives(image_file)
         end
       end

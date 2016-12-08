@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   resources :welcome, only: 'index'
   root 'sufia/homepage#index'
   curation_concerns_collections
-  curation_concerns_basic_routes
+  curation_concerns_basic_routes do
+    member do
+      get :manifest
+    end
+  end
   curation_concerns_embargo_management
 
   # :index action is not added to concerns, so we're adding it here
@@ -79,5 +83,6 @@ Rails.application.routes.draw do
 
   post "/request_access/", to: "application#request_access"
   # Sufia should come last because in production it will 404 any unknown routes
+  mount Riiif::Engine => '/images', as: 'riiif'
   mount Sufia::Engine => '/'
 end

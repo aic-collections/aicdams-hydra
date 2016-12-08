@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.7.1'
 gem 'posix-spawn'
+
 # Hydra Gems
 gem 'sufia', '~> 7.2'
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
@@ -21,6 +22,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '~> 3.0'
+gem 'openseadragon', '0.3.0'
+gem 'riiif', '~> 0.3'
+gem 'iiif_manifest', '~> 0.1.2'
+
 
 group :development, :test do
   gem 'better_errors'
