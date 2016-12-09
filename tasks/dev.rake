@@ -96,4 +96,12 @@ namespace :fedora do
     FileUtils.rm_rf(Sufia.config.upload_path.call)
     FileUtils.mkdir_p(Sufia.config.upload_path.call)
   end
+
+  def create_aic_user(args)
+    AICUser.new(args).tap do |u|
+      unless u.nick == "inactivetest"
+        u.type << AIC.ActiveUser
+      end
+    end.save
+  end
 end
