@@ -3,12 +3,12 @@ en:
     upload:
       restrictions_html: "<h3>Maximum Upload Restrictions</h3><ul><li>Individual File Size: 1 GB</li></ul>"
       asset_types: "The following file types can be uploaded:"
+      asset_type_descr_archive_html: "<p>Use this type for file archives, compressed or not&mdash;e.g. .zip files.</p>"
+      asset_type_descr_dataset_html: "<p>Use this type for files containing data such as spreadsheets, CSV files, FileMakerPro or SQL backups, XML or JSON documents, etc.</p>"
+      asset_type_descr_movingimage_html: "<p>Use this type for files containing moving images, with or without sound, including animated GIFs and video clips.</p>"
+      asset_type_descr_sound_html: "<p>Use this type for files containing audio with no video. For A/V files, use the &ldquo;Moving Image&rdquo; type.</p>"
       asset_type_descr_stillimage_html: "<p>Use this type for files whose <strong>content</strong> is predominantly image-based. Line drawings and graphs also belong to this group.</p><p>For files with mixed content, e.g. a PDF with an image and a caption, it is appropriate to select this type.</p>"
       asset_type_descr_text_html: "<p>Use this type for files whose <strong>content</strong> is predominantly text-based. Image files of scanned text also belong to this category.</p><p>For files with mixed content, e.g. a report with text and images, it is appropriate to select this type.</p>"
-      asset_type_descr_archive_html: "<p>Use this type for files whose <strong>content</strong></p>"
-      asset_type_descr_dataset_html: "<p>Use this type for files whose <strong>content</strong></p>"
-      asset_type_descr_movingimage_html: "<p>Use this type for files whose <strong>content</strong></p>"
-      asset_type_descr_sound_html: "<p>Use this type for files whose <strong>content</strong></p>"
     relationship:
       add_assets: "Add New Assets to this Resource"
       batch_add_representations: "Add Representations"
