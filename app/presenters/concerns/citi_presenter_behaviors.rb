@@ -4,7 +4,8 @@ module CitiPresenterBehaviors
 
   included do
     delegate(*terms, to: :solr_document)
-    delegate(:document_ids, :representation_ids, :preferred_representation_id, :artist_id, :current_location_id, :artist_label, to: :solr_document)
+    delegate(:document_ids, :representation_ids, :preferred_representation_id, :artist_id,
+             :current_location_id, :artist_label, :hydra_model, to: :solr_document)
   end
 
   def title

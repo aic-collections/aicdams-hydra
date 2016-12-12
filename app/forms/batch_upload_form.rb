@@ -2,7 +2,11 @@
 class BatchUploadForm < Sufia::Forms::BatchUploadForm
   include AssetFormBehaviors
 
+  attr_writer :parameterized_relationships
+
   self.terms = CurationConcerns::GenericWorkForm.terms
+
+  delegate :representations_for, :documents_for, :attachment_uris, :attachments_for, to: :parameterized_relationships
 
   def primary_terms
     CurationConcerns::GenericWorkForm.aic_terms - [:asset_type, :pref_label]
@@ -24,22 +28,6 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
     # noop
   end
 
-  def representations_for
-    []
-  end
-
-  def documents_for
-    []
-  end
-
-  def attachment_uris
-    []
-  end
-
-  def attachments_for
-    []
-  end
-
   # The default file set type created for each asset
   def use_uri
     AICType.IntermediateFileSet
@@ -57,4 +45,14 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
   def visibility
     ::Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT
   end
+
+  private
+
+    # If parameterized_relationships has not been set, return a null pattern object
+    def parameterized_relationships
+      @parameterized_relationships || OpenStruct.new(representations_for: [],
+                                                     documents_for: [],
+                                                     attachment_uris: [],
+                                                     attachments_for: [])
+    end
 end

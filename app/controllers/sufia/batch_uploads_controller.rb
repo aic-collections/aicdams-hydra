@@ -15,4 +15,11 @@ class Sufia::BatchUploadsController < ApplicationController
                                         attributes_for_actor,
                                         log)
   end
+
+  protected
+
+    def build_form
+      @form = form_class.new(curation_concern, current_ability)
+      @form.parameterized_relationships = ParameterizedRelationships.new(params)
+    end
 end

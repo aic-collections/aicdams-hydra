@@ -21,11 +21,8 @@ describe 'curation_concerns/base/_relationships.html.erb' do
         allow(ability).to receive(:can?).with(:read, SolrDocument).and_return(true) }
       specify do
         is_expected.to have_content("No relationships found for this Exhibition")
-
-        is_expected.to have_link("Add Representations", href:
-        "/batch_uploads/new?representation_for=999&resource_title=FineArt+%28123%29")
-
-        is_expected.to have_link("Add Documentation", href: "/batch_uploads/new?document_for=999&resource_title=FineArt+%28123%29")
+        is_expected.to have_link("Add Representations")
+        is_expected.to have_link("Add Documentation")
       end
     end
 
