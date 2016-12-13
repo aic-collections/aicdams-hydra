@@ -4,6 +4,7 @@ class UidMinter
 
   # @param [String] prefix two-letter prefix indicating the type of resource
   def initialize(prefix)
+    raise(ArgumentError, "Can't mint a UID without a prefix") unless prefix.present?
     @prefix = prefix
   end
 

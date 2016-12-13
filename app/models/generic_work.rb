@@ -27,28 +27,6 @@ class GenericWork < Resource
     type.include? AICType.Text
   end
 
-  def assert_still_image
-    return true if still_image?
-    return false if text?
-    t = get_values(:type)
-    t << AICType.StillImage
-    set_value(:type, t)
-  end
-
-  def assert_text
-    return true if text?
-    return false if still_image?
-    t = get_values(:type)
-    t << AICType.Text
-    set_value(:type, t)
-  end
-
-  def prefix
-    return "TX" if text?
-    return "SI" if still_image?
-    raise ArgumentError, "Can't assign a prefix without a type"
-  end
-
   # Overrides CurationConcerns::Noid to set #id to be a MD5 checksum of #uid.
   def assign_id
     self.uid = service.mint unless new_record? && uid.present?
@@ -83,10 +61,14 @@ class GenericWork < Resource
   private
 
     def service
-      @service ||= UidMinter.new(prefix)
+      @service ||= UidMinter.new(assignment_service.prefix)
     end
 
     def representing_resource
       @representing_resource ||= InboundRelationships.new(id)
+    end
+
+    def assignment_service
+      @assignment_service ||= AssetTypeAssignmentService.new(self)
     end
 end

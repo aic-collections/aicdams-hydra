@@ -624,6 +624,10 @@
                                 {
                                     "label" : "Loan Request Letter",
                                     "value" : "http://definitions.artic.edu/doctypes/LoanRequestLetter"
+                                },
+                                {
+                                    "label" : "Loan Acknowledgment Letter",
+                                    "value" : "http://definitions.artic.edu/doctypes/LoanAcknowledgmentLetter"
                                 }
                             ]
                         },
@@ -837,6 +841,38 @@
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        "Dataset" : {
+            "doctypes" : [
+                {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralDataset"
+                }
+            ]
+        },
+        "MovingImage" : {
+            "doctypes" : [
+                {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralMovingImage"
+                }
+            ]
+        },
+        "Sound" : {
+            "doctypes" : [
+                {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralSound"
+                }
+            ]
+        },
+        "Archive" : {
+            "doctypes" : [
+                {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralArchive"
                 }
             ]
         }

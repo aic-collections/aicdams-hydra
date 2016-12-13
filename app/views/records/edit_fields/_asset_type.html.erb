@@ -1,7 +1,7 @@
 <% if action_name == 'new' %>
   <%= f.input :asset_type,
   			  as: :select,
-  			  collection: [['Still Image', AICType.StillImage], ['Text', AICType.Text]],
+  			  collection: AssetTypeAssignmentService::REGISTRY.keys.map { |t| [t.label, t] },
               input_html: { class: 'form-control', multiple: false, id: 'asset_type_select' },
               required: true %>
   <%= f.input :asset_type, as: :hidden, input_html: { id: 'hidden_asset_type' } %>

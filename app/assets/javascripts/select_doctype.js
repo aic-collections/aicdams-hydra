@@ -13,6 +13,18 @@
                 if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Text') {
                     totalDocTypes = data.asset_types.Text.doctypes;
                 }
+                if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Dataset') {
+                    totalDocTypes = data.asset_types.Dataset.doctypes;
+                }
+                if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/MovingImage') {
+                    totalDocTypes = data.asset_types.MovingImage.doctypes;
+                }
+                if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Sound') {
+                    totalDocTypes = data.asset_types.Sound.doctypes;
+                }
+                if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Archive') {
+                    totalDocTypes = data.asset_types.Archive.doctypes;
+                }                
                 return totalDocTypes;
             },
 
@@ -83,7 +95,7 @@ Blacklight.onLoad(function() {
     var formModel = select_doctype.getFormModel($('form.simple_form'));
 
     var docTypeSelector = "#"+formModel+"_document_type_uri";
-  var docTypeDivSelector = "div."+formModel+"_document_type_uri";
+    var docTypeDivSelector = "div."+formModel+"_document_type_uri";
 
     var firstSubTypeSelector = "#"+formModel+"_first_document_sub_type_uri";
     var firstSubTypeDivSelector = "div."+formModel+"_first_document_sub_type_uri";

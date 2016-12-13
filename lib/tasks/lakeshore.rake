@@ -21,6 +21,17 @@ namespace :lakeshore do
     end
   end
 
+  desc "Delete records in Solr that are not present in Fedora"
+  task delete_from_solr: :environment do
+    start = 0
+    total = Blacklight::Solr::Response.new(query, nil).total_count
+    while (start < total) do
+      response = Blacklight::Solr::Response.new(query(start), nil)
+      response.docs.map { |d| DeleteIndexJob.perform_later(d.fetch("id")) }
+      start = start + response.rows
+    end  
+  end
+
   desc "Load lists"
   task load_lists: :environment do
     Dir.glob("config/lists/*.yml").each do |list|

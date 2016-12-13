@@ -6,4 +6,5 @@ describe AssetType::Base do
 
   it { is_expected.to respond_to(:all) }
   it { is_expected.to respond_to(:types) }
+  its(:key) { is_expected.to eq("base") }
 end

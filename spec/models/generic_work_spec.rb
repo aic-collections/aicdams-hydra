@@ -15,7 +15,7 @@ describe GenericWork do
   context "without setting a type" do
     subject { build(:asset_without_type) }
     it "raises and error" do
-      expect(-> { subject.save }).to raise_error(ArgumentError, "Can't assign a prefix without a type")
+      expect(-> { subject.save }).to raise_error(ArgumentError, "Can't mint a UID without a prefix")
     end
   end
 
@@ -26,16 +26,9 @@ describe GenericWork do
 
   describe "asserting StillImage" do
     subject { build(:asset) }
+
     specify { expect(subject.type).to include(AICType.Asset, AICType.StillImage) }
-    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
-    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
-    context "and re-asserting StillImage" do
-      before  { subject.assert_still_image }
-      specify { expect(subject).not_to receive(:set_value) }
-    end
-    context "and asserting Text" do
-      specify { expect(subject.assert_text).to be false }
-    end
+
     describe "#to_solr" do
       let(:keyword) { create(:list_item) }
 
@@ -47,8 +40,13 @@ describe GenericWork do
         expect(subject.to_solr[Solrizer.solr_name("keyword", :stored_searchable)]).to contain_exactly(keyword.pref_label)
       end
     end
+
     describe "minting uids" do
+      let(:hash)  { Digest::MD5.hexdigest(subject.uid) }
+      let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
+
       before { subject.save }
+
       it "uses a checksum as a path" do
         expect(subject.id).to match(/^\h{8}-\h{4}-\h{4}-\h{4}-\h{12}/)
         expect(subject.id).to eql(dhash)
@@ -59,20 +57,17 @@ describe GenericWork do
   describe "setting type to Text" do
     subject { build(:text_asset) }
     specify { expect(subject.type).to include(AICType.Asset, AICType.Text) }
-    let(:hash) { Digest::MD5.hexdigest(subject.uid) }
-    let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
-    context "and re-asserting Text" do
-      before  { subject.assert_text }
-      specify { expect(subject).not_to receive(:set_value) }
-    end
-    context "and asserting StillImage" do
-      specify { expect(subject.assert_still_image).to be false }
-    end
+
     describe "#to_solr" do
       specify { expect(subject.to_solr[Solrizer.solr_name("aic_type", :facetable)]).to include("Asset", "Text") }
     end
+
     describe "minting uids" do
+      let(:hash)  { Digest::MD5.hexdigest(subject.uid) }
+      let(:dhash) { [hash[0, 8], hash[8, 4], hash[12, 4], hash[16, 4], hash[20..-1]].join('-') }
+
       before { subject.save }
+
       it "uses a checksum as a path" do
         expect(subject.id).to match(/^\h{8}-\h{4}-\h{4}-\h{4}-\h{12}/)
         expect(subject.id).to eql(dhash)

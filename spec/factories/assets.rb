@@ -10,7 +10,9 @@ FactoryGirl.define do
     end
 
     factory :still_image_asset, aliases: [:asset] do
-      after(:build, &:assert_still_image)
+      after(:build) do |asset|
+        AssetTypeAssignmentService.new(asset).assign(AICType.StillImage)
+      end
 
       factory :department_asset do
         visibility Permissions::LakeshoreVisibility::VISIBILITY_TEXT_VALUE_DEPARTMENT
@@ -22,7 +24,9 @@ FactoryGirl.define do
     end
 
     factory :text_asset do
-      after(:build, &:assert_text)
+      after(:build) do |asset|
+        AssetTypeAssignmentService.new(asset).assign(AICType.Text)
+      end
     end
 
     trait :with_metadata do

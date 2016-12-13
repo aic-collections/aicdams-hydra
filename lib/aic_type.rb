@@ -12,6 +12,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:Resource",
        label: "Annotation",
        comment: "Annotation"
+  term :Archive,
+       subClassOf: "aictype:Asset",
+       label: "Archive",
+       comment: "Archive"
   term :Asset,
        subClassOf: "aictype:Resource",
        label: "Asset"
@@ -43,6 +47,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:MetadataSet",
        label: "Conservation Metadata",
        comment: "Conservation metadata"
+  term :Dataset,
+       subClassOf: "aictype:Asset",
+       label: "Dataset",
+       comment: "Dataset"
   term :Department,
        subClassOf: "aictype:ListItem",
        label: "Department",
@@ -75,6 +83,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:Resource",
        label: "List Item",
        comment: "Item (option) in a list"
+  term :MovingImage,
+       subClassOf: "aictype:Asset",
+       label: "Moving Image",
+       comment: "Moving image"
   term :OriginalFileSet,
        subClassOf: Hydra::Works::Vocab::WorksTerms.FileSet,
        label: "Original File Set",
@@ -94,6 +106,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:CitiResource",
        label: "Shipment",
        comment: "CITI Shipment"
+  term :Sound,
+       subClassOf: "aictype:Asset",
+       label: "Sound",
+       comment: "Sound"
   term :StatusType,
        subClassOf: "aictype:ListItem",
        label: "Status",

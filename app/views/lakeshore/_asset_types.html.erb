@@ -1,33 +1,19 @@
-<%# @TODO Going forward, as the number of asset type grows we may want to only
-    use one div block and use parameters to iterate over all the asset types.%>
-<div class="asset asset-text">
-  <div class="row col-sm-8 col-md-6 col-lg-6">
-      <%= t('lakeshore.upload.asset_type_descr_text_html') %>
-  </div>
-  <div class="col-sm-4 col-md-6 col-lg-6">
-    <p><%= t('lakeshore.upload.asset_types', type: "text") %></p>
-    <ul>
-      <% AssetType::Text.types.each do |type| %>
-        <% if type.friendly %>
-          <li><%= type.friendly %></li>
+<% [AssetType::StillImage, AssetType::Text, AssetType::Dataset, AssetType::MovingImage,
+    AssetType::Sound, AssetType::Archive].each do |type_class| %>
+  <div class="asset asset-<%= type_class.key %>">
+    <div class="row col-sm-8 col-md-6 col-lg-6">
+      <%= t("lakeshore.upload.asset_type_descr_#{type_class.key}_html") %>
+    </div>
+    <div class="col-sm-4 col-md-6 col-lg-6">
+      <p><%= t('lakeshore.upload.asset_types') %></p>
+      <ul>
+        <% type_class.types.each do |type| %>
+          <% if type.friendly %>
+            <li><%= type.friendly %></li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
+<% end %>
 
-<div class="asset asset-stillimage">
-  <div class="col-sm-8 col-md-6 col-lg-6">
-      <%= t('lakeshore.upload.asset_type_descr_still_image_html') %>
-  </div>
-  <div class="row col-sm-4 col-md-6 col-lg-6">
-    <p><%= t('lakeshore.upload.asset_types', type: "still image") %></p>
-    <ul>
-      <% AssetType::Image.types.each do |type| %>
-        <% if type.friendly %>
-          <li><%= type.friendly %></li>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-</div>
