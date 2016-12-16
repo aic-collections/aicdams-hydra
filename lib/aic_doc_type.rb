@@ -549,10 +549,127 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:InfoServicesText"
   term :InfoServicesText,
        label: "Information Services"
+  term :MasterArtworkMovingImage,
+       label: "Master",
+       "skos:broader": "aicdoctype:ArtworkMovingImage"
+  term :ExhibCopyArtworkMovingImage,
+       label: "Exhibition Copy",
+       "skos:broader": "aicdoctype:ArtworkMovingImage"
+  term :AccessCopyArtworkMovingImage,
+       label: "Access Copy",
+       "skos:broader": "aicdoctype:ArtworkMovingImage"
+  term :ArtworkMovingImage,
+       label: "Work of Art",
+       "skos:broader": "aicdoctype:CuratorialMovingImage"
+  term :CuratorialMovingImage,
+       label: "Curatorial"
+  term :DEExhibProcessVideoMovingImage,
+       label: "Process",
+       "skos:broader": "aicdoctype:DEExhibVideoMovingImage"
+  term :DEExhibVideoMovingImage,
+       label: "Exhibition Video",
+       "skos:broader": "aicdoctype:DEMovingImage"
+  term :DEPromoMarketingMovingImage,
+       label: "Marketing",
+       "skos:broader": "aicdoctype:DEPromoMovingImage"
+  term :DEPromoMovingImage,
+       label: "Promotional",
+       "skos:broader": "aicdoctype:DEMovingImage"
+  term :DELectureEventMovingImage,
+       label: "Lecture",
+       "skos:broader": "aicdoctype:DEEventMovingImage"
+  term :DEPerfEventMovingImage,
+       label: "Performance",
+       "skos:broader": "aicdoctype:DEEventMovingImage"
+  term :DEEventMovingImage,
+       label: "Event",
+       "skos:broader": "aicdoctype:DEMovingImage"
+  term :DESocialMediaMovingImage,
+       label: "Social Media",
+       "skos:broader": "aicdoctype:DEMovingImage"
+  term :DEMovingImage,
+       label: "Digital Experience"
+  term :RyersonSpecialCollectionsMovingImage,
+       label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibraryMovingImage"
+  term :RyersonArchiveMovingImage,
+       label: "Archive",
+       "skos:broader": "aicdoctype:RyersonLibraryMovingImage"
+  term :RyersonLibraryMovingImage,
+       label: "Ryerson Library"
   term :GeneralMovingImage,
        label: "General"
+  term :MasterArtworkDataset,
+       label: "Master",
+       "skos:broader": "aicdoctype:ArtworkDataset"
+  term :ExhibCopyArtworkDataset,
+       label: "Exhibition Copy",
+       "skos:broader": "aicdoctype:ArtworkDataset"
+  term :AccessCopyArtworkDataset,
+       label: "Access Copy",
+       "skos:broader": "aicdoctype:ArtworkDataset"
+  term :ArtworkDataset,
+       label: "Work of Art",
+       "skos:broader": "aicdoctype:CuratorialDataset"
+  term :FMPDatabase,
+       label: "FileMakerPro Database",
+       "skos:broader": "aicdoctype:CuratorialDataset"
+  term :CuratorialDataset,
+       label: "Curatorial"
+  term :RyersonSpecialCollectionsDataset,
+       label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibraryDataset"
+  term :RyersonArchiveDataset,
+       label: "Archive",
+       "skos:broader": "aicdoctype:RyersonLibraryDataset"
+  term :RyersonFindingAidDataset,
+       label: "Finding Aid",
+       "skos:broader": "aicdoctype:RyersonLibraryDataset"
+  term :RyersonLibraryDataset,
+       label: "Ryerson Library"
+  term :PublicationsDSCDataset,
+       label: "DSC XML File",
+       "skos:broader": "aicdoctype:PublicationsDataset"
+  term :PublicationsDataset,
+       label: "Publications"
   term :GeneralDataset,
        label: "General"
+  term :MasterArtworkSound,
+       label: "Master",
+       "skos:broader": "aicdoctype:ArtworkSound"
+  term :ExhibCopyArtworkSound,
+       label: "Exhibition Copy",
+       "skos:broader": "aicdoctype:ArtworkSound"
+  term :AccessCopyArtworkSound,
+       label: "Access Copy",
+       "skos:broader": "aicdoctype:ArtworkSound"
+  term :ArtworkSound,
+       label: "Work of Art",
+       "skos:broader": "aicdoctype:CuratorialSound"
+  term :CuratorialSound,
+       label: "Curatorial"
+  term :DEPodcastSound,
+       label: "Podcast",
+       "skos:broader": "aicdoctype:DESound"
+  term :DELectureEventSound,
+       label: "Lecture",
+       "skos:broader": "aicdoctype:DEEventSound"
+  term :DEEventSound,
+       label: "Event",
+       "skos:broader": "aicdoctype:DESound"
+  term :DEAudioTourSound,
+       label: "Audio Tour",
+       "skos:broader": "aicdoctype:DESound"
+  term :DESound,
+       label: "Digital Experience"
+  term :RyersonSpecialCollectionsSound,
+       label: "Ryerson Special Collections",
+       "skos:broader": "aicdoctype:RyersonLibrarySound"
+  term :RyersonArchiveSound,
+       label: "Archive",
+       "skos:broader": "aicdoctype:RyersonLibrarySound"
+  term :RyersonLibrarySound,
+       label: "Ryerson Library"
   term :GeneralSound,
        label: "General"
   term :GeneralArchive,

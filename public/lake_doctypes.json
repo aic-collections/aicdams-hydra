@@ -847,6 +847,61 @@
         "Dataset" : {
             "doctypes" : [
                 {
+                    "label" : "Curatorial",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialDataset",
+                    "subtypes" : [
+                        {
+                            "label" : "Work of Art",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtworkDataset",
+                            "subtypes" : [
+                                {
+                                    "label" : "Master",
+                                    "value" : "http://definitions.artic.edu/doctypes/MasterArtworkDataset"
+                                },
+                                {
+                                    "label" : "Exhibition Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibCopyArtworkDataset"
+                                },
+                                {
+                                    "label" : "Access Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/AccessCopyArtworkDataset"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "FileMakerPro Database",
+                            "value" : "http://definitions.artic.edu/doctypes/FMPDatabase"                        }
+                    ]
+                },
+                {
+                    "label" : "Ryerson Library",
+                    "value" : "http://definitions.artic.edu/doctypes/RyersonLibraryDataset",
+                    "subtypes" : [
+                        {
+                            "label" : "Ryerson Special Collections",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsDataset"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveDataset"
+                        },
+                        {
+                            "label" : "Finding Aid",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonFindingAidDataset"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Publications",
+                    "value" : "http://definitions.artic.edu/doctypes/PublicationsDataset",
+                    "subtypes" : [
+                        {
+                            "label" : "DSC XML File",
+                            "value" : "http://definitions.artic.edu/doctypes/PublicationsDSCDataset"
+                        }
+                    ]
+                },
+                {
                     "label" : "General",
                     "value" : "http://definitions.artic.edu/doctypes/GeneralDataset"
                 }
@@ -855,6 +910,88 @@
         "MovingImage" : {
             "doctypes" : [
                 {
+                    "label" : "Curatorial",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialMovingImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Work of Art",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtworkMovingImage",
+                            "subtypes" : [
+                                {
+                                    "label" : "Master",
+                                    "value" : "http://definitions.artic.edu/doctypes/MasterArtworkMovingImage"
+                                },
+                                {
+                                    "label" : "Exhibition Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibCopyArtworkMovingImage"
+                                },
+                                {
+                                    "label" : "Access Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/AccessCopyArtworkMovingImage"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label" : "Digital Experience",
+                    "value" : "http://definitions.artic.edu/doctypes/DEMovingImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Exhibition Video",
+                            "value" : "http://definitions.artic.edu/doctypes/DEExhibVideoMovingImage",
+                            "subtypes" : [
+                                {
+                                    "label" : "Process",
+                                    "value" : "http://definitions.artic.edu/doctypes/DEExhibProcessVideoMovingImage"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Promotional",
+                            "value" : "http://definitions.artic.edu/doctypes/DEPromoMovingImage",
+                            "subtypes" : [
+                                {
+                                    "label" : "Marketing",
+                                    "value" : "http://definitions.artic.edu/doctypes/DEPromoMarketingMovingImage"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Event",
+                            "value" : "http://definitions.artic.edu/doctypes/DEEventMovingImage",
+                            "subtypes" : [
+                                {
+                                    "label" : "Lecture",
+                                    "value" : "http://definitions.artic.edu/doctypes/DELectureEventMovingImage"
+                                },
+                                {
+                                    "label" : "Performance",
+                                    "value" : "http://definitions.artic.edu/doctypes/DEPerfEventMovingImage"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Social Media",
+                            "value" : "http://definitions.artic.edu/doctypes/DESocialMediaMovingImage"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Ryerson Library",
+                    "value" : "http://definitions.artic.edu/doctypes/RyersonLibraryMovingImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Ryerson Special Collections",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsMovingImage"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveMovingImage"
+                        }
+                    ]
+                },
+                {
                     "label" : "General",
                     "value" : "http://definitions.artic.edu/doctypes/GeneralMovingImage"
                 }
@@ -862,6 +999,68 @@
         },
         "Sound" : {
             "doctypes" : [
+                {
+                    "label" : "Curatorial",
+                    "value" : "http://definitions.artic.edu/doctypes/CuratorialSound",
+                    "subtypes" : [
+                        {
+                            "label" : "Work of Art",
+                            "value" : "http://definitions.artic.edu/doctypes/ArtworkSound",
+                            "subtypes" : [
+                                {
+                                    "label" : "Master",
+                                    "value" : "http://definitions.artic.edu/doctypes/MasterArtworkSound"
+                                },
+                                {
+                                    "label" : "Exhibition Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/ExhibCopyArtworkSound"
+                                },
+                                {
+                                    "label" : "Access Copy",
+                                    "value" : "http://definitions.artic.edu/doctypes/AccessCopyArtworkSound"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label" : "Digital Experience",
+                    "value" : "http://definitions.artic.edu/doctypes/DESound",
+                    "subtypes" : [
+                        {
+                            "label" : "Podcast",
+                            "value" : "http://definitions.artic.edu/doctypes/DEPodcastSound"
+                        },
+                        {
+                            "label" : "Event",
+                            "value" : "http://definitions.artic.edu/doctypes/DEEventSound",
+                            "subtypes" : [
+                                {
+                                    "label" : "Lecture",
+                                    "value" : "http://definitions.artic.edu/doctypes/DELectureEventSound"
+                                }
+                            ]
+                        },
+                        {
+                            "label" : "Audio Tour",
+                            "value" : "http://definitions.artic.edu/doctypes/DEAudioTourSound"
+                        }
+                    ]
+                },
+                {
+                    "label" : "Ryerson Library",
+                    "value" : "http://definitions.artic.edu/doctypes/RyersonLibrarySound",
+                    "subtypes" : [
+                        {
+                            "label" : "Ryerson Special Collections",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonSpecialCollectionsSound"
+                        },
+                        {
+                            "label" : "Archive",
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveSound"
+                        }
+                    ]
+                },
                 {
                     "label" : "General",
                     "value" : "http://definitions.artic.edu/doctypes/GeneralSound"
