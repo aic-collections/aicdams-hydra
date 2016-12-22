@@ -628,6 +628,14 @@
                                 {
                                     "label" : "Loan Acknowledgment Letter",
                                     "value" : "http://definitions.artic.edu/doctypes/LoanAcknowledgmentLetter"
+                                },
+                                {
+                                    "label" : "Immunity From Seizure Application",
+                                    "value" : "http://definitions.artic.edu/doctypes/ImmunityFromSeizureApplication"
+                                },
+                                {
+                                    "label" : "Federal Register",
+                                    "value" : "http://definitions.artic.edu/doctypes/FederalRegister"
                                 }
                             ]
                         },

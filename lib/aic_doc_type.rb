@@ -409,6 +409,12 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :LoanAcknowledgmentLetter,
        label: "Loan Acknowledgment Letter",
        "skos:broader": "aicdoctype:LoanDocument"
+  term :ImmunityFromSeizureApplication,
+       label: "Immunity From Seizure Application",
+       "skos:broader": "aicdoctype:LoanDocument"
+  term :FederalRegister,
+       label: "Federal Register",
+       "skos:broader": "aicdoctype:LoanDocument"
   term :LoanDocument,
        label: "Loan Document",
        "skos:broader": "aicdoctype:CuratorialDocument"
