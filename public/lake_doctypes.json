@@ -3,6 +3,16 @@
         "StillImage" : {
             "doctypes" : [
                 {
+                    "label" : "General",
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResStillImage"
+                        }
+                    ]
+                },
+                {
                     "label" : "Conservation",
                     "value" : "http://definitions.artic.edu/doctypes/ConservationStillImage"
                 },
@@ -233,21 +243,22 @@
                         {
                             "label" : "Fundraising",
                             "value" : "http://definitions.artic.edu/doctypes/Fundraising"
-                        }
-                        ,
+                        },
                         {
                             "label" : "Ephemera",
                             "value" : "http://definitions.artic.edu/doctypes/Ephemera"
-                        }
-                        ,
+                        },
                         {
                             "label" : "Confidential",
                             "value" : "http://definitions.artic.edu/doctypes/Confidential"
-                        }
-                        ,
+                        },
                         {
                             "label" : "Institutional Archive",
                             "value" : "http://definitions.artic.edu/doctypes/InstitutionalArchive"
+                        },
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResText"
                         }
                     ]
                 },
@@ -911,7 +922,13 @@
                 },
                 {
                     "label" : "General",
-                    "value" : "http://definitions.artic.edu/doctypes/GeneralDataset"
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralDataset",
+                    "subtypes" : [
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResDataset"
+                        }
+                    ]
                 }
             ]
         },
@@ -1001,7 +1018,13 @@
                 },
                 {
                     "label" : "General",
-                    "value" : "http://definitions.artic.edu/doctypes/GeneralMovingImage"
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralMovingImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResMovingImage"
+                        }
+                    ]
                 }
             ]
         },
@@ -1071,7 +1094,13 @@
                 },
                 {
                     "label" : "General",
-                    "value" : "http://definitions.artic.edu/doctypes/GeneralSound"
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralSound",
+                    "subtypes" : [
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResSound"
+                        }
+                    ]
                 }
             ]
         },
@@ -1079,7 +1108,13 @@
             "doctypes" : [
                 {
                     "label" : "General",
-                    "value" : "http://definitions.artic.edu/doctypes/GeneralArchive"
+                    "value" : "http://definitions.artic.edu/doctypes/GeneralArchive",
+                    "subtypes" : [
+                        {
+                            "label" : "Interpretive Resource",
+                            "value" : "http://definitions.artic.edu/doctypes/IntResArchive"
+                        }
+                    ]
                 }
             ]
         }
