@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/")
+  term :IntResStillImage,
+       label: "Interpretive Resource",
+       "skos:broader": "aicdoctype:GeneralStillImage"
+  term :GeneralStillImage,
+       label: "General"
   term :ConservationStillImage,
        label: "Conservation"
   term :CuratorialStudyPhoto,
@@ -151,6 +156,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:General"
   term :InstitutionalArchive,
        label: "Institutional Archive",
+       "skos:broader": "aicdoctype:General"
+  term :IntResText,
+       label: "Interpretive Resource",
        "skos:broader": "aicdoctype:General"
   term :General,
        label: "General"
@@ -603,6 +611,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:RyersonLibraryMovingImage"
   term :RyersonLibraryMovingImage,
        label: "Ryerson Library"
+  term :IntResMovingImage,
+       label: "Interpretive Resource",
+       "skos:broader": "aicdoctype:GeneralMovingImage"
   term :GeneralMovingImage,
        label: "General"
   term :MasterArtworkDataset,
@@ -638,6 +649,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:PublicationsDataset"
   term :PublicationsDataset,
        label: "Publications"
+  term :IntResDataset,
+       label: "Interpretive Resource",
+       "skos:broader": "aicdoctype:GeneralDataset"
   term :GeneralDataset,
        label: "General"
   term :MasterArtworkSound,
@@ -676,8 +690,14 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:RyersonLibrarySound"
   term :RyersonLibrarySound,
        label: "Ryerson Library"
+  term :IntResSound,
+       label: "Interpretive Resource",
+       "skos:broader": "aicdoctype:GeneralSound"
   term :GeneralSound,
        label: "General"
+  term :IntResArchive,
+       label: "Interpretive Resource",
+       "skos:broader": "aicdoctype:GeneralArchive"
   term :GeneralArchive,
        label: "General"
 end
