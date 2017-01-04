@@ -19,7 +19,7 @@ describe "Creating a new asset" do
     select("Still Image", from: "asset_type_select")
     expect(tabs[1][:class]).not_to eq("disabled")
     expect(hidden_asset_type.value).to eq(AICType.StillImage)
-    expect(document_type_select_options.count).to eq(11)
+    expect(document_type_select_options.count).to eq(12)
     select("Imaging", from: "generic_work_document_type_uri")
     select("Event", from: "generic_work_first_document_sub_type_uri")
     select("Lecture", from: "generic_work_second_document_sub_type_uri")
