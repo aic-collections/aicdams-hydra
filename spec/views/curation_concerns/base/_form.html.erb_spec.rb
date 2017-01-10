@@ -54,7 +54,7 @@ describe 'curation_concerns/base/_form.html.erb' do
       expect(rendered).to include("type=\"hidden\" value=\"#{AICType.StillImage}\"")
     end
     it "renders the existing status selected" do
-      expect(rendered).to include("<option selected=\"selected\" value=\"#{StatusType.active.uri}\">Active</option>")
+      expect(rendered).to include("<option selected=\"selected\" value=\"#{ListItem.active_status.uri}\">Active</option>")
     end
     it "renders hints after labels and before inputs" do
       expect(page.find('.generic_work_pref_label label + .help-block')).to have_content 'Preferred title or name of the resource. This will be the principal value for the \'alt\' tag of web images.'
@@ -92,7 +92,7 @@ describe 'curation_concerns/base/_form.html.erb' do
                                 view: [item.uri, addl.uri]) }
 
     before do
-      allow(BaseVocabulary).to receive(:all).and_return([item, addl])
+      allow(List).to receive(:options).and_return("Item 1" => item.uri, "Additional Item" => addl.uri)
       render
     end
 

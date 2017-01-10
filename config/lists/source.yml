@@ -1,7 +1,14 @@
 pref_label: "Digitization Source"
 description: "Original document for non-born-digital assets."
+type: "AICType.DigitizationSourceList"
+additional_types: []
+item_type: "AICType.DigitizationSource"
+additional_item_types: ["AICType.Authority"]
+uid: "LS-5"
 members:
  - pref_label: "Color Transparency"
    description: ""
+   uid: "DS-1"
  - pref_label: "Black and White"
    description: ""
+   uid: "DS-2"

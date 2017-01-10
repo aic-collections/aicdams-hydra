@@ -1,4 +1,4 @@
 <%= f.input :view_uris, as: :select, label: t('simple_form.labels.generic_work.view'),
-    collection: View.options, selected: @form.uris_for(:view),
+    collection: List.options(AICType.ViewTypeList), selected: @form.uris_for(:view),
     wrapper_html: { class: 'selective-hide selective-show-stillimage' },
     input_html: { class: 'form-control', multiple: true } %>

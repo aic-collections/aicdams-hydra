@@ -13,7 +13,7 @@ class CitiResource < Resource
 
   # Status defaults to active if it is nil
   def status
-    super || StatusType.active
+    super || ListItem.active_status
   end
 
   def notify_citi

@@ -20,7 +20,7 @@ describe ListItemEditForm do
       it { is_expected.to be true }
     end
     context "when the label can not be edited" do
-      subject { described_class.new(StatusType.active).editable?(:pref_label) }
+      subject { described_class.new(ListItem.active_status).editable?(:pref_label) }
       it { is_expected.to be false }
     end
   end

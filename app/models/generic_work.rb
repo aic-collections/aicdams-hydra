@@ -34,7 +34,7 @@ class GenericWork < Resource
   end
 
   def status_is_active
-    self.status = StatusType.active.uri
+    self.status = ListItem.active_status.uri
   end
 
   def id_matches_uid_checksum

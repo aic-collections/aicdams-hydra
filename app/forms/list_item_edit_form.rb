@@ -7,6 +7,6 @@ class ListItemEditForm
 
   def editable?(term)
     return true unless term == :pref_label
-    model.id != StatusType.active.id
+    model.id != ListItem.active_status.id
   end
 end

@@ -33,7 +33,7 @@ describe ListPresenter do
         it { is_expected.to be_deletable }
       end
       context "when the item is the active status" do
-        before { allow(subject).to receive(:model).and_return(StatusType.active) }
+        before { allow(subject).to receive(:model).and_return(ListItem.active_status) }
         it { is_expected.not_to be_deletable }
       end
     end

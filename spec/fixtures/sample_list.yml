@@ -1,0 +1,11 @@
+pref_label: "Bogus List"
+description: "Bogus list for testing"
+type: "AICType.CompositingTypeList"
+additional_types: []
+item_type: "AICType.CompositingType"
+additional_item_types: []
+uid: "BL-1"
+members:
+ - pref_label: "Bogus list item"
+   description: "Bogus list item for testing"
+   uid: "BL-2"

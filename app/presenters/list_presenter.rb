@@ -42,7 +42,7 @@ class ListPresenter
     end
 
     def deletable?
-      StatusType.active.id != id
+      ListItem.active_status.id != id
     end
   end
 end

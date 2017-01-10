@@ -19,6 +19,9 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
   term :Asset,
        subClassOf: "aictype:Resource",
        label: "Asset"
+  term :Authority,
+       label: "Authority",
+       comment: "Authority"
   term :CitiResource,
        subClassOf: "aictype:Resource",
        label: "CITI Resource",
@@ -27,22 +30,14 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:Annotation",
        label: "Comment",
        comment: "Comment"
-  term :CommentCategory,
-       subClassOf: "aictype:ListItem",
-       label: "Comment category",
-       comment: "Comment category"
   term :CompositingType,
        subClassOf: "aictype:ListItem",
-       label: "Compositing",
+       label: "Compositing Type",
        comment: "Compositing type"
-  term :ConservationDocumentType,
-       subClassOf: "aictype:ListItem",
-       label: "Conservation document type",
-       comment: "Conservation document type"
-  term :ConservationImageType,
-       subClassOf: "aictype:ListItem",
-       label: "Conservation image type",
-       comment: "Conservation image type"
+  term :CompositingTypeList,
+       subClassOf: "aictype:List",
+       label: "Compositing Type List",
+       comment: "Compositing type list"
   term :ConservationMetadata,
        subClassOf: "aictype:MetadataSet",
        label: "Conservation Metadata",
@@ -59,6 +54,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:ListItem",
        label: "Digitization source",
        comment: "Digitization source"
+  term :DigitizationSourceList,
+       subClassOf: "aictype:List",
+       label: "Digitization source list",
+       comment: "Digitization source list"
   term :DocumentType,
        subClassOf: "aictype:ListItem",
        label: "Document type",
@@ -71,6 +70,14 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: Hydra::Works::Vocab::WorksTerms.FileSet,
        label: "Intermediate File Set",
        comment: "Intermediate file set"
+  term :Keyword,
+       subClassOf: "aictype:ListItem",
+       label: "Keyword",
+       comment: "Keyword"
+  term :KeywordList,
+       subClassOf: "aictype:List",
+       label: "Keyword List",
+       comment: "Keyword list"
   term :LegacyFileSet,
        subClassOf: Hydra::Works::Vocab::WorksTerms.FileSet,
        label: "Legacy File Set",
@@ -79,6 +86,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:ListItem",
        label: "Light type",
        comment: "Light type"
+  term :LightTypeList,
+       subClassOf: "aictype:List",
+       label: "Light type list",
+       comment: "Light type list"
   term :List,
        subClassOf: "aictype:Resource",
        label: "List",
@@ -118,6 +129,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:ListItem",
        label: "Status",
        comment: "The status of a resource"
+  term :StatusTypeList,
+       subClassOf: "aictype:List",
+       label: "Status List",
+       comment: "List of status types"
   term :StillImage,
        subClassOf: "aictype:Asset",
        label: "Still Image",
@@ -138,6 +153,10 @@ class AICType < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0
        subClassOf: "aictype:ListItem",
        label: "View Type",
        comment: "View type"
+  term :ViewTypeList,
+       subClassOf: "aictype:List",
+       label: "View Type List",
+       comment: "View type list"
   term :Work,
        subClassOf: "aictype:CitiResource",
        label: "Work",

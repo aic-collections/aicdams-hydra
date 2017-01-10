@@ -2,36 +2,31 @@
 require 'rails_helper'
 
 describe ListManager do
-  let(:manager) { described_class.new("yaml file") }
+  let(:manager) { described_class.new(File.join(fixture_path, "sample_list.yml")) }
+  let(:update)  { described_class.new(File.join(fixture_path, "updated_sample_list.yml")) }
+  let(:list)    { List.find_by_uid("BL-1") }
+  let(:item)    { ListItem.find_by_uid("BL-2") }
 
-  before { allow(YAML).to receive(:load_file).and_return({}) }
-
-  describe "#exists?" do
-    subject { manager.exists? }
-    context "when the list does not exist" do
-      before { expect(List).to receive(:where).and_return([]) }
-      it { is_expected.to be false }
-    end
-    context "when the list exists" do
-      before { expect(List).to receive(:where).and_return(["a list"]) }
-      it { is_expected.to be true }
-    end
-  end
-
-  describe "#list_has?" do
-    before { allow(manager).to receive(:list).and_return(list) }
-    subject { manager.list_has?(member) }
-
-    context "when adding a new member" do
-      let(:list) { build(:list) }
-      let(:member) { { "pref_label" => "new item" } }
-      it { is_expected.to be false }
-    end
-
-    context "when adding an existing member" do
-      let(:list) { create(:list, :with_items, items: ["existing item"]) }
-      let(:member) { { "pref_label" => "existing item" } }
-      it { is_expected.to be true }
-    end
+  it "creates and updates lists" do
+    manager.create
+    expect(list.type).to include(AICType.CompositingTypeList)
+    expect(list.pref_label).to eq("Bogus List")
+    expect(list.description).to eq(["Bogus list for testing"])
+    expect(item.pref_label).to eq("Bogus list item")
+    expect(item.description).to eq(["Bogus list item for testing"])
+    expect(item.type).to include(AICType.CompositingType)
+    update.create
+    list.reload
+    item.reload
+    expect(list.pref_label).to eq("Updated Bogus List")
+    expect(list.description).to eq(["Bogus list for testing updated"])
+    expect(list.type).to include(AICType.KeywordList)
+    expect(list.type).to include(AICType.LightTypeList)
+    expect(list.type).not_to include(AICType.CompositingTypeList)
+    expect(item.pref_label).to eq("Bogus list item updated")
+    expect(item.description).to eq(["Bogus list item for testing updated"])
+    expect(item.type).to include(AICType.Keyword)
+    expect(item.type).to include(AICType.LightType)
+    expect(item.type).not_to include(AICType.CompositingType)
   end
 end

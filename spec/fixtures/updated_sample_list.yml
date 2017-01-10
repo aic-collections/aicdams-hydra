@@ -1,0 +1,11 @@
+pref_label: "Updated Bogus List"
+description: "Bogus list for testing updated"
+type: "AICType.KeywordList"
+additional_types: ["AICType.LightTypeList"]
+item_type: "AICType.Keyword"
+additional_item_types: ["AICType.LightType"]
+uid: "BL-1"
+members:
+ - pref_label: "Bogus list item updated"
+   description: "Bogus list item for testing updated"
+   uid: "BL-2"

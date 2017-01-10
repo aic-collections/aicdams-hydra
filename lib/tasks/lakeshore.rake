@@ -29,13 +29,13 @@ namespace :lakeshore do
       response = Blacklight::Solr::Response.new(query(start), nil)
       response.docs.map { |d| DeleteIndexJob.perform_later(d.fetch("id")) }
       start = start + response.rows
-    end  
+    end
   end
 
   desc "Load lists"
   task load_lists: :environment do
     Dir.glob("config/lists/*.yml").each do |list|
-      ListManager.new(list).create!
+      ListManager.new(list).create
     end
   end
 
@@ -47,7 +47,7 @@ namespace :lakeshore do
   end
 
   def query(start=0)
-    Blacklight.default_index.connection.get('select', params: {   
+    Blacklight.default_index.connection.get('select', params: {
                                                                 q: "*:*",
                                                                 qt: "document",
                                                                 fl: "id",
