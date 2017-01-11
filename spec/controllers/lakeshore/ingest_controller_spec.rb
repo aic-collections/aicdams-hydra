@@ -67,7 +67,7 @@ describe Lakeshore::IngestController do
       allow(controller).to receive(:duplicate_upload).and_return([duplicate_file])
       post :create, asset_type: "StillImage", content: { intermediate: "asset" }, metadata: metadata
     end
-    it { is_expected.to be_bad_request }
+    its(:status) { is_expected.to eq(409) }
     its(:body) { is_expected.to start_with("[\"Intermediate file is a duplicate of") }
   end
 end

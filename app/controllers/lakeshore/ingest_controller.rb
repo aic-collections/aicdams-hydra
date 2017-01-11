@@ -31,7 +31,7 @@ module Lakeshore
       def validate_duplicate_upload
         return if duplicate_upload.empty?
         ingest.errors.add(:intermediate_file, "is a duplicate of #{duplicate_upload.first}")
-        render json: ingest.errors.full_messages, status: :bad_request
+        render json: ingest.errors.full_messages, status: :conflict
       end
 
     private

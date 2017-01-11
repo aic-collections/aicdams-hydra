@@ -21,9 +21,12 @@ module Lakeshore
       errors.add(:asset_type, "#{submitted_asset_type} is not a registered asset type")
     end
 
+    # @return [Array<FileSet>]
+    # Order is important. The representative file set is the first one added to the work. We
+    # want the intermediate file to be the representative.
     def files
       return [] unless valid?
-      [original_upload, intermediate_upload, presevation_master_upload].compact + additional_uploads
+      [intermediate_upload, original_upload, presevation_master_upload].compact + additional_uploads
     end
 
     def attributes_for_actor
