@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
-# Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
   # complete input. You can remove any component from the
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-                            hint_class: :field_with_hint,
-                            error_class: :field_with_errors do |b|
+  config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :readonly
+    b.use :label, class: 'control-label'
+
+    b.use :input
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+  config.wrappers :default, class: :input, hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -43,11 +51,9 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    b.optional :label
-    b.optional :hint,  wrap_with: { tag: :span, class: :hint }
-
+    b.use :label_input
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
-    b.use :input
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
@@ -102,7 +108,7 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  config.label_text = ->(label, required, _) { "#{label} #{required}" }
+  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil
