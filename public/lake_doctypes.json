@@ -355,6 +355,10 @@
                         {
                             "label" : "Indemnification",
                             "value" : "http://definitions.artic.edu/doctypes/Indemnification"
+                        },
+                        {
+                            "label" : "Audit",
+                            "value" : "http://definitions.artic.edu/doctypes/RegistrationAudit"
                         }
                     ]
                 },

@@ -225,6 +225,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :Indemnification,
        label: "Indemnification",
        "skos:broader": "aicdoctype:RegistrationDocument"
+  term :RegistrationAudit,
+       label: "Audit",
+       "skos:broader": "aicdoctype:RegistrationDocument"
   term :RegistrationDocument,
        label: "Registration Document"
   term :Justification,
