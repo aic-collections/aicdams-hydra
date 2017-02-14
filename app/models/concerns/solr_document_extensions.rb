@@ -19,7 +19,7 @@ module SolrDocumentExtensions
   end
 
   def uid
-    Array(self[Solrizer.solr_name('uid', :stored_searchable)]).first
+    Array(self[Solrizer.solr_name('uid', :symbol)]).first
   end
 
   def status
