@@ -6,6 +6,7 @@ SimpleForm.setup do |config|
   config.boolean_label_class = nil
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    # the order here is followed in rendering
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -13,10 +14,9 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'control-label'
-
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
     b.use :input, class: 'form-control'
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
   config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -28,7 +28,7 @@ SimpleForm.setup do |config|
 
     b.use :input
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
   end
 
   config.wrappers :vertical_boolean, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
