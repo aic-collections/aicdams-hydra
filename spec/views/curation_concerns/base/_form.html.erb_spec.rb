@@ -47,7 +47,7 @@ describe 'curation_concerns/base/_form.html.erb' do
   end
 
   context "when editing an existing asset" do
-    let(:work) { create(:asset) }
+    let(:work) { create(:asset, pref_label: "Hello") }
     before { render }
 
     it "renders the asset type as a hidden field with the current value" do
@@ -55,6 +55,11 @@ describe 'curation_concerns/base/_form.html.erb' do
     end
     it "renders the existing status selected" do
       expect(rendered).to include("<option selected=\"selected\" value=\"#{StatusType.active.uri}\">Active</option>")
+    end
+    it "renders hints after labels and before inputs" do
+      expect(page.find('.generic_work_pref_label label + .help-block')).to have_content 'Preferred title or name of the resource. This will be the principal value for the \'alt\' tag of web images.'
+
+      expect(page.find('.generic_work_pref_label .help-block + input').value).to eq('Hello')
     end
   end
 
