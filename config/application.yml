@@ -7,6 +7,10 @@
 # production:
 #   TMPDIR: "path/to/dir"
 development:
-  sample_variable: "foo"
+
 test:
-  sample_variable: "foo"
+  citi_api_uid: "citi_api_uid"
+  citi_api_password: "citi_api_password"
+  citi_api_endpoint: "https://citiworker"
+  citi_api_ssl_verify: "false"
+

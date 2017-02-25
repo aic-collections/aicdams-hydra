@@ -132,6 +132,19 @@ describe CitiResource do
         subject { SolrDocument.new(resource.to_solr, nil) }
         its(:preferred_representation_id) { is_expected.to eq(asset.id) }
       end
+
+      context "when changing the preferred representation" do
+        let(:new_asset) { create(:asset, :with_intermediate_file_set) }
+
+        before do
+          resource.preferred_representation_uri = new_asset.uri
+        end
+
+        it "notifies CITI of the change" do
+          expect(CitiNotificationJob).to receive(:perform_later).with(new_asset.intermediate_file_set.first, resource)
+          resource.save
+        end
+      end
     end
   end
 end

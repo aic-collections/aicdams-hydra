@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://citiworker/
+    body:
+      encoding: UTF-8
+      string: '{"uid":"citi_api_uid","password":"citi_api_password","type":"Work","citi_uid":"1234","image_uid":"nv935286k","last_modified":"2017-03-02T03:19:30+00:00"}'
+    headers:
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - close
+      Content-Length:
+      - '1619'
+      Content-Type:
+      - text/html
+      Date:
+      - Thu, 02 Mar 2017 03:19:32 GMT
+      Server:
+      - 4D/15.0.4
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version:
+  recorded_at: Thu, 02 Mar 2017 03:19:32 GMT
+recorded_with: VCR 3.0.3
