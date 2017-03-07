@@ -1,11 +1,5 @@
 # Environment variable configuration file used by Figaro
 #
-# This will be overwritten during deployment.
-# Used to set the temporary directories
-#
-# Ex:
-# production:
-#   TMPDIR: "path/to/dir"
 development:
 
 test:
@@ -14,3 +8,23 @@ test:
   citi_api_endpoint: "https://citiworker"
   citi_api_ssl_verify: "false"
 
+production:
+
+  # Temporary directory where image magick files are processed. In most environments, this will default to the
+  # the system's TMPDIR, such as /tmp, but sometimes these are not set so this is available to set it explicitly.
+  TMPDIR: "path/to/dir"
+
+  # UID or username of the entity with access to the CITI API.
+  # Note: if this is omitted, jobs or services that make calls to the API will not be run.
+  citi_api_uid: "citi_api_uid"
+
+  # Password for the above user
+  citi_api_password: "citi_api_password"
+
+  # Endpoint of the CITI API
+  citi_api_endpoint: "https://citiworker"
+
+  # Indicates whether or not SSL certs will be verified when accessing the API. This is necessary if the certificate
+  # is self-signed or is some another signing authority that is not in the system's certificate chain.
+  # Note: verification will only be skipped if the value is set to "false". All other values evaluate to "true".
+  citi_api_ssl_verify: "false"
