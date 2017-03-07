@@ -69,16 +69,29 @@ describe Lakeshore::IngestController do
     end
 
     context "when uploading a duplicate file" do
-      let(:duplicate_file) { double }
+      let(:file_set)      { build(:file_set, id: "existing-file-set-id") }
+      let(:parent)        { build(:work, pref_label: "work pref_label") }
+      let(:json_response) { JSON.parse(File.open(File.join(fixture_path, "api_409.json")).read).to_json }
+
+      let(:metadata) do
+        {
+          "visibility" => "department",
+          "depositor" => user.email,
+          "document_type_uri" => AICDocType.ConservationStillImage,
+          "uid" => "upload-id"
+        }
+      end
+
       subject { response }
 
       before do
-        allow(AssetTypeVerificationService).to receive(:call).with("asset", AICType.StillImage).and_return(true)
-        allow(controller).to receive(:duplicate_upload).and_return([duplicate_file])
-        post :create, asset_type: "StillImage", content: { intermediate: "asset" }, metadata: metadata
+        allow(AssetTypeVerificationService).to receive(:call).and_return(true)
+        allow(controller).to receive(:duplicate_upload).and_return([file_set])
+        allow(file_set).to receive(:parent).and_return(parent)
+        post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
       end
       its(:status) { is_expected.to eq(409) }
-      its(:body) { is_expected.to start_with("[\"Intermediate file is a duplicate of") }
+      its(:body) { is_expected.to eq(json_response) }
     end
 
     context "when the ingestor does not exist in Fedora" do

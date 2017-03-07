@@ -1,0 +1,11 @@
+{
+  "message" : "Duplicate detected.",
+  "uploaded_resource" : {
+    "id": "upload-id",
+    "file_name" : "sun.png"
+  },
+  "stored_resource" : {
+    "fileset_id" : "existing-file-set-id",
+    "pref_label" : "work pref_label"
+  }
+}
