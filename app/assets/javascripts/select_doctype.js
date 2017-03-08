@@ -66,7 +66,6 @@
         if (option) {
           return $(html).append(option);
         } else {
-          console.log("hello no option for subtype")
           return $(html).append("<option value=''>Please Select</option>");;
         }
       },
@@ -95,7 +94,6 @@ Blacklight.onLoad(function() {
 
   var option = "<option value=''>Please Select</option>";
   var formModel = select_doctype.getFormModel($('form.simple_form'));
-
   var docTypeSelector = "#"+formModel+"_document_type_uri";
   var docTypeDivSelector = "div."+formModel+"_document_type_uri";
 
@@ -146,12 +144,8 @@ Blacklight.onLoad(function() {
             $(firstSubTypeSelector).remove();
             $(firstSubTypeDivSelector).attr('data-uri', '');
             // no subtypes, remove uri value.
-            //uri values get removed, and not sent to server in params, but somehow do not update object.  .. solr-index??
           }
-        } else {
-          console.log("no doc type value, remove sub select?")
         }
-
         //creating subtype2 list
         $(firstSubTypeSelector).change(function() {
             var dropdown = $(this);
@@ -182,23 +176,19 @@ Blacklight.onLoad(function() {
       $(totalSubtypes).each(function(){
         if (this.value == $(firstSubTypeDivSelector).data('uri')){
           validSubtype = true;
-          console.log("hey, validSubtype: ", validSubtype );
         }
       });
-      //console.log("is the uri value in the subtype list, in an item's value property?", $(firstSubTypeDivSelector).data('uri'));
-      //if there is no subtypes list, don't draw the sub select, if the subtype is invalid make sure the subtype data-uri is empty also.
 
       if ( validSubtype == false ) {
         $(firstSubTypeDivSelector).attr('data-uri', '');
         $(firstSubTypeDivSelector).data('uri', '');
       }
-
-      if (totalSubtypes !== undefined) {
-        $(docTypeSelector).after(
-            select_doctype.documentSubType(formModel,
+      // i'd prefer to not create an empty dropdown,
+      // but it appears necessary (to me right now, anyway) to pass the empty string as the value for first_document_sub_type_uri
+      //if (totalSubtypes !== undefined) {
+      $(docTypeSelector).after(
+        select_doctype.documentSubType(formModel,
               "first_document_sub_type_uri"));
-
-        console.log("totalSubtypes: ", totalSubtypes);
         var subType = $(firstSubTypeDivSelector).data('uri');
         var subTypeList = $(firstSubTypeSelector);
 
@@ -211,7 +201,7 @@ Blacklight.onLoad(function() {
           var subType2 = $(secondSubTypeDivSelector).data('uri');
           var subTypeList2 = $(secondSubTypeSelector);
                     select_doctype.makeDropdown(subTypeList2, subType2, totalSubtypes2);
-        }
+        //}
       }
     }
   });

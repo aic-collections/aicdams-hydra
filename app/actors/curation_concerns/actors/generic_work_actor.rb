@@ -13,7 +13,20 @@ module CurationConcerns
 
       def update(attributes)
         attributes.delete("asset_type")
+        # byebug
         super
+      end
+
+      def remove_sub_doc_types(attributes)
+        curation_concern.attributes.slice!('first_document_sub_type') unless attributes.keys.include?('first_document_sub_type')
+      end
+
+      def apply_save_data_to_curation_concern(attributes)
+        attributes[:rights] = Array(attributes[:rights]) if attributes.key? :rights
+        remove_blank_attributes!(attributes)
+        curation_concern.attributes = attributes
+        curation_concern.save
+        curation_concern.date_modified = CurationConcerns::TimeService.time_in_utc
       end
 
       def override_dept_created(dept)
