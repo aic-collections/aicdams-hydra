@@ -48,7 +48,7 @@ class Resource < ActiveFedora::Base
   def reindex_relations
     ids = solr_relation_ids + relation_ids
     yield
-    ids.uniq.map { |id| ActiveFedora::Base.find(id).update_index }
+    ids.uniq.map { |id| reindex_related_resource(id) }
   end
 
   private
@@ -78,5 +78,11 @@ class Resource < ActiveFedora::Base
     def attachment_ids
       return [] unless respond_to?(:attachments)
       attachments.map(&:id)
+    end
+
+    def reindex_related_resource(id)
+      ActiveFedora::Base.find(id).update_index
+    rescue ActiveFedora::ObjectNotFoundError
+      Rails.logger.warn("Attempted to reindex related resource #{id}, but it was not found in Fedora.")
     end
 end
