@@ -59,6 +59,51 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_doctype_metadata do
+      pref_label                   "Asset with doctype"
+      description                  ["A sample asset with a complete listing of metadata"]
+      date_modified                 Date.parse("October 31, 2016")
+      date_uploaded                 Date.parse("October 30, 2016")
+      document_type_uri            "http://definitions.artic.edu/doctypes/DevelopmentStillImage"
+      keyword                      { [create(:list_item, pref_label: "sample keyword").uri] }
+      view                         { [create(:list_item, pref_label: "sample view").uri] }
+      capture_device               "capture device"
+      digitization_source          { create(:list_item, pref_label: "digitizaton source").uri }
+      legacy_uid                   ["legacy_uid1", "legacy_uid2"]
+      compositing                  { create(:list_item, pref_label: "compositing").uri }
+      imaging_uid                  ["imaging_uid"]
+      light_type                   { create(:list_item, pref_label: "light type").uri }
+      transcript                   "a transcript"
+      batch_uid                    "batch_uid"
+      alt_label                    ["Alternative labels"]
+      language                     ["English"]
+      view_notes                   ["view note 1", "view note 2"]
+      visual_surrogate             "a visual surrogate"
+    end
+
+    trait :with_doctype_and_subtype_metadata do
+      pref_label                   "Asset with doctype and subtype"
+      description                  ["A sample asset with a complete listing of metadata"]
+      date_modified                 Date.parse("October 31, 2016")
+      date_uploaded                 Date.parse("October 30, 2016")
+      document_type_uri            "http://definitions.artic.edu/doctypes/GeneralStillImage"
+      first_document_sub_type_uri  "http://definitions.artic.edu/doctypes/IntResStillImage"
+      keyword                      { [create(:list_item, pref_label: "sample keyword").uri] }
+      view                         { [create(:list_item, pref_label: "sample view").uri] }
+      capture_device               "capture device"
+      digitization_source          { create(:list_item, pref_label: "digitizaton source").uri }
+      legacy_uid                   ["legacy_uid1", "legacy_uid2"]
+      compositing                  { create(:list_item, pref_label: "compositing").uri }
+      imaging_uid                  ["imaging_uid"]
+      light_type                   { create(:list_item, pref_label: "light type").uri }
+      transcript                   "a transcript"
+      batch_uid                    "batch_uid"
+      alt_label                    ["Alternative labels"]
+      language                     ["English"]
+      view_notes                   ["view note 1", "view note 2"]
+      visual_surrogate             "a visual surrogate"
+    end
+
     trait :with_metadata do
       pref_label                   "Asset with metadata"
       description                  ["A sample asset with a complete listing of metadata"]
