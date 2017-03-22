@@ -30,4 +30,17 @@ describe "Editing assets" do
     expect(page).to have_selector('.asset-stillimage')
     expect(page).not_to have_selector('.asset-text')
   end
+
+  it "selects a new doctype that has no sub or sub-subtypes and persists it" do
+    visit(edit_polymorphic_path(asset))
+
+    find('select#generic_work_document_type_uri').select("Development")
+    click_button("Save")
+
+    visit(polymorphic_path(asset))
+
+    expect(page).to have_content("Development")
+    expect(page).not_to have_content("Imaging > Event Photography > Lecture")
+    expect(page).not_to have_content("Development > Lecture")
+  end
 end
