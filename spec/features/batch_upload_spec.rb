@@ -37,7 +37,7 @@ describe "Batch upload" do
       # Add descriptions
       click_link("Descriptions")
       select("Imaging", from: "batch_upload_item_document_type_uri")
-      select("Event", from: "batch_upload_item_first_document_sub_type_uri")
+      select("Event Photography", from: "batch_upload_item_first_document_sub_type_uri")
       select("Lecture", from: "batch_upload_item_second_document_sub_type_uri")
 
       # Displaying hints
@@ -50,6 +50,7 @@ describe "Batch upload" do
       click_button("Save")
 
       # Viewing My Assets
+
       within("div#documents") do
         expect(page).to have_content("Listing of items you have deposited in LAKE")
         expect(page).to have_link("sun.png")
