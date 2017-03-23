@@ -2,7 +2,6 @@
 
 (function( $ ){
   $.fn.selectDoctype = function( options ) {
-
       var select_doctype = {
 
             getAssetType: function(data, assetType) {
@@ -24,7 +23,7 @@
                 }
                 if (assetType == 'http://definitions.artic.edu/ontology/1.0/type/Archive') {
                     totalDocTypes = data.asset_types.Archive.doctypes;
-                }                
+                }
                 return totalDocTypes;
             },
 
