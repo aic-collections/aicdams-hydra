@@ -2,7 +2,6 @@
 
 (function( $ ){
   $.fn.selectDoctype = function( options ) {
-
       var select_doctype = {
 
             getAssetType: function(data, assetType) {
