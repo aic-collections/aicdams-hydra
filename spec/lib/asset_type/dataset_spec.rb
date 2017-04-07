@@ -14,7 +14,8 @@ describe AssetType::Dataset do
                                         "application/vnd.oasis.opendocument.spreadsheet",
                                         "application/xml",
                                         "application/twbx",
-                                        "text/tab-separated-values") }
+                                        "text/tab-separated-values",
+                                        "application/vnd.google-earth.kml+xml") }
   end
 
   describe "::types" do
