@@ -46,6 +46,26 @@ jpf_mime_type = MIME::Type.new("image/jpf") do |t|
 end
 MIME::Types.add jpf_mime_type
 
+dcr_mime_type = MIME::Type.new("application/x-director") do |t|
+  t.extensions = %w(dcr)
+end
+MIME::Types.add dcr_mime_type
+
+kml_mime_type = MIME::Type.new("application/vnd.google-earth.kml+xml") do |t|
+  t.extensions = %w(kml)
+end
+MIME::Types.add kml_mime_type
+
+swf_mime_type = MIME::Type.new("application/x-shockwave-flash") do |t|
+  t.extensions = %w(swf)
+end
+MIME::Types.add swf_mime_type
+
+wav_mime_type = MIME::Type.new("audio/wav") do |t|
+  t.extensions = %w(wav)
+end
+MIME::Types.add wav_mime_type
+
 # Register application mime types
 Mime::Type.register 'application/x-endnote-refer', :endnote
 Mime::Type.register "application/n-triples", :nt
