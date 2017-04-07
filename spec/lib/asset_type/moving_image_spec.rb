@@ -16,7 +16,7 @@ describe AssetType::MovingImage do
                                         "video/x-msvideo",
                                         "video/x-ms-wmv",
                                         "video/mts",
-                                        "application/x-director", 
+                                        "application/x-director",
                                         "application/x-shockwave-flash") }
   end
 
