@@ -44,6 +44,9 @@ set :linked_files, fetch(:linked_files, []).push(
   'config/property_permissions.yml',
   'config/redis.yml',
   'config/resque-pool.yml',
+  'config/resque-web.rb',
+  'config/initializers/resque_config.rb',
+  'config/initializers/resque_admin.rb',
   'config/role_map.yml',
   'config/secrets.yml',
   'config/solr.yml'

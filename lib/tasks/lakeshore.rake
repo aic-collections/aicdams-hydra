@@ -53,6 +53,11 @@ namespace :lakeshore do
     end
   end
 
+  desc "Testing Failure Handling"
+  task fail: :environment do
+    Lakeshore::TestFailJob.perform_later
+  end
+
   def query(start=0)
     Blacklight.default_index.connection.get('select', params: {
                                                                 q: "*:*",
@@ -62,5 +67,4 @@ namespace :lakeshore do
                                                                 rows: 1000
                                                               })
   end
-
 end

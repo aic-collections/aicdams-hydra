@@ -4,4 +4,5 @@ Resque.redis = Redis.new(host: config[:host], port: config[:port], thread_safe: 
 
 Resque.inline = Rails.env.test?
 Resque.redis.namespace = "#{Sufia.config.redis_namespace}:#{Rails.env}"
-Resque.logger.level = Logger::INFO
+Resque.logger = Logger.new(Rails.root.join('log', "#{Rails.env}_resque.log"))
+Resque.logger.level = Logger::DEBUG
