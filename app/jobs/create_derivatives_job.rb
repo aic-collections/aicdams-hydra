@@ -10,7 +10,7 @@ class CreateDerivativesJob < ActiveJob::Base
     filename = CurationConcerns::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath)
 
     file_set.create_derivatives(filename)
-
+    Resque.logger.info("queue running fine: #{CurationConcerns.config.ingest_queue_name}")
     # Reload from Fedora and reindex for thumbnail and extracted text
     file_set.reload
     file_set.update_index

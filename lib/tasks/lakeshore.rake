@@ -62,5 +62,4 @@ namespace :lakeshore do
                                                                 rows: 1000
                                                               })
   end
-
 end

@@ -1,5 +1,4 @@
 namespace :resque do
-
   desc "Start resque pool workers"
   task :start do
     invoke "resque:restart"
