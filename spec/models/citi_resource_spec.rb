@@ -20,7 +20,7 @@ describe CitiResource do
 
   describe "#status" do
     subject { described_class.new.status }
-    it { is_expected.to eq(StatusType.active) }
+    it { is_expected.to eq(ListItem.active_status) }
   end
 
   describe "::find_by_citi_uid" do

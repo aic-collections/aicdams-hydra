@@ -1,11 +1,20 @@
-pref_label: "Compositing"
+pref_label: "Compositing Type"
 description: "How an image is composed (single image, stitched, overlay, etc.)"
+type: "AICType.CompositingTypeList"
+additional_types: []
+item_type: "AICType.CompositingType"
+additional_item_types: ["AICType.Authority"]
+uid: "LS-2"
 members:
  - pref_label: "Overlay"
    description: ""
+   uid: "CO-1"
  - pref_label: "Pre-Flat"
    description: ""
+   uid: "CO-2"
  - pref_label: "Composite"
    description: ""
+   uid: "CO-3"
  - pref_label: "Mosaic"
    description: ""
+   uid: "CO-4"

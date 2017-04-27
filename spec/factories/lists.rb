@@ -24,20 +24,4 @@ FactoryGirl.define do
       end
     end
   end
-
-  factory :status, class: List do
-    pref_label "Status"
-
-    after(:build) do |list|
-      list.members << build(:status_type)
-    end
-  end
-
-  factory :list_item do
-    pref_label "Item 1"
-  end
-
-  factory :status_type do
-    pref_label "Active"
-  end
 end

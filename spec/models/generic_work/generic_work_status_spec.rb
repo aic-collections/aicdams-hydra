@@ -13,7 +13,7 @@ describe "GenericFile" do
   end
 
   describe "#status_uri" do
-    let(:new_status) { create(:status_type, pref_label: "New") }
+    let(:new_status) { create(:list_item) }
     before { example_file.status_uri = new_status.uri }
     its(:status) { is_expected.to eq(new_status) }
     it { is_expected.not_to be_active }

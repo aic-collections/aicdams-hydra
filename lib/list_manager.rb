@@ -10,26 +10,25 @@ class ListManager
     @source = YAML.load_file(file)
   end
 
-  def exists?
-    !List.find_by_label(pref_label).nil?
-  end
-
-  def create!
-    members.each do |member|
-      update_membership_for(member)
+  def create
+    source.fetch("members", []).each do |member|
+      manange_membership_for(member)
     end
   end
 
   # @param [Hash] member from the list of members in the yaml file
-  def update_membership_for(member)
-    return if list_has?(member)
-    list.members << member_class.new(pref_label: pref_label(member), description: [description(member)])
+  def manange_membership_for(member)
+    if list_has?(member)
+      update_item(member)
+    else
+      create_item(member)
+    end
   end
 
   # @param [Hash] member
-  # returns [Boolean] if the list already has a member with the same pref_label
+  # returns [Boolean] if the list already has a member with the same uid
   def list_has?(member)
-    list.members.map(&:pref_label).include?(pref_label(member))
+    list.members.map(&:uid).include?(uid(member))
   end
 
   private
@@ -44,19 +43,80 @@ class ListManager
       item.fetch("description", nil)
     end
 
-    def members
-      source.fetch("members", [])
+    # A UID is required, so fetch will raise an error if it is missing
+    def uid(item = nil)
+      item ||= source
+      item.fetch("uid")
     end
 
-    def member_class
-      pref_label == "Status" ? StatusType : ListItem
+    # A list type is required. It can be either a string uri, or a string for a term in AICType
+    def type
+      build_uri(source.fetch("type"))
+    end
+
+    # An item type is required. It can be either a string uri, or a string for a term in AICType
+    def item_type
+      build_uri(source.fetch("item_type"))
+    end
+
+    def build_uri(type)
+      return ::RDF::URI(type) if type =~ /^http/
+      type.split(".").first.constantize.send(type.split(".").last)
+    rescue StandardError
+      raise NotImplementedError, "#{type} is not defined in one of Lakeshore's RDF::StrictVocabulary classes"
+    end
+
+    def list_types
+      source.fetch("additional_types", []).map { |at| build_uri(at) } + [type]
+    end
+
+    def list_item_types
+      source.fetch("additional_item_types", []).map { |at| build_uri(at) } + [item_type]
     end
 
     def list
-      @list ||= if exists?
-                  List.find_by_label(pref_label)
+      @list ||= if List.find_by_uid(uid)
+                  update_list
                 else
-                  List.create(pref_label: pref_label, description: [description])
+                  create_list
                 end
+    end
+
+    # calling .create doesn't seem to work with .tap
+    def create_list
+      List.new(id: service.hash(uid)).tap do |list|
+        list.pref_label = pref_label
+        list.description = [description]
+        list.uid = uid
+        list_types.each { |t| list.type << t }
+      end.save
+      List.find_by_uid(uid)
+    end
+
+    def update_list
+      list = List.find_by_uid(uid)
+      list.update(pref_label: pref_label, description: [description])
+      RDFTypeChangeService.call(list, list_types)
+      list.reload
+    end
+
+    def create_item(member)
+      list.members << ListItem.new(id: service.hash(uid(member))).tap do |item|
+        list_item_types.each { |t| item.type << t }
+        item.pref_label = pref_label(member)
+        item.description = [description(member)]
+        item.uid = uid(member)
+      end
+    end
+
+    def update_item(member)
+      item = ListItem.find_by_uid(uid(member))
+      item.update(pref_label: pref_label(member), description: [description(member)])
+      RDFTypeChangeService.call(item, list_item_types)
+      item.reload
+    end
+
+    def service
+      @service ||= UidMinter.new
     end
 end

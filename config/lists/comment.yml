@@ -1,9 +1,0 @@
-pref_label: "Comment Category"
-description: "Comment category."
-members:
-  - pref_label: "General"
-    description: ""
-  - pref_label: "Technical Note"
-    description: ""
-  - pref_label: "View Information"
-    description: ""

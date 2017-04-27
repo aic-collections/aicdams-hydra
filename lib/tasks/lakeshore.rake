@@ -35,7 +35,7 @@ namespace :lakeshore do
   desc "Load lists"
   task load_lists: :environment do
     Dir.glob("config/lists/*.yml").each do |list|
-      ListManager.new(list).create!
+      ListManager.new(list).create
     end
   end
 

@@ -12,7 +12,7 @@ class LakeshoreTesting
     end
 
     def create_minimal_resources
-      FactoryGirl.create(:status)
+      ListManager.new(File.join(Rails.root, "config/lists/status.yml")).create
       FactoryGirl.create(:department100)
       FactoryGirl.create(:department200)
       FactoryGirl.create(:admins)

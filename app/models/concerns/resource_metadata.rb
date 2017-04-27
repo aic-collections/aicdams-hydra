@@ -28,10 +28,6 @@ module ResourceMetadata
     # TODO: Can we use what CC uses?
     property :icon, predicate: AIC.icon, multiple: false, class_name: "ActiveFedora::Base"
 
-    property :uid, predicate: AIC.uid, multiple: false do |index|
-      index.as :symbol, :stored_searchable
-    end
-
     property :updated, predicate: AIC.updated, multiple: false do |index|
       index.type :date
       index.as :stored_sortable

@@ -26,7 +26,7 @@ class AttributeValueAdapter
       "view"                     => ListItem,
       "aic_depositor"            => AICUser,
       "dept_created"             => Department,
-      "status"                   => StatusType,
+      "status"                   => ListItem,
       "preferred_representation" => GenericWork
     }
   end
