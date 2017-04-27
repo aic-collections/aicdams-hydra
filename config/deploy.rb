@@ -41,6 +41,7 @@ set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
   'config/fedora.yml',
   'config/initializers/sufia.rb',
+  'config/property_permissions.yml',
   'config/redis.yml',
   'config/resque-pool.yml',
   'config/role_map.yml',
@@ -49,11 +50,7 @@ set :linked_files, fetch(:linked_files, []).push(
 )
 set :linked_dirs, fetch(:linked_dirs, []).push(
   'log',
-  'tmp/pids',
-  'tmp/cache',
-  'tmp/sockets',
-  'tmp/derivatives',
-  'tmp/uploads',
+  'tmp',
   'vendor/bundle',
   'public/system'
 )

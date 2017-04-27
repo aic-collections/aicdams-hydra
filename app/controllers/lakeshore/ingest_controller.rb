@@ -44,7 +44,7 @@ module Lakeshore
         return unless intermediate_file && check_duplicates?
         return if duplicate_upload.empty?
         ingest.errors.add(:intermediate_file, "is a duplicate of #{duplicate_upload.first}")
-        render json: ingest.errors.full_messages, status: :conflict
+        render json: duplicate_error, status: :conflict
       end
 
       def validate_preferred_representations
@@ -72,7 +72,21 @@ module Lakeshore
       end
 
       def duplicate_upload
-        @duplicate_upload ||= DuplicateUploadVerificationService.new(intermediate_file).duplicates
+        @duplicate_upload ||= DuplicateUploadVerificationService.new(intermediate_file).duplicate_file_sets
+      end
+
+      def duplicate_error
+        {
+          message: "Duplicate detected.",
+          uploaded_resource: {
+            id: ingest.params["metadata"].fetch("uid", nil),
+            file_name: intermediate_file.original_filename
+          },
+          stored_resource: {
+            fileset_id: duplicate_upload.first.id,
+            pref_label: duplicate_upload.first.parent.pref_label
+          }
+        }
       end
   end
 end

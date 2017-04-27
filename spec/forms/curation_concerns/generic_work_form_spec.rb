@@ -95,4 +95,27 @@ describe CurationConcerns::GenericWorkForm do
       its(:attachments_for) { is_expected.to eq([resource]) }
     end
   end
+
+  describe "#disabled?" do
+    context "when using :only" do
+      subject { form.disabled?(:publish_channels) }
+      it { is_expected.to be(true) }
+    end
+
+    context "without any restrictions" do
+      subject { form.disabled?(:capture_device) }
+      it { is_expected.to be(false) }
+    end
+
+    context "with an unlisted field" do
+      subject { form.disabled?(:bogus) }
+      it { is_expected.to be(false) }
+    end
+
+    context "with an admin user" do
+      let(:user1) { create(:admin) }
+      subject { form.disabled?(:publish_channels) }
+      it { is_expected.to be(false) }
+    end
+  end
 end

@@ -1,0 +1,14 @@
+# Defines property-level permissions based on department UIDs.
+#
+# The form object uses this file to determine access from the field keys in each of the record views found under
+# app/views/records/*. If no field key is listed, then no restrictions are made.
+#
+# Example: Title is only editable by groups 1 and 2
+#
+# title:
+#   only: ["1", "2"]
+#
+publish_channels:
+  only: ["87"]
+
+capture_device:

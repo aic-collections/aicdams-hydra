@@ -7,8 +7,14 @@ class DuplicateUploadVerificationService
     @file = file
   end
 
+  # @return [Array<GenericWork>]
   def duplicates
-    FileSet.where(digest_ssim: fedora_shasum).map(&:parent)
+    duplicate_file_sets.map(&:parent)
+  end
+
+  # @return [Array<FileSet>]
+  def duplicate_file_sets
+    FileSet.where(digest_ssim: fedora_shasum)
   end
 
   private

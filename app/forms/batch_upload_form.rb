@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class BatchUploadForm < Sufia::Forms::BatchUploadForm
   include AssetFormBehaviors
+  include PropertyPermissions
 
   attr_writer :parameterized_relationships
 

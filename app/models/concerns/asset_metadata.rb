@@ -13,8 +13,9 @@ module AssetMetadata
     property :first_document_sub_type, predicate: AIC.documentSubType1, multiple: false, class_name: "Definition"
     property :second_document_sub_type, predicate: AIC.documentSubType2, multiple: false, class_name: "Definition"
 
-    # Force these to singular terms
+    # Force these to singular terms. Ensure a nil or empty set forces a change.
     def document_type=(value)
+      document_type_will_change! unless value.present?
       if value.respond_to?(:each)
         super(value.first)
       else
@@ -23,6 +24,7 @@ module AssetMetadata
     end
 
     def first_document_sub_type=(value)
+      first_document_sub_type_will_change! unless value.present?
       if value.respond_to?(:each)
         super(value.first)
       else
@@ -31,6 +33,7 @@ module AssetMetadata
     end
 
     def second_document_sub_type=(value)
+      second_document_sub_type_will_change! unless value.present?
       if value.respond_to?(:each)
         super(value.first)
       else

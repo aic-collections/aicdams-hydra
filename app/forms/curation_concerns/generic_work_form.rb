@@ -2,6 +2,7 @@
 module CurationConcerns
   class GenericWorkForm < Sufia::Forms::WorkForm
     include AssetFormBehaviors
+    include PropertyPermissions
 
     delegate :dept_created, :attachment_uris, :attachments, to: :model
 

@@ -34,7 +34,7 @@ module Lakeshore
     def attributes_for_actor
       attributes = CurationConcerns::GenericWorkForm.model_attributes(params.fetch("metadata"))
       attributes[:uploaded_files] = files
-      attributes[:permissions_attributes] = JSON.parse(params.fetch(:sharing, "[]"))
+      attributes[:permissions_attributes] = permitted_permissions
       attributes.merge!(asset_type: asset_type, ingest_method: "api")
     end
 
@@ -79,6 +79,15 @@ module Lakeshore
         @presevation_master_file = content.delete(:pres_master)
         @legacy_file = content.delete(:legacy)
         @additional_files = content
+      end
+
+      # @return [Array<Hash>]
+      # Removes any additional permissions having to do with the depositor.
+      # The depositor's permissions are fixed and are not allowed to be altered.
+      def permitted_permissions
+        JSON.parse(params.fetch(:sharing, "[]")).delete_if do |permission|
+          permission.fetch("type", nil) == "person" && permission.fetch("name", nil) == ingestor.email
+        end
       end
 
       def original_upload

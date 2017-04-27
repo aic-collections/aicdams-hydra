@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe 'curation_concerns/base/_form.html.erb' do
   let(:user)    { create(:user1) }
-  let(:ability) { double }
+  let(:ability) { Ability.new(user) }
   let(:form)    { CurationConcerns::GenericWorkForm.new(work, ability) }
   let(:page)    { Capybara::Node::Simple.new(rendered) }
 
@@ -105,6 +105,30 @@ describe 'curation_concerns/base/_form.html.erb' do
       within("div.generic_work_view_uris") do
         is_expected.to have_content("<option selected=\"selected\" value=\"#{item.uri}\">#{item.pref_label}</option>")
         is_expected.to have_content("<option selected=\"selected\" value=\"#{addl.uri}\">#{addl.pref_label}</option>")
+      end
+    end
+  end
+
+  describe "publish_channel_uris" do
+    let(:work) { create(:asset) }
+
+    subject { Capybara::Node::Simple.new(rendered) }
+
+    context "when the user does not have permission to edit the field" do
+      before { render }
+
+      it "is disabled" do
+        is_expected.to have_select('generic_work_publish_channel_uris', disabled: true)
+      end
+    end
+
+    context "when the user has permission to edit the field" do
+      let(:user) { create(:admin) }
+
+      before { render }
+
+      it "is enabled" do
+        is_expected.to have_select('generic_work_publish_channel_uris')
       end
     end
   end

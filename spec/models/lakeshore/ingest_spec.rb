@@ -136,6 +136,21 @@ describe Lakeshore::Ingest do
                                   ],
                                   uploaded_files: ["1"])}
     end
+
+    context "when specifying additional permissions for the depositor" do
+      subject { ingest.attributes_for_actor[:permissions_attributes] }
+
+      let(:params) do
+        {
+          asset_type: "StillImage",
+          content: { intermediate: "file_set" },
+          metadata: { document_type_uri: "doc_type", depositor: user.email },
+          sharing: '[{ "type" : "group", "name" : "112", "access" : "read" }, {"type" : "person", "name" : "' + user.email + '", "access" : "edit"}]'
+        }
+      end
+
+      it { is_expected.to contain_exactly(type: "group", name: "112", access: "read") }
+    end
   end
 
   describe "#represented_resources" do
