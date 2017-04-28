@@ -1,0 +1,125 @@
+﻿@import 'variables';
+@import 'mixins';
+@import 'mixins-extended';
+@import 'scaffolding';
+@import 'buttons';
+@import 'range';
+@import 'button-groups';
+@import 'header-panel';
+@import 'left-panel';
+@import 'right-panel';
+@import 'center-panel';
+@import 'footer-panel';
+@import 'overlays';
+@import 'iiif-gallery-component';
+@import 'iiif-tree-component';
+@import 'iiif-metadata-component';
+@import 'mobile';
+
+@img-path: '../../../modules/uv-shared-module/img/';
+
+#app {
+
+    :focus {
+        //outline: 1px dotted @btn-focused-border;
+    }
+
+    background-color: @body-bg;
+    position: relative;
+
+    // Common styles
+    .btn-default,
+    .btn-primary,
+    .btn-success,
+    .btn-info,
+    .btn-warning,
+    .btn-danger {
+        .border-radius(0);
+    }
+
+    .imageBtn{
+        cursor: pointer;
+        .btn-focus();
+    }
+
+    .action, a.action.black, input.action {
+        display: inline-block;
+        background: url('@{img-path}sprite.png') 0 -1000px no-repeat;
+        text-transform: none;
+        padding: 0 0 0 16px;
+        font-weight: bold;
+    }
+
+    #commsFrame{
+        width: 1px;
+        height: 1px;
+        border: none;
+    }
+
+    .headerPanel{
+        position: relative;
+        color: #fff;
+        height: 40px;
+    }
+
+    .mainPanel{
+        position: relative;
+        margin-top: @panel-margin;
+        margin-right: @panel-margin;
+        margin-bottom: 0px;
+        margin-left: @panel-margin;
+    }
+
+    .leftPanel{
+        position: absolute;
+        background: @panel-dark-bg;
+        border: @panel-border;
+    }
+
+    .centerPanel{
+        position: absolute;
+    }
+
+    .rightPanel{
+        position: absolute;
+        background: @panel-dark-bg;
+        border: @panel-border;
+    }
+
+    .footerPanel{
+        position: relative;
+        margin-top: 0;
+        margin-right: @panel-margin;
+        margin-bottom: 0px;
+        margin-left: @panel-margin;
+    }
+
+    .footerPanel.mobile {
+        display: none;
+    }
+}
+
+@media print {
+   #app {
+
+       .headerPanel {
+           display: none;
+       }
+
+       .leftPanel {
+           display: none;
+       }
+
+       .rightPanel {
+           display: none;
+       }
+
+       .footerPanel {
+           display: none;
+       }
+
+       .mobileFooter {
+           display: none;
+       }
+   }
+}

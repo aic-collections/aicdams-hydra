@@ -1,5 +1,7 @@
 # frozen_string_literal: true
-class AssetPresenter < Sufia::WorkShowPresenter
+# AICWorkShowPresenter subclasses Sufia::WorkShowPresenter
+# and adds tiling image and canvas displaying behaviors
+class AssetPresenter < AICWorkShowPresenter
   self.file_presenter_class = FileSetPresenter
 
   def self.terms
