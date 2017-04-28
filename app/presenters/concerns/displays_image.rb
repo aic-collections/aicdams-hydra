@@ -8,11 +8,11 @@ module DisplaysImage
     return nil unless FileSet.exists?(id)
 
     url = DerivativePath.access_path(id)
-    # byebug
-    # check the object's asset type in order to determine if we
-    # go ahead with riiif server or just the derivative server and rails. jp2 means riiif and pdf (and the rest that will be added) means regular rails. but, this needs to be done at the controller level, in order to load the correct partial - the one with the uv tag or the one without.
+    doc = ActiveFedora::SolrService.get("id:#{id}")
+    height = doc["response"]["docs"][0]["height_is"]
+    width = doc["response"]["docs"][0]["width_is"]
 
-    IIIFManifest::DisplayImage.new(url, width: 640, height: 480, iiif_endpoint: iiif_endpoint(id))
+    IIIFManifest::DisplayImage.new(url, width: width, height: height, iiif_endpoint: iiif_endpoint(id))
   end
 
   private

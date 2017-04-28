@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '~> 3.0'
 gem 'openseadragon', '0.3.0'
-gem 'riiif', '~> 0.3'
+gem 'riiif'
 gem 'iiif_manifest', '~> 0.1.2'
 
 
