@@ -1,0 +1,51 @@
+﻿
+#app{
+
+    .rightPanel{
+        @img-path: '../../../modules/uv-moreinforightpanel-module/img/';
+
+        .top{
+            .title{
+                text-transform: uppercase;
+            }
+        }
+
+        .content{
+            padding: @padding-medium;
+        }
+
+        .main{
+            overflow: auto;
+            color: @text-color;
+
+            &.loading{
+                .loading(@loader-black-bg);
+            }
+
+            .noData{
+                padding: 0 @padding-medium-horizontal (@padding-medium-vertical * 2) @padding-medium-horizontal;
+            }
+
+            .groups {
+                padding: @padding-medium-vertical @padding-medium-horizontal (@padding-medium-vertical * 2) @padding-medium-horizontal;
+
+                .items{
+
+                    .header {
+                        font-size: @font-size-small;
+                        text-transform: uppercase;
+                    }
+
+                    .item {
+
+                        .header{
+                            font-size: @font-size-small;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
