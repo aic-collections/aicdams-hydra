@@ -12,16 +12,17 @@
     </div>
     <% end %>
   </div>
-  <div class="col-sm-8">
+  <div class="col-xs-12">
+    <%= render 'representative_media', presenter: @presenter %>
+    <%= render "show_actions", presenter: @presenter %>
+    Last modified: <%= @presenter.date_modified %>  
+  </div>
+  <div class="col-xs-12">
     <%= render 'work_description', presenter: @presenter %>
     <%= render 'relationships', presenter: @presenter %>
     <%= render 'metadata', presenter: @presenter %>
   </div>
-  <div class="col-sm-4">
-    <%= render "show_actions", presenter: @presenter %>
-    Last modified: <%= @presenter.date_modified %>
-    <%= render 'representative_media', presenter: @presenter %>
-  </div>
+
 </div>
 
 <% if !@presenter.citi_presenter? %>

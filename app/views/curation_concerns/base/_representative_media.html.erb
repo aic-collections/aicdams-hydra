@@ -1,7 +1,8 @@
-<% if presenter.representative_id.present? && presenter.representative_presenter.present? %>
-  <% mime_type = presenter.representative_presenter.solr_document['mime_type_ssi']
-    if ['image/jpeg', 'image/png'].include? mime_type %>
-    <%= render 'catalog/openseadragon_default', document: presenter.representative_presenter.solr_document %>
+<% if presenter.representative_id.present? %>
+  <% if presenter.representative_presenter.image? || presenter.representative_presenter.pdf? %>
+    <%= UniversalViewer.script_tag %>
+    <div class="uv viewer" data-uri="<%= main_app.polymorphic_path [main_app, :manifest, presenter] %>"></div>
+
   <% else %>
     <%= media_display presenter.representative_presenter %>
   <% end %>

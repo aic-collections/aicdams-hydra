@@ -2,6 +2,8 @@
 class FileSetPresenter < Sufia::FileSetPresenter
   delegate :rdf_types, to: :solr_document
 
+  include DisplaysImage
+
   def permission_badge_class
     PermissionBadge
   end
