@@ -23,6 +23,7 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("attachments", :symbol)] = object.attachments.map(&:id)
       solr_doc[Solrizer.solr_name("related_works", :symbol)] = field_builder.related_works
       solr_doc[Solrizer.solr_name("related_work_main_ref_number", :symbol)] = field_builder.main_ref_numbers
+      solr_doc[Solrizer.solr_name("rdf_types", :symbol)] = object.type.map(&:to_s)
     end
   end
 

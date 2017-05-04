@@ -61,11 +61,13 @@ class InboundRelationships
 
   private
 
+    # @return [Array<SolrDocument>]
     def resources_with(solr_field)
       return [] if id.nil?
-      ActiveFedora::Base.where(solr_field => id)
+      ActiveFedora::SolrService.query("#{solr_field}:#{id}").map { |hit| SolrDocument.new(hit) }
     end
 
+    # @return [Array<String>]
     def ids_with(solr_field)
       return [] if id.nil?
       ActiveFedora::SolrService.query("{!field f=#{solr_field}}#{id}", fl: ActiveFedora.id_field)

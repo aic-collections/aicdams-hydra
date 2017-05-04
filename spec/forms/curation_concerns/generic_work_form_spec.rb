@@ -75,24 +75,24 @@ describe CurationConcerns::GenericWorkForm do
   end
 
   context "when the asset has a relationship to a CITI resource" do
-    let(:asset)    { create(:asset) }
-    let(:resource) { create(:exhibition, representations: [asset.uri], documents: [asset.uri]) }
+    let!(:asset)    { create(:asset) }
+    let!(:resource) { create(:exhibition, representations: [asset.uri], documents: [asset.uri]) }
 
     describe "#representations_for" do
-      its(:representations_for) { is_expected.to eq([resource]) }
+      its(:representations_for) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
     end
 
     describe "#documents_for" do
-      its(:documents_for) { is_expected.to eq([resource]) }
+      its(:documents_for) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
     end
   end
 
   context "when the asset has an attachment" do
-    let(:asset)    { create(:asset) }
-    let(:resource) { create(:asset, attachments: [asset.uri]) }
+    let!(:asset)    { create(:asset) }
+    let!(:resource) { create(:asset, attachments: [asset.uri]) }
 
     describe "#attachments_for" do
-      its(:attachments_for) { is_expected.to eq([resource]) }
+      its(:attachments_for) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
     end
   end
 
