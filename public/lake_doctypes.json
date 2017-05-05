@@ -379,10 +379,6 @@
                             "value" : "http://definitions.artic.edu/doctypes/PurchaseAgreement"
                         },
                         {
-                            "label" : "Executive Committee Poll Form",
-                            "value" : "http://definitions.artic.edu/doctypes/ExecutiveCommitteePollForm"
-                        },
-                        {
                             "label" : "Bargain Sale Agreement",
                             "value" : "http://definitions.artic.edu/doctypes/BargainSaleAgreement"
                         },
@@ -401,6 +397,10 @@
                         {
                             "label" : "Partial Interest Deed of Gift",
                             "value" : "http://definitions.artic.edu/doctypes/PartialInterestDeedGift"
+                        },
+                        {
+                            "label" : "Final Partial Interest Gift",
+                            "value" : "http://definitions.artic.edu/doctypes/FinalPartialInterestGift"
                         },
                         {
                             "label" : "Deed of Gift",
@@ -479,10 +479,6 @@
                             ]
                         },
                         {
-                            "label" : "Year-End Gift Document",
-                            "value" : "http://definitions.artic.edu/doctypes/YearEndGiftDocument"
-                        },
-                        {
                             "label" : "Photograph Information Record",
                             "value" : "http://definitions.artic.edu/doctypes/PhotographInformationRecord"
                         },
@@ -511,6 +507,10 @@
                         {
                             "label" : "Seller Invoice",
                             "value" : "http://definitions.artic.edu/doctypes/SellerInvoice"
+                        },
+                        {
+                            "label" : "Director's Discretionary Authority",
+                            "value" : "http://definitions.artic.edu/doctypes/DirectorDiscretionaryAuthority"
                         }
                     ]
                 },
@@ -543,6 +543,32 @@
                         {
                             "label" : "Executive Committee",
                             "value" : "http://definitions.artic.edu/doctypes/ExecutiveCommittee"
+                        },
+                        {
+                            "label" : "Policies",
+                            "value" : "http://definitions.artic.edu/doctypes/AdminPolicies"
+                        },
+                        {
+                            "label" : "Procedures",
+                            "value" : "http://definitions.artic.edu/doctypes/AdminProcedures"
+                        },
+                        {
+                            "label" : "Best Practices",
+                            "value" : "http://definitions.artic.edu/doctypes/AdminBestPractices"
+                        },
+                        {
+                            "label" : "Training Tools",
+                            "value" : "http://definitions.artic.edu/doctypes/AdminTrainingTools",
+                            "subtypes" : [
+                                {
+                                    "label" : "Video",
+                                    "value" : "http://definitions.artic.edu/doctypes/AdminTrainingToolsVideo"
+                                },
+                                {
+                                    "label" : "Guide",
+                                    "value" : "http://definitions.artic.edu/doctypes/AdminTrainingToolsGuide"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -705,6 +731,20 @@
                         {
                             "label" : "Directors Approval Form",
                             "value" : "http://definitions.artic.edu/doctypes/DirectorsApprovalForm"
+                        },
+                        {
+                            "label" : "Bargain Sale",
+                            "value" : "http://definitions.artic.edu/doctypes/DeaccessionBargainSale",
+                            "subtypes" : [
+                                {
+                                    "label" : "Bargain Sale Agreement",
+                                    "value" : "http://definitions.artic.edu/doctypes/DeaccessionBargainSaleAgreement"
+                                },
+                                {
+                                    "label" : "Bargain Sale Agreement (Dealer)",
+                                    "value" : "http://definitions.artic.edu/doctypes/DeaccessionBargainSaleAgreementDealer"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -946,6 +986,10 @@
                     "label" : "Curatorial",
                     "value" : "http://definitions.artic.edu/doctypes/CuratorialMovingImage",
                     "subtypes" : [
+                        {
+                            "label" : "Exhibition Documentation",
+                            "value" : "http://definitions.artic.edu/doctypes/ExhibitDocumentationMovingImage"
+                        },
                         {
                             "label" : "Work of Art",
                             "value" : "http://definitions.artic.edu/doctypes/ArtworkMovingImage",

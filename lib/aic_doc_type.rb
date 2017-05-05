@@ -239,9 +239,6 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :PurchaseAgreement,
        label: "Purchase Agreement",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
-  term :ExecutiveCommitteePollForm,
-       label: "Executive Committee Poll Form",
-       "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :BargainSaleAgreement,
        label: "Bargain Sale Agreement",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
@@ -256,6 +253,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :PartialInterestDeedGift,
        label: "Partial Interest Deed of Gift",
+       "skos:broader": "aicdoctype:AcquisitionPaperwork"
+  term :FinalPartialInterestGift,
+       label: "Final Partial Interest Gift",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :DeedGift,
        label: "Deed of Gift",
@@ -308,9 +308,6 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :CertificateAuthenticity,
        label: "Certificate of Authenticity",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
-  term :YearEndGiftDocument,
-       label: "Year-End Gift Document",
-       "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :PhotographInformationRecord,
        label: "Photograph Information Record",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
@@ -332,6 +329,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :SellerInvoice,
        label: "Seller Invoice",
        "skos:broader": "aicdoctype:AcquisitionPaperwork"
+  term :DirectorDiscretionaryAuthority,
+       label: "Director's Discretionary Authority",
+       "skos:broader": "aicdoctype:AcquisitionPaperwork"
   term :AcquisitionPaperwork,
        label: "Acquisition Paperwork"
   term :MeetingMinutes,
@@ -351,6 +351,24 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:Administrative"
   term :ExecutiveCommittee,
        label: "Executive Committee",
+       "skos:broader": "aicdoctype:Administrative"
+  term :AdminPolicies,
+       label: "Policies",
+       "skos:broader": "aicdoctype:Administrative"
+  term :AdminProcedures,
+       label: "Procedures",
+       "skos:broader": "aicdoctype:Administrative"
+  term :AdminBestPractices,
+       label: "Best Practices",
+       "skos:broader": "aicdoctype:Administrative"
+  term :AdminTrainingToolsVideo,
+       label: "Video",
+       "skos:broader": "aicdoctype:AdminTrainingTools"
+  term :AdminTrainingToolsGuide,
+       label: "Guide",
+       "skos:broader": "aicdoctype:AdminTrainingTools"
+  term :AdminTrainingTools,
+       label: "Training Tools",
        "skos:broader": "aicdoctype:Administrative"
   term :Administrative,
        label: "Administrative"
@@ -464,6 +482,15 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :DirectorsApprovalForm,
        label: "Directors Approval Form",
        "skos:broader": "aicdoctype:DeaccessionDocument"
+  term :DeaccessionBargainSaleAgreement,
+       label: "Bargain Sale Agreement",
+       "skos:broader": "aicdoctype:DeaccessionBargainSale"
+  term :DeaccessionBargainSaleAgreementDealer,
+       label: "Bargain Sale Agreement (Dealer)",
+       "skos:broader": "aicdoctype:DeaccessionBargainSale"
+  term :DeaccessionBargainSale,
+       label: "Bargain Sale",
+       "skos:broader": "aicdoctype:DeaccessionDocument"
   term :DeaccessionDocument,
        label: "Deaccession Document"
   term :Label,
@@ -569,6 +596,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:InfoServicesText"
   term :InfoServicesText,
        label: "Information Services"
+  term :ExhibitDocumentationMovingImage,
+       label: "Exhibition Documentation",
+       "skos:broader": "aicdoctype:CuratorialMovingImage"
   term :MasterArtworkMovingImage,
        label: "Master",
        "skos:broader": "aicdoctype:ArtworkMovingImage"
