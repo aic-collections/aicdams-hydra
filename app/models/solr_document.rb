@@ -26,4 +26,12 @@ class SolrDocument
 
   # Do content negotiation for AF models.
   use_extension(Hydra::ContentNegotiation)
+
+  # overrides the MimeTypes included by CurationConcerns::SolrDocumentBehavior in order to add psd types.
+
+  module Hydra::Works::MimeTypes::ClassMethods
+    def image_mime_types
+      ['image/png', 'image/jpeg', 'image/jpg', 'image/jp2', 'image/bmp', 'image/gif', 'image/tiff', 'image/psd', 'image/vnd.adobe.photoshop']
+    end
+  end
 end

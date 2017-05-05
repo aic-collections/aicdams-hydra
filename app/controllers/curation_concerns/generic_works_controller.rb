@@ -4,8 +4,46 @@ class CurationConcerns::GenericWorksController < ApplicationController
   include Sufia::WorksControllerBehavior
   include CitiResourceBehavior
   include AICAssetAfterDeleteBehavior
+
   self.curation_concern_type = GenericWork
   self.show_presenter = AssetPresenter
+  skip_load_and_authorize_resource only: :manifest
+
+  def manifest
+    headers['Access-Control-Allow-Origin'] = '*'
+    respond_to do |format|
+      format.json do
+        render json:
+          ManifestService.new(presenter).manifest_builder
+      end
+    end
+  end
+  # overriding CC show action to render the html template for assets that uses the layout specific to universal viewer which occupies all columns, no sidebar
+
+  def show
+    respond_to do |wants|
+      wants.html do
+        presenter && parent_presenter
+        render "curation_concerns/base/show_asset.html.erb", status: :ok
+      end
+      wants.json do
+        # load and authorize @curation_concern manually because it's skipped for html
+        @curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+        authorize! :show, @curation_concern
+        render :show, status: :ok
+      end
+      additional_response_formats(wants)
+      wants.ttl do
+        render body: presenter.export_as_ttl, content_type: 'text/turtle'
+      end
+      wants.jsonld do
+        render body: presenter.export_as_jsonld, content_type: 'application/ld+json'
+      end
+      wants.nt do
+        render body: presenter.export_as_nt, content_type: 'application/n-triples'
+      end
+    end
+  end
 
   def destroy
     asset_with_relationships = []
