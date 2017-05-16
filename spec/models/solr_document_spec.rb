@@ -48,6 +48,12 @@ describe SolrDocument do
     its(:hydra_model) { is_expected.to eq(GenericWork) }
   end
 
+  describe "#type" do
+    let(:asset) { build(:department_asset) }
+    subject { described_class.new(asset.to_solr) }
+    its(:type) { is_expected.to include(AICType.Resource) }
+  end
+
   it { is_expected.to respond_to(:citi_uid) }
   it { is_expected.to respond_to(:uid) }
   it { is_expected.to respond_to(:id) }

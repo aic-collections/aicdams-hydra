@@ -48,14 +48,20 @@ module CurationConcerns
       model.send(term).uri.to_s
     end
 
+    # @return [Array<SolrDocument>]
+    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def representations_for
       representing_resource.representations
     end
 
+    # @return [Array<SolrDocument>]
+    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def documents_for
       representing_resource.documents
     end
 
+    # @return [Array<SolrDocument>]
+    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def attachments_for
       representing_resource.assets
     end

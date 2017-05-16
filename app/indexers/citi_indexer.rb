@@ -11,6 +11,7 @@ class CitiIndexer < ActiveFedora::IndexingService
       solr_doc[Solrizer.solr_name("representations", :symbol)] = object.representations.map(&:id)
       solr_doc[Solrizer.solr_name("preferred_representation", :symbol)] = object.preferred_representation.id if object.preferred_representation
       solr_doc[Solrizer.solr_name("relationships", :stored_searchable, type: :integer)] = relationship_count
+      solr_doc[Solrizer.solr_name("rdf_types", :symbol)] = object.type.map(&:to_s)
     end
   end
 
