@@ -16,7 +16,7 @@
           <% if rel.viewable? %>
             <%= link_to rel.to_s, polymorphic_path([main_app, rel]) %>
           <% else %>
-            <%= rel.to_s %>
+            <%= render 'shared/request_access', presenter: rel %>
           <% end %>
         </td>
         <td><%= rel.uid %></td>

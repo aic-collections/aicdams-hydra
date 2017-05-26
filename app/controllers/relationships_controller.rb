@@ -20,6 +20,7 @@ class RelationshipsController < ApplicationController
   private
 
     def presenter
+      # params[:id] needs to be a citi_uid
       @presenter ||= RelationshipPresenterBuilder.new(params[:id], params[:model], current_ability, request).call
     end
 end

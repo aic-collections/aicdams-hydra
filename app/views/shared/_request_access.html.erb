@@ -1,5 +1,8 @@
 <%= form_tag("/request_access") do %>
   <%= hidden_field_tag(:resource_id, presenter.id) %>
+  <% if presenter.citi_presenter? %>
+  <%= hidden_field_tag(:resource_type, presenter.hydra_model) %>
+  <% end %>
   <%= hidden_field_tag(:requester_nick, current_user) %>
   <%= submit_tag "Request access", { class: "btn btn-success" } %>
 <% end %>
