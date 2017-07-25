@@ -22,9 +22,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '~> 3.0'
-gem 'riiif'
-gem 'iiif_manifest', '~> 0.1.2'
-
 
 group :development, :test do
   gem 'better_errors'

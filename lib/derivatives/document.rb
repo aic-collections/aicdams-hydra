@@ -15,8 +15,7 @@ class Derivatives::Document < Hydra::Derivatives::Processors::Document
     self.class.encode(source_path, "pdf", Hydra::Derivatives.temp_file_base)
     pdf_file = File.join(Hydra::Derivatives.temp_file_base, [File.basename(source_path, ".*"), 'pdf'].join('.'))
 
-    # persist pdf original as access
-
+    # persist pdf
     output_file_service.call(File.open(pdf_file, "rb"), url: directives.fetch(:access))
 
     # create thumbnails from the pdf using Hydra::Derivatives::Processors::Image

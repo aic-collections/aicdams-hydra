@@ -58,16 +58,6 @@ describe AssetPresenter do
     it { is_expected.not_to be_current_location_presenters }
   end
 
-  describe "#manifest_url" do
-    let(:request) { double(base_url: 'http://test.host') }
-
-    let(:presenter) { described_class.new(solr_document, ability, request) }
-
-    subject { presenter.manifest_url }
-
-    it { is_expected.to eq 'http://test.host/concern/generic_works/1234/manifest' }
-  end
-
   describe "#fedora_uri" do
     subject { presenter.fedora_uri }
 

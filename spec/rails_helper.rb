@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/active_model/mocks'
+require "rspec/json_expectations"
 require 'active_fedora/cleaner'
 require 'database_cleaner'
 require 'factory_girl_rails'

@@ -23,44 +23,20 @@ class CitiNotificationJob < ActiveJob::Base
     end
 
     def find_citi_resource
+      intermediate_file_set = file_set.parent.intermediate_file_set.first
       return unless intermediate_file_set && intermediate_file_set.id == file_set.id
       InboundRelationships.new(file_set.parent).preferred_representation
     end
 
-    def body
-      return removal_request unless file_set
-      removal_request.merge(image_uid: file_set.id, last_modified: file_modification_date)
-    end
-
     def post
       @post ||= HTTParty.post(ENV.fetch("citi_api_endpoint"),
-                              body: body.to_json,
+                              body: CitiNotification.new(file_set, citi_resource).to_json,
                               verify: verify_ssl?,
                               headers: { 'Content-Type' => 'application/json' })
-    end
-
-    def intermediate_file_set
-      @intermediate_file_set ||= file_set.parent.intermediate_file_set.first
     end
 
     def verify_ssl?
       return false if ENV.fetch("citi_api_ssl_verify", "true") == "false"
       true
-    end
-
-    def removal_request
-      {
-        uid: ENV.fetch("citi_api_uid"),
-        password: ENV.fetch("citi_api_password"),
-        type: citi_resource.class.to_s,
-        citi_uid: citi_resource.citi_uid,
-        image_uid: nil,
-        last_modified: nil
-      }
-    end
-
-    def file_modification_date
-      return unless file_set.original_file
-      file_set.original_file.fcrepo_modified.first.iso8601
     end
 end
