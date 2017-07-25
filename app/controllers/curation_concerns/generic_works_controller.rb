@@ -9,9 +9,6 @@ class CurationConcerns::GenericWorksController < ApplicationController
   self.show_presenter = AssetPresenter
   skip_load_and_authorize_resource only: :manifest
 
-  # disabling turbolinks with a data-attribute in body tag
-  layout "no-turbolinks-asset-show"
-
   def manifest
     headers['Access-Control-Allow-Origin'] = '*'
     render json:

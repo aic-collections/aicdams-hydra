@@ -30,21 +30,12 @@ describe CurationConcerns::GenericWorksController do
     end
   end
 
-  describe "#show unauthorized" do
+  describe "#show" do
     let(:user2)             { create(:user2) }
     let!(:department_asset) { create(:department_asset, user: user2) }
     it "is unauthorized for non-department users" do
       get :show, id: department_asset
       expect(response).to be_unauthorized
-    end
-  end
-
-  # testing that the show action uses show_asset template (no sidebar in it) and layout with turbolinks disabled via data-attribute in body tag
-  describe "#show authorized" do
-    let(:asset) { create(:asset, user: user) }
-    it "uses show_asset template and no-turbo-links layout" do
-      get :show, id: asset
-      expect(response).to render_template("show_asset.html.erb", layout: "no-turbolinks-asset-show")
     end
   end
 
