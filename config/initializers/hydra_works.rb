@@ -9,9 +9,7 @@ module Hydra::Works::MimeTypes::ClassMethods
      'image/jp2',
      'image/bmp',
      'image/gif',
-     'image/tiff',
-     'image/psd',
-     'image/vnd.adobe.photoshop']
+     'image/tiff']
   end
 
   def office_document_mime_types
