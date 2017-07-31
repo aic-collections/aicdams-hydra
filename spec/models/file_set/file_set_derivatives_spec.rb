@@ -12,7 +12,6 @@ describe FileSet do
 
   describe "#create_derivatives" do
     before { LakeshoreTesting.reset_derivatives }
-
     context "with image mime types" do
       let(:image_file) { File.join(fixture_path, "tardis.png") }
 
@@ -47,19 +46,6 @@ describe FileSet do
         ]
       end
 
-      context "with a psd mime type" do
-        before do
-          allow(file).to receive(:mime_type).and_return("vnd.adobe.photoshop")
-          allow(described_class).to receive(:image_mime_types).and_return(["vnd.adobe.photoshop"])
-        end
-        let(:image_file) { File.join(fixture_path, "MockUp_Paper.psd") }
-
-        it "uses MiniMagick's imagemagick cli" do
-          expect(MiniMagick).to receive(:with_cli).with(:imagemagick)
-          file.create_derivatives(image_file)
-        end
-      end
-
       before { allow(file).to receive(:mime_type).and_return("image/png") }
 
       it "sends the correct parameters for J2K files" do
@@ -77,7 +63,7 @@ describe FileSet do
           ]
         end
         subject { derivatives }
-        before { file.create_derivatives(image_file) }
+        before  { file.create_derivatives(image_file) }
         it { is_expected.to contain_exactly(*files) }
       end
     end

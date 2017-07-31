@@ -40,9 +40,7 @@ module Hydra::Derivatives::Processors
       def create_resized_image
         create_image do |xfrm|
           if size
-            MiniMagick.with_cli(:imagemagick) do
-              xfrm.flatten
-            end
+            xfrm.flatten
             xfrm.resize(size)
           end
         end
