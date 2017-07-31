@@ -20,10 +20,8 @@ module Hydra::Derivatives::Processors
 
     protected
 
-      # When resizing images, it is necessary to flatten any layers, otherwise the background
-      # may be completely black. This happens especially with PDFs. See #110
-      # check image type and label here. if pdf and access, simply copy original to directive url, otherwise go about the business of resizing, etc
-
+      # Check the image type and label. If we're creating an access file from a pdf,
+      # simply copy original to directive url; otherwise, proceed with creating the resized image.
       def determine_whether_to_resize_image
         if directives.fetch(:label) == :access && load_image_transformer.type =~ /pdf/i
           output_file = directives.fetch(:url).split('file:')[1]
@@ -37,18 +35,24 @@ module Hydra::Derivatives::Processors
         end
       end
 
+      # When resizing images, it is necessary to flatten any layers, otherwise the background
+      # may be completely black. This happens especially with PDFs. See #110
+      # MiniMagick::Tool::Convert is used directly because `gm mogrify` does not support -flatten.
       def create_resized_image
         create_image do |xfrm|
           if size
-            xfrm.flatten
-            xfrm.resize(size)
+            MiniMagick::Tool::Convert.new do |cmd|
+              cmd << xfrm.path # input
+              cmd.flatten
+              cmd.resize(size)
+              cmd << xfrm.path # output
+            end
           end
         end
       end
 
-      # flatten psd -> jp2 files properly
       def create_image
-        xfrm = directives.fetch(:format) == "jp2" && load_image_transformer.type =~ /psd/i ? load_image_transformer : selected_layers(load_image_transformer)
+        xfrm = selected_layers(load_image_transformer)
 
         yield(xfrm) if block_given?
         xfrm.format(directives.fetch(:format))
@@ -56,10 +60,9 @@ module Hydra::Derivatives::Processors
         write_image(xfrm)
       end
 
-      # We need to adjust our *-access jp2s; mogrify will ensure they actually are in the jp2 format if they aren't.
-
+      # Use Graphicsmagick command to adjust access jp2 files. This ensures they are in the correct format.
       def execute_mogrify_commands(output_file:, arguments:)
-        Image.execute("#{ENV['hydra_bin_path']}mogrify #{arguments} #{output_file}")
+        Image.execute("#{File.join(ENV['hydra_bin_path'], 'gm')} mogrify #{arguments} #{output_file}")
       rescue StandardError => e
         Rails.logger.error("#{self.class} mogrify error. #{e}")
       end

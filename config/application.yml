@@ -1,12 +1,14 @@
 # Environment variable configuration file used by Figaro
 #
 development:
+  hydra_bin_path: "/usr/local/bin"
 
 test:
   citi_api_uid: "citi_api_uid"
   citi_api_password: "citi_api_password"
   citi_api_endpoint: "https://citiworker"
   citi_api_ssl_verify: "false"
+  hydra_bin_path: "/usr/local/bin"
 
 production:
 
