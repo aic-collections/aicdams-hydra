@@ -4,7 +4,7 @@ require "rails_helper"
 describe "Batch management of works", type: :feature do
   include BatchEditActions
 
-  let(:current_user) { create(:admin) }
+  let(:current_user) { create(:user1) }
   let!(:asset1)      { create(:asset, :with_metadata, pref_label: "Batch Asset 1") }
   let!(:asset2)      { create(:asset, :with_metadata, pref_label: "Batch Asset 2") }
 
@@ -12,7 +12,7 @@ describe "Batch management of works", type: :feature do
 
   before do
     sign_in_with_named_js(:batch_edit, current_user, disable_animations: true)
-    visit "/dashboard/shares"
+    visit "/dashboard/works"
   end
 
   context "when editing and viewing multiple works" do
@@ -49,7 +49,7 @@ describe "Batch management of works", type: :feature do
       expect(page).to have_content("Changes will be applied to the following 2 assets:")
       expect(page).to have_field("Language", with: asset1.language.first)
       expect(page).to have_field("Publisher", with: asset1.publisher.first)
-      expect(page).to have_select("Publish Channels", disabled: false)
+      expect(page).to have_select("Publish Channels", disabled: true)
       expect(page).to have_select("Status", selected: "Active")
     end
   end

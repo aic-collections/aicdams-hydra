@@ -2,14 +2,14 @@
 require 'rails_helper'
 
 describe BatchEditsController do
+  include_context "authenticated saml user"
+
   describe "#form_class" do
     subject { described_class.new }
     its(:form_class) { is_expected.to eq(BatchEditForm) }
   end
 
   describe "#destroy" do
-    include_context "authenticated admin user"
-
     let(:destroy_params) do
       {
         method: "delete",
@@ -41,8 +41,6 @@ describe BatchEditsController do
   end
 
   describe "#update" do
-    include_context "authenticated admin user"
-
     let(:work1) { create(:department_asset) }
     let(:work2) { create(:department_asset) }
     let(:work3) { create(:registered_asset) }
@@ -152,21 +150,20 @@ describe BatchEditsController do
   end
 
   describe "#edit" do
-    include_context "authenticated saml user"
-
-    context "with a bogus-id" do
+    context "with an unknown id" do
       it "redirects to the user's dashboard" do
         get :edit, batch_document_ids: ["bogus-id"]
         expect(response).to be_not_found
       end
     end
 
-    context "with a non-admin user" do
-      let(:work1) { create(:department_asset) }
+    context "when the user does not have edit access" do
+      let(:other) { create(:user2) }
+      let(:work1) { create(:department_asset, user: other) }
 
       it "redirects to the user's dashboard" do
         get :edit, batch_document_ids: [work1.id]
-        expect(flash[:warning]).to eq("Batch edit is only permitted to administrators")
+        expect(flash[:notice]).to eq("You do not have permission to edit the documents: #{work1.id}")
         expect(response).to be_redirect
       end
     end
