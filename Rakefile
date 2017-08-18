@@ -9,4 +9,6 @@ Rails.application.load_tasks
 unless Rails.env.production?
   load File.expand_path('../tasks/dev.rake', __FILE__)
   load File.expand_path('../tasks/test.rake', __FILE__)
+  require 'coveralls/rake/task'
+  Coveralls::RakeTask.new
 end

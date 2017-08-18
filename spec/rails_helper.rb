@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 ENV['RAILS_ENV'] ||= 'test'
+
+if ENV['COVERAGE'] || ENV['TRAVIS']
+  require 'simplecov'
+  require 'coveralls'
+  SimpleCov.root(File.expand_path('../..', __FILE__))
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  SimpleCov.start('rails') do
+    add_filter '/spec'
+    add_filter '/tasks'
+  end
+  SimpleCov.command_name 'spec'
+end
+
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
