@@ -4,7 +4,7 @@ require 'rails_helper'
 describe AssetType::Base do
   subject { described_class }
 
-  it { is_expected.to respond_to(:all) }
+  its(:all) { is_expected.to be_empty }
   it { is_expected.to respond_to(:types) }
   its(:key) { is_expected.to eq("base") }
 end
