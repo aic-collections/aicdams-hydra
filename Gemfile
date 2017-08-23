@@ -28,6 +28,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'byebug'
+  gem 'coveralls', require: false
   gem 'factory_girl_rails', require: false
   gem 'fcrepo_wrapper'
   gem 'jasmine'
