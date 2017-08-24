@@ -41,4 +41,5 @@ module Lakeshore
   end
 
   class DuplicateAssetError < StandardError; end
+  class CitiNotificationError < StandardError; end
 end

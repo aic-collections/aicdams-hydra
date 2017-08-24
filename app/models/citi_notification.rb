@@ -5,6 +5,7 @@ class CitiNotification
   attr_reader :file_set, :citi_resource
 
   delegate :citi_uid, to: :citi_resource
+  delegate :to_json, to: :to_h
 
   # @param [FileSet] file_set
   # @param [CitiResource, SolrDocument] citi_resource such as a work, exhibit
@@ -14,9 +15,12 @@ class CitiNotification
   end
 
   # @return [String]
-  # This is main method used in the class. Returns a json object that will be
-  # send to CITI with the details of a given resource and its related file set.
-  def to_json
+  # Converts the hash representation to a string but without the password for security.
+  def to_s
+    to_h.merge!(password: "********").to_s
+  end
+
+  def to_h
     {
       uid: uid,
       password: password,
@@ -25,7 +29,7 @@ class CitiNotification
       lake_image_uid: image_uid,
       last_modified: last_modified,
       asset_details: { image_number: imaging_uid }
-    }.to_json
+    }
   end
 
   protected
