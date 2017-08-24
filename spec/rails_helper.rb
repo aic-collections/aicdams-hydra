@@ -21,6 +21,10 @@ require 'active_fedora/cleaner'
 require 'database_cleaner'
 require 'factory_girl_rails'
 require 'devise'
+require 'webmock'
+
+WebMock.enable!
+WebMock.disable_net_connect!(allow_localhost: true)
 
 # Require support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

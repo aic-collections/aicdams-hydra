@@ -22,6 +22,7 @@ describe CitiNotification do
       let(:file_set) { nil }
 
       its(:to_json) { is_expected.to include_json(json) }
+      its(:to_s) { is_expected.to include("********") }
     end
 
     describe "a notification with a SolrDocument" do
@@ -29,6 +30,7 @@ describe CitiNotification do
       let(:file_set) { nil }
 
       its(:to_json) { is_expected.to include_json(json) }
+      its(:to_s) { is_expected.to include("********") }
     end
   end
 

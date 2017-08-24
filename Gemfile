@@ -34,7 +34,6 @@ group :development, :test do
   gem 'jasmine'
   gem 'solr_wrapper'
   gem 'sqlite3'
-  gem 'vcr'
   gem 'webmock', require: false
   gem 'xray-rails'
 end

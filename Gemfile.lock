@@ -693,7 +693,6 @@ GEM
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.1)
-    vcr (3.0.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.6)
@@ -759,7 +758,6 @@ DEPENDENCIES
   sqlite3
   sufia (~> 7.2)
   uglifier (~> 3.0)
-  vcr
   webmock
   xray-rails
 
