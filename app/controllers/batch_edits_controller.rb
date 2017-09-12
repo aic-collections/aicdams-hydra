@@ -5,6 +5,8 @@ class BatchEditsController < ApplicationController
   include Sufia::BatchEditsControllerBehavior
   include AICAssetAfterDeleteBehavior
 
+  before_action :deny_non_admins
+
   # @note Overrides Sufia to pass current_ability to form instead of current_user
   def edit
     super
@@ -41,6 +43,12 @@ class BatchEditsController < ApplicationController
   # I don't know how this happening, so I'm cheating and just lopping them off here.
   def batch
     super.map { |id| id.split(/#/).first }
+  end
+
+  def deny_non_admins
+    return if current_user.admin?
+    flash[:warning] = "Batch edit is only permitted to administrators"
+    redirect_to(sufia.dashboard_works_path)
   end
 
   protected
