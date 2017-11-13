@@ -41,4 +41,12 @@ namespace :ci do
       Rake::Task["test:feature"].invoke
     end
   end
+
+  desc "Run Jasmine tests during continuous integration build"
+  task jasmine: :environment do
+    Rake::Task["db:migrate"].invoke
+    with_test_server do
+      Rake::Task["jasmine:ci"].invoke
+    end
+  end
 end
