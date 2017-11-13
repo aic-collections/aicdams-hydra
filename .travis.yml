@@ -32,6 +32,7 @@ env:
   matrix:
     - TEST_SUITE=feature
     - TEST_SUITE=unit
+    - TEST_SUITE=jasmine
     - TEST_SUITE=rubocop
 matrix:
   fast_finish: true
