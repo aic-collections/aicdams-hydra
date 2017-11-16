@@ -1,0 +1,8 @@
+<!--https://cits.artic.edu/redmine/issues/2183-->
+<!--had to override this sufia template b/c we needed to override the h1/header using the asset_h1-->
+<% provide :page_title, curation_concern_page_title(curation_concern) %>
+<% provide :page_header do %>
+  <h1><%= custom_h1(curation_concern) %></h1>
+<% end %>
+
+<%= render 'form' %>
