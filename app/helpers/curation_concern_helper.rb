@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CurationConcernHelper
   # https://cits.artic.edu/redmine/issues/2183
   # we needed different titles when uploading single asset vs multiple assets
