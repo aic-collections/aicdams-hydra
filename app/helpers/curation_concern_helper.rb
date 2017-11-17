@@ -7,7 +7,7 @@ module CurationConcernHelper
     if curation_concern.is_a?(GenericWork)
       "Create New Asset"
     else
-      t("sufia.assets.header")
+      t("sufia.assets.new.header")
     end
   end
 end
