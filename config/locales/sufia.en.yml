@@ -140,7 +140,7 @@ en:
         header: "Add New Work"
       edit:
         header: "Edit Work"
-    assets: # added this key b/c new template (and helper) calls "sufia.assets.#{action_name}.header"
+    assets: # added this key b/c view calls "sufia.assets..."
       new:
         header: "Create New Assets"
     Batch Upload Item:
