@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# added this when we were faced with no data in DEV env and needed to run dev:prep, but DEV is no longer run in "development"
 puts "environment is #{Figaro.env.lakeshore_env}"
 
 if Figaro.env.lakeshore_env == "dev"
