@@ -35,6 +35,7 @@ class HiddenMultiSelectInput < MultiValueInput
     # TODO: Form object should create solr doc
     def inner_field_wrapper(_value, index)
       <<-HTML
+        <td><i class="fa #{star_or_not(resources[index])}"></i></td>
         <td>#{render_thumbnail(resources[index])}</td>
         <td>
           #{resources[index].pref_label}
@@ -45,6 +46,13 @@ class HiddenMultiSelectInput < MultiValueInput
     end
 
   private
+    def star_or_not(resource)
+      if object.preferred_representation.id == resource.id
+        "fa-star"
+      else
+        "fa-star-o"
+      end
+    end
 
     def get_data_attribute(html_input_options: options, data_attribute:)
       if html_input_options && html_input_options[:data] && html_input_options[:data][:"#{data_attribute}"]
