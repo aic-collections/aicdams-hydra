@@ -21,7 +21,7 @@ describe CitiFormBehaviors do
   subject { form }
 
   its(:representation_terms) do
-    is_expected.to contain_exactly(:document_uris, :representation_uris, :preferred_representation_uri)
+    is_expected.to contain_exactly(:document_uris, :representation_uris)
   end
 
   it "responds to hash arguments" do

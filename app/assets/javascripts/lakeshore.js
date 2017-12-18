@@ -65,4 +65,29 @@ Blacklight.onLoad(function () {
       $("div#files").addClass("active");
     }
   });
+
+});
+
+// https://cits.artic.edu/redmine/issues/2338
+$(function() {
+    function unstar_all_stars() {
+        $('.fa-star').toggleClass('fa-star-o fa-star');
+    }
+
+    function toggle_clicked_star(clicked_nonstar) {
+        clicked_nonstar.toggleClass('fa-star-o fa-star');
+    }
+
+    function move_star_to_top(parent_table, current_row) {
+        parent_table.prepend(current_row);
+    }
+
+    $("tbody").on('click', '.fa-star-o', function(){
+        var $this = $(this)
+        var current_row = $this.closest('tr');
+        var parent_table = current_row.parent();
+        unstar_all_stars();
+        toggle_clicked_star($this);
+        move_star_to_top(parent_table, current_row);
+    });
 });

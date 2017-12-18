@@ -46,9 +46,11 @@ export class AssetManager {
   }
 
   get assetRow() {
-    var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : ''
+    var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : '';
+    var pref_rep_star = '<i class="fa fa-star-o"></i>'
     var html =
       '<tr>' +
+        '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
         '<td>' +
            this.selectedAssetText + this.hiddenInput +
