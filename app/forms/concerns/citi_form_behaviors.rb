@@ -54,6 +54,6 @@ module CitiFormBehaviors
   end
 
   def representation_terms
-    [:preferred_representation_uri, :representation_uris, :document_uris]
+    [:representation_uris, :document_uris]
   end
 end
