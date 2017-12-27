@@ -2,6 +2,10 @@
 
 <%= render 'add_asset', presenter: presenter if presenter.citi_presenter? %>
 
+<% if presenter.citi_presenter? && !presenter.viewable? %>
+  <%= render 'shared/request_access', presenter: presenter %>
+<% end %>
+
 <% if presenter.has_relationships? %>
   <%= render 'relationships_table', presenter: presenter %>
 <% else %>

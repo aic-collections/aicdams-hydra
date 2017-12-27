@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def request_access
-    presenter = RequestAccessPresenter.new(params[:resource_id], params[:requester_nick])
+    presenter = RequestAccessPresenter.new(params[:resource_id], params[:requester_nick], params.fetch('resource_type', 'GenericWork'))
     RequestAccessMailer.request_access(presenter).deliver_now
 
     flash[:notice] = "#{presenter.depositor_full_name} has been emailed your request to see this resource."

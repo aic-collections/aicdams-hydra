@@ -68,6 +68,10 @@ module CitiPresenterBehaviors
     true
   end
 
+  def viewable?
+    true
+  end
+
   def deleteable?
     false
   end
