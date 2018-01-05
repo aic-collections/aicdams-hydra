@@ -14,8 +14,9 @@ export class AssetManager {
 
     $('.am-add').on('click', function(event) {
       event.preventDefault()
-      $this.data = $(this).data()
-      $('table.'+$this.data.attribute).append($this.assetRow)
+      $this.data = $(this).data();
+      var parent_div_class = $(this).closest("div").attr('class');
+      $('table.'+$this.data.attribute).append($this.assetRow(parent_div_class));
       var sel = '.' + $this.data.attribute
       $(sel).select2('val', '')
     })
@@ -45,10 +46,11 @@ export class AssetManager {
     $(row).html($(input))
   }
 
-  get assetRow() {
+  assetRow(parent_div) {
     var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : '';
-    var pref_rep_star = '<i class="fa fa-star-o"></i>'
-    var html =
+    var pref_rep_star = '<i class="fa fa-star-o"></i>';
+
+    var representations_html =
       '<tr>' +
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
@@ -56,8 +58,22 @@ export class AssetManager {
            this.selectedAssetText + this.hiddenInput +
         '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
-      '</td>'
-    return html
+      '</td>';
+
+    var documentations_html =
+        '<tr>' +
+        '<td>' + image_tag + '</td>' +
+        '<td>' +
+        this.selectedAssetText + this.hiddenInput +
+        '</td>' +
+        '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
+        '</td>';
+
+    if (parent_div.indexOf("work_representation_uris") >= 0) {
+        return representations_html;
+    } else {
+        return documentations_html;
+    }
   }
 
   // Input inserted when a asset is selected

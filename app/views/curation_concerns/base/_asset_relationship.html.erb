@@ -3,6 +3,9 @@
 <table class="table table-striped relationships">
   <tbody>
     <tr>
+      <% if need_star %>
+        <th>Preferred</th>
+      <% end %>
       <th>Preview</th>
       <th>Document Type</th>
       <th>Link</th>
@@ -11,6 +14,9 @@
     </tr>
     <% presenters.each do |rel| %>
       <tr>
+        <% if need_star %>
+          <td><i class="fa <%= star_or_not(rel.id, pref_rep_id) %>"></i></td>
+        <% end %>
         <td><%= image_tag(rel.solr_document['thumbnail_path_ss']) %></td>
         <td><%= rel.document_types %></td>
         <td>
