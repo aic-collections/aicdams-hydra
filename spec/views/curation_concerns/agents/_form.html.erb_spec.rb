@@ -18,7 +18,6 @@ describe 'curation_concerns/agents/_form.html.erb' do
     it "renders fields for representations" do
       expect(page).to have_selector('table.document_uris')
       expect(page).to have_selector('table.representation_uris')
-      expect(page).to have_selector('input#agent_preferred_representation_uri', visible: false)
     end
   end
 
