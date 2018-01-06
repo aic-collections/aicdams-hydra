@@ -23,9 +23,9 @@ module ApplicationHelper
     render 'linked_attribute', attribute_doc: solr_doc, attribute_label: label
   end
 
-  def render_asset_relationship(presenters, heading)
+  def render_asset_relationship(presenters, heading, need_star = false, *args)
     return unless presenters.present?
-    render "asset_relationship", heading: heading, presenters: presenters
+    render "asset_relationship", heading: heading, presenters: presenters, need_star: need_star, pref_rep_id: args[0]
   end
 
   def render_citi_relationship(presenters, heading)
@@ -61,6 +61,14 @@ module ApplicationHelper
       default_use_uris.unshift([AICType.IntermediateFileSet.label, AICType.IntermediateFileSet])
     else
       default_use_uris
+    end
+  end
+
+  def star_or_not(rep_uri, pref_rep_uri)
+    if rep_uri == pref_rep_uri
+      "fa-star"
+    else
+      "fa-star-o"
     end
   end
 

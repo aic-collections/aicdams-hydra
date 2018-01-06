@@ -82,7 +82,7 @@ $(function() {
         parent_table.prepend(current_row);
     }
 
-    $("tbody").on('click', '.fa-star-o', function(){
+    $("table.representation_uris").on('click', '.fa-star-o', function(){
         var $this = $(this)
         var current_row = $this.closest('tr');
         var parent_table = current_row.parent();
