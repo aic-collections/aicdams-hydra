@@ -9,6 +9,7 @@ module Lakeshore
 
     before_action :validate_ingest, :validate_asset_type, only: [:create]
     before_action :validate_duplicate_upload, :validate_preferred_representations, only: [:create, :update]
+    skip_before_action :validate_duplicate_upload, if: :duplicate_check_param_is_false
 
     def create
       if actor.create(attributes_for_actor)
@@ -52,6 +53,10 @@ module Lakeshore
       end
 
     private
+
+      def duplicate_check_param_is_false
+        params.fetch(:duplicate_check, nil) == "false"
+      end
 
       def ingest
         @ingest ||= Lakeshore::Ingest.new(params)

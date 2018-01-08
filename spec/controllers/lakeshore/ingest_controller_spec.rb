@@ -107,6 +107,7 @@ describe Lakeshore::IngestController do
         allow(file_set).to receive(:parent).and_return(parent)
         post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
       end
+
       its(:status) { is_expected.to eq(409) }
       its(:body) { is_expected.to eq(json_response) }
     end
@@ -146,8 +147,9 @@ describe Lakeshore::IngestController do
     end
   end
 
-  describe "#update" do
+  describe "#update with no duplicates" do
     let(:metadata) { { "depositor" => user.email } }
+    let(:parent) { build(:work, pref_label: "work pref_label") }
 
     let(:replacement_asset) do
       ActionDispatch::Http::UploadedFile.new(filename:     "tardis.png",
@@ -164,7 +166,7 @@ describe Lakeshore::IngestController do
     context "with an intermediate file" do
       subject { asset.intermediate_file_set.first }
 
-      context "when none exists" do
+      context "when one does not exist" do
         let(:asset) { create(:asset) }
 
         before do
@@ -176,14 +178,41 @@ describe Lakeshore::IngestController do
       end
 
       context "when one already exists" do
-        let(:asset) { create(:asset, :with_intermediate_file_set) }
+        let(:asset)    { create(:asset, :with_intermediate_file_set) }
+        let(:file_set) { build(:file_set, id: "existing-file-set-id") }
+        let(:duplicate_check_param) { "true" }
 
         before do
-          post :update, id: asset.id, content: { intermediate: replacement_asset }, metadata: metadata
+          post :update, id: asset.id, content: { intermediate: replacement_asset }, metadata: metadata, duplicate_check: duplicate_check_param
           asset.reload
         end
 
         its(:title) { is_expected.to eq(["tardis.png"]) }
+
+        context "and is a duplicate" do
+          let(:parent) { build(:work, pref_label: "work pref_label") }
+
+          before do
+            allow(controller).to receive(:duplicate_upload).and_return([file_set])
+            allow(file_set).to receive(:parent).and_return(parent)
+            post :update, id: asset.id, content: { intermediate: replacement_asset }, metadata: metadata, duplicate_check: duplicate_check_param
+            asset.reload
+          end
+
+          context "when duplicate_check param is false" do
+            let(:duplicate_check_param) { "false" }
+            it "returns a 202" do
+              expect(response).to have_http_status(202)
+            end
+          end
+
+          context "when duplicate_check param is true" do
+            let(:duplicate_check_param) { "true" }
+            it "returns a 409" do
+              expect(response).to have_http_status(409)
+            end
+          end
+        end
       end
     end
 

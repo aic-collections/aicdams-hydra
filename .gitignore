@@ -21,3 +21,4 @@ fcrepo4-test-data
 coverage
 
 .rspec-local
+/playground/*
