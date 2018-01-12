@@ -18,7 +18,6 @@ describe 'curation_concerns/agents/_form.html.erb' do
     it "renders fields for representations" do
       expect(page).to have_selector('table.document_uris')
       expect(page).to have_selector('table.representation_uris')
-      expect(page).to have_selector('input#agent_preferred_representation_uri', visible: false)
     end
   end
 
@@ -36,7 +35,6 @@ describe 'curation_concerns/agents/_form.html.erb' do
     end
 
     it "displays the existing uris" do
-      expect(rendered).to include("data-label=\"First asset\" data-uid=\"uid-1\"")
       expect(rendered).to include("<input value=\"#{asset1.fedora_uri}\" name=\"agent[representation_uris][]\" type=\"hidden\" id=\"agent_representation_uris\" />")
     end
   end

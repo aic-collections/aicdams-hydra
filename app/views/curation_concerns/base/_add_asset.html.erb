@@ -1,7 +1,7 @@
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="add-asset-menu"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    <%= t("lakeshore.relationship.add_assets") %>
+    <%= t("lakeshore.relationship.add_assets") + presenter.solr_document["has_model_ssim"].first %>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="add-asset-menu">

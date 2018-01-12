@@ -1,7 +1,5 @@
 <% if presenter.citi_presenter? %>
-
-  <%= render_asset_relationship(presenter.preferred_representation_presenters, "Preferred Representation") %>
-  <%= render_asset_relationship(presenter.representation_presenters, "Representations") %>
+  <%= render_asset_relationship(presenter.representation_presenters, "Representations", true, presenter.preferred_representation_id) %>
   <%= render_asset_relationship(presenter.document_presenters, "Documentation") %>
 
 <% else %>

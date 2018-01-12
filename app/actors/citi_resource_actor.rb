@@ -3,13 +3,23 @@
 class CitiResourceActor < CurationConcerns::Actors::BaseActor
   # @param [Hash] attributes from the form
   def update(attributes)
-    unless attributes.fetch("preferred_representation_uri", "").present?
-      attributes["preferred_representation_uri"] = attributes.fetch("representation_uris", [""]).first
+    pref_rep = attributes.fetch("preferred_representation_uri", "")
+    reps = attributes.fetch("representation_uris", [""])
+
+    if pref_rep.to_s.empty?
+      attributes["preferred_representation_uri"] = reps.first
+    elsif !normal_representation?(reps, pref_rep)
+      reps << pref_rep
     end
+
     super
   end
 
   protected
+
+    def normal_representation?(reps, pref_rep)
+      reps.include? pref_rep
+    end
 
     def save
       notify_citi if curation_concern.preferred_representation_changed?

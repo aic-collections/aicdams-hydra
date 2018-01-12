@@ -22,12 +22,18 @@ describe CitiResourceActor do
   end
 
   describe "#update" do
-    context "without any changes to the preferred representation" do
-      let!(:non_asset) { create(:non_asset) }
+    context "with identical attributes passed in" do
+      let!(:attributes) { { "representation_uris" => [asset1.uri.to_s], preferred_representation_uri: asset1.uri.to_s } }
+      let!(:non_asset) { create(:non_asset, attributes) }
+
+      it "does not change the attributes" do
+        actor.update(attributes)
+        expect(non_asset).to have_attributes(attributes)
+      end
 
       it "does not notify CITI" do
         expect(CitiNotificationJob).not_to receive(:perform_later)
-        actor.update({})
+        actor.update(attributes)
       end
     end
 
@@ -37,7 +43,7 @@ describe CitiResourceActor do
       it "does not notify CITI" do
         expect(CitiNotificationJob).not_to receive(:perform_later)
         actor.update("preferred_representation_uri" => asset2.uri.to_s)
-        expect(non_asset.preferred_representation_uri).to eq(asset2.uri)
+        expect(non_asset.preferred_representation_uri).to eq(asset2.uri.to_s)
       end
     end
 
@@ -51,8 +57,13 @@ describe CitiResourceActor do
       end
     end
 
-    context "when removing the preferred representation" do
-      let!(:non_asset) { create(:non_asset, preferred_representation_uri: asset1.uri) }
+    context "when removing the preferred representation when there are normal representations" do
+      let!(:non_asset) { create(:non_asset, representation_uris: [intermediate_asset.uri.to_s], preferred_representation_uri: intermediate_asset.uri.to_s) }
+
+      it "makes the first normal representation, the preferred representation" do
+        actor.update(representation_uris: [asset1.uri.to_s], preferred_representation_uri: "")
+        expect(non_asset.preferred_representation_uri).to eq(non_asset.representation_uris.first)
+      end
 
       it "notifies CITI" do
         expect(CitiNotificationJob).to receive(:perform_later)
@@ -61,12 +72,24 @@ describe CitiResourceActor do
       end
     end
 
-    context "with representations and no preferred representation" do
-      let!(:non_asset) { create(:non_asset, representation_uris: [asset1.uri]) }
+    context "when adding a preferred representation that is not a normal representations" do
+      let!(:non_asset) { create(:non_asset, representation_uris: [asset1.uri.to_s, asset2.uri.to_s], preferred_representation_uri: "") }
 
-      it "adds a preferred representation" do
-        actor.update(representation_uris: [asset1.uri.to_s], "preferred_representation_uri" => "")
-        expect(non_asset.preferred_representation_uri).to eq(asset1.uri)
+      it "adds the preferred representation as a normal representation" do
+        actor.update(representation_uris: [asset1.uri.to_s], "preferred_representation_uri" => asset2.uri.to_s)
+        expect(non_asset.representation_uris).to include(asset2.uri.to_s)
+      end
+
+      it "notifies CITI" do
+        expect(CitiNotificationJob).to receive(:perform_later)
+        actor.update("preferred_representation_uri" => intermediate_asset.uri.to_s)
+      end
+    end
+
+    context "when user removes the only normal representation with intermediate file set, but leaving it as a preferred representation" do
+      let!(:non_asset) { create :non_asset, representation_uris: [intermediate_asset.uri.to_s], preferred_representation_uri: intermediate_asset.uri.to_s }
+
+      it "the developer should use javascript because the params are identical to another context" do
       end
     end
   end

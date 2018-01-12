@@ -1,6 +1,5 @@
-<nav id="masthead" class="navbar navbar-inverse navbar-static-top" role="navigation">
+<nav id="masthead" class="navbar-inverse" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -14,11 +13,12 @@
     <div class="collapse navbar-collapse" id="top-navbar-collapse">
 	  <div class="navbar-right row col-md-9 col-lg-8">
 	    <div class="col-sm-8 col-md-9 col-lg-8">
-          <%= render partial: 'catalog/search_form' %>
-        </div>
-	    <div class="col-sm-4 col-md-3 col-lg-4">
-          <a href="#" style="display: none;" class="advance-search">Advanced Search</a>
-        </div>
+        <%= render partial: 'catalog/search_form' %>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to("Search History", blacklight.search_history_path) %></li>
+        <li><%= link_to("Saved Searches", blacklight.saved_searches_path) %></li>
+      </ul>
 	  </div>
 	  <div class="navbar-right row col-sm-12 col-md-9 col-lg-8">
 		  <div class="col-sm-6 col-md-7 col-lg-8">

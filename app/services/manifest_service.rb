@@ -21,6 +21,7 @@ class ManifestService
   end
 
   def text_or_pdf?
+    return false if presenter.solr_document.type.include?(AICType.StillImage)
     presenter.solr_document.type.include?(AICType.Text) || file_set.mime_type == "application/pdf"
   end
 

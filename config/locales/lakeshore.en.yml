@@ -15,7 +15,7 @@ en:
         duplicate: "%{name} is a duplicate of:"
 
     relationship:
-      add_assets: "Add New Assets to this Resource"
+      add_assets: "Add New Assets to this CITI "
       batch_add_representations: "Add Representations"
       batch_add_documentation: "Add Documentation"
     collections:

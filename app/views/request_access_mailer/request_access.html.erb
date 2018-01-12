@@ -8,9 +8,9 @@
       Requested access to asset <%= @presenter.uid %>: <%= @presenter.title_or_label %> from <%= @presenter.requester_pretty_name %>.
     </p>
 
-    <p><a href="https://<%= @host %>/concern/generic_works/<%= @presenter.id %>/edit#share">Approve request</a></p>
+    <p><%= link_to("Approve request", edit_curation_concerns_generic_work_url(@presenter.id) + "#share") %></p>
 
-    <p><a href="https://<%= @host %>/concern/generic_works/<%= @presenter.id %>/">Review asset</a>.</p>
+    <p><%= link_to("Review asset", curation_concerns_generic_work_url(@presenter.id)) %></p>
 
     <p>If you rather decline or would like to request further information, please reply to this email explaining your concerns.</p>
   </body>

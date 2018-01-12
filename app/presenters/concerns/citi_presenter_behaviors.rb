@@ -43,6 +43,7 @@ module CitiPresenterBehaviors
   end
 
   def representation_presenters
+    representation_ids.insert(0, preferred_representation_id).uniq! if preferred_representation_id
     CurationConcerns::PresenterFactory.build_presenters(representation_ids,
                                                         AssetPresenter,
                                                         *presenter_factory_arguments)

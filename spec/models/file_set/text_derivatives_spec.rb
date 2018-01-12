@@ -53,7 +53,7 @@ describe FileSet do
       file.create_derivatives(pdf_file)
     end
 
-    describe "the derivatives" do
+    describe "the derivatives", skip: LakeshoreTesting.continuous_integration? do
       subject { derivatives }
       before do
         allow(Hydra::Derivatives::FullTextExtract).to receive(:create)

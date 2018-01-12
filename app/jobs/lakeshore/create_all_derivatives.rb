@@ -9,7 +9,7 @@ class Lakeshore::CreateAllDerivatives < ActiveJob::Base
   def perform(file_set, file_id, filepath = nil)
     filename = CurationConcerns::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath)
     raise LoadError, "#{file_set.class.characterization_proxy} was not found" unless file_set.characterization_proxy?
-    Hydra::Works::CharacterizationService.run(file_set.characterization_proxy, filename)
+    CharacterizationService.run(file_set.characterization_proxy, filename)
     Rails.logger.debug "Ran characterization on #{file_set.characterization_proxy.id} (#{file_set.characterization_proxy.mime_type})"
     file_set.characterization_proxy.save!
     file_set.update_index

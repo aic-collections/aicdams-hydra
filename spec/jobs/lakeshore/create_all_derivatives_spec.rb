@@ -9,7 +9,7 @@ describe Lakeshore::CreateAllDerivatives do
     allow(file_set).to receive(:parent).and_return(parent)
     allow(file_set).to receive(:characterization_proxy?).and_return(true)
     allow(CurationConcerns::WorkingDirectory).to receive(:find_or_retrieve).with("original_file", file_set.id, nil)
-    allow(Hydra::Works::CharacterizationService).to receive(:run)
+    allow(CharacterizationService).to receive(:run)
   end
 
   it "notifies CITI" do

@@ -14,7 +14,13 @@
                 },
                 {
                     "label" : "Conservation",
-                    "value" : "http://definitions.artic.edu/doctypes/ConservationStillImage"
+                    "value" : "http://definitions.artic.edu/doctypes/ConservationStillImage",
+                    "subtypes" : [
+                        {
+                            "label" : "Frame/Housing and Packing",
+                            "value" : "http://definitions.artic.edu/doctypes/ConservationStillImageFrameHousingAndPacking"
+                        }
+                    ]
                 },
                 {
                     "label" : "Curatorial",
@@ -872,7 +878,29 @@
                         },
                         {
                             "label" : "Archive",
-                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveText"
+                            "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveText",
+                            "subtypes" : [
+                                {
+                                    "label" : "Photo",
+                                    "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveTextPhoto"
+                                },
+                                {
+                                    "label" : "Catalog",
+                                    "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveTextCatalog"
+                                },
+                                {
+                                    "label" : "Combined Scan",
+                                    "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveTextCombinedScan"
+                                },
+                                {
+                                    "label" : "Correspondence",
+                                    "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveTextCorrespondence"
+                                },
+                                {
+                                    "label" : "Exhibition Document",
+                                    "value" : "http://definitions.artic.edu/doctypes/RyersonArchiveTextExhibitionDocument"
+                                }
+                            ]
                         }
                     ]
                 },

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe "Editing CITI works" do
+describe "Editing CITI work" do
   let(:user)  { create(:user1) }
   let(:asset) { create(:asset, :with_intermediate_file_set, pref_label: "Representation of work") }
   let(:pref)  { create(:asset, pref_label: "Assigned preferred representation of work") }
@@ -19,49 +19,61 @@ describe "Editing CITI works" do
   context "with a representation and no preferred representation" do
     let(:work) { create(:work, :with_sample_metadata, representations: [asset.uri]) }
 
-    it "assigns the preferred representation using the first representation" do
+    it "the preferred representation uri should be nil" do
       expect(work.preferred_representation_uri).to be_nil
-      expect(selected_preferred_representation.value).to eq("")
+    end
+
+    it "there should be no star icon" do
+      expect(page).not_to have_selector(".aic-star-on")
+    end
+
+    it "there should be one star-off icon" do
+      expect(page).to have_selector(".aic-star-off", count: 1)
+    end
+
+    it "the hidden_preferred_representation.value should be an empty string" do
+      expect(hidden_preferred_representation.value).to eq("")
+    end
+
+    it "after clicking save the preferred representation is set to the first representation" do
       click_button("Save")
-      expect(page).to have_selector("h3", text: "Preferred Representation")
       work.reload
       expect(work.preferred_representation_uri).to eq(asset.uri)
+    end
+
+    it "the work show page includes a preferred 'star' icon" do
+      click_button("Save")
+      expect(page).to have_selector(".aic-star-on", count: 1)
+    end
+
+    it "a CITI notification is made" do
+      click_button("Save")
       expect(notification).to have_been_made
     end
   end
 
-  context "when removing a preferred representation when other representations exist" do
+  context "when removing a pref_rep when other reps exist" do
     let(:work) do
       create(:work, :with_sample_metadata,
-             representations: [asset.uri],
+             representations: [pref.uri, asset.uri],
              preferred_representation_uri: pref.uri
             )
     end
 
-    it "assigns a new preferred representation" do
-      expect(selected_preferred_representation.value).to eq(pref.uri)
-      find(".select2-search-choice-close").click
-      click_button("Save")
-      expect(page).to have_selector("h3", text: "Preferred Representation")
-      work.reload
-      expect(work.preferred_representation.pref_label).to eq(asset.pref_label)
-      expect(notification).to have_been_made
+    it "when page loads, pref_rep is pref.uri" do
+      expect(hidden_preferred_representation.value).to eq(pref.uri)
     end
   end
 
-  context "when a representation and a preferred representation are defined" do
+  context "when loading a work with two reps, one preferred" do
     let(:work) do
       create(:work, :with_sample_metadata,
-             representations: [asset.uri],
+             representations: [asset.uri, pref.uri],
              preferred_representation_uri: pref.uri
             )
     end
-
-    it "preserves the relationships" do
-      expect(selected_preferred_representation.value).to eq(pref.uri)
-      click_button("Save")
-      expect(page).to have_selector("h3", text: "Preferred Representation")
-      expect(notification).not_to have_been_made
+    it "a hidden input is on the page with a URI of the preferred rep" do
+      expect(hidden_preferred_representation.value).to eq(pref.uri)
     end
   end
 end

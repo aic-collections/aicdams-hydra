@@ -9,17 +9,6 @@ $aicred: #9d1c33;
 $white: #ffffff;
 $linkcolor: #9d9d9d;
 
-.advance-search {
-    top: 30px;
-    position: absolute;
-	color: $linkcolor;
-	text-decoration: none;
-	&:hover {
-    	color: $white;
-		text-decoration: none;
-  	}
-}
-
 #search-form-header, .navbar-header {
     margin-top: 15px;
 	margin-bottom: 15px;
@@ -68,10 +57,6 @@ a.institution_name, a:link.institution_name, a:visited.institution_name, a:hover
 .navbar-default {
     background-color: #222;
     border-color: #222;
-}
-
-.navbar-nav > li > a {
-	padding-top: 0px;
 }
 
 .navbar-text {
@@ -154,7 +139,7 @@ div.home_share_work {
     display: none;
 }
 
-table.relationships img {
+table.relationships img, table.representation_uris img {
 	max-height: 150px;
 }
 
@@ -168,4 +153,22 @@ p.unauthorized_asset_display.asset_title {
 
 .smaller-text {
   font-size: smaller;
+}
+
+.aic-star-on {
+  background-image: url(/images/star-on.png);
+  height: 32px;
+  width: 32px;
+  background-repeat: no-repeat;
+}
+
+.aic-star-off {
+  background-image: url(/images/star-off.png);
+  height: 32px;
+  width: 32px;
+  background-repeat: no-repeat;
+}
+
+table.relationships .label, #documents .label {
+  display: inline-block;
 }

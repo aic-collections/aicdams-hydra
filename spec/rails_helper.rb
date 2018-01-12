@@ -66,7 +66,8 @@ RSpec.configure do |config|
   config.include RakeHelper
   config.include SolrSupport
 
-  config.formatter = 'LoggingFormatter'
+  # not sure why, but this line was causing duplicate rspec details to be outputted
+  # config.formatter = 'LoggingFormatter'
 
   config.include Warden::Test::Helpers, type: :feature
   config.after(:each, type: :feature) { Warden.test_reset! }

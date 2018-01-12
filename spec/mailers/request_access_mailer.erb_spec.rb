@@ -32,9 +32,9 @@ describe RequestAccessMailer, type: :mailer do
     expect(ActionMailer::Base.deliveries.first.subject).to eq("LAKE Access request for asset SI-1234")
   end
 
-  it 'contains links to the asset', unless: LakeshoreTesting.continuous_integration? do
-    expect(ActionMailer::Base.deliveries.first.encoded).to include('<a href="https://localhost:3000/concern/generic_works/1234/edit#share">Approve request</a>')
-    expect(ActionMailer::Base.deliveries.first.encoded).to include('<a href="https://localhost:3000/concern/generic_works/1234/">Review asset</a>')
+  it 'contains links to the asset' do
+    expect(ActionMailer::Base.deliveries.first.encoded).to include('<a href="http://localhost:3000/concern/generic_works/1234/edit#share">Approve request</a>')
+    expect(ActionMailer::Base.deliveries.first.encoded).to include('<a href="http://localhost:3000/concern/generic_works/1234">Review asset</a>')
   end
 
   it 'contains asset uid, pref_label, and requester full name' do

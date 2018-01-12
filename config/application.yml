@@ -3,6 +3,7 @@
 development:
   hydra_bin_path: "/usr/local/bin"
   LAKESHORE_ENV: "local"
+  LAKESHORE_DOMAIN: "localhost:3000"
 
 test:
   citi_api_uid: "citi_api_uid"
@@ -10,6 +11,7 @@ test:
   citi_api_endpoint: "https://citiworker"
   citi_api_ssl_verify: "false"
   hydra_bin_path: "/usr/local/bin"
+  LAKESHORE_DOMAIN: "localhost:3000"
 
 production:
 

@@ -64,7 +64,7 @@ class InboundRelationships
     # @return [Array<SolrDocument>]
     def resources_with(solr_field)
       return [] if id.nil?
-      ActiveFedora::SolrService.query("#{solr_field}:#{id}").map { |hit| SolrDocument.new(hit) }
+      ActiveFedora::SolrService.query("#{solr_field}:#{id}", rows: 1000).map { |hit| SolrDocument.new(hit) }
     end
 
     # @return [Array<String>]

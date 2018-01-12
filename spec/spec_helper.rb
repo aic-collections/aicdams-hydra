@@ -48,7 +48,7 @@ RSpec.configure do |config|
   config.order = :random
 
   # Exclude blocks of broken tests
-  config.filter_run_excluding broken: true
+  # config.filter_run_excluding broken: true
 
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.
@@ -56,8 +56,8 @@ RSpec.configure do |config|
   #   # to individual examples or groups you care about by tagging them with
   #   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
   #   # get run.
-  #   config.filter_run :focus
-  #   config.run_all_when_everything_filtered = true
+  config.filter_run_including focus: true # need this so we can use fit etc.
+  config.run_all_when_everything_filtered = true # need this so when no focus is used, all specs run
   #
   #   # Limits the available syntax to the non-monkey patched syntax that is
   #   # recommended. For more details, see:

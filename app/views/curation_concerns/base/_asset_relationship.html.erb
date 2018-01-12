@@ -3,14 +3,24 @@
 <table class="table table-striped relationships">
   <tbody>
     <tr>
+      <% if need_star %>
+        <th>Pref.</th>
+      <% end %>
       <th>Preview</th>
       <th>Document Type</th>
       <th>Link</th>
+      <th>Visibility & Publishing</th>
       <th>UID</th>
       <th>Non-Object Caption</th>
     </tr>
     <% presenters.each do |rel| %>
       <tr>
+        <% if need_star %>
+          <td>
+            <div class="<%= star_or_not(rel.id, pref_rep_id) %>">
+            </div>
+          </td>
+        <% end %>
         <td><%= image_tag(rel.solr_document['thumbnail_path_ss']) %></td>
         <td><%= rel.document_types %></td>
         <td>
@@ -19,6 +29,9 @@
           <% else %>
             <%= rel.to_s %>
           <% end %>
+        </td>
+        <td>
+          <%= rel.permission_badge %><%= publish_channels_to_badges(rel.publish_channels) %>
         </td>
         <td><%= rel.uid %></td>
         <td><%= rel.caption %></td>

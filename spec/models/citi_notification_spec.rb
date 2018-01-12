@@ -50,7 +50,7 @@ describe CitiNotification do
     describe "a notification with a AF:Base object" do
       let(:resource)  { build(:work, id: "fakeid", citi_uid: "WO-fake") }
       let(:file_set)  { build(:file_set, id: "fakefsid") }
-      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14")]) }
+      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14, 2017")]) }
 
       before { allow(file_set).to receive(:original_file).and_return(mock_file) }
 
@@ -60,7 +60,7 @@ describe CitiNotification do
     describe "a notification with a SolrDocument" do
       let(:resource)  { SolrDocument.new(build(:work, id: "fakeid", citi_uid: "WO-fake").to_solr) }
       let(:file_set)  { build(:file_set, id: "fakefsid") }
-      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14")]) }
+      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14, 2017")]) }
 
       before { allow(file_set).to receive(:original_file).and_return(mock_file) }
 
@@ -85,7 +85,7 @@ describe CitiNotification do
       let(:resource)  { build(:work, id: "fakeid", citi_uid: "WO-fake") }
       let(:file_set)  { build(:file_set, id: "fakefsid") }
       let(:parent)    { build(:asset, imaging_uid: ["1234"]) }
-      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14")]) }
+      let(:mock_file) { double("MockFile", fcrepo_modified: [DateTime.parse("July 14, 2017")]) }
 
       before do
         allow(file_set).to receive(:original_file).and_return(mock_file)

@@ -47,7 +47,7 @@ module CustomMatchers
     find("#generic_work_publish_channel_uris")[:value]
   end
 
-  def selected_preferred_representation
+  def hidden_preferred_representation
     find("input.preferred_representation", visible: false)
   end
 end

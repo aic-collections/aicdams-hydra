@@ -45,16 +45,6 @@ describe 'curation_concerns/base/_relationships.html.erb' do
       end
       it { is_expected.to have_content("Documentation") }
     end
-
-    context "with preferred representations" do
-      before do
-        allow(view).to receive(:render_thumbnail_tag)
-        allow(ability).to receive(:can?).with(:read, SolrDocument).and_return(true)
-        allow(citi_presenter).to receive(:preferred_representation_presenters).and_return([asset_presenter])
-        render 'curation_concerns/base/relationships.html.erb', presenter: citi_presenter
-      end
-      it { is_expected.to have_content("Preferred Representation") }
-    end
   end
 
   describe "an asset" do

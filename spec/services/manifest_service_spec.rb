@@ -41,9 +41,16 @@ describe ManifestService do
     end
 
     context "with a pdf asset" do
+      let(:asset) { build(:text_asset, id: "1234", pref_label: "Sample Label") }
       let(:file_set) { SolrDocument.new(id: "related-image", mime_type_ssi: "application/pdf") }
       before { allow(SolrDocument).to receive(:find).with("related-image").and_return(file_set) }
       it { is_expected.to be_text_or_pdf }
+    end
+
+    context "with a pdf as image" do
+      let(:file_set) { SolrDocument.new(id: "related-image", mime_type_ssi: "application/pdf") }
+      before { allow(SolrDocument).to receive(:find).with("related-image").and_return(file_set) }
+      it { is_expected.not_to be_text_or_pdf }
     end
   end
 

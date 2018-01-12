@@ -5,6 +5,9 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
        "skos:broader": "aicdoctype:GeneralStillImage"
   term :GeneralStillImage,
        label: "General"
+  term :ConservationStillImageFrameHousingAndPacking,
+       label: "Frame/Housing and Packing",
+       "skos:broader": "aicdoctype:ConservationStillImage"
   term :ConservationStillImage,
        label: "Conservation"
   term :CuratorialStudyPhoto,
@@ -575,6 +578,21 @@ class AICDocType < RDF::StrictVocabulary("http://definitions.artic.edu/doctypes/
   term :RyersonSpecialCollectionsText,
        label: "Ryerson Special Collections",
        "skos:broader": "aicdoctype:RyersonLibraryText"
+  term :RyersonArchiveTextPhoto,
+       label: "Photo",
+       "skos:broader": "aicdoctype:RyersonArchiveText"
+  term :RyersonArchiveTextCatalog,
+       label: "Catalog",
+       "skos:broader": "aicdoctype:RyersonArchiveText"
+  term :RyersonArchiveTextCombinedScan,
+       label: "Combined Scan",
+       "skos:broader": "aicdoctype:RyersonArchiveText"
+  term :RyersonArchiveTextCorrespondence,
+       label: "Correspondence",
+       "skos:broader": "aicdoctype:RyersonArchiveText"
+  term :RyersonArchiveTextExhibitionDocument,
+       label: "Exhibition Document",
+       "skos:broader": "aicdoctype:RyersonArchiveText"
   term :RyersonArchiveText,
        label: "Archive",
        "skos:broader": "aicdoctype:RyersonLibraryText"
