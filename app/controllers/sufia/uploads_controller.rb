@@ -2,11 +2,16 @@
 module Sufia
   class UploadsController < ApplicationController
     load_and_authorize_resource class: UploadedFile
-    before_action :validate_asset_type, :validate_duplicate_upload, only: [:create]
+    before_action :validate_asset_type, only: [:create]
 
     def create
-      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri }
-      @upload.save!
+      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, batch_upload_id: batch_id }
+      @upload.uploaded_file = uploaded_file
+      if @upload.save
+        return
+      else
+        render json: { files: [@upload.errors.messages[:checksum].first] }
+      end
     end
 
     def destroy
@@ -31,13 +36,12 @@ module Sufia
         render json: { files: [error_message] }
       end
 
-      def validate_duplicate_upload
-        return if duplicate_upload.empty?
-        render json: { files: [duplicate_error_message, begun_ingestion] }
-      end
-
       def uploaded_file
         params[:files].first
+      end
+
+      def batch_id
+        asset_attributes.fetch(:batch_upload_id, "")
       end
 
       def asset_type
@@ -59,30 +63,10 @@ module Sufia
         }
       end
 
-      def duplicate_error_message
-        {
-          error:          t('lakeshore.upload.errors.duplicate', name: uploaded_file.original_filename),
-          duplicate_path: polymorphic_path(duplicate_upload.first),
-          duplicate_name: duplicate_upload.first.to_s
-        }
-      end
-
-      def begun_ingestion
-        {
-            error:          t('lakeshore.upload.errors.begun_ingestion', name: uploaded_file.original_filename),
-            duplicate_path: polymorphic_path(duplicate_upload.first),
-            duplicate_name: duplicate_upload.first.to_s
-        }
-      end
-
       # We use this controller with both the single upload and batch upload form
       # so it needs to work with both kinds of parameter hashes.
       def asset_attributes
         params.fetch(:generic_work, nil) || params.fetch(:batch_upload_item, nil)
-      end
-
-      def duplicate_upload
-        @duplicate_upload ||= DuplicateUploadVerificationService.new(uploaded_file).duplicates
       end
   end
 end

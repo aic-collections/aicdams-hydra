@@ -17,6 +17,10 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
     []
   end
 
+  def batch_upload_id
+    BatchUpload.create.id
+  end
+
   def dept_created
     Department.find_by_citi_uid(current_ability.current_user.department)
   end

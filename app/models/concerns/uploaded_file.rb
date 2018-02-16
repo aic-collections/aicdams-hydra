@@ -1,15 +1,21 @@
 # frozen_string_literal: true
 module UploadedFile
-  include Lakeshore::ChecksumService
+  include ChecksumService
   extend ActiveSupport::Concern
 
   included do
     extend ClassMethods
+    belongs_to :batch_upload
     after_initialize :set_status, if: "status.nil?"
     before_validation :calculate_checksum
+    validates :checksum, uniqueness: { scope: :batch_upload_id,
+                                   message: { error: "This file is already in this batch." } }
+
     validates :checksum, presence: true, checksum: true, on: :create
 
     scope :begun_ingestion, -> { where(status: "begun_ingestion") }
+
+    attr_accessor :uploaded_file
   end
 
   private

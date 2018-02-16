@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe CreateAssetJob do
   let(:user)       { create(:user1) }
-  let(:file)       { Sufia::UploadedFile.create }
+  let(:file)       { create(:uploaded_file) }
   let(:attributes) { { uploaded_files: [file.id] } }
   let(:log)        { Sufia::BatchCreateOperation.new }
   let(:actor)      { double }
