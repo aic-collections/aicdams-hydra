@@ -26,6 +26,6 @@ class Sufia::BatchUploadsController < ApplicationController
 
     def set_uploaded_file_status
       uploaded_file_ids = params["uploaded_files"]
-      Sufia::UploadedFile.flip_status(uploaded_file_ids)
+      Sufia::UploadedFile.change_status(uploaded_file_ids, "begun_ingestion")
     end
 end

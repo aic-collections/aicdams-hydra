@@ -7,7 +7,7 @@ module UploadedFile
     extend ClassMethods
     after_initialize :set_status, if: "status.nil?"
     before_validation :calculate_checksum
-    validates :checksum, presence: true, checksum: true
+    validates :checksum, presence: true, checksum: true, on: :create
 
     scope :begun_ingestion, -> { where(status: "begun_ingestion") }
   end
@@ -23,10 +23,10 @@ module UploadedFile
     end
 
   module ClassMethods
-    def flip_status(uploaded_files_ids)
-      uploaded_files_ids.each do |uploaded_file_id|
-        find(uploaded_file_id).update_attribute(:status, "begun_ingestion")
-      end
+    # @param [Array] uploaded_files_ids array of ids in batch upload
+    # @param [String] new string that status should be updated to
+    def change_status(uploaded_files_ids, str)
+      where(id: uploaded_files_ids).update_all(status: str)
     end
   end
 end
