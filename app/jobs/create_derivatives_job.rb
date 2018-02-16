@@ -2,6 +2,15 @@
 class CreateDerivativesJob < ActiveJob::Base
   queue_as CurationConcerns.config.ingest_queue_name
 
+  after_perform do |job|
+    fileset = job.arguments.first
+    fileset_uri = fileset.uri.to_s
+    uploaded_file = Sufia::UploadedFile.find_by_file_set_uri(fileset_uri)
+    unless FileSet.where(digest_ssim: uploaded_file.checksum).empty?
+      uploaded_file.update_attribute(:status, "ingested")
+    end
+  end
+
   # @param [FileSet] file_set
   # @param [String] file_id identifier for a Hydra::PCDM::File
   # @param [String, NilClass] filepath the cached file within the CurationConcerns.config.working_path

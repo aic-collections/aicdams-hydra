@@ -33,7 +33,7 @@ module Sufia
 
       def validate_duplicate_upload
         return if duplicate_upload.empty?
-        render json: { files: [duplicate_error_message] }
+        render json: { files: [duplicate_error_message, begun_ingestion] }
       end
 
       def uploaded_file
@@ -64,6 +64,14 @@ module Sufia
           error:          t('lakeshore.upload.errors.duplicate', name: uploaded_file.original_filename),
           duplicate_path: polymorphic_path(duplicate_upload.first),
           duplicate_name: duplicate_upload.first.to_s
+        }
+      end
+
+      def begun_ingestion
+        {
+            error:          t('lakeshore.upload.errors.begun_ingestion', name: uploaded_file.original_filename),
+            duplicate_path: polymorphic_path(duplicate_upload.first),
+            duplicate_name: duplicate_upload.first.to_s
         }
       end
 

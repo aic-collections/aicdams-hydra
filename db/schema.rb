@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031025602) do
+ActiveRecord::Schema.define(version: 20180206151001) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -266,8 +266,11 @@ ActiveRecord::Schema.define(version: 20161031025602) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "use_uri"
+    t.string   "checksum"
+    t.string   "status"
   end
 
+  add_index "uploaded_files", ["checksum"], name: "index_uploaded_files_on_checksum"
   add_index "uploaded_files", ["file_set_uri"], name: "index_uploaded_files_on_file_set_uri"
   add_index "uploaded_files", ["use_uri"], name: "index_uploaded_files_on_use_uri"
   add_index "uploaded_files", ["user_id"], name: "index_uploaded_files_on_user_id"

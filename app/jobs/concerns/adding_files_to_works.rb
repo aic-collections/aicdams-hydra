@@ -13,7 +13,7 @@ module AddingFilesToWorks
       end
 
       attach_content(actor, uploaded_file.file)
-      uploaded_file.update(file_set_uri: file_set.uri)
+      uploaded_file.update_attribute(:file_set_uri, file_set.uri)
     end
   end
 
