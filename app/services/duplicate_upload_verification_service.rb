@@ -16,7 +16,7 @@ class DuplicateUploadVerificationService
   # @param [Sufia::UploadedFile] file uploaded via Rack
   def initialize(file)
     unless file.is_a?(ActionDispatch::Http::UploadedFile)
-      raise ArgumentError.new("must be an ActionDispatch::Http::UploadedFile")
+      raise ArgumentError, "must be an ActionDispatch::Http::UploadedFile"
     end
     @file = file
   end
@@ -27,6 +27,7 @@ class DuplicateUploadVerificationService
   end
 
   private
+
     # returns array of one parent asset
     def parent_asset
       duplicate_file_sets.map(&:parent)

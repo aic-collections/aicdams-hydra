@@ -8,7 +8,7 @@ module Sufia
       @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, batch_upload_id: batch_id }
       @upload.uploaded_file = uploaded_file
       if @upload.save
-        return
+        render status: :ok
       else
         render json: { files: [@upload.errors.messages[:checksum].first] }
       end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ChecksumService
   # Calculate the SHA1 checksum and format it like Fedora does
   def fedora_shasum

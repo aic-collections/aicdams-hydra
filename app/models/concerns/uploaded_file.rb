@@ -9,13 +9,21 @@ module UploadedFile
     after_initialize :set_status, if: "status.nil?"
     before_validation :calculate_checksum
     validates :checksum, uniqueness: { scope: :batch_upload_id,
-                                   message: { error: "This file is already in this batch." } }
+                                       message: { error: "This file is already in this batch." } }
 
     validates :checksum, presence: true, checksum: true, on: :create
 
     scope :begun_ingestion, -> { where(status: "begun_ingestion") }
 
     attr_accessor :uploaded_file
+  end
+
+  module ClassMethods
+    # @param [Array] uploaded_files_ids array of ids in batch upload
+    # @param [String] new string that status should be updated to
+    def change_status(uploaded_files_ids, str)
+      where(id: uploaded_files_ids).update_all(status: str)
+    end
   end
 
   private
@@ -27,12 +35,4 @@ module UploadedFile
     def set_status
       self.status = "new"
     end
-
-  module ClassMethods
-    # @param [Array] uploaded_files_ids array of ids in batch upload
-    # @param [String] new string that status should be updated to
-    def change_status(uploaded_files_ids, str)
-      where(id: uploaded_files_ids).update_all(status: str)
-    end
-  end
 end
