@@ -5,13 +5,13 @@ class CreateDerivativesJob < ActiveJob::Base
   after_perform do |job|
     fileset = job.arguments.first
     fileset_uri = fileset.uri.to_s
-    uploaded_file = Sufia::UploadedFile.find_by_file_set_uri(fileset_uri)
     begin
-      unless FileSet.where(digest_ssim: uploaded_file.checksum).empty?
-        uploaded_file.update_attribute(:status, "ingested")
-      end
-    rescue NoMethodError => e
-      puts "Sufia::UploadedFile with file_set_uri of #{fileset_uri} could not be found."
+      uploaded_file = Sufia::UploadedFile.find_by_file_set_uri!(fileset_uri)
+        unless FileSet.where(digest_ssim: uploaded_file.checksum).empty?
+          uploaded_file.update_attribute(:status, "ingested")
+        end
+    rescue ActiveRecord::RecordNotFound => e
+      Resque.logger.debug "#{e.message} with file_set_uri of #{fileset_uri}, thus couldn't flip status to 'ingested'."
     end
   end
 
