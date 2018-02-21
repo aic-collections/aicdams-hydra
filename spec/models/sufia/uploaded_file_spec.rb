@@ -19,7 +19,6 @@ describe Sufia::UploadedFile do
   end
 
   describe "#checksum" do
-
     before do
       subject.checksum = ""
     end
