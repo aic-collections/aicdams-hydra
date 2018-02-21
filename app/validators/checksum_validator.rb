@@ -4,7 +4,8 @@ class ChecksumValidator < ActiveModel::Validator
   def validate(record)
     @record = record
     @uploaded_file = @record.uploaded_file
-    if !DuplicateUploadVerificationService.new(@uploaded_file).duplicates.empty?
+    @duvs_obj = DuplicateUploadVerificationService.new(@uploaded_file)
+    if !@duvs_obj.duplicates.empty?
       record.errors.add(:checksum, in_solr_error_message)
     elsif Sufia::UploadedFile.begun_ingestion.map(&:checksum).include?(record.checksum)
       record.errors.add(:checksum, begun_ingestion_error_message)
@@ -16,8 +17,8 @@ class ChecksumValidator < ActiveModel::Validator
     def in_solr_error_message
       {
         error:          I18n.t('lakeshore.upload.errors.duplicate', name: @record.uploaded_file.original_filename),
-        duplicate_path: polymorphic_path(DuplicateUploadVerificationService.new(@uploaded_file).duplicates.first),
-        duplicate_name: DuplicateUploadVerificationService.new(@uploaded_file).duplicates.first.to_s
+        duplicate_path: polymorphic_path(@duvs_obj.duplicates.first),
+        duplicate_name: @duvs_obj.duplicates.first.to_s
       }
     end
 
