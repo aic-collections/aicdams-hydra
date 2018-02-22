@@ -11,7 +11,7 @@ module UploadedFile
     validates :checksum, uniqueness: { scope: :batch_upload_id,
                                        message: { error: "This file is already in this batch." } }
 
-    validates :checksum, presence: true, checksum: true, on: :create
+    validates :checksum, presence: true, checksum: true
 
     scope :begun_ingestion, -> { where(status: "begun_ingestion") }
 
