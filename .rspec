@@ -1,4 +1,3 @@
 --color
---format html
---out tmp/rspec_results.html
 --profile
+--format progress
