@@ -25,7 +25,7 @@ class ChecksumValidator < ActiveModel::Validator
 
     def begun_ingestion_error_message
       {
-        error:          "File has already begun ingestion."
+        error:          I18n.t('lakeshore.upload.errors.begun_ingestion', name: @record.file.filename)
       }
     end
 end
