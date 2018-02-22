@@ -2,8 +2,7 @@
 class ChecksumValidator < ActiveModel::Validator
   include Rails.application.routes.url_helpers
   def validate(record)
-    @record = record
-    @uploaded_file = @record.uploaded_file
+    @uploaded_file = record.file
     @duvs_obj = DuplicateUploadVerificationService.new(@uploaded_file)
     if !@duvs_obj.duplicates.empty?
       record.errors.add(:checksum, in_solr_error_message)

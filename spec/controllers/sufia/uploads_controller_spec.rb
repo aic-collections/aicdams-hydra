@@ -64,9 +64,6 @@ describe Sufia::UploadsController do
   describe "updating the use uri" do
     routes { Rails.application.routes }
 
-    let!(:user)          { create(:user1) }
-    # let!(:file)          { File.open(File.join(fixture_path, "sun.png")) }
-    let!(:file)          { create(:image_file) }
     let!(:uploaded_file) { create(:uploaded_file) }
 
     subject { uploaded_file.reload }

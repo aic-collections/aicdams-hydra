@@ -6,7 +6,6 @@ module Sufia
 
     def create
       @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, batch_upload_id: batch_id }
-      @upload.uploaded_file = uploaded_file
       if @upload.save
         render status: :ok
       else

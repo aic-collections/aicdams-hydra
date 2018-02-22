@@ -6,6 +6,7 @@ module ChecksumService
   end
 
   def file_path
-    uploaded_file.path
+    return file.path if file.respond_to?(:path)
+    file.file.file.path
   end
 end
