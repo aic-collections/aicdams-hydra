@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 describe Sufia::UploadedFile do
-
   context "when the object is new" do
     subject { described_class.new }
     describe "#status" do
@@ -16,7 +15,6 @@ describe Sufia::UploadedFile do
     subject { create(:uploaded_file) }
 
     describe "#checksum" do
-
       # before { subject.checksum = "checksum" }
 
       it "gets calculated automatically before_save" do
