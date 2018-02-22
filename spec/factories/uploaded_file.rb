@@ -4,6 +4,7 @@ FactoryGirl.define do
 
   factory :uploaded_file, class: Sufia::UploadedFile do
     file f
+    # association :file, factory: :image_file #implement this at some point, but not while trying to fix release bugs :)
     user
     use_uri "http://file.use.uri"
     batch_upload_id "1"
