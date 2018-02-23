@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 FactoryGirl.define do
-  sequence :email do |n|
-    "person#{n}@example.com"
-  end
-
   factory :user do
     factory :user1, aliases: [:default_user] do
-      email { generate :email }
+      email 'user1'
       department '100'
       initialize_with { User.find_or_create_by(email: 'user1') }
     end
