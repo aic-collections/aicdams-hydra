@@ -8,8 +8,6 @@ module UploadedFile
     belongs_to :batch_upload
     after_initialize :set_status, if: "status.nil?"
     before_validation :calculate_checksum
-    validates :checksum, uniqueness: { scope: :batch_upload_id,
-                                       message: { error: "This file is already in this batch." } }
 
     validates :checksum, presence: true, checksum: true
 
