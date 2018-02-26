@@ -19,6 +19,16 @@ class GenericWork < Resource
   before_create :status_is_active, :public_is_false
   validate :id_matches_uid_checksum, on: :update
 
+  def imaging_uid_placeholder
+    imaging_uid.first
+  end
+
+  def imaging_uid_placeholder=(val)
+    arr = []
+    arr << val
+    self.imaging_uid = arr
+  end
+
   # Overrides CurationConcerns::Noid to set #id to be a MD5 checksum of #uid.
   def assign_id
     self.uid = service.mint unless new_record? && uid.present?

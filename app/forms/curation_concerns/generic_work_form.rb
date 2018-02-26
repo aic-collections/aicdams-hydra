@@ -4,11 +4,11 @@ module CurationConcerns
     include AssetFormBehaviors
     include PropertyPermissions
 
-    delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives, to: :model
+    delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives, :imaging_uid_placeholder, to: :model
 
     def self.aic_terms
       [
-        :asset_type, :document_type_uri, :imaging_uid, :caption, :first_document_sub_type_uri, :second_document_sub_type_uri,
+        :asset_type, :document_type_uri, :imaging_uid_placeholder, :caption, :first_document_sub_type_uri, :second_document_sub_type_uri,
         :pref_label, :alt_label, :description, :language, :publisher, :capture_device,
         :status_uri, :digitization_source_uri, :compositing_uri, :light_type_uri, :view_uris,
         :keyword_uris, :publish_channel_uris, :view_notes, :visual_surrogate, :external_resources,
