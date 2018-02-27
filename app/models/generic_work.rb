@@ -24,9 +24,7 @@ class GenericWork < Resource
   end
 
   def imaging_uid_placeholder=(val)
-    arr = []
-    arr << val
-    self.imaging_uid = arr
+    self.imaging_uid = [val]
   end
 
   # Overrides CurationConcerns::Noid to set #id to be a MD5 checksum of #uid.

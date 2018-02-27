@@ -6,12 +6,9 @@ module CurationConcerns
 
     delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives, :imaging_uid_placeholder, to: :model
 
-    def initialize(curation_concern, current_ability, action_name)
-      @action_name = action_name
-      super(curation_concern, current_ability)
-    end
+    attr_writer :action_name
 
-    def self.aic_terms(action_name = nil)
+    def self.aic_terms(action_name: nil)
       terms = [
         :asset_type, :document_type_uri, :imaging_uid_placeholder, :caption, :first_document_sub_type_uri, :second_document_sub_type_uri,
         :pref_label, :alt_label, :description, :language, :publisher, :capture_device,
@@ -39,7 +36,7 @@ module CurationConcerns
     self.required_fields = [:asset_type, :document_type_uri]
 
     def primary_terms
-      self.class.aic_terms(@action_name) - [:asset_type, :external_resources]
+      self.class.aic_terms(action_name: @action_name) - [:asset_type, :external_resources]
     end
 
     def secondary_terms
