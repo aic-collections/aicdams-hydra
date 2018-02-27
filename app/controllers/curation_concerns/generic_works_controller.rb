@@ -57,6 +57,7 @@ class CurationConcerns::GenericWorksController < ApplicationController
 
     def build_form
       @form = form_class.new(curation_concern, current_ability)
+      @form.current_ability = current_ability
       @form.action_name = action_name
     end
 end

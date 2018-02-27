@@ -3,14 +3,14 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
   include AssetFormBehaviors
   include PropertyPermissions
 
-  attr_writer :parameterized_relationships, :action_name
+  attr_writer :parameterized_relationships
 
   self.terms = CurationConcerns::GenericWorkForm.terms
 
   delegate :representations_for, :documents_for, :attachment_uris, :attachments_for, to: :parameterized_relationships
 
   def primary_terms
-    CurationConcerns::GenericWorkForm.aic_terms(action_name: @action_name) - [:asset_type, :pref_label, :external_resources]
+    CurationConcerns::GenericWorkForm.aic_terms - [:asset_type, :pref_label, :external_resources]
   end
 
   def secondary_terms
