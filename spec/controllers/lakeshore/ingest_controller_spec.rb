@@ -2,9 +2,9 @@
 require 'rails_helper'
 
 describe Lakeshore::IngestController do
-  let(:apiuser) { create(:apiuser) }
-  let(:user)    { create(:user1) }
-
+  let(:apiuser)   { create(:apiuser) }
+  let(:user)      { create(:user1) }
+  let(:dept_user) { create(:department_user) }
   let(:image_asset) do
     ActionDispatch::Http::UploadedFile.new(filename:     "sun.png",
                                            content_type: "image/png",
@@ -14,6 +14,12 @@ describe Lakeshore::IngestController do
   before do
     LakeshoreTesting.reset_uploads
     sign_in_basic(apiuser)
+  end
+
+  describe "#render_json_response is accessible" do
+    it "includes CurationConcerns::ApplicationControllerBehavior" do
+      expect(described_class.new).to be_kind_of(CurationConcerns::ApplicationControllerBehavior)
+    end
   end
 
   describe "#create" do
@@ -188,6 +194,22 @@ describe Lakeshore::IngestController do
         end
 
         its(:title) { is_expected.to eq(["tardis.png"]) }
+
+        context "when the depositor is another user in the asset depositor's department" do
+          let(:metadata) { { "depositor" => dept_user.email } }
+
+          it "returns a 202" do
+            expect(response).to have_http_status(202)
+          end
+
+          it "does not change asset's depositor" do
+            expect(asset.depositor).to eq("user1")
+          end
+
+          it "changes the file_set's depositor" do
+            expect(asset.intermediate_file_set.first.depositor).to eq("department_user")
+          end
+        end
 
         context "and is a duplicate" do
           let(:parent) { build(:work, pref_label: "work pref_label") }

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Lakeshore
   class IngestController < APIController
+    include CurationConcerns::ApplicationControllerBehavior
     # TODO
     # load_and_authorize_resource :curation_concern, class: 'GenericWork'
 

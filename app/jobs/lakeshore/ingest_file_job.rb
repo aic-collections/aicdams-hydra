@@ -25,6 +25,10 @@ class Lakeshore::IngestFileJob < ActiveJob::Base
                                         relation,
                                         versioning: false)
 
+    # https://cits.artic.edu/redmine/issues/2647
+    # Ingest API should update the file_set's depositor to the ingestor
+    file_set.depositor = user.email
+
     # Persist changes to the file_set
     file_set.save!
 
