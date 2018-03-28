@@ -271,4 +271,22 @@ describe GenericWork do
       its(:legacy_file_set) { is_expected.to contain_exactly(legacy) }
     end
   end
+
+  describe "#imaging_uid_placeholder" do
+    it "returns the first imaging_uid" do
+      fake_array = ["IM-1234"]
+      allow(subject).to receive(:imaging_uid).and_return(fake_array)
+      expect(fake_array).to receive(:first).and_call_original
+      expect(subject.imaging_uid_placeholder).to eq("IM-1234")
+    end
+  end
+
+  describe "#imaging_uid_placeholder=" do
+    it "calls #imaing_uid=" do
+      string = "IM-789"
+      expect(subject).to receive(:imaging_uid=).and_call_original
+      subject.imaging_uid_placeholder = string
+      expect(subject.imaging_uid_placeholder).to eq(string)
+    end
+  end
 end
