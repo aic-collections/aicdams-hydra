@@ -13,6 +13,20 @@ describe CurationConcerns::GenericWorkForm do
     it { is_expected.to delegate_method(:attachment_uris).to(:model) }
     it { is_expected.to delegate_method(:attachments).to(:model) }
     it { is_expected.to delegate_method(:copyright_representatives).to(:model) }
+    it { is_expected.to delegate_method(:imaging_uid_placeholder).to(:model) }
+  end
+
+  describe "attr_writers" do
+    it { is_expected.to respond_to(:action_name=) }
+    it { is_expected.to respond_to(:action_name) }
+    it { is_expected.to respond_to(:current_ability=) }
+    it { is_expected.to respond_to(:current_ability) }
+  end
+
+  describe "::aic_terms" do
+    it "includes :imaging_uid_placeholder" do
+      expect(described_class.aic_terms).to include(:imaging_uid_placeholder)
+    end
   end
 
   describe "#required_fields" do
