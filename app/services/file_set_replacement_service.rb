@@ -31,6 +31,7 @@ class FileSetReplacementService
     file_set.title = [file.file.file.original_filename]
     file_set.save!
     file_actor.new(file_set, "original_file", user).ingest_file(file.file)
+    CurationConcerns.config.callback.run(:after_update_content, file_set, user)
     true
   end
 
