@@ -54,13 +54,13 @@ Or individual tests
 ### Development Server
 
 A cloned repository is deployed to the development server and run in development mode.
-This is not the usual way Capistrano is used, but is done so to enable development work directly on the
+This is not the usual way Capistrano is used, but is done to enable development to work directly on the
 server. By default, it will update to the latest commit in the develop branch.
 
     bundle exec cap dev repo:update
     bundle exec cap dev repo:config
 
-If this a is new deployment, use `bundle exec cap dev repo:update`
+If this is a new deployment, use `bundle exec cap dev repo:update`
 
 ### Test Server
 
