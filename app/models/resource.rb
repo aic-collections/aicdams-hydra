@@ -33,7 +33,7 @@ class Resource < ActiveFedora::Base
     end
 
     def relation_ids
-      ids = [documents.map(&:id), representations.map(&:id), attachment_ids].flatten
+      ids = [documents.map(&:id), representations.map(&:id), attachment_ids, constituent_ids].flatten
       ids << preferred_representation.id if preferred_representation
       ids
     end
@@ -42,13 +42,18 @@ class Resource < ActiveFedora::Base
       return [] if id.nil?
       ActiveFedora::SolrService.query(
         "id:#{id}",
-        fl: "documents_ssim, preferred_representation_ssim, representations_ssim, attachments_ssim"
+        fl: "documents_ssim, preferred_representation_ssim, representations_ssim, attachments_ssim, constituent_of_ssim"
       ).first.values.flatten
     end
 
     def attachment_ids
       return [] unless respond_to?(:attachments)
       attachments.map(&:id)
+    end
+
+    def constituent_ids
+      return [] unless respond_to?(:constituent_of)
+      constituent_of.map(&:id)
     end
 
     def reindex_related_resource(id)

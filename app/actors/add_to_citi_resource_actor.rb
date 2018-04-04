@@ -14,7 +14,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
   include CurationConcerns::Lockable
 
   attr_reader :representations, :preferred_representations, :additional_representation, :documents,
-              :additional_document, :attachments
+              :additional_document, :attachments, :constituents
 
   def create(attributes)
     delete_relationship_attributes(attributes)
@@ -33,6 +33,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
     @documents = attributes.delete(:documents_for)
     @additional_document = attributes.delete(:additional_document)
     @attachments = attributes.delete(:attachments_for)
+    @constituents = attributes.delete(:has_constituent_part)
   end
 
   # Assembles all unique representation ids, removing any empty strings passed in from the form.
@@ -62,6 +63,12 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
     Array.wrap(attachments).uniq.delete_if(&:empty?)
   end
 
+  # Assets are referenced using uris and not ids
+  # @return [Array<String>]
+  def constituent_uris
+    Array.wrap(constituents).uniq.delete_if(&:empty?)
+  end
+
   private
 
     # @todo wrap this in an async job? If the list of ids is very long, these updates will be done
@@ -70,6 +77,7 @@ class AddToCitiResourceActor < CurationConcerns::Actors::AbstractActor
       management_service.add_or_remove_representations(representation_ids)
       management_service.add_or_remove(:documents, document_ids)
       management_service.add_or_remove(:attachments, attachment_uris)
+      management_service.add_or_remove(:constituents, constituent_uris)
       management_service.update(:preferred_representations, preferred_representation_ids)
       true
     end

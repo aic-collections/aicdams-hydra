@@ -38,9 +38,10 @@ class InboundRelationshipManagementService
     def remove(relationship, ids)
       (representing_resource.send(relationship).map(&:id) - ids).each do |old_id|
         acquire_lock_for(old_id) do
+          resource_relationship = inverse_relationship(relationship)
           resource = ActiveFedora::Base.find(old_id)
-          new_list = resource.send(relationship).map { |r| r unless r.id == curation_concern.id }.compact
-          resource.send(relationship.to_s.singularize + "_uris=", new_list.map(&:uri))
+          new_list = resource.send(resource_relationship).map { |r| r unless r.id == curation_concern.id }.compact
+          resource.send(resource_relationship.to_s.singularize + "_uris=", new_list.map(&:uri))
           resource.save
         end
       end
@@ -51,9 +52,10 @@ class InboundRelationshipManagementService
     def add(relationship, ids)
       ids.each do |id|
         acquire_lock_for(id) do
+          resource_relationship = inverse_relationship(relationship)
           resource = ActiveFedora::Base.find(id)
-          new_list = resource.send(relationship.to_s.singularize + "_uris") + [curation_concern.uri]
-          resource.send(relationship.to_s.singularize + "_uris=", new_list)
+          new_list = resource.send(resource_relationship.to_s.singularize + "_uris") + [curation_concern.uri]
+          resource.send(resource_relationship.to_s.singularize + "_uris=", new_list)
           resource.save
         end
       end
@@ -102,5 +104,12 @@ class InboundRelationshipManagementService
 
     def citi_resource_actor(non_asset)
       CurationConcerns::Actors::ActorStack.new(non_asset, user, [CitiResourceActor])
+    end
+
+    # @note This is to preserve the constituents/constituent_of distinction, which wasn't
+    #   done properly with attachments.
+    def inverse_relationship(relationship)
+      return relationship unless relationship == :constituents
+      :constituent_of
     end
 end

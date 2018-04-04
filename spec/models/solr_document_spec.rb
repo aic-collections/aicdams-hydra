@@ -92,6 +92,7 @@ describe SolrDocument do
   it { is_expected.to respond_to(:representation_ids) }
   it { is_expected.to respond_to(:preferred_representation_id) }
   it { is_expected.to respond_to(:attachment_ids) }
+  it { is_expected.to respond_to(:constituent_of_ids) }
   it { is_expected.to respond_to(:artist_id) }
   it { is_expected.to respond_to(:current_location_id) }
   it { is_expected.to respond_to(:aic_depositor) }

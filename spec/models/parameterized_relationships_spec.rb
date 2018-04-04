@@ -13,8 +13,6 @@ describe ParameterizedRelationships do
 
       its(:representations_for) { is_expected.to be_empty }
       its(:documents_for)       { is_expected.to be_empty }
-      its(:attachment_uris)     { is_expected.to be_empty }
-      its(:attachments_for)     { is_expected.to be_empty }
     end
 
     context "with no relationship specified" do
@@ -22,8 +20,6 @@ describe ParameterizedRelationships do
 
       its(:representations_for) { is_expected.to be_empty }
       its(:documents_for)       { is_expected.to be_empty }
-      its(:attachment_uris)     { is_expected.to be_empty }
-      its(:attachments_for)     { is_expected.to be_empty }
     end
 
     context "when the citi_uid parameter is not an array" do
@@ -33,8 +29,6 @@ describe ParameterizedRelationships do
 
       its(:representations_for) { is_expected.to be_empty }
       its(:documents_for)       { is_expected.to be_empty }
-      its(:attachment_uris)     { is_expected.to be_empty }
-      its(:attachments_for)     { is_expected.to be_empty }
     end
   end
 
@@ -45,8 +39,6 @@ describe ParameterizedRelationships do
 
     its(:representations_for) { is_expected.to be_empty }
     its(:documents_for)       { is_expected.to be_empty }
-    its(:attachment_uris)     { is_expected.to be_empty }
-    its(:attachments_for)     { is_expected.to be_empty }
   end
 
   context "with non-existent CITI types" do
@@ -56,8 +48,6 @@ describe ParameterizedRelationships do
 
     its(:representations_for) { is_expected.to be_empty }
     its(:documents_for)       { is_expected.to be_empty }
-    its(:attachment_uris)     { is_expected.to be_empty }
-    its(:attachments_for)     { is_expected.to be_empty }
   end
 
   context "with existing CITI resources" do
@@ -73,8 +63,6 @@ describe ParameterizedRelationships do
 
       its(:representations_for) { is_expected.to contain_exactly(work1, work2) }
       its(:documents_for)       { is_expected.to be_empty }
-      its(:attachment_uris)     { is_expected.to be_empty }
-      its(:attachments_for)     { is_expected.to be_empty }
     end
 
     context "with documents" do
@@ -84,8 +72,15 @@ describe ParameterizedRelationships do
 
       its(:documents_for)       { is_expected.to contain_exactly(work1, work2) }
       its(:representations_for) { is_expected.to be_empty }
-      its(:attachment_uris)     { is_expected.to be_empty }
-      its(:attachments_for)     { is_expected.to be_empty }
     end
+  end
+
+  describe "features not yet implemented" do
+    let(:params) { nil }
+
+    its(:attachment_uris)      { is_expected.to be_empty }
+    its(:attachments_for)      { is_expected.to be_empty }
+    its(:constituent_of_uris)  { is_expected.to be_empty }
+    its(:has_constituent_part) { is_expected.to be_empty }
   end
 end

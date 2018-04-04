@@ -26,6 +26,8 @@ describe BatchUploadForm do
     its(:documents_for) { is_expected.to be_empty }
     its(:attachment_uris) { is_expected.to be_empty }
     its(:attachments_for) { is_expected.to be_empty }
+    its(:constituent_of_uris) { is_expected.to be_empty }
+    its(:has_constituent_part) { is_expected.to be_empty }
     its(:use_uri) { is_expected.to eq(AICType.IntermediateFileSet) }
     its(:visibility) { is_expected.to eq("department") }
     its(:external_file) { is_expected.to be_nil }

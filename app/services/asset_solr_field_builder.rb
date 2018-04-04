@@ -7,12 +7,13 @@ class AssetSolrFieldBuilder
     @asset = asset
   end
 
-  # @return [String, Array<String]
+  # @return [String, Array<String>]
   # Returns a listing of representation facets. If none exist, it returns "No Relationship"
   def representations
     representations = [
       attachment_facet, attachment_of_facet, documentation_facet,
-      representation_facet, preferred_representation_facet
+      representation_facet, preferred_representation_facet,
+      constituent_facet, constituent_of_facet
     ].compact
     representations.empty? ? "No Relationship" : representations
   end
@@ -29,6 +30,18 @@ class AssetSolrFieldBuilder
   def attachment_of_facet
     return if relationships.attachments.empty?
     "Has Attachment"
+  end
+
+  # @return [String]
+  def constituent_facet
+    return if relationships.constituents.empty?
+    "Has Constituent"
+  end
+
+  # @return [String]
+  def constituent_of_facet
+    return if asset.constituent_of.empty?
+    "Is Constituent"
   end
 
   # @return [String]

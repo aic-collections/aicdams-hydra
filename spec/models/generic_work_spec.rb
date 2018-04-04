@@ -228,6 +228,7 @@ describe GenericWork do
       it { is_expected.to respond_to(:light_type_uri) }
       it { is_expected.to respond_to(:view_uris) }
       it { is_expected.to respond_to(:attachment_uris) }
+      it { is_expected.to respond_to(:constituent_of_uris) }
     end
   end
 

@@ -9,5 +9,7 @@
   <%= render_citi_relationship(presenter.document_presenters, "Documentation For") %>
   <%= render_asset_relationship(presenter.attachment_presenters, "Attachment Of") %>
   <%= render_asset_relationship(presenter.attaching_presenters, "Attachments") %>
+  <%= render_asset_relationship(presenter.constituent_of_presenters, "Is Constituent Part Of") %>
+  <%= render_asset_relationship(presenter.constituent_presenters, "Has Constituent Part") %>
 
 <% end %>

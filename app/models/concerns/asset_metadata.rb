@@ -55,7 +55,10 @@ module AssetMetadata
 
     property :publish_channels, predicate: AIC.publishChannel, class_name: "PublishChannel"
 
+    # @todo this should be renamed attachment_of for consistency, and can be done during #1682
     property :attachments, predicate: AIC.isAttachmentOf, class_name: "GenericWork"
+
+    property :constituent_of, predicate: AIC.isConstituentPartOf, class_name: "GenericWork"
 
     property :copyright_representatives, predicate: AIC.copyrightRepresentative, class_name: "Agent" do |index|
       index.as :stored_searchable, using: :pref_label
@@ -75,6 +78,6 @@ module AssetMetadata
 
     accepts_uris_for :keyword, :digitization_source, :document_type, :first_document_sub_type,
                      :second_document_sub_type, :publish_channels, :attachments, :copyright_representatives,
-                     :licensing_restrictions
+                     :licensing_restrictions, :constituent_of
   end
 end

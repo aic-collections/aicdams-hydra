@@ -117,6 +117,9 @@ class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
   term :isAttachmentOf,
        label: "Is Attachment",
        comment: "Is an attachment of another asset"
+  term :isConstituentPartOf,
+       label: "Is Constituent Part Of",
+       comment: "A (complex) asset that this asset is a constituent part of."
   term :hasComment,
        label: "Comment",
        comment: "Comment"

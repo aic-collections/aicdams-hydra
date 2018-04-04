@@ -86,3 +86,46 @@
       </tr>
   </table>
 </div>
+
+<div id="constituent_of">
+  <h4>Is Constituent Part Of</h4>
+  <p>
+    <em>
+      A (complex) asset that this asset is a constituent part of.
+    </em>
+  </p>
+  <table class="autocomplete-components">
+    <tr>
+      <td>
+        <%= select_tag "autocomplete_attachments", options_for_select(
+          [ "Asset"], "Asset"), { class: "autocomplete_model", style: "width: 110px;" } %>
+        </td>
+        <td>
+          <%= f.input :constituent_of_uris, as: :hidden_multi_select, hint: false, label: false,
+              property: :constituent_of, input_html: { class: 'form-control' }, required: false %>
+        </td>
+      </tr>
+  </table>
+</div>
+
+<div id="has_constituent_part">
+  <h4>Has Constituent Part</h4>
+  <p>
+    <em>
+      An asset that is an integral part and a critical component of this (complex) asset.
+      E.g. a tile in a composite image; the individual angle of a 360° image or stack focus composite.
+    </em>
+  </p>
+  <table class="autocomplete-components">
+    <tr>
+      <td>
+        <%= select_tag "autocomplete_attachments_for", options_for_select(
+          [ "Asset"], "Asset"), { class: "autocomplete_model", style: "width: 110px;" } %>
+        </td>
+        <td>
+          <%= f.input :has_constituent_part, as: :hidden_multi_select, hint: false, label: false,
+              input_html: { class: 'form-control' }, required: false %>
+        </td>
+      </tr>
+  </table>
+</div>

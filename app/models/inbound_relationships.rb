@@ -49,6 +49,7 @@ class InboundRelationships
     @representation_ids ||= ids_with(:representations_ssim)
   end
 
+  # @todo this is memoizing the wrong thing; needs to be @assets
   def assets
     @asset_ids ||= resources_with(:attachments_ssim)
   end
@@ -58,6 +59,14 @@ class InboundRelationships
     @asset_ids ||= ids_with(:attachments_ssim)
   end
   alias attachment_ids asset_ids
+
+  def constituents
+    @constituents ||= resources_with(:constituent_of_ssim)
+  end
+
+  def constituent_ids
+    @constituent_ids ||= ids_with(:constituent_of_ssim)
+  end
 
   private
 

@@ -4,7 +4,8 @@ module CurationConcerns
     include AssetFormBehaviors
     include PropertyPermissions
 
-    delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives, :imaging_uid_placeholder, to: :model
+    delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives,
+             :imaging_uid_placeholder, :constituent_of, :constituent_of_uris, to: :model
 
     attr_accessor :action_name, :current_ability
 
@@ -29,7 +30,7 @@ module CurationConcerns
     end
 
     def self.multiple?(term)
-      return true if term == :attachment_uris
+      return true if [:attachment_uris, :constituent_of_uris].include?(term)
       super
     end
 
@@ -61,21 +62,23 @@ module CurationConcerns
     end
 
     # @return [Array<SolrDocument>]
-    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def representations_for
       representing_resource.representations
     end
 
     # @return [Array<SolrDocument>]
-    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def documents_for
       representing_resource.documents
     end
 
     # @return [Array<SolrDocument>]
-    # TODO: I don't know if this will work. Forms usually need AF::Base objects
     def attachments_for
       representing_resource.assets
+    end
+
+    # @return [Array<SolrDocument>]
+    def has_constituent_part
+      representing_resource.constituents
     end
 
     def preferred_representation_for
@@ -84,7 +87,7 @@ module CurationConcerns
 
     # Overrides hydra-editor MultiValueInput#collection
     def [](term)
-      if [:representations_for, :documents_for, :attachments_for].include? term
+      if [:representations_for, :documents_for, :attachments_for, :has_constituent_part].include? term
         send(term)
       else
         super

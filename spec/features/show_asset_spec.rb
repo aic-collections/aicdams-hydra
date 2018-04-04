@@ -2,15 +2,19 @@
 require 'rails_helper'
 
 describe "Displaying an asset" do
-  let(:user)       { create(:user1) }
-  let(:attachment) { create(:asset, pref_label: "Sample Attachment") }
-  let(:asset)      { create(:department_asset, :with_metadata, :with_license_metadata, attachments: [attachment.uri]) }
+  let(:user)        { create(:user1) }
+  let(:attachment)  { create(:asset, pref_label: "Sample Attachment") }
+  let(:constituent) { create(:asset, pref_label: "Sample Constituent Of") }
+  let(:asset)       { create(:department_asset, :with_metadata, :with_license_metadata,
+                             attachments: [attachment.uri],
+                             constituent_of: [constituent.uri]) }
 
   before do
     LakeshoreTesting.restore
     create(:exhibition, preferred_representation: asset.uri)
     create(:work, representations: [asset.uri])
     create(:shipment, documents: [asset.uri])
+    create(:asset, pref_label: "Sample Has Constituent Part", constituent_of: [asset.uri])
     sign_in(user)
   end
 
@@ -59,12 +63,15 @@ describe "Displaying an asset" do
     expect(page).to have_selector("h3", text: "Representation Of")
     expect(page).to have_selector("h3", text: "Documentation For")
     expect(page).to have_selector("h3", text: "Attachment Of")
+    expect(page).to have_selector("h3", text: "Is Constituent Part Of")
 
     # User1 gets links to the assets
     expect(page).to have_link("Sample Exhibition")
     expect(page).to have_link("Sample Work")
     expect(page).to have_link("Sample Shipment")
     expect(page).to have_link("Sample Attachment")
+    expect(page).to have_link("Sample Constituent Of")
+    expect(page).to have_link("Sample Has Constituent Part")
 
     # Title and description
     expect(page).to have_selector("h1", text: asset.pref_label)

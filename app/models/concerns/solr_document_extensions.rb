@@ -67,6 +67,10 @@ module SolrDocumentExtensions
     Array(self[Solrizer.solr_name('attachments', :symbol)])
   end
 
+  def constituent_of_ids
+    Array(self[Solrizer.solr_name('constituent_of', :symbol)])
+  end
+
   def visibility
     @visibility ||= if read_groups.include? Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_PUBLIC
                       Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC

@@ -3,14 +3,16 @@ require 'rails_helper'
 
 describe InboundRelationships do
   let!(:attachment)               { create(:asset) }
-  let!(:asset)                    { create(:asset, attachments: [attachment.uri]) }
+  let!(:constituent)              { create(:asset) }
+  let!(:asset)                    { create(:asset, attachments: [attachment.uri],
+                                                   constituent_of: [constituent.uri]) }
   let!(:document)                 { create(:exhibition, documents: [asset.uri]) }
   let!(:representation)           { create(:exhibition, representations: [asset.uri]) }
   let!(:preferred_representation) { create(:exhibition, preferred_representation: asset.uri) }
 
   context "with an asset containing all the types of relationships" do
     let(:relationships) { described_class.new(asset) }
-    it "maps all incomming relationships to the asset" do
+    it "maps all incoming relationships to the asset" do
       expect(relationships.documents).to contain_exactly(kind_of(SolrDocument))
       expect(relationships.document_ids).to eq([document.id])
       expect(relationships.representations).to contain_exactly(kind_of(SolrDocument))
@@ -39,6 +41,11 @@ describe InboundRelationships do
 
   context "with an attachment" do
     subject { described_class.new(attachment) }
-    its(:assets) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
+    specify { expect(subject.assets.map(&:id)).to contain_exactly(asset.id) }
+  end
+
+  context "with a constituent" do
+    subject { described_class.new(constituent) }
+    specify { expect(subject.constituents.map(&:id)).to contain_exactly(asset.id) }
   end
 end

@@ -21,13 +21,23 @@ class ParameterizedRelationships
     citi_uid.map { |id| load_type(id) }.compact
   end
 
-  # Not currently implemented
+  # Not currently implemented, but is needed to make the form work
   def attachment_uris
     []
   end
 
-  # Not currently implemented
+  # Not currently implemented, but is needed to make the form work
   def attachments_for
+    []
+  end
+
+  # Not currently implemented, but is needed to make the form work
+  def constituent_of_uris
+    []
+  end
+
+  # Not currently implemented, but is needed to make the form work
+  def has_constituent_part
     []
   end
 

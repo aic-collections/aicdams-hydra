@@ -30,6 +30,7 @@ Metrics/ClassLength:
     - 'lib/aic_type.rb'
     - 'lib/aic_doc_type.rb'
     - 'app/controllers/catalog_controller.rb'
+    - 'app/presenters/asset_presenter.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude:
@@ -93,6 +94,8 @@ Style/PredicateName:
   Exclude:
     - 'app/presenters/asset_presenter.rb'
     - 'app/presenters/concerns/citi_presenter_behaviors.rb'
+    - 'app/models/parameterized_relationships.rb'
+    - 'app/forms/curation_concerns/generic_work_form.rb'
 
 Style/FileName:
   Exclude:

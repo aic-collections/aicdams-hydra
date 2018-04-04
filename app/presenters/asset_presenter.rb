@@ -63,7 +63,7 @@ class AssetPresenter < Sufia::WorkShowPresenter
   end
 
   def has_relationships?
-    relationships.ids.present? || attachment_ids.present?
+    relationships.ids.present? || attachment_ids.present? || constituent_ids.present?
   end
 
   def artist_presenters?
@@ -112,6 +112,18 @@ class AssetPresenter < Sufia::WorkShowPresenter
                                                         *presenter_factory_arguments)
   end
 
+  def constituent_of_presenters
+    CurationConcerns::PresenterFactory.build_presenters(solr_document.constituent_of_ids,
+                                                        AssetPresenter,
+                                                        *presenter_factory_arguments)
+  end
+
+  def constituent_presenters
+    CurationConcerns::PresenterFactory.build_presenters(relationships.constituent_ids,
+                                                        AssetPresenter,
+                                                        *presenter_factory_arguments)
+  end
+
   private
 
     def relationships
@@ -120,6 +132,10 @@ class AssetPresenter < Sufia::WorkShowPresenter
 
     def attachment_ids
       relationships.attachment_ids + solr_document.attachment_ids
+    end
+
+    def constituent_ids
+      relationships.constituent_ids + solr_document.constituent_of_ids
     end
 
     def manifest_helper

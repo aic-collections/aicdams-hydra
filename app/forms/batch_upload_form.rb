@@ -7,7 +7,8 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
 
   self.terms = CurationConcerns::GenericWorkForm.terms
 
-  delegate :representations_for, :documents_for, :attachment_uris, :attachments_for, to: :parameterized_relationships
+  delegate :representations_for, :documents_for, :attachment_uris, :attachments_for,
+           :constituent_of_uris, :has_constituent_part, to: :parameterized_relationships
 
   def primary_terms
     CurationConcerns::GenericWorkForm.aic_terms(action_name: @action_name, current_ability: @current_ability) - [:asset_type, :pref_label, :external_resources]
@@ -68,6 +69,8 @@ class BatchUploadForm < Sufia::Forms::BatchUploadForm
       @parameterized_relationships || OpenStruct.new(representations_for: [],
                                                      documents_for: [],
                                                      attachment_uris: [],
-                                                     attachments_for: [])
+                                                     attachments_for: [],
+                                                     constituent_of_uris: [],
+                                                     has_constituent_part: [])
     end
 end
