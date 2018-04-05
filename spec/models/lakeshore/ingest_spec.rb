@@ -205,4 +205,33 @@ describe Lakeshore::Ingest do
       its(:represented_resources) { is_expected.to be_empty }
     end
   end
+
+  describe "#force_preferred_representation?" do
+    subject { ingest.force_preferred_representation? }
+
+    context "by default" do
+      let(:params) { {} }
+      it { is_expected.to be(false) }
+    end
+
+    context "when set to false" do
+      let(:params) { { metadata: { force_preferred_representation: "false" } } }
+      it { is_expected.to be(false) }
+    end
+
+    context "when set to true" do
+      let(:params) { { metadata: { force_preferred_representation: "true" } } }
+      it { is_expected.to be(true) }
+    end
+
+    context "when set to 1" do
+      let(:params) { { metadata: { force_preferred_representation: 1 } } }
+      it { is_expected.to be(true) }
+    end
+
+    context "when set to anything" do
+      let(:params) { { metadata: { force_preferred_representation: "asdf" } } }
+      it { is_expected.to be(false) }
+    end
+  end
 end

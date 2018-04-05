@@ -32,4 +32,9 @@ describe DuplicateUploadVerificationService do
       it { is_expected.to be(true) }
     end
   end
+
+  context "when file is nil" do
+    let(:service) { described_class.new(nil) }
+    it { is_expected.to be_empty }
+  end
 end

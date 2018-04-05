@@ -14,12 +14,12 @@ curl -u citi:password -X POST\
 
 curl -u citi:password -X POST\
  -F 'metadata[depositor]=awead'\
- -F 'metadata[representations_for][]=nc580m68d'\
- -F 'metadata[preferred_representation_for][]=nc580m68d'\
+ -F 'metadata[representations_for][]=e0c47f58-5e62-45ef-a519-16afe15453dd'\
+ -F 'metadata[preferred_representation_for][]=e0c47f58-5e62-45ef-a519-16afe15453dd'\
  http://localhost:3000/api/update/233b76a6-193d-8deb-7346-593a3857f05e
 
 curl -u citi:password -X POST\
  -F 'metadata[depositor]=awead'\
- -F 'metadata[representations_for][]=nc580m68d'\
- -F 'metadata[preferred_representation_for][]=nc580m68d'\
+ -F 'metadata[representations_for][]=e0c47f58-5e62-45ef-a519-16afe15453dd'\
+ -F 'metadata[preferred_representation_for][]=e0c47f58-5e62-45ef-a519-16afe15453dd'\
  http://localhost:3000/api/update/233b76a6-193d-8deb-7346-593a3857f05e

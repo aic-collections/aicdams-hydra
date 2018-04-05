@@ -6,7 +6,7 @@ module Lakeshore
     # load_and_authorize_resource :curation_concern, class: 'GenericWork'
 
     delegate :intermediate_file, :asset_type, :ingestor, :attributes_for_actor,
-             :check_duplicates?, :represented_resources, to: :ingest
+             :check_duplicates?, :represented_resources, :force_preferred_representation?, to: :ingest
 
     before_action :validate_ingest, :validate_asset_type, only: [:create]
     before_action :validate_duplicate_upload, :validate_preferred_representations, only: [:create, :update]
@@ -48,7 +48,7 @@ module Lakeshore
       end
 
       def validate_preferred_representations
-        return unless represented_resources.present?
+        return if force_preferred_representation? || represented_resources.empty?
         ingest.errors.add(:represented_resources, "#{represented_resources.join(', ')} already have a preferred representation")
         render json: ingest.errors.full_messages, status: :conflict
       end

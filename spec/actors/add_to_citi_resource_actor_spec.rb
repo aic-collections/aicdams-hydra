@@ -64,7 +64,7 @@ describe AddToCitiResourceActor do
       before { actor.update(attributes) }
 
       it "adds or removes the representations" do
-        expect(na3.reload.representations).to eq([other])
+        expect(na3.reload.representations).to contain_exactly(other, asset)
         expect(na3.reload.preferred_representation).to eq(asset)
         expect(na1.reload.representations).to eq([asset])
         expect(na1.reload.documents).to eq([asset])

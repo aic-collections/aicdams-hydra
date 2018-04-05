@@ -87,6 +87,10 @@ class InboundRelationshipManagementService
         acquire_lock_for(id) do
           resource = ActiveFedora::Base.find(id)
           resource.preferred_representation_uri = curation_concern.uri
+          unless resource.representation_uris.include?(curation_concern.uri)
+            uris = resource.representation_uris + [curation_concern.uri]
+            resource.representation_uris = uris
+          end
           resource.save
         end
       end

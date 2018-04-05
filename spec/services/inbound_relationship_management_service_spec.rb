@@ -113,7 +113,10 @@ describe InboundRelationshipManagementService do
         work.reload
       end
 
-      its(:preferred_representation) { is_expected.to eq(resource) }
+      it "updates both preferred and normal representations" do
+        expect(subject.preferred_representation).to eq(resource)
+        expect(subject.representations).to contain_exactly(resource)
+      end
     end
   end
 end
