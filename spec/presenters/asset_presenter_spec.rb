@@ -86,24 +86,24 @@ describe AssetPresenter do
 
   describe "#public_domain" do
     context "by default" do
-      its(:public_domain) { is_expected.to be("No") }
+      its(:public_domain) { is_expected.to eq("No") }
     end
 
     context "when true" do
       before { allow(solr_document).to receive(:public_domain?).and_return(true) }
-      its(:public_domain) { is_expected.to be("Yes") }
+      its(:public_domain) { is_expected.to eq("Yes") }
     end
   end
 
   describe "#publishable" do
     context "when false" do
       before { allow(solr_document).to receive(:publishable?).and_return(false) }
-      its(:publishable) { is_expected.to be("No") }
+      its(:publishable) { is_expected.to eq("No") }
     end
 
     context "when true" do
       before { allow(solr_document).to receive(:publishable?).and_return(true) }
-      its(:publishable) { is_expected.to be("Yes") }
+      its(:publishable) { is_expected.to eq("Yes") }
     end
   end
 
