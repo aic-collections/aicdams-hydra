@@ -68,16 +68,14 @@ class BatchEditsController < ApplicationController
     end
 
     # Remove (and its commit) when https://github.com/projecthydra/sufia/issues/2450 is closed
-    # Updates terms, permissions, and visibility for a given object in a batch.
-    # Note: Permissions and visibility are *always* copied down to any contained FileSet objects.
-    #       There is no UI option presented to the user to prevent this, unlike the option that
-    #       is present when changing permissions on a single work.
+    # Updates terms and visibility for a given object in a batch.
+    # Note: Visibility is copied down to any contained FileSet objects, but
+    #       permissions are not because file sets use the same ACLs as its parent asset.
     def update_asset(obj)
       visibility_changed = visibility_status(obj)
       actor = CurationConcerns::Actors::ActorStack.new(obj, current_user, actor_stack)
       actor.update(work_params)
       VisibilityCopyJob.perform_later(obj) if visibility_changed
-      InheritPermissionsJob.perform_later(obj) if work_params.fetch(:permissions_attributes, nil)
     end
 
     def form_class

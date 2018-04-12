@@ -115,7 +115,7 @@ describe BatchEditsController do
 
       it "updates the permissions on all the works" do
         expect(VisibilityCopyJob).not_to receive(:perform_later)
-        expect(InheritPermissionsJob).to receive(:perform_later).twice
+        expect(InheritPermissionsJob).not_to receive(:perform_later)
         put :update, parameters.as_json
         expect(work1.reload.edit_groups).to include("newgroop")
         expect(work2.reload.edit_groups).to include("newgroop")
