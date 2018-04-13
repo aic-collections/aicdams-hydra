@@ -215,22 +215,17 @@ describe Lakeshore::Ingest do
     end
 
     context "when set to false" do
-      let(:params) { { metadata: { force_preferred_representation: "false" } } }
+      let(:params) { { force_preferred_representation: "false" } }
       it { is_expected.to be(false) }
     end
 
     context "when set to true" do
-      let(:params) { { metadata: { force_preferred_representation: "true" } } }
-      it { is_expected.to be(true) }
-    end
-
-    context "when set to 1" do
-      let(:params) { { metadata: { force_preferred_representation: 1 } } }
+      let(:params) { { force_preferred_representation: "true" } }
       it { is_expected.to be(true) }
     end
 
     context "when set to anything" do
-      let(:params) { { metadata: { force_preferred_representation: "asdf" } } }
+      let(:params) { { force_preferred_representation: "asdf" } }
       it { is_expected.to be(false) }
     end
   end

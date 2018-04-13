@@ -43,7 +43,7 @@ module Lakeshore
       ingestor.present?
     end
 
-    # @return [Boolean]
+    # @return [true, false]
     # Only returns false if the parameter is explicitly set to "false"
     def check_duplicates?
       params.fetch(:duplicate_check, nil) == "false" ? false : true
@@ -57,9 +57,10 @@ module Lakeshore
       end
     end
 
+    # @return [true, false]
+    # Only returns true if the parameter is explicitly set to "true"
     def force_preferred_representation?
-      return true if force_preferred_representation == "true" || force_preferred_representation == 1
-      false
+      params.fetch(:force_preferred_representation, nil) == "true"
     end
 
     private
@@ -69,7 +70,6 @@ module Lakeshore
         @document_type_uri = metadata.fetch(:document_type_uri, nil)
         @preferred_representation_for = metadata.fetch(:preferred_representation_for, [])
         @ingestor = find_or_create_user(metadata.fetch(:depositor, nil))
-        @force_preferred_representation = metadata.fetch(:force_preferred_representation, false)
       end
 
       def find_or_create_user(key)

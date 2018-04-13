@@ -199,8 +199,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
         "visibility" => "department",
         "depositor" => user.email,
         "document_type_uri" => AICDocType.ConservationStillImage,
-        "preferred_representation_for" => [non_asset.id],
-        "force_preferred_representation" => "true"
+        "preferred_representation_for" => [non_asset.id]
       }
     end
 
@@ -209,7 +208,10 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
     it "updates the non_asset with the new preferred representation" do
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
       expect(non_asset.preferred_representation_uri).to eq(asset.uri)
-      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      post :create, asset_type: "StillImage",
+                    content: { intermediate: image_asset },
+                    metadata: metadata,
+                    force_preferred_representation: "true"
       expect(response).to be_accepted
       non_asset.reload
       expect(non_asset.preferred_representation_uri).not_to eq(asset.uri)

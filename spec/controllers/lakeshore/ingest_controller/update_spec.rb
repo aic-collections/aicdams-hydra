@@ -214,13 +214,12 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       let(:metadata) do
         {
           "depositor" => user.email,
-          "preferred_representation_for" => [non_asset.id],
-          "force_preferred_representation" => "true"
+          "preferred_representation_for" => [non_asset.id]
         }
       end
 
       it "updates the relationships" do
-        post :update, id: asset.id, metadata: metadata
+        post :update, id: asset.id, metadata: metadata, force_preferred_representation: "true"
         non_asset.reload
         expect(non_asset.preferred_representation_uri).to eq(asset.uri.to_s)
         expect(non_asset.representation_uris).to contain_exactly(asset.uri.to_s)
