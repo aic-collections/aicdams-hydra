@@ -44,9 +44,9 @@ module Lakeshore
     end
 
     # @return [true, false]
-    # Only returns false if the parameter is explicitly set to "false"
-    def check_duplicates?
-      params.fetch(:duplicate_check, nil) == "false" ? false : true
+    # Only returns true if the parameter is explicitly set to "false"
+    def check_duplicates_turned_off?
+      params.fetch(:duplicate_check, nil) == "false"
     end
 
     # @return [Array<String>]

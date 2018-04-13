@@ -6,11 +6,10 @@ module Lakeshore
     # load_and_authorize_resource :curation_concern, class: 'GenericWork'
 
     delegate :intermediate_file, :asset_type, :ingestor, :attributes_for_actor,
-             :check_duplicates?, :represented_resources, :force_preferred_representation?, to: :ingest
+             :check_duplicates_turned_off?, :represented_resources, :force_preferred_representation?, to: :ingest
 
     before_action :validate_ingest, :validate_asset_type, only: [:create]
     before_action :validate_duplicate_upload, :validate_preferred_representations, only: [:create, :update]
-    skip_before_action :validate_duplicate_upload, if: :duplicate_check_param_is_false
 
     def create
       if actor.create(attributes_for_actor)
@@ -42,6 +41,7 @@ module Lakeshore
       end
 
       def validate_duplicate_upload
+        return if check_duplicates_turned_off?
         return if duplicate_upload.empty?
         ingest.errors.add(:intermediate_file, "is a duplicate of #{duplicate_upload.first}")
         render json: duplicate_error, status: :conflict
@@ -54,10 +54,6 @@ module Lakeshore
       end
 
     private
-
-      def duplicate_check_param_is_false
-        params.fetch(:duplicate_check, nil) == "false"
-      end
 
       def ingest
         @ingest ||= Lakeshore::Ingest.new(params)
