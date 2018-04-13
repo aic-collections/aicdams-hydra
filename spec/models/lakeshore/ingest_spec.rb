@@ -18,10 +18,12 @@ describe Lakeshore::Ingest do
         }
       end
       it { is_expected.to be_valid }
-      it { is_expected.to be_check_duplicates }
+      it "#check_duplicates_turned_off? is false" do
+        expect(subject.check_duplicates_turned_off?).to be(false)
+      end
     end
 
-    context "when not checking for duplicates" do
+    context "duplicate_check is set to 'true'" do
       let(:params) do
         {
           asset_type: "StillImage",
@@ -30,7 +32,9 @@ describe Lakeshore::Ingest do
           duplicate_check: "false"
         }
       end
-      it { is_expected.not_to be_check_duplicates }
+      it "#check_duplicates_turned_off? is true" do
+        expect(subject.check_duplicates_turned_off?).to be(true)
+      end
     end
   end
 
