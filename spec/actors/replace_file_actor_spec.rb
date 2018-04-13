@@ -17,6 +17,10 @@ describe ReplaceFileActor do
         Sufia::UploadedFile.create(id: "1", file: file, user: user, use_uri: AICType.IntermediateFileSet)
       end
 
+      after do
+        ActiveJob::Base.queue_adapter = :inline
+      end
+
       it "replaces the content of the existing file set" do
         expect(IngestFileJob).to receive(:perform_later).with(
           asset.intermediate_file_set.first,
