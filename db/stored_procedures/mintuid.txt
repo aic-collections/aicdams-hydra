@@ -1,0 +1,76 @@
+CREATE OR REPLACE FUNCTION public.mintuid(pfx character varying, md character varying, OUT newuid character varying)
+ RETURNS character varying
+ LANGUAGE plpgsql
+AS $function$
+
+    DECLARE
+        lastSerial integer;
+        newSerial integer;
+        pfxId integer;
+        midId integer;
+        joinRes integer;
+        padLen integer;
+        tempUid varchar(32);
+        chkUid varchar(32);
+        fullPath varchar(255);
+
+    BEGIN
+
+                LOCK TABLE tbl_uids IN EXCLUSIVE MODE;
+
+        SELECT
+                id INTO pfxId
+                FROM tbl_prefixes
+                WHERE code=pfx
+                AND non_citi = true;
+    RAISE DEBUG 'Prefix % has id %.', pfx, pfxId;
+
+        IF pfxId IS NULL THEN
+                RAISE EXCEPTION 'Prefix % is not valid.', pfx USING ERRCODE = 'invalid_parameter_value';
+        END IF;
+
+        SELECT
+                id INTO midId
+                FROM tbl_mids
+                WHERE code=md
+                AND status = 1;
+    RAISE DEBUG 'Mid prefix % has id %.', md, midId;
+
+        IF midId IS NULL THEN
+                RAISE EXCEPTION 'Middle prefix % is not valid.', md USING ERRCODE = 'invalid_parameter_value';
+        END IF;
+
+        SELECT
+                id INTO joinRes
+                FROM jtbl_mids_prefixes
+                WHERE mid_id=midId
+                AND prefix_id=pfxId;
+    RAISE DEBUG 'join id between prefix id % and mid id % is %.', pfxId, midId, joinRes;
+
+        IF joinRes IS NULL THEN
+                RAISE EXCEPTION 'Middle prefix % cannot be associated with prefix %.', md, pfx USING ERRCODE = 'invalid_parameter_value';
+        END IF;
+
+
+
+        SELECT "serial"
+                INTO lastSerial
+                FROM "tbl_uids"
+                WHERE "prefix_id" = pfxId AND "mid_id" = midId
+                ORDER BY "serial" DESC
+                LIMIT 1;
+
+        IF lastSerial IS NULL THEN
+                lastSerial :=0;
+        END IF;
+
+        newSerial := lastSerial + 1;
+
+        INSERT INTO "tbl_uids" (prefix_id, mid_id, serial) VALUES(pfxId, midId, newSerial);
+
+        newUid := buildUid(pfx, md, newSerial);
+
+        RAISE INFO 'New UID being generated is %.', newUid;
+
+END;
+$function$
