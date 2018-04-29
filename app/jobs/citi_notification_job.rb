@@ -8,11 +8,11 @@ class CitiNotificationJob < ActiveJob::Base
   # @param [CitiResource] citi_resource
   # When the citi_resource is supplied, it is assumed that the accompanying file set is the correct one
   # containing the preferred representation.
-  def perform(file_set, citi_resource = nil)
+  def perform(file_set, citi_resource = nil, imaging_uid_update = nil)
     return unless ENV.fetch("citi_api_uid", nil)
     citi_resource ||= find_citi_resource(file_set)
     return unless citi_resource
-    post = notify(CitiNotification.new(file_set, citi_resource))
+    post = notify(CitiNotification.new(file_set, citi_resource, imaging_uid_update))
     return post.body if post.response.code.to_i == 202
     raise Lakeshore::CitiNotificationError,
           "CITI notification failed. Expected 202 but received #{post.response.code}. #{post.body}"

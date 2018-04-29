@@ -282,11 +282,59 @@ describe GenericWork do
   end
 
   describe "#imaging_uid_placeholder=" do
-    it "calls #imaing_uid=" do
+    it "passes the val to #imaing_uid=" do
       string = "IM-789"
-      expect(subject).to receive(:imaging_uid=).and_call_original
+      expect(subject).to receive(:imaging_uid=).with([string]).and_call_original
       subject.imaging_uid_placeholder = string
       expect(subject.imaging_uid_placeholder).to eq(string)
+    end
+
+    before(:all) { ActiveJob::Base.queue_adapter = :test }
+    after(:all) { ActiveJob::Base.queue_adapter = :inline }
+
+    context "asset is a preferred rep" do
+      before do
+        allow(subject).to receive(:preferred_representation?).and_return(true)
+      end
+
+      context "imaging_uid isn't changed" do
+        it "doesn't enqueue CitiNotificationJob" do
+          string = "123"
+          allow(subject).to receive(:imaging_uid_placeholder).and_return(string)
+          expect(CitiNotificationJob).not_to have_been_enqueued
+          subject.imaging_uid_placeholder = "123"
+        end
+      end
+
+      context "imaging_uid is changed" do
+        it "does enqueue CitiNotificationJob" do
+          subject.imaging_uid_placeholder = "123"
+          expect(CitiNotificationJob).to have_been_enqueued
+          subject.imaging_uid_placeholder = "1234"
+        end
+      end
+    end
+
+    context "asset isn't a preferred rep" do
+      before do
+        allow(subject).to receive(:preferred_representation?).and_return(false)
+      end
+
+      context "imaging_uid isn't changed" do
+        it "doesn't enqueue CitiNotificationJob" do
+          allow(subject).to receive(:imaging_uid_placeholder).and_return("123")
+          expect(CitiNotificationJob).not_to have_been_enqueued
+          subject.imaging_uid_placeholder = "123"
+        end
+      end
+
+      context "imaging_uid is changed" do
+        it "doesn't enqueue CitiNotificationJob" do
+          subject.imaging_uid_placeholder = "123"
+          expect(CitiNotificationJob).not_to have_been_enqueued
+          subject.imaging_uid_placeholder = "1234"
+        end
+      end
     end
   end
 end

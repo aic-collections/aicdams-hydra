@@ -24,6 +24,9 @@ class GenericWork < Resource
   end
 
   def imaging_uid_placeholder=(val)
+    if (val != imaging_uid_placeholder) && preferred_representation?
+      CitiNotificationJob.perform_later(intermediate_file_set.first, nil, true)
+    end
     self.imaging_uid = [val]
   end
 
@@ -94,5 +97,10 @@ class GenericWork < Resource
 
     def assignment_service
       @assignment_service ||= AssetTypeAssignmentService.new(self)
+    end
+
+    # tells whether a GenericWork asset is a preferred representation
+    def preferred_representation?
+      InboundRelationships.new(self).preferred_representation.present?
     end
 end

@@ -9,9 +9,10 @@ class CitiNotification
 
   # @param [FileSet] file_set
   # @param [CitiResource, SolrDocument] citi_resource such as a work, exhibit
-  def initialize(file_set, citi_resource)
+  def initialize(file_set, citi_resource, imaging_uid_update = nil)
     @file_set = file_set
     @citi_resource = citi_resource
+    @imaging_uid_update = imaging_uid_update
   end
 
   # @return [String]
@@ -51,9 +52,16 @@ class CitiNotification
       end
     end
 
+    # if citi notification type is just an imaging_uid on the asset
+    # then change last_modified to the asset's last modifed, so that
+    # CITI processes the message
     def last_modified
       return unless file_set && file_set.original_file
-      file_set.original_file.fcrepo_modified.first.iso8601
+      if @imaging_uid_update
+        file_set.parent.date_modified.iso8601
+      else
+        file_set.original_file.fcrepo_modified.first.iso8601
+      end
     end
 
     def image_uid
