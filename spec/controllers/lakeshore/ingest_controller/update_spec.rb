@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 require 'rails_helper'
 
-describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestController#update" do
+xdescribe Lakeshore::IngestController, custom_description: "Lakeshore::IngestController#update" do
   let(:apiuser) { create(:apiuser) }
   let(:user)    { create(:user1) }
 
