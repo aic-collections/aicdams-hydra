@@ -13,6 +13,7 @@ test:
   citi_api_endpoint: "https://citiworker"
   citi_api_ssl_verify: "false"
   hydra_bin_path: "/usr/local/bin"
+  LAKESHORE_ENV: "test"
   LAKESHORE_DOMAIN: "localhost:3000"
   user_notification_freq: "30"
   phoenix_host: "https://phoenix-test.artic.edu"

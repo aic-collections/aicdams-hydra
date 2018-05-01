@@ -71,7 +71,7 @@ Rails.application.routes.draw do
     resources :reindex, only: [:create], defaults: { format: :json }
     resources :downloads, only: [:show], defaults: { format: :json }
     post "ingest/:asset_type", to: "ingest#create",  defaults: { format: :json }
-    # post "update/:id", to: "ingest#update", defaults: { format: :json }
+    post "update/:id", to: "ingest#update", defaults: { format: :json } if Figaro.env.LAKESHORE_ENV != "production"
     get "derivatives/:id/:file", to: "derivatives#show"
   end
 

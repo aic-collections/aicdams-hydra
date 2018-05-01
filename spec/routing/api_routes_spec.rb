@@ -33,9 +33,41 @@ describe Rails.application.routes do
                                                    id: "1234",
                                                    format: :json)
     end
-    context "when the update api is deleting relationships in production" do
-      it "Kevin disables the update api" do
+    context "when the update api is deleting relationships" do
+      it "Kevin disables the update api in production using the LAKESHORE_ENV env var" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("production")
+        Rails.application.reload_routes!
         expect(post: "/api/update/1234").not_to be_routable
+      end
+
+      it "Kevin keeps it enabled in local dev" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("local")
+        Rails.application.reload_routes!
+        expect(post: "/api/update/1234").to be_routable
+      end
+
+      it "Kevin keeps it enabled in test" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("test")
+        Rails.application.reload_routes!
+        expect(post: "/api/update/1234").to be_routable
+      end
+
+      it "Kevin keeps it enabled in DEV env" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("dev")
+        Rails.application.reload_routes!
+        expect(post: "/api/update/1234").to be_routable
+      end
+
+      it "Kevin keeps it enabled in STG env" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("staging")
+        Rails.application.reload_routes!
+        expect(post: "/api/update/1234").to be_routable
+      end
+
+      it "Kevin keeps it enabled if LAKESHORE_ENV is nil" do
+        allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return(nil)
+        Rails.application.reload_routes!
+        expect(post: "/api/update/1234").to be_routable
       end
     end
   end
