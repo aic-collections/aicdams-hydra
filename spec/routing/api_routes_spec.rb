@@ -33,5 +33,10 @@ describe Rails.application.routes do
                                                    id: "1234",
                                                    format: :json)
     end
+    fcontext "when the update api is deleting relationships in production" do
+      it "Kevin disables the update api" do
+        expect(post: "/api/update/1234").not_to be_routable
+      end
+    end
   end
 end
