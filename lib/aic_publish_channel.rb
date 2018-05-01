@@ -6,6 +6,12 @@ class AICPublishChannel < RDF::StrictVocabulary("http://definitions.artic.edu/pu
        label: "Trusted Party"
   term :InMuseumApps,
        label: "In-Museum Apps"
+  term :Multimedia,
+       label: "Multimedia"
+  term :EducationalResources,
+       label: "Educational Resources"
+  term :TeacherResources,
+       label: "Teacher Resources"
 
   def self.options
     options = {}
