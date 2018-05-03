@@ -22,7 +22,7 @@ namespace :citi_notifications do
     fq << "has_model_ssim:GenericWork"
     fq << "system_modified_dtsi:[#{new_solr_date} TO NOW]"
 
-    asset_ids = ActiveFedora::SolrService.query( query, { fq: fq } ).map(&:id)
+    asset_ids = ActiveFedora::SolrService.query( query, { fq: fq, rows: 100_000 } ).map(&:id)
 
     puts "Found #{asset_ids.count} preferred rep assets in Solr, edited after #{args[:modified_after]}."
   end
@@ -37,7 +37,7 @@ namespace :citi_notifications do
     fq << "has_model_ssim:GenericWork"
     fq << "system_modified_dtsi:[#{new_solr_date} TO NOW]"
 
-    asset_ids = ActiveFedora::SolrService.query( query, { fq: fq } ).map(&:id)
+    asset_ids = ActiveFedora::SolrService.query( query, { fq: fq, rows: 100_000 } ).map(&:id)
 
     puts "Found #{asset_ids.count} preferred rep assets in Solr, edited after #{args[:modified_after]}."
 
