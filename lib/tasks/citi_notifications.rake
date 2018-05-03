@@ -34,7 +34,9 @@ namespace :citi_notifications do
     # go through all assets in subset 1 and reduce to those that are a preferred
     asset_ids.each do |asset_id|
       inbound_relationship_object = InboundRelationships.new(asset_id)
-      asset_objects_that_are_preferred_reps << GenericWork.find(asset_id) if inbound_relationship_object.preferred_representation.present?
+      if inbound_relationship_object.preferred_representation.present?
+        asset_objects_that_are_preferred_reps << GenericWork.find(asset_id)
+      end
     end
 
     # tell the user how many assets are also a preferred rep
@@ -60,7 +62,9 @@ namespace :citi_notifications do
 
     asset_ids.each do |asset_id|
       inbound_relationship_object = InboundRelationships.new(asset_id)
-      asset_objects_that_are_preferred_reps << GenericWork.find(asset_id) if inbound_relationship_object.preferred_representation.present?
+      if inbound_relationship_object.preferred_representation.present?
+        asset_objects_that_are_preferred_reps << GenericWork.find(asset_id)
+      end
     end
 
     puts "Would send #{asset_objects_that_are_preferred_reps.count} notifications to CITI, if ran."
