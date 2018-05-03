@@ -1,6 +1,19 @@
+# frozen_string_literal: true
+require 'benchmark'
+
+class Rake::Task
+  def execute_with_benchmark(*args)
+    bm = Benchmark.measure { execute_without_benchmark(*args) }
+    puts "   #{name} --> #{bm}"
+  end
+
+  alias execute_without_benchmark execute
+  alias execute execute_with_benchmark
+end
+
 namespace :citi_notifications do
   desc "Send image_uid notifications to CITI for assets that have been modified since a certain date 'YYYY-MM-DD'"
-  task :update_imaging_uids, [:modified_after] => :environment do |t, args|
+  task :update_imaging_uids, [:modified_after] => :environment do |_t, args|
     date_passed_in = args[:modified_after]
     new_solr_date = date_passed_in + "T00:00:00Z"
 
@@ -36,7 +49,7 @@ namespace :citi_notifications do
   end
 
   desc "Counts the number assets that have been modified after a certain date 'YYYY-MM-DD', are preferred reps, and have an imaging uid"
-  task :count_assets_to_update, [:modified_after] => :environment do |t, args|
+  task :count_assets_to_update, [:modified_after] => :environment do |_t, args|
     date_passed_in = args[:modified_after]
     new_solr_date = date_passed_in + "T00:00:00Z"
 
@@ -66,9 +79,7 @@ namespace :citi_notifications do
   end
 end
 
-
 # GenericWork.where("system_modified_dtsi:[NOW/DAY TO NOW]")
 # https://lucene.apache.org/solr/guide/7_3/working-with-dates.html
 # GenericWork.where("system_modified_dtsi:[2018-02-28 TO NOW]")
-
 # 2018-02-28T00:00:00Z
