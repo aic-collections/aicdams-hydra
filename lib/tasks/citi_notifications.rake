@@ -39,13 +39,14 @@ namespace :citi_notifications do
 
     asset_ids = ActiveFedora::SolrService.query( query, { fq: fq, rows: 100_000 } ).map(&:id)
 
-    puts "Found #{asset_ids.count} preferred rep assets in Solr, edited after #{args[:modified_after]}."
-
-    asset_ids.map{ |id| GenericWork.find(id) }.each do |generic_work_object|
+    asset_ids.each do |asset_id|
+      generic_work_object = GenericWork.find(asset_id)
       intermediate_file_set = generic_work_object.intermediate_file_set.first
-      puts "Enqueueing CitiNotificationJob for #{generic_work_object.try(:title)}"
+      puts "Enqueueing CitiNotificationJob for #{generic_work_object.try(:title)} last modified #{generic_work_object.date_modified}"
       CitiNotificationJob.perform_later(intermediate_file_set, nil, true)
     end
+
+    puts "Task completed with a total of #{asset_ids.count} preferred rep assets, edited after #{args[:modified_after]}."
   end
 end
 
