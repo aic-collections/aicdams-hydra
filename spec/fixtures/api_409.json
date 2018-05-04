@@ -1,11 +1,9 @@
 {
-  "message" : "Duplicate detected.",
-  "uploaded_resource" : {
-    "id": "upload-id",
-    "file_name" : "sun.png"
-  },
-  "stored_resource" : {
-    "fileset_id" : "existing-file-set-id",
-    "pref_label" : "work pref_label"
-  }
+  "message" : "Duplicate files detected.",
+  "intermediate" : [
+    {
+      "error" : "sun.png is a duplicate of: work pref_label",
+      "path" : "/concern/works"
+    }
+  ]
 }

@@ -32,7 +32,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
     before do
       LakeshoreTesting.restore
       allow(Lakeshore::CreateAllDerivatives).to receive(:perform_later)
-      allow(controller).to receive(:duplicate_upload).and_return([])
     end
 
     context "with an intermediate file" do
@@ -153,10 +152,11 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
     let(:parent)   { build(:work, pref_label: "work pref_label") }
 
     before do
+      allow_any_instance_of(ChecksumValidator).to receive(:duplicate_file_sets).and_return([file_set])
       allow(Lakeshore::CreateAllDerivatives).to receive(:perform_later)
-      allow(controller).to receive(:duplicate_upload).and_return([file_set])
       allow(file_set).to receive(:parent).and_return(parent)
-      post :update, id: asset.id, content: { intermediate: replacement_asset }, metadata: metadata, duplicate_check: duplicate_check_param
+      post :update, id: asset.id, content: { intermediate: replacement_asset },
+                    metadata: metadata, duplicate_check: duplicate_check_param
       asset.reload
     end
 

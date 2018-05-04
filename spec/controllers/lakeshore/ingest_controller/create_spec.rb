@@ -13,10 +13,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
                                            tempfile:     File.new(File.join(fixture_path, "sun.png")))
   end
 
-  before do
-    LakeshoreTesting.reset_uploads
-    sign_in_basic(apiuser)
-  end
+  before { sign_in_basic(apiuser) }
 
   let(:metadata) do
     { "visibility" => "department", "depositor" => user.email, "document_type_uri" => AICDocType.ConservationStillImage }
@@ -69,8 +66,10 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
 
     context "when uploading a text asset to StillImage" do
       before do
-        allow(AssetTypeVerificationService).to receive(:call).with("asset", AICType.StillImage).and_return(false)
-        post :create, asset_type: "StillImage", content: { intermediate: "asset" }, metadata: metadata
+        allow(AssetTypeVerificationService).to receive(:call)
+          .with(kind_of(Lakeshore::IngestFile), AICType.StillImage)
+          .and_return(false)
+        post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
       end
       it { is_expected.to be_bad_request }
       its(:body) { is_expected.to eq("[\"Intermediate file is not the correct asset type\"]") }
@@ -78,38 +77,14 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
 
     context "when uploading an image asset to Text" do
       before do
-        allow(AssetTypeVerificationService).to receive(:call).with("asset", AICType.Text).and_return(false)
-        post :create, asset_type: "Text", content: { intermediate: "asset" }, metadata: metadata
+        allow(AssetTypeVerificationService).to receive(:call)
+          .with(kind_of(Lakeshore::IngestFile), AICType.Text)
+          .and_return(false)
+        post :create, asset_type: "Text", content: { intermediate: image_asset }, metadata: metadata
       end
       it { is_expected.to be_bad_request }
       its(:body) { is_expected.to eq("[\"Intermediate file is not the correct asset type\"]") }
     end
-  end
-
-  context "when uploading a duplicate file" do
-    let(:file_set)      { build(:file_set, id: "existing-file-set-id") }
-    let(:parent)        { build(:work, pref_label: "work pref_label") }
-    let(:json_response) { JSON.parse(File.open(File.join(fixture_path, "api_409.json")).read).to_json }
-
-    let(:metadata) do
-      {
-        "visibility" => "department",
-        "depositor" => user.email,
-        "document_type_uri" => AICDocType.ConservationStillImage,
-        "uid" => "upload-id"
-      }
-    end
-
-    subject { response }
-
-    before do
-      allow(AssetTypeVerificationService).to receive(:call).and_return(true)
-      allow(controller).to receive(:duplicate_upload).and_return([file_set])
-      allow(file_set).to receive(:parent).and_return(parent)
-      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
-    end
-    its(:status) { is_expected.to eq(409) }
-    its(:body) { is_expected.to eq(json_response) }
   end
 
   context "when the ingestor does not exist in Fedora" do

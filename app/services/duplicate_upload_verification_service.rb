@@ -6,7 +6,7 @@ class DuplicateUploadVerificationService
     new(file).duplicate_file_sets.empty?
   end
 
-  # @param [Sufia::UploadedFile] file uploaded via Rack
+  # @param [ActionDispatch::Http::UploadedFile, Sufia::UploadedFile] file uploaded via Rack
   def initialize(file)
     @file = file
   end

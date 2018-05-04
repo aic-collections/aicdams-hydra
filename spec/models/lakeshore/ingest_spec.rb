@@ -19,7 +19,7 @@ describe Lakeshore::Ingest do
       let(:params) do
         {
           asset_type: "StillImage",
-          content: { intermediate: "file_set" },
+          content: { intermediate: file },
           metadata: { document_type_uri: "doc_type", depositor: user.email }
         }
       end
@@ -72,47 +72,12 @@ describe Lakeshore::Ingest do
     end
   end
 
-  describe "#files" do
-    let(:params) do
-      {
-        asset_type: "StillImage",
-        content: content,
-        metadata: { document_type_uri: "doc_type", depositor: user.email }
-      }
-    end
-
-    subject do
-      described_class.new(controller_params).files.map do |id|
-        Sufia::UploadedFile.find(id).use_uri
-      end
-    end
-
-    context "with only an intermediate file" do
-      let(:content) { { intermediate: file } }
-      it { is_expected.to contain_exactly(AICType.IntermediateFileSet) }
-    end
-
-    context "with original, intermediate, legacy, and preservation files" do
-      let(:content) do
-        { original: file, pres_master: file0, intermediate: file1, legacy: file2 }
-      end
-      it { is_expected.to contain_exactly(AICType.OriginalFileSet,
-                                          AICType.IntermediateFileSet,
-                                          AICType.PreservationMasterFileSet,
-                                          AICType.LegacyFileSet) }
-    end
-
-    context "with assorted other files" do
-      let(:content) do
-        { "intermediate" => file, "odd0" => file0, "odd1" => file1, "odd2" => file2 }
-      end
-
-      it { is_expected.to contain_exactly(AICType.IntermediateFileSet, nil, nil, nil) }
-    end
-  end
-
   describe "#attributes_for_actor" do
     subject { ingest.attributes_for_actor }
+
+    let(:mock_service) { double("MockService", duplicates: [], duplicate_file_sets: []) }
+
+    before { allow(DuplicateUploadVerificationService).to receive(:new).and_return(mock_service) }
 
     context "without additional sharing permissions" do
       let(:params) do

@@ -3,18 +3,19 @@ module Lakeshore
   class Ingest
     include ActiveModel::Validations
 
-    attr_reader :ingestor, :submitted_asset_type, :document_type_uri, :original_file,
-                :intermediate_file, :presevation_master_file, :legacy_file, :additional_files, :params,
-                :preferred_representation_for, :force_preferred_representation
+    attr_reader :ingestor, :submitted_asset_type, :document_type_uri, :params,
+                :preferred_representation_for, :force_preferred_representation, :registry
 
     validates :ingestor, :asset_type, :document_type_uri, :intermediate_file, presence: true
+
+    delegate :intermediate_file, :duplicate_error, to: :registry
 
     # @param [ActionController::Parameters] params from the controller
     def initialize(params)
       @params = params
       @submitted_asset_type = params.fetch(:asset_type, nil)
-      register_files(params.fetch(:content, {}))
       register_terms(params.fetch(:metadata, {}))
+      @registry = IngestRegistry.new(params.fetch(:content, {}), ingestor)
     end
 
     def asset_type
@@ -28,7 +29,7 @@ module Lakeshore
     # want the intermediate file to be the representative.
     def files
       return [] unless valid? || valid_update?
-      [intermediate_upload, original_upload, presevation_master_upload, legacy_upload].compact + additional_uploads
+      registry.upload_ids
     end
 
     def attributes_for_actor
@@ -49,6 +50,12 @@ module Lakeshore
       params.fetch(:duplicate_check, nil) == "false"
     end
 
+    # @return [true, false]
+    # If the ingest is not unique, then errors should be reported
+    def unique?
+      (check_duplicates_turned_off? || intermediate_file.nil? || registry.unique?)
+    end
+
     # @return [Array<String>]
     # Returns an array of ids from preferred_representation_for that already have preferred representations defined.
     def represented_resources
@@ -66,7 +73,6 @@ module Lakeshore
     private
 
       def register_terms(metadata)
-        return unless metadata.present?
         @document_type_uri = metadata.fetch(:document_type_uri, nil)
         @preferred_representation_for = metadata.fetch(:preferred_representation_for, [])
         @ingestor = find_or_create_user(metadata.fetch(:depositor, nil))
@@ -78,56 +84,12 @@ module Lakeshore
         User.find_by_user_key(key) || User.create!(email: key)
       end
 
-      def register_files(content)
-        return unless content.present?
-        @original_file = content.delete(:original)
-        @intermediate_file = content.delete(:intermediate)
-        @presevation_master_file = content.delete(:pres_master)
-        @legacy_file = content.delete(:legacy)
-        @additional_files = content
-      end
-
       # @return [Array<Hash>]
       # Removes any additional permissions having to do with the depositor.
       # The depositor's permissions are fixed and are not allowed to be altered.
       def permitted_permissions
         JSON.parse(params.fetch(:sharing, "[]")).delete_if do |permission|
           permission.fetch("type", nil) == "person" && permission.fetch("name", nil) == ingestor.email
-        end
-      end
-
-      def original_upload
-        return unless original_file
-        Sufia::UploadedFile.create(file: original_file,
-                                   user: ingestor,
-                                   use_uri: AICType.OriginalFileSet).id.to_s
-      end
-
-      def intermediate_upload
-        return unless intermediate_file
-        Sufia::UploadedFile.create(file: intermediate_file,
-                                   user: ingestor,
-                                   use_uri: AICType.IntermediateFileSet).id.to_s
-      end
-
-      def presevation_master_upload
-        return unless presevation_master_file
-        Sufia::UploadedFile.create(file: presevation_master_file,
-                                   user: ingestor,
-                                   use_uri: AICType.PreservationMasterFileSet).id.to_s
-      end
-
-      def legacy_upload
-        return unless legacy_file
-        Sufia::UploadedFile.create(file: legacy_file,
-                                   user: ingestor,
-                                   use_uri: AICType.LegacyFileSet).id.to_s
-      end
-
-      def additional_uploads
-        return [] unless additional_files
-        additional_files.values.map do |file|
-          Sufia::UploadedFile.create(file: file, user: ingestor)
         end
       end
   end
