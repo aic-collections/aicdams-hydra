@@ -95,6 +95,11 @@ describe "Batch upload;" do
         visit("/batch_uploads/new#metadata")
         expect(page).not_to have_field("Imaging UID")
       end
+
+      it "contains a hidden input for uploaded_batch_id" do
+        visit("/batch_uploads/new")
+        expect(page).to have_selector("input#batch_upload_item_uploaded_batch_id", visible: false)
+      end
     end
 
     context "signed in as an admin;" do
