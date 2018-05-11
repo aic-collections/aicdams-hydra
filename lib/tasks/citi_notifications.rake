@@ -1,15 +1,4 @@
 # frozen_string_literal: true
-require 'benchmark'
-
-class Rake::Task
-  def execute_with_benchmark(*args)
-    bm = Benchmark.measure { execute_without_benchmark(*args) }
-    puts "   #{name} --> #{bm}"
-  end
-
-  alias execute_without_benchmark execute
-  alias execute execute_with_benchmark
-end
 
 namespace :citi_notifications do
   desc "Counts the number assets that have been modified after a certain date 'YYYY-MM-DD', are preferred reps, and have an imaging uid"
