@@ -5,7 +5,7 @@ module Sufia
     before_action :validate_asset_type, :validate_duplicate_upload, only: [:create]
 
     def create
-      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri }
+      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, uploaded_batch_id: uploaded_batch_id }
       @upload.save!
     end
 
@@ -38,6 +38,10 @@ module Sufia
 
       def uploaded_file
         params[:files].first
+      end
+
+      def uploaded_batch_id
+        asset_attributes.fetch(:uploaded_batch_id, nil)
       end
 
       def asset_type
