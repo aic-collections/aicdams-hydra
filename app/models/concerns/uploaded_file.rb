@@ -26,11 +26,11 @@ module UploadedFile
 
   private
 
-  def calculate_checksum
-    self.checksum = fedora_shasum
-  end
+    def calculate_checksum
+      self.checksum = fedora_shasum
+    end
 
-  def set_status
-    self.status = "new"
-  end
+    def set_status
+      self.status = "new"
+    end
 end
