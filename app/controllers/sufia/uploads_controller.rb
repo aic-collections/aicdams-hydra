@@ -6,7 +6,12 @@ module Sufia
 
     def create
       @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, uploaded_batch_id: uploaded_batch_id }
-      @upload.save!
+
+      if @upload.save
+        render status: :ok
+      else
+        render json: { files: [@upload.errors.messages[:checksum].first] }
+      end
     end
 
     def destroy
