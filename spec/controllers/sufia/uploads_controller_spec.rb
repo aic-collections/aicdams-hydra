@@ -52,7 +52,7 @@ describe Sufia::UploadsController do
   describe "uploading a batch item" do
     before { post :create, files: [file], batch_upload_item: work_attributes, format: 'json' }
 
-    fcontext "with a valid still image" do
+    context "with a valid still image" do
       let(:file) { fixture_file_upload('sun.png', 'image/png') }
       let(:work_attributes) { { "asset_type" => AICType.StillImage.to_s, "use_uri" => AICType.IntermediateFileSet.to_s, "uploaded_batch_id" => "999" } }
 
