@@ -3,11 +3,11 @@ class LakeshoreTesting
   class << self
     # Removes all resources from Fedora and Solr and restores
     # the repository to a minimal testing state
-    def restore(reset_tmp_files: true)
+    def restore
       ActiveFedora::Cleaner.clean!
       cleanout_redis
       reset_derivatives
-      reset_uploads if reset_tmp_files
+      reset_uploads
       create_minimal_resources
       ListManager.new(File.join(Rails.root, "config/lists/status.yml")).create
       ActiveFedora::Base.all.map(&:update_index)
