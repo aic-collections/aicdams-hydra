@@ -5,13 +5,17 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
   let(:apiuser) { create(:apiuser) }
   let(:user)    { create(:user1) }
 
-  let(:image_asset) do
+  # bang this so it is not memoized and gets invoked even after tmp dir is wiped via LakeshoreTesting
+  # https://cits.artic.edu/issues/2943
+  let!(:image_asset) do
     ActionDispatch::Http::UploadedFile.new(filename:     "sun.png",
                                            content_type: "image/png",
                                            tempfile:     File.new(File.join(fixture_path, "sun.png")))
   end
 
-  let(:replacement_asset) do
+  # bang this so it is not memoized and gets invoked even after tmp dir is wiped via LakeshoreTesting
+  # https://cits.artic.edu/issues/2943
+  let!(:replacement_asset) do
     ActionDispatch::Http::UploadedFile.new(filename:     "tardis.png",
                                            content_type: "image/png",
                                            tempfile:     File.new(File.join(fixture_path, "tardis.png")))
