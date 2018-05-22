@@ -5,7 +5,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
   let(:apiuser) { create(:apiuser) }
   let(:user)    { create(:user1) }
 
-  let(:image_asset) do
+  let!(:image_asset) do
     ActionDispatch::Http::UploadedFile.new(filename:     "sun.png",
                                            content_type: "image/png",
                                            tempfile:     File.new(File.join(fixture_path, "sun.png")))
