@@ -41,9 +41,6 @@ matrix:
 script:
   - "bundle exec rake ci:$TEST_SUITE"
 
-after_script:
-  - "echo $LAKESHORE_ENV"
-
 notifications:
   email:
     recipients:
