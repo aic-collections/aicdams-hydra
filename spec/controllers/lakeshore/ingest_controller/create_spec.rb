@@ -12,7 +12,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
   end
 
   before do
-    LakeshoreTesting.reset_uploads
     sign_in_basic(apiuser)
   end
 
@@ -21,7 +20,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
   end
 
   context "when uploading a file" do
-    before { LakeshoreTesting.restore }
     it "successfully adds the fileset to the work" do
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
       post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
@@ -42,8 +40,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       }
     end
     let(:asset) { GenericWork.where(uid: "SI-99").first }
-
-    before { LakeshoreTesting.restore }
 
     it "successfully creates the the work" do
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
@@ -156,9 +152,8 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       }
     end
 
-    before { LakeshoreTesting.restore }
-
     it "updates the non_asset with the preferred representation" do
+      LakeshoreTesting.restore(reset_tmp_files: false)
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
       expect(non_asset.preferred_representation_uri).to be_nil
       post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
@@ -202,8 +197,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
         "preferred_representation_for" => [non_asset.id]
       }
     end
-
-    before { LakeshoreTesting.restore }
 
     it "updates the non_asset with the new preferred representation" do
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
