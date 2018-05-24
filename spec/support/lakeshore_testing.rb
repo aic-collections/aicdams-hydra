@@ -7,7 +7,7 @@ class LakeshoreTesting
       ActiveFedora::Cleaner.clean!
       cleanout_redis
       reset_derivatives
-      reset_uploads
+      # reset_uploads
       create_minimal_resources
       ListManager.new(File.join(Rails.root, "config/lists/status.yml")).create
       ActiveFedora::Base.all.map(&:update_index)
