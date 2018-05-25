@@ -7,7 +7,7 @@ class LakeshoreTesting
       ActiveFedora::Cleaner.clean!
       cleanout_redis
       reset_derivatives
-      # reset_uploads
+      # reset_uploads # removed in https://cits.artic.edu/issues/1686, feature build green's just fine
       create_minimal_resources
       ListManager.new(File.join(Rails.root, "config/lists/status.yml")).create
       ActiveFedora::Base.all.map(&:update_index)
