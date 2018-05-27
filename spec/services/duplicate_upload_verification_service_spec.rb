@@ -16,7 +16,7 @@ describe DuplicateUploadVerificationService do
   end
 
   context "when duplicates exist" do
-    let(:asset) { create(:asset) }
+    let(:asset) { create(:asset, :with_doctype_metadata) }
     let(:duplicate_file) { double }
     before do
       allow(duplicate_file).to receive(:parent).and_return(asset)
