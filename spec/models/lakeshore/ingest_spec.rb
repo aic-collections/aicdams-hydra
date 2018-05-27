@@ -102,7 +102,7 @@ describe Lakeshore::Ingest do
 
     context "with assorted other files" do
       let(:content) do
-        { "intermediate" => file, "odd0" => file0, "odd1" => file1, "odd2" => file2}
+        { "intermediate" => file, "odd0" => file0, "odd1" => file1, "odd2" => file2 }
       end
 
       it { is_expected.to contain_exactly(AICType.IntermediateFileSet, nil, nil, nil) }
