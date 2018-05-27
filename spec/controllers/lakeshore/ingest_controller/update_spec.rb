@@ -22,7 +22,6 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
   end
 
   before do
-    LakeshoreTesting.reset_uploads
     sign_in_basic(apiuser)
   end
 
