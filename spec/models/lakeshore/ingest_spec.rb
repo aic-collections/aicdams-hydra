@@ -10,6 +10,8 @@ describe Lakeshore::Ingest do
   let(:file1)             { File.open(File.join(fixture_path, "tardis2.png")) }
   let(:file2)             { File.open(File.join(fixture_path, "text.png")) }
 
+  before { LakeshoreTesting.restore }
+
   describe "#valid?" do
     subject { ingest }
 
