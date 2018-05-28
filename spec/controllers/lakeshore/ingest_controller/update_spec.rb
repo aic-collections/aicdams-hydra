@@ -23,6 +23,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
 
   before do
     sign_in_basic(apiuser)
+    LakeshoreTesting.restore
   end
 
   describe "replacing files" do
