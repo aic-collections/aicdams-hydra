@@ -7,6 +7,8 @@ describe ReplaceFileActor do
   let(:file)          { File.open(File.join(fixture_path, "sun.png")) }
   let(:original_file) { Sufia::UploadedFile.create(file: file, user: user, use_uri: AICType.OriginalFileSet) }
 
+  before { LakeshoreTesting.restore }
+
   describe "an intermediate file" do
     context "when it is present" do
       let(:asset) { create(:asset, :with_intermediate_file_set) }
