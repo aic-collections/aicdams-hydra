@@ -28,11 +28,19 @@ describe Sufia::UploadedFile do
 
     context "when a duplicate exists" do
       before { described_class.create(file: file, user: user, use_uri: use) }
-      subject { described_class.new(file: file, user: user, use_uri: use) }
 
       it "checksum is not valid" do
         expect(subject).not_to be_valid
       end
+    end
+  end
+
+  context "when the file has already begun ingestion" do
+    before { described_class.create(file: file, user: user, use_uri: use, status: "begun_ingestion") }
+
+    it "the checksum is invalid" do
+      expect(subject).not_to be_valid
+      expect(subject.errors[:checksum]).to include({:error => "sun.png has already begun ingestion."})
     end
   end
 end
