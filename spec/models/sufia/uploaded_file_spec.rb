@@ -40,7 +40,7 @@ describe Sufia::UploadedFile do
 
     it "the checksum is invalid" do
       expect(subject).not_to be_valid
-      expect(subject.errors[:checksum]).to include({:error => "sun.png has already begun ingestion."})
+      expect(subject.errors.messages[:checksum]).to eq([error: "sun.png has already begun ingestion."])
     end
   end
 end
