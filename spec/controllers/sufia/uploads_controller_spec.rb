@@ -6,7 +6,10 @@ describe Sufia::UploadsController do
   include_context "authenticated saml user"
 
   let(:duplicates) { [] }
-  before { allow(controller).to receive(:duplicate_upload).and_return(duplicates) }
+  before do
+    LakeshoreTesting.restore
+    allow(controller).to receive(:duplicate_upload).and_return(duplicates)
+  end
 
   describe "uploading a single asset" do
     before { post :create, files: [file], generic_work: work_attributes, format: 'json' }
