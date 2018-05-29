@@ -11,6 +11,7 @@ describe CreateAssetJob do
   let(:service)       { double }
 
   before do
+    LakeshoreTesting.restore
     allow(CurationConcerns::CurationConcern).to receive(:actor)
       .with(instance_of(GenericWork), user)
       .and_return(actor)
