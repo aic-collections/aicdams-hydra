@@ -2,6 +2,8 @@
 class Sufia::BatchUploadsController < ApplicationController
   include Sufia::BatchUploadsControllerBehavior
 
+  after_action :set_uploaded_file_status, only: [:create]
+
   def self.form_class
     BatchUploadForm
   end
@@ -22,5 +24,10 @@ class Sufia::BatchUploadsController < ApplicationController
       @form.action_name = action_name
       @form.current_ability = current_ability
       @form.parameterized_relationships = ParameterizedRelationships.new(params)
+    end
+
+    def set_uploaded_file_status
+      uploaded_file_ids = params["uploaded_files"]
+      Sufia::UploadedFile.change_status(uploaded_file_ids, "begun_ingestion")
     end
 end
