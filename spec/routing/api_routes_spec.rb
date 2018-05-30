@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 describe Rails.application.routes do
-  context "when using the API" do
+  describe "API" do
     it "routes to the reindexing endpoint" do
       expect(post: "/api/reindex").to route_to(controller: "lakeshore/reindex", action: "create", format: :json)
     end
@@ -33,6 +33,18 @@ describe Rails.application.routes do
                                                    id: "1234",
                                                    format: :json)
     end
+
+    describe "file_set" do
+      describe "PATCH" do
+        it "is routable" do
+          expect(patch: "/api/file_sets/1234").to route_to(controller: "lakeshore/file_sets",
+                                                          action: "update",
+                                                          format: :json,
+                                                          id: "1234")
+        end
+      end
+    end
+
     context "when the update api is deleting relationships" do
       it "Kevin disables the update api in production using the LAKESHORE_ENV env var" do
         allow(Figaro.env).to receive(:LAKESHORE_ENV).and_return("production")

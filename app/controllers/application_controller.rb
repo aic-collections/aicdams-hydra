@@ -12,9 +12,13 @@ class ApplicationController < ActionController::Base
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  #
+  # before_action :check_authorization, :authenticate_user!, :clear_session_user
 
-  before_action :check_authorization, :authenticate_user!, :clear_session_user
+  protect_from_forgery with: :exception, unless: :api_auth_header?
+
+  before_action :check_authorization, :authenticate_user!, :clear_session_user, unless: :api_auth_header?
 
   # Ensures any user is logged out if they don't match the current SAML user
   def clear_session_user
@@ -41,5 +45,9 @@ class ApplicationController < ActionController::Base
 
     flash[:notice] = "#{presenter.depositor_full_name} has been emailed your request to see this resource."
     redirect_to root_url
+  end
+
+  def api_auth_header?
+    request.headers["HTTP_AUTHORIZATION"].present?
   end
 end
