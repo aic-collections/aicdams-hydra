@@ -14,6 +14,8 @@ describe Sufia::UploadedFile do
 
   subject { described_class.new(file: file, user: user, use_uri: use) }
 
+  before { LakeshoreTesting.restore }
+
   describe "#use_uri" do
     its(:use_uri) { is_expected.to eq(use) }
   end
