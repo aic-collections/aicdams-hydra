@@ -5,8 +5,13 @@ module Sufia
     before_action :validate_asset_type, :validate_duplicate_upload, only: [:create]
 
     def create
-      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri }
-      @upload.save!
+      @upload.attributes = { file: uploaded_file, user: current_user, use_uri: use_uri, uploaded_batch_id: uploaded_batch_id }
+
+      if @upload.save
+        render status: :ok
+      else
+        render json: { files: [@upload.errors.messages[:checksum].first] }
+      end
     end
 
     def destroy
@@ -38,6 +43,10 @@ module Sufia
 
       def uploaded_file
         params[:files].first
+      end
+
+      def uploaded_batch_id
+        asset_attributes.fetch(:uploaded_batch_id, nil)
       end
 
       def asset_type

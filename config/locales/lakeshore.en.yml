@@ -13,6 +13,8 @@ en:
       errors:
         invalid: "Incorrect asset type. %{name} is not a type of %{type}"
         duplicate: "%{name} is a duplicate of:"
+        begun_ingestion: "%{name} has already begun ingestion."
+        already_in_batch: "%{name} is already in this batch."
 
     relationship:
       add_assets: "Add New Assets to this CITI "

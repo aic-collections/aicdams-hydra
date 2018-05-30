@@ -9,6 +9,20 @@ describe "Batch upload;" do
   describe "uploading a new asset;" do
     before { LakeshoreTesting.restore }
 
+    context "when the file/binary is already in the current batch" do
+      before do
+        visit("/batch_uploads/new")
+        select("Still Image", from: "asset_type_select")
+        attach_file('files[]', File.join(fixture_path, "sun.png"), visible: false)
+        attach_file('files[]', File.join(fixture_path, "sun.png"), visible: false)
+      end
+
+      it "you get an error informing you of what's wrong" do
+        expect(page).to have_content "already in this batch"
+        expect(page).to have_button('Save', disabled: true)
+      end
+    end
+
     context "signed in as a non-admin;" do
       it "enforces a workflow to ensure the asset is correctly ingested" do
         visit("/batch_uploads/new")
@@ -94,6 +108,11 @@ describe "Batch upload;" do
       it "does not display imaging_uid field" do
         visit("/batch_uploads/new#metadata")
         expect(page).not_to have_field("Imaging UID")
+      end
+
+      it "contains a hidden input for uploaded_batch_id" do
+        visit("/batch_uploads/new")
+        expect(page).to have_selector("input#batch_upload_item_uploaded_batch_id", visible: false)
       end
     end
 

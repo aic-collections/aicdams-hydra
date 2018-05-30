@@ -5,6 +5,12 @@ describe Lakeshore::Ingest do
   let(:user)              { create(:user1) }
   let(:controller_params) { ActionController::Parameters.new(params) }
   let(:ingest)            { described_class.new(controller_params) }
+  let(:file)              { File.open(File.join(fixture_path, "sun.png")) }
+  let(:file0)             { File.open(File.join(fixture_path, "tardis.png")) }
+  let(:file1)             { File.open(File.join(fixture_path, "tardis2.png")) }
+  let(:file2)             { File.open(File.join(fixture_path, "text.png")) }
+
+  before { LakeshoreTesting.restore }
 
   describe "#valid?" do
     subject { ingest }
@@ -82,13 +88,13 @@ describe Lakeshore::Ingest do
     end
 
     context "with only an intermediate file" do
-      let(:content) { { intermediate: "intermediate file_set" } }
+      let(:content) { { intermediate: file } }
       it { is_expected.to contain_exactly(AICType.IntermediateFileSet) }
     end
 
     context "with original, intermediate, legacy, and preservation files" do
       let(:content) do
-        { original: "original file_set", pres_master: "preservation master file_set", intermediate: "intermediate file_set", legacy: "legacy file_set" }
+        { original: file, pres_master: file0, intermediate: file1, legacy: file2 }
       end
       it { is_expected.to contain_exactly(AICType.OriginalFileSet,
                                           AICType.IntermediateFileSet,
@@ -98,7 +104,7 @@ describe Lakeshore::Ingest do
 
     context "with assorted other files" do
       let(:content) do
-        { "intermediate" => "intermediate file_set", "0" => "oddball 0", "1" => "oddball 1", "other" => "other" }
+        { "intermediate" => file, "odd0" => file0, "odd1" => file1, "odd2" => file2 }
       end
 
       it { is_expected.to contain_exactly(AICType.IntermediateFileSet, nil, nil, nil) }
@@ -112,7 +118,7 @@ describe Lakeshore::Ingest do
       let(:params) do
         {
           asset_type: "StillImage",
-          content: { intermediate: "file_set" },
+          content: { intermediate: file },
           metadata: { document_type_uri: "doc_type", depositor: user.email }
         }
       end
@@ -128,7 +134,7 @@ describe Lakeshore::Ingest do
       let(:params) do
         {
           asset_type: "StillImage",
-          content: { intermediate: "file_set" },
+          content: { intermediate: file },
           metadata: { document_type_uri: "doc_type", depositor: user.email },
           sharing: '[{ "type" : "group", "name" : "112", "access" : "read" }, {"type" : "person", "name" : "jdoe99", "access" : "edit"}]'
         }
@@ -149,7 +155,7 @@ describe Lakeshore::Ingest do
       let(:params) do
         {
           asset_type: "StillImage",
-          content: { intermediate: "file_set" },
+          content: { intermediate: file },
           metadata: { document_type_uri: "doc_type", depositor: user.email },
           sharing: '[{ "type" : "group", "name" : "112", "access" : "read" }, {"type" : "person", "name" : "' + user.email + '", "access" : "edit"}]'
         }

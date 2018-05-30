@@ -10,13 +10,15 @@ describe DuplicateUploadVerificationService do
 
   subject { service.duplicates }
 
+  before { LakeshoreTesting.restore }
+
   context "when no duplicates exist" do
     before { allow(FileSet).to receive(:where).with(digest_ssim: file_digest).and_return([]) }
     it { is_expected.to be_empty }
   end
 
   context "when duplicates exist" do
-    let(:asset) { create(:asset) }
+    let(:asset) { create(:asset, :with_doctype_metadata) }
     let(:duplicate_file) { double }
     before do
       allow(duplicate_file).to receive(:parent).and_return(asset)

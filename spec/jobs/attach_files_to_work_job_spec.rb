@@ -4,11 +4,16 @@ require 'rails_helper'
 describe AttachFilesToWorkJob do
   let(:user)              { create(:user1) }
   let(:file)              { File.open(File.join(fixture_path, "sun.png")) }
+  let(:file0)             { File.open(File.join(fixture_path, "tardis.png")) }
+  let(:file1)             { File.open(File.join(fixture_path, "tardis2.png")) }
+  let(:file2)             { File.open(File.join(fixture_path, "text.png")) }
   let(:original_file)     { Sufia::UploadedFile.create(file: file, user: user, use_uri: AICType.OriginalFileSet) }
-  let(:intermediate_file) { Sufia::UploadedFile.create(file: file, user: user, use_uri: AICType.IntermediateFileSet) }
-  let(:master_file)       { Sufia::UploadedFile.create(file: file, user: user, use_uri: AICType.PreservationMasterFileSet) }
-  let(:plain_file)        { Sufia::UploadedFile.create(file: file, user: user) }
+  let(:intermediate_file) { Sufia::UploadedFile.create(file: file0, user: user, use_uri: AICType.IntermediateFileSet) }
+  let(:master_file)       { Sufia::UploadedFile.create(file: file1, user: user, use_uri: AICType.PreservationMasterFileSet) }
+  let(:plain_file)        { Sufia::UploadedFile.create(file: file2, user: user) }
   let(:asset)             { create(:department_asset) }
+
+  before { LakeshoreTesting.restore }
 
   context "with each of the different use files" do
     let(:types) { asset.file_sets.map(&:type).map { |set| set.map(&:to_s) }.flatten.uniq }

@@ -34,6 +34,8 @@ describe BatchAssetCreateJob do
         )
       end
 
+      before { LakeshoreTesting.restore }
+
       it "creates two assets" do
         expect(CurationConcerns::CurationConcern).to receive(:actor).and_return(actor).twice
         expect(actor).to receive(:create).with(asset_type: AICType.StillImage.to_s, pref_label: 'File One', uploaded_files: ['1']).and_return(true)

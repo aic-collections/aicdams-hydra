@@ -38,6 +38,10 @@ matrix:
   allow_failures:
     - env: TEST_SUITE=jasmine
 
+after_script:
+  - "bundle exec rake db:version"
+  - "bundle exec rake db:migrate:status"
+
 script:
   - "bundle exec rake ci:$TEST_SUITE"
 
