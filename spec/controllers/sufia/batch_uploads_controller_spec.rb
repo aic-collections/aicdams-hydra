@@ -12,8 +12,10 @@ describe Sufia::BatchUploadsController do
   its(:form_class) { is_expected.to eq(BatchUploadForm) }
 
   it "switches the status of Sufia Uploaded File" do
+    ActiveJob::Base.queue_adapter = :test
     expect(uploaded_file.status).to eq "new"
     post :create, uploaded_files: [uploaded_file.id.to_s], batch_upload_item: work_attributes
     expect(uploaded_file.reload.status).to eq "begun_ingestion"
+    ActiveJob::Base.queue_adapter = :inline
   end
 end
