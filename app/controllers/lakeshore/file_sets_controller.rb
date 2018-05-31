@@ -8,7 +8,8 @@ module Lakeshore
 
       # does callbacks https://stackoverflow.com/questions/5767222/rails-call-another-controller-action-from-a-controller/30143216#comment74479993_30143216
       file_sets_controller.process(:update)
-      head 204
+
+      head file_sets_controller.response.code
     end
   end
 end
