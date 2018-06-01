@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestFileJob < ActiveJob::Base
   queue_as CurationConcerns.config.ingest_queue_name
 
