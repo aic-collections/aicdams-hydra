@@ -2,6 +2,13 @@
 # Intercepts the existing #depositor methods and replaces them with an
 # #aic_depositor method that uses the same predicate but with an AICUser resource.
 module Permissions::WithAICDepositor
+  class AICUserNotFound < StandardError
+    attr_reader :message
+    def initialize(user: nil)
+      @message = "AICUser resource #{user} not found, contact LAKE_support@artic.edu\n"
+    end
+  end
+
   extend ActiveSupport::Concern
 
   included do
@@ -9,7 +16,13 @@ module Permissions::WithAICDepositor
     property :dept_created, predicate: AIC.deptCreated, multiple: false, class_name: "Department"
 
     def depositor=(depositor)
-      self.aic_depositor = AICUser.find_by_nick(depositor).uri
+      success = AICUser.find_by_nick(depositor)
+
+      if success
+        self.aic_depositor = success.uri
+      else
+        raise AICUserNotFound.new(user: depositor)
+      end
     end
 
     # To retain Sufia's expectations, #depositor will return the nick of the AICUser
