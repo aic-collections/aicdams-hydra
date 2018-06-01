@@ -79,11 +79,16 @@ module CurationConcerns
 
     # routed to /files/:id (PUT)
     def update
+      file = params[:file_set][:files].first
+
+      sufia_uploaded_file = Sufia::UploadedFile.new(file: file,
+                                                    uploaded_batch_id: UploadedBatch.create.id,
+                                                    user: current_user)
       success = if wants_to_revert?
                   actor.revert_content(params[:revision])
                 elsif params.key?(:file_set)
                   if params[:file_set].key?(:files)
-                    actor.update_content(params[:file_set][:files].first)
+                    sufia_uploaded_file.valid? ? actor.update_content(file) : false
                   else
                     update_metadata
                   end
