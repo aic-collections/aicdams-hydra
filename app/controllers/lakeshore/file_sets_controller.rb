@@ -9,7 +9,7 @@ module Lakeshore
         # does callbacks https://stackoverflow.com/questions/5767222/rails-call-another-controller-action-from-a-controller/30143216#comment74479993_30143216
         file_sets_controller.process(:update)
       rescue Permissions::WithAICDepositor::AICUserNotFound => e
-        render plain: e.message, :status => 500
+        render plain: e.message, status: 500
       else
         head file_sets_controller.response.code
       end
