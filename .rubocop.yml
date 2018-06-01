@@ -24,6 +24,10 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/ModuleLength:
+  Exclude:
+    - app/controllers/concerns/curation_concerns/file_sets_controller_behavior.rb
+
 Metrics/ClassLength:
   Exclude:
     - 'lib/aic.rb'
@@ -36,11 +40,13 @@ Metrics/CyclomaticComplexity:
   Exclude:
     - app/services/file_set_replacement_service.rb
     - app/models/concerns/permissions/lakeshore_visibility.rb
+    - app/controllers/concerns/curation_concerns/file_sets_controller_behavior.rb
 
 Metrics/PerceivedComplexity:
   Exclude:
     - app/services/file_set_replacement_service.rb
     - app/models/concerns/permissions/lakeshore_visibility.rb
+    - app/controllers/concerns/curation_concerns/file_sets_controller_behavior.rb
 
 Style/BlockDelimiters:
   Exclude:

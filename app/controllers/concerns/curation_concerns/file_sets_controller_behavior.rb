@@ -172,7 +172,6 @@ module CurationConcerns
       end
 
       def actor
-        byebug
         @actor ||= ::CurationConcerns::Actors::FileSetActor.new(curation_concern, current_user)
       end
 
@@ -193,7 +192,7 @@ module CurationConcerns
       end
 
       def empty_file?(file)
-        (file.respond_to?(:tempfile) && file.tempfile.size == 0) || (file.respond_to?(:size) && file.size == 0)
+        (file.respond_to?(:tempfile) && file.tempfile.empty?) || (file.respond_to?(:size) && file.empty?)
       end
 
       def process_file(file)
