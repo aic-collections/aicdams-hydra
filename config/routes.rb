@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     post "ingest/:asset_type", to: "ingest#create",  defaults: { format: :json }
     post "update/:id", to: "ingest#update", defaults: { format: :json } if Figaro.env.LAKESHORE_ENV != "production"
     get "derivatives/:id/:file", to: "derivatives#show"
-    patch "file_sets/:id", to: "file_sets#update", defaults: { format: :json }
+    put "file_sets/:id", to: "file_sets#update", defaults: { format: :json }
   end
 
   get "/login_confirm", to: "dummy#login_confirm"
