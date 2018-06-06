@@ -38,6 +38,6 @@ class ChecksumValidator < ActiveModel::Validator
     end
 
     def verification_service
-      @verification_service ||= DuplicateUploadVerificationService.new(record.file)
+      @verification_service ||= DuplicateUploadVerificationService.new(record.file.file)
     end
 end
