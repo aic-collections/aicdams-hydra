@@ -8,7 +8,6 @@ describe Sufia::UploadsController do
   let(:duplicates) { [] }
   before do
     LakeshoreTesting.restore
-    allow(controller).to receive(:duplicate_upload).and_return(duplicates)
   end
 
   describe "uploading a single asset" do
@@ -24,12 +23,10 @@ describe Sufia::UploadsController do
       end
 
       context "when the file is a duplicate" do
-        let(:parent)         { create(:asset) }
-        let(:duplicate_file) { create(:file_set) }
-        let(:duplicates)     { [duplicate_file] }
-
         before do
-          parent.members << duplicate_file
+          allow_any_instance_of(Sufia::UploadedFile).to receive(:save).and_return(false)
+          allow_any_instance_of(Sufia::UploadedFile).to receive_message_chain(:errors, :messages).and_return({checksum: ["sun.png is a duplicate"]})
+          post :create, files: [file], generic_work: work_attributes, format: 'json'
         end
 
         it "reports the error" do
