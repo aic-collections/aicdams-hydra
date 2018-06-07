@@ -6,38 +6,56 @@ class ChecksumValidator < ActiveModel::Validator
 
   def validate(record)
     @record = record
-    if !verification_service.duplicates.empty?
-      record.errors.add(:checksum, in_solr_error_message)
-    elsif Sufia::UploadedFile.begun_ingestion.map(&:checksum).include?(record.checksum)
-      record.errors.add(:checksum, begun_ingestion_error_message)
-    elsif Sufia::UploadedFile.where(uploaded_batch_id: record.uploaded_batch_id).map(&:checksum).include?(record.checksum)
-      record.errors.add(:checksum, already_in_batch_error_message)
+    if duplicates_in_solr?
+      add_errors(:duplicate)
+    elsif duplicates_in_process?
+      add_errors(:begun_ingestion)
+    elsif duplicates_in_batch?
+      add_errors(:already_in_batch)
     end
   end
 
   private
 
-    def in_solr_error_message
-      {
-        error:          I18n.t('lakeshore.upload.errors.duplicate', name: @record.file.filename),
-        duplicate_path: polymorphic_path(verification_service.duplicates.first),
-        duplicate_name: verification_service.duplicates.first.to_s
-      }
+    def add_errors(type_of_duplicate)
+      record.errors.add(:checksum, build_message_hash(type_of_duplicate))
     end
 
-    def begun_ingestion_error_message
-      {
-        error:          I18n.t('lakeshore.upload.errors.begun_ingestion', name: @record.file.filename)
-      }
+    def duplicates_in_solr?
+      duplicate_file_sets.present?
     end
 
-    def already_in_batch_error_message
-      {
-        error:          I18n.t('lakeshore.upload.errors.already_in_batch', name: @record.file.filename)
-      }
+    def duplicates_in_process?
+      Sufia::UploadedFile.begun_ingestion.map(&:checksum).include?(record.checksum)
     end
 
-    def verification_service
-      @verification_service ||= DuplicateUploadVerificationService.new(record.file.file)
+    def duplicates_in_batch?
+      Sufia::UploadedFile.where(uploaded_batch_id: record.uploaded_batch_id).map(&:checksum).include?(record.checksum)
+    end
+
+    def build_message_hash(type_of_duplicate)
+      message_hash = {}
+
+      message_hash[:error] = I18n.t("lakeshore.upload.errors.#{type_of_duplicate}", name: record.file.filename)
+
+      if type_of_duplicate == :duplicate
+        message_hash[:duplicate_path] = polymorphic_path(duplicate_file_sets.first.parent)
+        message_hash[:duplicate_name] = duplicate_file_sets.first.parent.to_s
+      end
+
+      message_hash
+    end
+
+    # @return [Array<GenericWork>]
+    def solr_duplicates?
+      duplicate_file_sets.map(&:parent)
+    end
+
+    # @return [Array<FileSet>]
+    def duplicate_file_sets
+      @duplicate_file_sets ||= begin
+                                return [] if record.file.nil?
+                                FileSet.where(digest_ssim: record.checksum)
+                               end
     end
 end
