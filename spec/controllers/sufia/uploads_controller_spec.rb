@@ -25,7 +25,7 @@ describe Sufia::UploadsController do
       context "when the file is a duplicate" do
         before do
           allow_any_instance_of(Sufia::UploadedFile).to receive(:save).and_return(false)
-          allow_any_instance_of(Sufia::UploadedFile).to receive_message_chain(:errors, :messages).and_return({checksum: ["sun.png is a duplicate"]})
+          allow_any_instance_of(Sufia::UploadedFile).to receive_message_chain(:errors, :messages).and_return(checksum: ["sun.png is a duplicate"])
           post :create, files: [file], generic_work: work_attributes, format: 'json'
         end
 
