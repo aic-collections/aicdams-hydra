@@ -79,5 +79,9 @@ module AssetMetadata
     accepts_uris_for :keyword, :digitization_source, :document_type, :first_document_sub_type,
                      :second_document_sub_type, :publish_channels, :attachments, :copyright_representatives,
                      :licensing_restrictions, :constituent_of
+
+    property :dept_deposited, predicate: AIC.deptDeposited, multiple: false do |index|
+      index.as :stored_searchable, :facetable, using: :pref_label
+    end
   end
 end

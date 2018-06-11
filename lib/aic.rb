@@ -81,6 +81,9 @@ class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
   term :deptCreated,
        label: "Created by Department",
        comment: "Department of resource creator"
+  term :deptDeposited,
+       label: "Deposited by Department",
+       comment: "Department of resource depositor"
   term :digitizationSource,
        label: "Digitization source",
        comment: "Original document for non-born-digital assets"
