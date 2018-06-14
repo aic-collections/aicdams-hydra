@@ -80,6 +80,6 @@ module AssetMetadata
                      :second_document_sub_type, :publish_channels, :attachments, :copyright_representatives,
                      :licensing_restrictions, :constituent_of
 
-    property :dept_deposited, predicate: AIC.deptDeposited, multiple: false, class_name: "Department"
+    property :owner, predicate: AIC.owner, multiple: false, class_name: "AICUSer"
   end
 end

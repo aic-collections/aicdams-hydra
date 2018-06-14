@@ -7,6 +7,11 @@ module IndexingBehaviors
     object.send(term).pref_label
   end
 
+  def nick_for(term)
+    return unless object.send(term)
+    object.send(term).nick
+  end
+
   def citi_uid_for(term)
     return unless object.send(term)
     object.send(term).citi_uid

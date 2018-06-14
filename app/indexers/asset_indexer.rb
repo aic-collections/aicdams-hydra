@@ -10,7 +10,7 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("representation", :facetable)] = field_builder.representations
       solr_doc[Solrizer.solr_name("fedora_uri", :symbol)] = object.uri.to_s
       solr_doc[Solrizer.solr_name("digitization_source", :stored_searchable)] = pref_label_for(:digitization_source)
-      solr_doc[Solrizer.solr_name("dept_deposited", :stored_searchable)] = pref_label_for(:dept_deposited)
+      solr_doc[Solrizer.solr_name("owner", :stored_searchable)] = nick_for(:owner)
       solr_doc[Solrizer.solr_name("compositing", :stored_searchable)] = pref_label_for(:compositing)
       solr_doc[Solrizer.solr_name("light_type", :stored_searchable)] = pref_label_for(:light_type)
       solr_doc[Solrizer.solr_name("status", :stored_searchable)] = pref_label_for(:status)
