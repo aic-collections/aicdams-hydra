@@ -45,7 +45,7 @@ module Lakeshore
     private
 
       def register_intermediate_file(file, user)
-        file = IngestFile.new(user: user, file: file, type: :intermediate)
+        file = IngestFile.new(user: user, file: file, type: :intermediate, batch_id: uploaded_batch.id)
         return if file.file.nil?
         file
       end
@@ -53,11 +53,11 @@ module Lakeshore
       # @note creates ingest files for both typed and non-typed files
       def register_files(content)
         (content.keys.map(&:to_sym) & IngestFile.types).each do |type|
-          files << IngestFile.new(user: user, file: content.delete(type), type: type)
+          files << IngestFile.new(user: user, file: content.delete(type), type: type, batch_id: uploaded_batch.id)
         end
 
         content.values.map do |file|
-          files << IngestFile.new(user: user, file: file, type: nil)
+          files << IngestFile.new(user: user, file: file, type: nil, batch_id: uploaded_batch.id)
         end
       end
 
@@ -71,6 +71,10 @@ module Lakeshore
                  "#{file.errors.messages[:checksum].first[:duplicate_name]}",
           path: file.errors.messages[:checksum].first[:duplicate_path]
         }
+      end
+
+      def uploaded_batch
+        @uploaed_batch ||= UploadedBatch.create
       end
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe Lakeshore::IngestFile do
                                            tempfile:     File.new(File.join(fixture_path, "sun.png")))
   end
 
-  subject { described_class.new(file: file, user: user, type: type) }
+  subject { described_class.new(file: file, user: user, type: type, batch_id: UploadedBatch.create.id) }
 
   it { is_expected.to delegate_method(:original_filename).to(:file) }
   it { is_expected.to delegate_method(:errors).to(:uploaded_file) }
@@ -54,7 +54,7 @@ RSpec.describe Lakeshore::IngestFile do
       let(:type) { :unregistered }
       it "raises an error" do
         expect {
-          described_class.new(file: file, user: user, type: :unregistered).uri
+          described_class.new(file: file, user: user, type: :unregistered, batch_id: UploadedBatch.create.id).uri
         }.to raise_error(Lakeshore::IngestFile::UnsupportedFileSetTypeError,
                          "'unregistered' is not a supported file set type")
       end

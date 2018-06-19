@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Lakeshore
   class IngestFile
-    attr_reader :file, :type, :user
+    attr_reader :file, :type, :user, :batch_id
 
     delegate :original_filename, to: :file
     delegate :errors, to: :uploaded_file
@@ -22,10 +22,12 @@ module Lakeshore
     # @param [User] user depositor performing the ingest from the API
     # @param [ActionDispatch::Http::UploadedFile] file uploaded from the API
     # @param [Symbol] type for the FileSet that has a registered URI
-    def initialize(user:, file:, type:)
+    # @param [UploadedBatch] batch id for the Sufia::UploadedFile
+    def initialize(user:, file:, type:, batch_id:)
       @type = type
       @file = file
       @user = user
+      @batch_id = batch_id
     end
 
     def uri
@@ -59,7 +61,7 @@ module Lakeshore
 
       def create_file(file, user)
         return if file.nil?
-        Sufia::UploadedFile.create(file: file, user: user, use_uri: uri)
+        Sufia::UploadedFile.create(file: file, user: user, use_uri: uri, uploaded_batch_id: batch_id)
       end
 
       class UnsupportedFileSetTypeError < StandardError; end
