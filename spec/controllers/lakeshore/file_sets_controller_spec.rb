@@ -3,7 +3,10 @@ require 'rails_helper'
 
 describe Lakeshore::FileSetsController do
   let(:apiuser) { create(:apiuser) }
-  before { sign_in_basic(apiuser) }
+  before do
+    sign_in_basic(apiuser)
+    LakeshoreTesting.restore
+  end
 
   let(:asset)     { create(:asset, :with_intermediate_file_set) }
   let(:file_set1) { asset.intermediate_file_set.first }
