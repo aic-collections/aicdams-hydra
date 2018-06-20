@@ -53,9 +53,7 @@ class ChecksumValidator < ActiveModel::Validator
 
     # @return [Array<FileSet>]
     def duplicate_file_sets
-      @duplicate_file_sets ||= begin
-                                 return [] if record.file.nil?
-                                 FileSet.where(digest_ssim: record.checksum)
-                               end
+      return [] if record.file.nil?
+      FileSet.where(digest_ssim: record.checksum)
     end
 end
