@@ -8,7 +8,11 @@ module Lakeshore
         resource = User.find_by_email(username)
         return head :unauthorized unless resource
         if resource.valid_password?(password) && resource.api?
-          sign_in :user, resource
+          if params[:depositor]
+            sign_in :user, User.find_by_email!(params[:depositor])
+          else
+            sign_in :user, resource
+          end
         end
       end
     end
