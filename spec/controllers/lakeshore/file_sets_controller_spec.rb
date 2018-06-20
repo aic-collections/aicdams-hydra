@@ -24,16 +24,6 @@ describe Lakeshore::FileSetsController do
           expect(response.body).to include("AICUser 'apiuser' not found, contact collections_support@artic.edu\n")
         end
       end
-
-      context "and valid despositor is passed in" do
-        let(:file_set_params) { { files: [file] } }
-        let(:params)          { { file_set: file_set_params, id: file_set1.id, depositor: aic_user1.nick } }
-        it "returns a 302 response code" do
-          ActiveJob::Base.queue_adapter = :test
-          expect(response).to have_http_status(302)
-          ActiveJob::Base.queue_adapter = :inline
-        end
-      end
     end
   end
 end
