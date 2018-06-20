@@ -10,8 +10,6 @@ describe Lakeshore::FileSetsController do
   let(:file)      { create(:image_file) }
   let(:aic_user1) { create(:aic_user1) }
 
-
-
   describe "#update" do
     before { put :update, params }
     context "when API user exists" do
