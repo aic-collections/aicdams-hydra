@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 module Lakeshore
   class FileSetsController < APIController
-
-    before_action :validate_depositor
-
     def update
       file_sets_controller = CurationConcerns::FileSetsController.new
       file_sets_controller.request = request
