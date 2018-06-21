@@ -16,5 +16,11 @@ module Lakeshore
         end
       end
     end
+
+    def validate_depositor
+      unless AICUser.find_by_nick(params[:depositor])
+        render plain: "AICUser '#{params[:depositor]}' not found, contact collections_support@artic.edu\n", status: 500
+      end
+    end
   end
 end
