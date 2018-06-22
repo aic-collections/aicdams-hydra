@@ -7,11 +7,10 @@ namespace :dev do
     ActiveFedora::Cleaner.clean!
     cleanout_redis
     clear_directories
-    User.destroy_all
   end
 
   desc "Prep dev environment"
-  task prep: ['db:migrate', :clean, 'lakeshore:load_lists', 'fedora:create_users', 'fedora:create_citi_resources']
+  task prep: ['db:reset', :clean, 'lakeshore:load_lists', 'fedora:create_users', 'fedora:create_citi_resources']
 end
 
 namespace :fedora do

@@ -25,6 +25,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
       post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
       expect(response).to be_accepted
+      expect(Sufia::UploadedFile.all.first.status).to eq("begun_ingestion")
     end
   end
 

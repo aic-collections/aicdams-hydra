@@ -11,6 +11,8 @@ module Lakeshore
     before_action :validate_ingest, :validate_asset_type, only: [:create]
     before_action :validate_duplicate_upload, :validate_preferred_representations, only: [:create, :update]
 
+    after_action :set_ingest_status, only: [:create]
+
     def create
       if actor.create(attributes_for_actor)
         head :accepted
@@ -49,6 +51,10 @@ module Lakeshore
         return if force_preferred_representation? || represented_resources.empty?
         ingest.errors.add(:represented_resources, "#{represented_resources.join(', ')} already have a preferred representation")
         render json: ingest.errors.full_messages, status: :conflict
+      end
+
+      def set_ingest_status
+        Sufia::UploadedFile.change_status(ingest.files, "begun_ingestion")
       end
 
     private
