@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 module Lakeshore
   class IngestRegistry
-    attr_reader :intermediate_file, :user, :files
+    include ActiveModel::Validations
+
+    validate :file_types_must_be_valid
+
+    attr_reader :intermediate_file, :user, :files, :content
 
     # @param [Hash] content from api request
     # @param [User] user
     def initialize(content, user)
       @intermediate_file = register_intermediate_file(content.delete(:intermediate), user)
+      @content = content
       @user = user
       @files = [@intermediate_file].compact
-      register_files(content)
+      register_files if valid?
     end
 
     # @param [true, false] if there are no duplicates in the set of files
@@ -50,15 +55,16 @@ module Lakeshore
         file
       end
 
-      # @note creates ingest files for both typed and non-typed files
-      def register_files(content)
-        (content.keys.map(&:to_sym) & IngestFile.types).each do |type|
+      def register_files
+        content.keys.map(&:to_sym).each do |type|
           files << IngestFile.new(user: user, file: content.delete(type), type: type, batch_id: uploaded_batch.id)
         end
+      end
 
-        content.values.map do |file|
-          files << IngestFile.new(user: user, file: file, type: nil, batch_id: uploaded_batch.id)
-        end
+      def file_types_must_be_valid
+        invalid_types = (content.keys.map(&:to_sym) - IngestFile.uri_map.keys)
+        return unless invalid_types.present?
+        errors.add(:files, "Request contains invalid file types: #{invalid_types.join(', ')}")
       end
 
       def duplicates

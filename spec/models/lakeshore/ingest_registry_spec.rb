@@ -43,9 +43,7 @@ describe Lakeshore::IngestRegistry do
     context "with both named and non-named file types in the api request" do
       let(:content) { { intermediate: "intermediate file", pres_master: "pres master file", other: "other file" } }
 
-      it "is an array of ingest files" do
-        expect(registry.files.count).to eq(3)
-      end
+      it { is_expected.not_to be_valid }
     end
 
     context "with only named file types in the api request" do

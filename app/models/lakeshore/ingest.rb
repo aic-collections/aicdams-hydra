@@ -8,6 +8,8 @@ module Lakeshore
 
     validates :ingestor, :asset_type, :document_type_uri, :intermediate_file, presence: true
 
+    validate :registry_must_be_valid
+
     delegate :intermediate_file, :duplicate_error, to: :registry
 
     # @param [ActionController::Parameters] params from the controller
@@ -76,6 +78,11 @@ module Lakeshore
         @document_type_uri = metadata.fetch(:document_type_uri, nil)
         @preferred_representation_for = metadata.fetch(:preferred_representation_for, [])
         @ingestor = find_or_create_user(metadata.fetch(:depositor, nil))
+      end
+
+      def registry_must_be_valid
+        return if registry.valid?
+        registry.errors.full_messages.each { |error| errors.add(:registry, error) }
       end
 
       def find_or_create_user(key)

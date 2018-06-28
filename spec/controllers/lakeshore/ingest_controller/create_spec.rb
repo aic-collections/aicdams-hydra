@@ -61,6 +61,16 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
     its(:body) { is_expected.to eq("[\"Ingestor can't be blank\",\"Document type uri can't be blank\",\"Intermediate file can't be blank\"]") }
   end
 
+  context 'with an unsupported file set type' do
+    it "returns an error" do
+      post :create, asset_type: "StillImage",
+                    content: { intermediate: image_asset, bogus: image_asset },
+                    metadata: metadata
+      expect(response).to be_bad_request
+      expect(response.body).to eq("[\"Registry Files Request contains invalid file types: bogus\"]")
+    end
+  end
+
   describe "asset type validation" do
     subject { response }
 

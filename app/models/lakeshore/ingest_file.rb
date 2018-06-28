@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Lakeshore
   class IngestFile
-    attr_reader :file, :type, :user, :batch_id
+    attr_reader :file, :type, :user, :batch_id, :uri
 
     delegate :original_filename, to: :file
     delegate :errors, to: :uploaded_file
@@ -28,10 +28,7 @@ module Lakeshore
       @file = file
       @user = user
       @batch_id = batch_id
-    end
-
-    def uri
-      @uri ||= register_uri
+      @uri = register_uri
     end
 
     def duplicate?

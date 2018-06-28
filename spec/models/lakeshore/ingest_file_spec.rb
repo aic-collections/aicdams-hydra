@@ -35,12 +35,12 @@ RSpec.describe Lakeshore::IngestFile do
       its(:uri) { is_expected.to eq(AICType.IntermediateFileSet) }
     end
 
-    context "with an original file" do
+    context "with a preservation master file" do
       let(:type) { :pres_master }
       its(:uri) { is_expected.to eq(AICType.PreservationMasterFileSet) }
     end
 
-    context "with an original file" do
+    context "with a legacy file" do
       let(:type) { :legacy }
       its(:uri) { is_expected.to eq(AICType.LegacyFileSet) }
     end
@@ -54,7 +54,7 @@ RSpec.describe Lakeshore::IngestFile do
       let(:type) { :unregistered }
       it "raises an error" do
         expect {
-          described_class.new(file: file, user: user, type: :unregistered, batch_id: UploadedBatch.create.id).uri
+          described_class.new(file: file, user: user, type: :unregistered, batch_id: UploadedBatch.create.id)
         }.to raise_error(Lakeshore::IngestFile::UnsupportedFileSetTypeError,
                          "'unregistered' is not a supported file set type")
       end
