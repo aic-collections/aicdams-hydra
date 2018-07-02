@@ -1,4 +1,4 @@
-# # frozen_string_literal: false
+# frozen_string_literal: false
 # require 'rails_helper'
 #
 # describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestController#update" do
