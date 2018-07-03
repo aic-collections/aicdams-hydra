@@ -171,6 +171,7 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
     end
 
     it "returns an error leaving the original relationship unchanged" do
+      pending("until we reimplement file_set api in https://cits.artic.edu/issues/2963")
       expect(Lakeshore::AttachFilesToWorkJob).not_to receive(:perform_later)
       post :update, id: asset.id, metadata: metadata
       expect(response.status).to eq(409)
