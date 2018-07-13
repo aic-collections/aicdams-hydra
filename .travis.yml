@@ -1,5 +1,5 @@
 language: ruby
-sudo: false
+sudo: required
 cache:
   bundler: true
   directories:
@@ -10,7 +10,7 @@ services:
 before_script:
   - jdk_switcher use oraclejdk8
 before_install:
-  - apt-get install jasper graphicsmagick
+  - sudo apt-get install jasper graphicsmagick
   - gem install bundler
   - "phantomjs --version"
   - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
