@@ -31,6 +31,7 @@
                 ) %>
             </li>
           <% end %>
+          <li><%= link_to t("sufia.dashboard.my.shares"), sufia.dashboard_shares_path %></li>
           <li><%= link_to t("sufia.toolbar.works.batch"), sufia.new_batch_upload_path %></li>
           <%# Hidden as per #1806 %>
           <!-- <li><%# link_to t("sufia.toolbar.works.new"), new_polymorphic_path([main_app, GenericWork]) %></li> -->
