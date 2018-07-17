@@ -77,4 +77,20 @@ module SolrDocumentExtensions::Asset
   def caption
     Array(self[Solrizer.solr_name('caption', :stored_searchable)]).first
   end
+
+  def intermediate_file_set
+    Array(self[Solrizer.solr_name('intermediate_ids', :symbol)]).first
+  end
+
+  def preservation_file_set
+    Array(self[Solrizer.solr_name('preservation_ids', :symbol)]).first
+  end
+
+  def original_file_set
+    Array(self[Solrizer.solr_name('original_ids', :symbol)]).first
+  end
+
+  def legacy_file_set
+    Array(self[Solrizer.solr_name('legacy_ids', :symbol)]).first
+  end
 end

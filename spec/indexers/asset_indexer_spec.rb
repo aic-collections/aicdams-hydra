@@ -66,5 +66,81 @@ describe AssetIndexer do
         expect(solr_doc["representation_sim"]).to eq("No Relationship")
       end
     end
+
+    context 'with no file sets' do
+      before { allow(asset).to receive(:members).and_return([]) }
+
+      specify do
+        expect(solr_doc["member_ids_ssim"]).to be_empty
+        expect(solr_doc["intermediate_ids_ssim"]).to be_empty
+        expect(solr_doc["original_ids_ssim"]).to be_empty
+        expect(solr_doc["preservation_ids_ssim"]).to be_empty
+        expect(solr_doc["legacy_ids_ssim"]).to be_empty
+      end
+    end
+
+    context 'with an intermediate file set' do
+      let(:indexer)  { described_class.new(asset) }
+      let(:member) { instance_double(AssetIndexer::Member, id: "intermediate", type: [AICType.IntermediateFileSet]) }
+
+      before { allow(indexer).to receive(:cached_members).and_return([member]) }
+
+      specify do
+        solr_doc = indexer.generate_solr_document
+        expect(solr_doc["member_ids_ssim"]).to be_empty
+        expect(solr_doc["intermediate_ids_ssim"]).to contain_exactly("intermediate")
+        expect(solr_doc["original_ids_ssim"]).to be_empty
+        expect(solr_doc["preservation_ids_ssim"]).to be_empty
+        expect(solr_doc["legacy_ids_ssim"]).to be_empty
+      end
+    end
+
+    context 'with an original file set' do
+      let(:indexer)  { described_class.new(asset) }
+      let(:member) { instance_double(AssetIndexer::Member, id: "original", type: [AICType.OriginalFileSet]) }
+
+      before { allow(indexer).to receive(:cached_members).and_return([member]) }
+
+      specify do
+        solr_doc = indexer.generate_solr_document
+        expect(solr_doc["member_ids_ssim"]).to be_empty
+        expect(solr_doc["intermediate_ids_ssim"]).to be_empty
+        expect(solr_doc["original_ids_ssim"]).to contain_exactly("original")
+        expect(solr_doc["preservation_ids_ssim"]).to be_empty
+        expect(solr_doc["legacy_ids_ssim"]).to be_empty
+      end
+    end
+
+    context 'with a preservation file set' do
+      let(:indexer)  { described_class.new(asset) }
+      let(:member) { instance_double(AssetIndexer::Member, id: "preservation", type: [AICType.PreservationMasterFileSet]) }
+
+      before { allow(indexer).to receive(:cached_members).and_return([member]) }
+
+      specify do
+        solr_doc = indexer.generate_solr_document
+        expect(solr_doc["member_ids_ssim"]).to be_empty
+        expect(solr_doc["intermediate_ids_ssim"]).to be_empty
+        expect(solr_doc["original_ids_ssim"]).to be_empty
+        expect(solr_doc["preservation_ids_ssim"]).to contain_exactly("preservation")
+        expect(solr_doc["legacy_ids_ssim"]).to be_empty
+      end
+    end
+
+    context 'with a legacy file set' do
+      let(:indexer)  { described_class.new(asset) }
+      let(:member) { instance_double(AssetIndexer::Member, id: "legacy", type: [AICType.LegacyFileSet]) }
+
+      before { allow(indexer).to receive(:cached_members).and_return([member]) }
+
+      specify do
+        solr_doc = indexer.generate_solr_document
+        expect(solr_doc["member_ids_ssim"]).to be_empty
+        expect(solr_doc["intermediate_ids_ssim"]).to be_empty
+        expect(solr_doc["original_ids_ssim"]).to be_empty
+        expect(solr_doc["preservation_ids_ssim"]).to be_empty
+        expect(solr_doc["legacy_ids_ssim"]).to contain_exactly("legacy")
+      end
+    end
   end
 end

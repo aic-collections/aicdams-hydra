@@ -169,6 +169,10 @@ describe SolrDocument do
     it { is_expected.to respond_to(:publishable?) }
     it { is_expected.to respond_to(:copyright_representatives) }
     it { is_expected.to respond_to(:caption) }
+    it { is_expected.to respond_to(:intermediate_file_set) }
+    it { is_expected.to respond_to(:legacy_file_set) }
+    it { is_expected.to respond_to(:preservation_file_set) }
+    it { is_expected.to respond_to(:original_file_set) }
   end
 
   describe "Resource terms" do
