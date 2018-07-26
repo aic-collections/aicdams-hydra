@@ -9,6 +9,10 @@ class FileSet < ActiveFedora::Base
   def create_derivatives(filename, _opts = {})
     if parent.type.include?(AICType.StillImage)
       create_still_image_derivatives(filename)
+    elsif parent.type.include?(AICType.MovingImage)
+      create_video_derivatives(filename)
+    elsif parent.type.include?(AICType.Sound)
+      create_audio_derivatives(filename)
     else
       create_text_derivatives(filename)
     end
@@ -19,6 +23,14 @@ class FileSet < ActiveFedora::Base
     def create_still_image_derivatives(filename)
       return unless AssetType::StillImage.all.include?(mime_type)
       Hydra::Derivatives::ImageDerivatives.create(filename, outputs: image_outputs)
+    end
+
+    def create_video_derivatives(filename)
+      Hydra::Derivatives::VideoDerivatives.create(filename, outputs: video_outputs)
+    end
+
+    def create_audio_derivatives(filename)
+      Hydra::Derivatives::AudioDerivatives.create(filename, outputs: audio_outputs)
     end
 
     def create_text_derivatives(filename)
@@ -69,6 +81,21 @@ class FileSet < ActiveFedora::Base
         access: derivative_url('document'),
         citi: derivative_url('citi')
       }
+    end
+
+    def video_outputs
+      [
+        { label: :thumbnail, format: 'jpg', url: derivative_url('thumbnail') },
+        { label: 'webm', format: 'webm', url: derivative_url('webm') },
+        { label: 'mp4', format: 'mp4', url: derivative_url('mp4') }
+      ]
+    end
+
+    def audio_outputs
+      [
+        { label: 'mp3', format: 'mp3', url: derivative_url('mp3') },
+        { label: 'ogg', format: 'ogg', url: derivative_url('ogg') }
+      ]
     end
 
     def derivative_path_factory

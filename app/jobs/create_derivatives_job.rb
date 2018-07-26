@@ -6,7 +6,6 @@ class CreateDerivativesJob < ActiveJob::Base
   # @param [String] file_id identifier for a Hydra::PCDM::File
   # @param [String, NilClass] filepath the cached file within the CurationConcerns.config.working_path
   def perform(file_set, file_id, filepath = nil)
-    return if file_set.video? && !CurationConcerns.config.enable_ffmpeg
     filename = CurationConcerns::WorkingDirectory.find_or_retrieve(file_id, file_set.id, filepath)
 
     file_set.create_derivatives(filename)
