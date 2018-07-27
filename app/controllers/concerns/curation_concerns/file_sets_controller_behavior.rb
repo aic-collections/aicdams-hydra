@@ -87,7 +87,7 @@ module CurationConcerns
                     sufia_uploaded_file = Sufia::UploadedFile.new(file: file,
                                                                   uploaded_batch_id: UploadedBatch.create.id,
                                                                   user: current_user)
-                    sufia_uploaded_file.valid? ? actor.update_content(file) : false
+                    sufia_uploaded_file.valid? ? actor.update_content(sufia_uploaded_file.file) : false
                   else
                     update_metadata
                   end
