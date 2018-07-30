@@ -14,10 +14,15 @@ class FileSetPresenter < Sufia::FileSetPresenter
   # Only for the access master
   def display_image
     return unless rdf_types.include?(AICType.IntermediateFileSet)
+
+    original_file = ::FileSet.find(id).original_file
+
+    latest_file_id = original_file.has_versions? ? ActiveFedora::File.uri_to_id(original_file.versions.last.uri) : original_file.id
+
     IIIFManifest::DisplayImage.new(DerivativePath.access_path(id),
                                    width: adjusted_dimensions.width,
                                    height: adjusted_dimensions.height,
-                                   iiif_endpoint: iiif_endpoint(id))
+                                   iiif_endpoint: iiif_endpoint(latest_file_id))
   end
 
   private
