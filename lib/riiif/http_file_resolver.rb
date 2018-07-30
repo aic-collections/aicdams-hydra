@@ -45,7 +45,7 @@ module Riiif
       end
 
       def fetch
-        download_file #unless ::File.exist?(file_name)
+        download_file unless ::File.exist?(file_name)
         file_name
       end
 
