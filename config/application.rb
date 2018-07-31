@@ -41,6 +41,7 @@ module Lakeshore
 
     config.to_prepare do
       Sufia::UploadedFile.include UploadedFile
+      Riiif::ImagesController.prepend ImagesController
     end
   end
 
