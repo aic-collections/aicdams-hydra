@@ -13,6 +13,7 @@ class FileSetPresenter < Sufia::FileSetPresenter
   # @return [IIIFManifest::DisplayImage]
   # Only for the access master
   def display_image
+    # byebug
     return unless rdf_types.include?(AICType.IntermediateFileSet)
 
     original_file = ::FileSet.find(id).original_file
