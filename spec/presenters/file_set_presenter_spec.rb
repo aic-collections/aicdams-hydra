@@ -38,7 +38,31 @@ describe FileSetPresenter do
   end
 
   describe "#display_image" do
-    before { allow(request).to receive(:base_url).and_return("/base_url") }
+    before do
+      original_file = instance_double(Hydra::PCDM::File,
+                                      mime_type: "image/jpeg",
+                                      format_label: ["JPEG File Interchange Format"],
+                                      file_size: ["12388"],
+                                      height: ["333"],
+                                      width: ["460"],
+                                      digest: ["#<RDF::URI:0x3fef6c4a1334 URI:urn:sha1:74532ca16605222a1f43f37fc6db43e4b6eee04a>"],
+                                      page_count: [],
+                                      file_title: [],
+                                      duration: [],
+                                      sample_rate: [],
+                                      original_checksum: ["730fd22d090cf8c08ea68cbff9b25482"],
+                                      has_versions?: false,
+                                      id: "1234/files/abc")
+      allow(request).to receive(:base_url).and_return("/base_url")
+      allow(FileSet).to receive(:find).and_return(file_set)
+      allow(file_set).to receive(:original_file).and_return(original_file)
+      # allow(original_file).to receive(:mime_type).and_return("image/jpeg")
+      # allow(original_file).to receive(:format_label).and_return(["JPEG File Interchange Format"])
+      # allow(original_file).to receive(:file_size).and_return(["12388"])
+      # allow(original_file).to receive(:height).and_return(["333"])
+      # allow(original_file).to receive(:width).and_return(["460"])
+      # allow(original_file).to receive(:digest).and_return(["#<RDF::URI:0x3fef6c4a1334 URI:urn:sha1:74532ca16605222a1f43f37fc6db43e4b6eee04a>"])
+    end
 
     subject { presenter.display_image }
 
@@ -54,7 +78,7 @@ describe FileSetPresenter do
         expect(subject.width).to eq(100)
         expect(subject.height).to eq(200)
         expect(subject.iiif_endpoint).to be_kind_of(IIIFManifest::IIIFEndpoint)
-        expect(subject.iiif_endpoint.url).to eq("http:///base_url/images/1234")
+        expect(subject.iiif_endpoint.url).to eq("http:///base_url/images/1234%252Ffiles%252Fabc")
         expect(subject.iiif_endpoint.profile).to eq("http://iiif.io/api/image/2/level2.json")
       end
     end
