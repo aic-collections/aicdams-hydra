@@ -19,10 +19,12 @@ class FileSetPresenter < Sufia::FileSetPresenter
 
     latest_file_id = original_file.has_versions? ? ActiveFedora::File.uri_to_id(original_file.versions.last.uri) : original_file.id
 
+    encoded_id = ActionDispatch::Journey::Router::Utils.escape_segment(latest_file_id)
+
     IIIFManifest::DisplayImage.new(DerivativePath.access_path(id),
                                    width: adjusted_dimensions.width,
                                    height: adjusted_dimensions.height,
-                                   iiif_endpoint: iiif_endpoint(latest_file_id))
+                                   iiif_endpoint: iiif_endpoint(encoded_id))
   end
 
   private
