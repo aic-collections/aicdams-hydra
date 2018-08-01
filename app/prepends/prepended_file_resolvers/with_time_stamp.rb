@@ -9,8 +9,8 @@ end
 module PrependedFileResolvers::WithTimeStamp
   def find(id)
     remote = RemoteFileWithTimestamp.new(uri(id),
-                            cache_path: cache_path,
-                            basic_auth_credentials: basic_auth_credentials)
+                                         cache_path: cache_path,
+                                         basic_auth_credentials: basic_auth_credentials)
     Riiif::File.new(remote.fetch)
   end
 end
