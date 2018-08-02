@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :uploaded_file, class: Sufia::UploadedFile do
     association :file, factory: :image_file

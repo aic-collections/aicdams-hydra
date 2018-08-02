@@ -5,11 +5,7 @@ RSpec.describe Lakeshore::IngestFile do
   let(:user) { create(:user) }
   let(:type) { :original }
 
-  let(:file) do
-    ActionDispatch::Http::UploadedFile.new(filename:     "sun.png",
-                                           content_type: "image/png",
-                                           tempfile:     File.new(File.join(fixture_path, "sun.png")))
-  end
+  let(:file) { create(:image_file) }
 
   subject { described_class.new(file: file, user: user, type: type, batch_id: UploadedBatch.create.id) }
 
