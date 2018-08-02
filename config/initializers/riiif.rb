@@ -3,12 +3,14 @@
 # Adjusting height and width parameters to match access master dimensions
 Riiif::Image.file_resolver = Riiif::HTTPFileResolver.new
 Riiif::Image.info_service = lambda do |id, _file|
+  id = id.partition("/").first
   doc = SolrDocument.find(id)
   dimensions = DimensionsService.new(width: doc.width, height: doc.height)
   { height: dimensions.height, width: dimensions.width }
 end
 
 Riiif::Image.file_resolver.id_to_uri = lambda do |id|
+  id = id.partition("/").first
   url = DerivativePath.access_path(id)
   Rails.logger.info "Riiif resolved #{id} to #{url}"
   url
