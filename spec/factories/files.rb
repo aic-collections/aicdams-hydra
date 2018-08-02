@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 FactoryGirl.define do
   factory :file, class: ActionDispatch::Http::UploadedFile do
     skip_create
