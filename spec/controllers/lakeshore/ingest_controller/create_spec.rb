@@ -258,6 +258,5 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       expect(response).to be_accepted
       expect(asset.edit_groups).to include(user.department)
     end
-
   end
 end

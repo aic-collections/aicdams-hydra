@@ -92,10 +92,10 @@ class GenericWork < Resource
 
   def give_on_behalf_of_dept_write_permission
     u = User.find_by_email(on_behalf_of)
-    groups = self.edit_groups
+    groups = edit_groups
     groups << u.department
     self.edit_groups = groups
-    self.save
+    save
   end
 
   private
