@@ -4,6 +4,7 @@ require 'rails_helper'
 describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestController#create" do
   let(:apiuser) { create(:apiuser) }
   let(:user)    { create(:user1) }
+  let(:user2)   { create(:user2) }
 
   # bang this so it is not memoized and gets invoked even after tmp dir is wiped via LakeshoreTesting
   # https://cits.artic.edu/issues/2943
@@ -13,7 +14,10 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
                                            tempfile:     File.new(File.join(fixture_path, "sun.png")))
   end
 
-  before { sign_in_basic(apiuser) }
+  before do
+    LakeshoreTesting.restore
+    sign_in_basic(apiuser)
+  end
 
   let(:metadata) do
     { "visibility" => "department", "depositor" => user.email, "document_type_uri" => AICDocType.ConservationStillImage }
@@ -205,5 +209,55 @@ describe Lakeshore::IngestController, custom_description: "Lakeshore::IngestCont
       non_asset.reload
       expect(non_asset.preferred_representation_uri).not_to eq(asset.uri)
     end
+  end
+
+  context "when an asset's depositor and on_behalf_of are passed in" do
+    let(:metadata) do
+      { "visibility" => "department",
+        "depositor" => user.email,
+        "uid" => "SI-99",
+        "document_type_uri" => AICDocType.ConservationStillImage,
+        "on_behalf_of" => user2.email
+      }
+    end
+
+    let(:asset) { GenericWork.where(uid: "SI-99").first }
+
+    it "sets the proxyDepositor to the :depositor param" do
+      expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
+      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      expect(response).to be_accepted
+      expect(asset.proxy_depositor).to eq(user.email)
+    end
+
+    it "sets the asset's depositor to the :on_behalf_of param" do
+      pending("this test is failing with inline adapter but QA is fine with :resque")
+      expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
+      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      expect(response).to be_accepted
+      expect(asset.depositor).to eq(user2.email)
+    end
+
+    it "creates an AccessControlPermission for the :depositor param's user" do
+      expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
+      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      expect(response).to be_accepted
+      expect(asset.edit_users).to include(user.email)
+    end
+
+    it "creates an AccessControlPermission for the :on_behalf_of param's department" do
+      expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
+      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      expect(response).to be_accepted
+      expect(asset.edit_groups).to include(user2.department)
+    end
+
+    it "creates an AccessControlPermission for the :depositor param's department" do
+      expect(Lakeshore::AttachFilesToWorkJob).to receive(:perform_later)
+      post :create, asset_type: "StillImage", content: { intermediate: image_asset }, metadata: metadata
+      expect(response).to be_accepted
+      expect(asset.edit_groups).to include(user.department)
+    end
+
   end
 end

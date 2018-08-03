@@ -17,7 +17,12 @@ class GenericWork < Resource
   type type + aic_type
 
   before_create :status_is_active, :public_is_false
+  after_create :give_on_behalf_of_dept_write_permission, if: :on_behalf_of?
   validate :id_matches_uid_checksum, on: :update
+
+  def on_behalf_of?
+    on_behalf_of.present?
+  end
 
   def imaging_uid_placeholder
     imaging_uid.first
@@ -83,6 +88,14 @@ class GenericWork < Resource
 
   def legacy_file_set
     members.select { |f| f.type.include?(AICType.LegacyFileSet) }
+  end
+
+  def give_on_behalf_of_dept_write_permission
+    u = User.find_by_email(on_behalf_of)
+    groups = self.edit_groups
+    groups << u.department
+    self.edit_groups = groups
+    self.save
   end
 
   private

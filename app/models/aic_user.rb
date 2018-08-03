@@ -87,4 +87,8 @@ class AICUser < CitiResource
   property :nick, predicate: ::RDF::Vocab::FOAF.nick, multiple: false do |index|
     index.as :symbol, :stored_searchable
   end
+
+  def user
+    User.find_by_email(nick)
+  end
 end

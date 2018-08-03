@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
   def self.audit_user
     User.find_by_user_key(audit_user_key) || User.create!(Devise.authentication_keys.first => audit_user_key)
   end
+
+  def aic_user
+    AICUser.find_by_nick(email)
+  end
 end
