@@ -278,12 +278,14 @@ GEM
       faraday
     fcrepo_wrapper (0.8.0)
       ruby-progressbar
+    ffi (1.9.25)
     figaro (1.1.1)
       thor (~> 0.14)
     flot-rails (0.0.7)
       jquery-rails
     font-awesome-rails (4.7.0.0)
       railties (>= 3.2, < 5.1)
+    formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     google-api-client (0.8.7)
@@ -310,6 +312,20 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+    guard (2.14.2)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, < 4.0)
+      lumberjack (>= 1.0.12, < 2.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-rspec (4.7.3)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     haml (4.0.7)
       tilt
     hamster (3.0.0)
@@ -414,18 +430,24 @@ GEM
     legato (0.7.0)
       multi_json
     link_header (0.0.8)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     little-plugger (1.1.4)
     logging (2.1.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lumberjack (1.0.13)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
     mailboxer (0.14.0)
       carrierwave (>= 0.5.8)
       rails (>= 4.2.0)
     memoist (0.15.0)
+    method_source (0.9.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -436,6 +458,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nenv (0.3.0)
     nest (2.0.0)
       redic
     net-scp (1.2.1)
@@ -444,6 +467,9 @@ GEM
     noid (0.9.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    notiffany (0.1.1)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     oauth (0.5.1)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
@@ -472,6 +498,9 @@ GEM
       websocket-driver (>= 0.2.0)
     posix-spawn (0.3.12)
     powerpack (0.1.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (2.0.4)
     qa (0.10.2)
       activerecord-import
@@ -512,6 +541,9 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (12.0.0)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
     rdf (2.2.6)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -563,6 +595,10 @@ GEM
       railties (>= 4.2, < 6)
     rsolr (1.1.2)
       builder (>= 2.1.2)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
     rspec-activemodel-mocks (1.0.3)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
@@ -602,6 +638,7 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.8.1)
+    ruby_dep (1.5.0)
     rubyzip (1.2.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -616,6 +653,7 @@ GEM
       rdoc (~> 4.0)
     select2-rails (3.5.10)
       thor (~> 0.14)
+    shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     signet (0.7.3)
@@ -760,6 +798,7 @@ DEPENDENCIES
   fcrepo_wrapper
   figaro
   flipflop!
+  guard-rspec
   hydra-derivatives!
   iiif_manifest (~> 0.1.2)
   jasmine

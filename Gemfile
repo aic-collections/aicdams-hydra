@@ -43,6 +43,7 @@ end
 
 group :development do
   gem 'capistrano-rails', require: false
+  gem 'guard-rspec', require: false
   gem 'rubocop', '~> 0.39.0', require: false
   gem 'rubocop-rspec', '~> 1.4.1', require: false
 end
