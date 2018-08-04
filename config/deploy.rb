@@ -69,6 +69,13 @@ namespace :deploy do
     end
   end
 
+  # make sure bundler is installed (for new rubies etc)
+  before 'started', :install_bundler do
+    on roles(:web) do
+      execute "gem install bundler --conservative"
+    end
+  end
+
   after :finished, :post_install_tasks do
     on roles(:web) do
       execute "cd #{fetch(:deploy_to)}/current && /usr/bin/env bundle exec rake rails:update:bin RAILS_ENV=#{fetch(:rails_env)}"
