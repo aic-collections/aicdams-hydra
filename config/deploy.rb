@@ -70,7 +70,7 @@ namespace :deploy do
   end
 
   # make sure bundler is installed (for new rubies etc)
-  before 'started', :install_bundler do
+  before :started, :install_bundler do
     on roles(:web) do
       execute "gem install bundler --conservative"
     end
