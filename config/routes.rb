@@ -72,8 +72,7 @@ Rails.application.routes.draw do
     resources :downloads, only: [:show], defaults: { format: :json }
     post "ingest/:asset_type", to: "ingest#create",  defaults: { format: :json }
     get "derivatives/:id/:file", to: "derivatives#show"
-    put "file_sets/:id", to: "file_sets#update", defaults: { format: :json }
-    put "assets/:id/file_sets/:role", to: "file_sets#create_or_update", defaults: { format: :json }
+    put "assets/:asset_uuid/file_sets/:file_set_role", to: "file_sets#create_or_update", defaults: { format: :json }
   end
 
   get "/login_confirm", to: "dummy#login_confirm"
