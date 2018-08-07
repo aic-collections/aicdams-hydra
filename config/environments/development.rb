@@ -51,4 +51,6 @@ Rails.application.configure do
   # default the queue adapter to :inline or override to :resque, if needed
   # config.active_job.queue_adapter = :inline
   config.active_job.queue_adapter = :resque
+
+  config.action_controller.default_url_options[:host] = 'localhost:3000'
 end
