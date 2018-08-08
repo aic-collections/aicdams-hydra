@@ -22,7 +22,9 @@ namespace :passenger do
       execute "passenger-install-apache2-module --snippet >>  #{fetch(:base_dir)}/.passenger.tmp"
       execute "/bin/cp -f #{fetch(:base_dir)}/.passenger.tmp /etc/httpd/conf.d/passenger.conf"
       execute "/bin/rm -f #{fetch(:base_dir)}/.passenger.tmp"
-      execute "/bin/cp -f #{fetch(:aic_config_dir)}/lakeshore-vhost.conf /etc/httpd/conf.d/lakeshore-vhost.conf" 
+      
+      # not needed all the time - only for brand new servers. when config is already managed in /etc/, this overwrites it and causes bad things to happen
+      # execute "/bin/cp -f #{fetch(:aic_config_dir)}/lakeshore-vhost.conf /etc/httpd/conf.d/lakeshore-vhost.conf" 
     end
   end
 
