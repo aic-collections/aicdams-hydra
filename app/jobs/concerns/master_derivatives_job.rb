@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MasterDerivativesJob < ActiveJob::Base
   # clean out the tmp/uploads dir upon successful derivatives generation
   # this also fixes https://cits.artic.edu/issues/3055
