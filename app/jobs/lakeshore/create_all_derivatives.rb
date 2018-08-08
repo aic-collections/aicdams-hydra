@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 # Combines CharacterizeJob and CreateDerivativeJob from CurationConcerns into one job for the Lakeshore API.
-class Lakeshore::CreateAllDerivatives < ActiveJob::Base
+class Lakeshore::CreateAllDerivatives < MasterDerivativesJob
   queue_as :api
-
-  after_perform do |job|
-    fs_uri = job.arguments.first.uri.to_s
-    sufia_uploaded_file = Sufia::UploadedFile.find_by_file_set_uri(fs_uri)
-    sufia_uploaded_file.destroy if sufia_uploaded_file
-  end
 
   # @param [FileSet] file_set
   # @param [String] file_id identifier for a Hydra::PCDM::File
