@@ -79,5 +79,7 @@ module AssetMetadata
     accepts_uris_for :keyword, :digitization_source, :document_type, :first_document_sub_type,
                      :second_document_sub_type, :publish_channels, :attachments, :copyright_representatives,
                      :licensing_restrictions, :constituent_of
+
+    property :owner, predicate: AIC.owner, multiple: false, class_name: "AICUSer"
   end
 end

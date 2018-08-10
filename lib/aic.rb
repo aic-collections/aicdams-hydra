@@ -189,6 +189,9 @@ class AIC < RDF::StrictVocabulary("http://definitions.artic.edu/ontology/1.0/")
   term :objectType,
        label: "Object Type",
        comment: "Object type"
+  term :owner,
+       label: "Owner",
+       comment: "Resource Owner"
   term :placeOfOrigin,
        label: "Place of Origin",
        comment: "Place of origin"
