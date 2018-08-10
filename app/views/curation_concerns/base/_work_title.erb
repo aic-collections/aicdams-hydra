@@ -1,0 +1,11 @@
+<% presenter.title.each_with_index do |title, index| %>
+    <% if index == 0 %>
+        <h1>
+          <%= title %>
+          <%= presenter.permission_badge %>
+          <%= publish_channels_to_badges(presenter.publish_channels) if presenter.is_a?(AssetPresenter) %>
+        </h1>
+    <% else %>
+        <h1><%= title %></h1>
+    <% end %>
+<% end %>
