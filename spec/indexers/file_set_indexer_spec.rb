@@ -22,7 +22,7 @@ describe FileSetIndexer do
     end
 
     it "indexes technical information about the file" do
-      expect(solr_doc[Solrizer.solr_name("file_size", :stored_sortable, type: :integer)]).to eq "1234"
+      expect(solr_doc[Solrizer.solr_name("file_size", :stored_sortable, type: :long)]).to eq "1234"
       expect(solr_doc[Solrizer.solr_name("image_width", :searchable, type: :integer)]).to eq 8
       expect(solr_doc[Solrizer.solr_name("image_height", :searchable, type: :integer)]).to eq 12
     end
