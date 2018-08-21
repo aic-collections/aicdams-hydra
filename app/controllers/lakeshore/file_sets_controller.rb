@@ -14,5 +14,24 @@ module Lakeshore
         head file_sets_controller.response.code
       end
     end
+
+    def create
+
+    end
+
+    def create_or_update
+      asset_uuid = params[:asset_uuid]
+      asset = GenericWork.find asset_uuid
+      file_set_role = params[:file_set_role]
+      method = "#{file_set_role}_file_set"
+      file_set = asset.send(method)&.first
+
+      if file_set
+        request.params.merge!(id: file_set.id)
+        update
+      else
+        create
+      end
+    end
   end
 end
