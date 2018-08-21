@@ -32,11 +32,11 @@ describe Rails.application.routes do
       describe "create or update" do
         it "is routable" do
           expect(put: "/api/assets/e37caeab-7843-6cb9-11e7-bdc63e15f12b/file_sets/intermediate").to route_to(controller: "lakeshore/file_sets",
-                                                                                                         action: "create_or_update",
-                                                                                                         format: :json,
-                                                                                                         asset_uuid: "e37caeab-7843-6cb9-11e7-bdc63e15f12b",
-                                                                                                         file_set_role: "intermediate"
-                                                                                                        )
+                                                                                                             action: "create_or_update",
+                                                                                                             format: :json,
+                                                                                                             asset_uuid: "e37caeab-7843-6cb9-11e7-bdc63e15f12b",
+                                                                                                             file_set_role: "intermediate"
+                                                                                                            )
         end
       end
     end

@@ -16,7 +16,6 @@ module Lakeshore
     end
 
     def create
-
     end
 
     def create_or_update
@@ -27,7 +26,8 @@ module Lakeshore
       file_set = asset.send(method)&.first
 
       if file_set
-        request.params.merge!(id: file_set.id)
+        # request.params.merge!(id: file_set.id)
+        request.params[:id] = file_set.id
         update
       else
         create
