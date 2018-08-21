@@ -28,6 +28,7 @@ class AssetIndexer < Sufia::WorkIndexer
       solr_doc[Solrizer.solr_name("legacy_ids", :symbol)] = legacy_file_set.map(&:id)
       solr_doc["public_domain_bsi"] = object.public_domain
       solr_doc["publishable_bsi"] = object.publishable
+      solr_doc[Solrizer.solr_name("file_size", :stored_sortable, type: :long)] = object.intermediate_file_set.first&.file_size
     end
   end
 
