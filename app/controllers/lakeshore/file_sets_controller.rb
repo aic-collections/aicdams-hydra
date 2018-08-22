@@ -40,6 +40,7 @@ module Lakeshore
     end
 
     private
+
       def uri_for_role
         { intermediate: AICType.IntermediateFileSet,
           preservation_master: AICType.PreservationMasterFileSet,
