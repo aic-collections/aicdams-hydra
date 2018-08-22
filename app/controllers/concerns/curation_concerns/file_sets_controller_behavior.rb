@@ -191,7 +191,7 @@ module CurationConcerns
       end
 
       def empty_file?(file)
-        (file.respond_to?(:tempfile) && file.tempfile.empty?) || (file.respond_to?(:size) && file.empty?)
+        (file.respond_to?(:tempfile) && file.tempfile.blank?) || (file.respond_to?(:size) && file.blank?)
       end
 
       def process_file(file)
