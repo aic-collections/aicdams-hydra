@@ -122,6 +122,8 @@ class GenericWork < Resource
     # is deleted the status of the S::UF does not remain "begun_ingestion" which prevents users from re-uploading deleted
     # assets
     def toast_sufia_uploaded_file
-      file_sets.each { |fs| Sufia::UploadedFile.find_by_file_set_uri(fs.uri.to_s).destroy }
+      file_sets.each do |fs|
+        Sufia::UploadedFile.where(file_set_uri: fs.uri.to_s).destroy_all
+      end
     end
 end
