@@ -13,11 +13,14 @@ class FileSetPresenter < Sufia::FileSetPresenter
   # @return [IIIFManifest::DisplayImage]
   # Only for the access master
   def display_image
+    # intermediate file_sets only
     return unless rdf_types.include?(AICType.IntermediateFileSet)
 
-    original_file = ::FileSet.find(id).original_file
+    access_master_path = DerivativePath.access_path(id)
 
-    latest_file_id = original_file.has_versions? ? ActiveFedora::File.uri_to_id(original_file.versions.last.uri) : original_file.id
+    modified_time_of_access_master = File.mtime(access_master_path).to_s
+
+    latest_file_id = "#{id}/#{modified_time_of_access_master}"
 
     encoded_id = ActionDispatch::Journey::Router::Utils.escape_segment(latest_file_id)
 
