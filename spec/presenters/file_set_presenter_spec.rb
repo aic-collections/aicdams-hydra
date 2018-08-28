@@ -56,12 +56,6 @@ describe FileSetPresenter do
       allow(request).to receive(:base_url).and_return("/base_url")
       allow(FileSet).to receive(:find).and_return(file_set)
       allow(file_set).to receive(:original_file).and_return(original_file)
-      # allow(original_file).to receive(:mime_type).and_return("image/jpeg")
-      # allow(original_file).to receive(:format_label).and_return(["JPEG File Interchange Format"])
-      # allow(original_file).to receive(:file_size).and_return(["12388"])
-      # allow(original_file).to receive(:height).and_return(["333"])
-      # allow(original_file).to receive(:width).and_return(["460"])
-      # allow(original_file).to receive(:digest).and_return(["#<RDF::URI:0x3fef6c4a1334 URI:urn:sha1:74532ca16605222a1f43f37fc6db43e4b6eee04a>"])
     end
 
     subject { presenter.display_image }
@@ -71,6 +65,7 @@ describe FileSetPresenter do
       let(:solr_document) { SolrDocument.new(file_set.to_solr.merge("height_is": 200, "width_is": 100)) }
 
       before { allow(DerivativePath).to receive(:access_path).with(file_set.id).and_return("http://url") }
+      before { allow(File).to receive(:mtime).with("http://url").and_return("derp") }
 
       specify do
         is_expected.to be_kind_of(IIIFManifest::DisplayImage)
@@ -78,7 +73,7 @@ describe FileSetPresenter do
         expect(subject.width).to eq(100)
         expect(subject.height).to eq(200)
         expect(subject.iiif_endpoint).to be_kind_of(IIIFManifest::IIIFEndpoint)
-        expect(subject.iiif_endpoint.url).to eq("http:///base_url/images/1234%252Ffiles%252Fabc")
+        expect(subject.iiif_endpoint.url).to eq("http:///base_url/images/1234%252Fderp")
         expect(subject.iiif_endpoint.profile).to eq("http://iiif.io/api/image/2/level2.json")
       end
     end
@@ -91,6 +86,9 @@ describe FileSetPresenter do
     context "when the original exceeds 3000 px" do
       let(:file_set)      { build(:intermediate_file_set, id: 'too-big') }
       let(:solr_document) { SolrDocument.new(file_set.to_solr.merge("height_is": 4000, "width_is": 5000)) }
+
+      before { allow(DerivativePath).to receive(:access_path).with(file_set.id).and_return("http://url") }
+      before { allow(File).to receive(:mtime).with("http://url").and_return("derp") }
 
       specify do
         is_expected.to be_kind_of(IIIFManifest::DisplayImage)
