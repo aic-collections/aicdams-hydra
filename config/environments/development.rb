@@ -49,6 +49,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # default the queue adapter to :inline or override to :resque, if needed
-  config.active_job.queue_adapter = :inline
-  # config.active_job.queue_adapter = :resque
+  # config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = :resque
 end
