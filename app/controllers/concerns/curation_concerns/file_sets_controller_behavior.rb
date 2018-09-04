@@ -59,7 +59,10 @@ module CurationConcerns
       render_json_response(response_type: :internal_error, options: { message: 'Error occurred while creating a FileSet.' })
     ensure
       # remove the tempfile (only if it is a temp file)
-      file.tempfile.delete if file.respond_to?(:tempfile)
+      # temporarily commented out (9/4/18) to solve the issue of IngestFileJob raising Errno::ENOENT exception...
+      # No such file or directory @ rb_sysopen etc, etc...
+
+      # file.tempfile.delete if file.respond_to?(:tempfile)
     end
 
     # routed to /files/:id
