@@ -75,6 +75,11 @@ Rails.application.routes.draw do
     put "assets/:asset_uuid/file_sets/:file_set_role", to: "file_sets#create_or_update", defaults: { format: :json }
   end
 
+  # Lakeshore public API
+  namespace :lakeshore, path: "pub_api" do
+    get "thumbnails/:asset_uuid", to: "thumbnails#show"
+  end
+
   get "/login_confirm", to: "dummy#login_confirm"
 
   put "uploads/:id", to: "sufia/uploads#update", as: "update_sufia_uploaded_file", defaults: { format: :json }
