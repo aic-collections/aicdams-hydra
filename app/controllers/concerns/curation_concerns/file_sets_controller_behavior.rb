@@ -57,7 +57,7 @@ module CurationConcerns
     rescue RSolr::Error::Http => error
       logger.error "FileSetController::create rescued #{error.class}\n\t#{error}\n #{error.backtrace.join("\n")}\n\n"
       render_json_response(response_type: :internal_error, options: { message: 'Error occurred while creating a FileSet.' })
-    ensure
+      # ensure
       # remove the tempfile (only if it is a temp file)
       # temporarily commented out (9/4/18) to solve the issue of IngestFileJob raising Errno::ENOENT exception...
       # No such file or directory @ rb_sysopen etc, etc...
