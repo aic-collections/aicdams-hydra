@@ -40,5 +40,15 @@ describe Rails.application.routes do
         end
       end
     end
+
+    describe "public api" do
+      describe "asset thumbnails" do
+        it "is routable" do
+          expect(get: "/pub_api/assets/1234/thumbnail").to route_to(controller: "lakeshore/thumbnails",
+                                                                    action: "show",
+                                                                    asset_uuid: "1234")
+        end
+      end
+    end
   end
 end

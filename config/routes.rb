@@ -77,7 +77,7 @@ Rails.application.routes.draw do
 
   # Lakeshore public API
   namespace :lakeshore, path: "pub_api" do
-    get "thumbnails/:asset_uuid", to: "thumbnails#show"
+    get "assets/:asset_uuid/thumbnail", to: "thumbnails#show"
   end
 
   get "/login_confirm", to: "dummy#login_confirm"
