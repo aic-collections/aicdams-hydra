@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 module Lakeshore
   class ThumbnailsController < PubAPIController
+    before_action :set_file_set_id_from_asset_uuid, :set_file
+
     include CurationConcerns::DownloadBehavior
     include DownloadBehavior
 
-    before_action :set_file_set_id_from_asset_uuid, :set_file
+    skip_before_action :authorize_download!
 
     def set_file
       params[:file] = "thumbnail"
