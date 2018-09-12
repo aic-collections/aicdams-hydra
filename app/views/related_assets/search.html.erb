@@ -1,0 +1,31 @@
+<h2> Related Asset Search</h2>
+
+<%= form_tag search_related_assets_path, method: :post, action: :index do  %>
+
+  <div class="form-group">
+    <%= label_tag :model, "Model" %>
+    <%= select_tag :model, options_for_select(citi_models), class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :resource_id, "Resource ID" %>
+    <%= text_field_tag :resource_id, nil, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :relationship_type, "Relationship Type" %>
+    <%= select_tag :relationship_type,
+        options_for_select(
+          {
+            "Has Documents" => "hasDocumentation",
+            'Has Representation' => "hasRepresentation",
+            'Has Preferred Representation' => "hasPreferredRepresentation"
+          }
+        ),
+        class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= submit_tag 'Search', class: 'btn btn-primary', id: 'related_asset_search' %>
+  </div>
+<% end %>

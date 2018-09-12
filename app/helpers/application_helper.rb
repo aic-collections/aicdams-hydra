@@ -72,6 +72,10 @@ module ApplicationHelper
     end
   end
 
+  def citi_models
+    ["Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work"]
+  end
+
   private
 
     def default_use_uris

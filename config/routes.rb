@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
+  resource :related_assets, only: [:index], as: 'related_assets', path: '/related_assets', controller: 'related_assets' do
+    concerns :searchable
+    get "search", to: "related_assets#search", as: "form"
+  end
+
   Hydra::BatchEdit.add_routes(self)
   mount CurationConcerns::Engine, at: '/'
   resources :welcome, only: 'index'

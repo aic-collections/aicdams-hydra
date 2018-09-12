@@ -47,4 +47,10 @@ describe ApplicationHelper do
       it { is_expected.to include([AICType.IntermediateFileSet.label, AICType.IntermediateFileSet]) }
     end
   end
+
+  describe "#citi_models" do
+    subject { helper.citi_models }
+
+    it { is_expected.to contain_exactly("Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work") }
+  end
 end
