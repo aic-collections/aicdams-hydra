@@ -2,6 +2,10 @@
   <div class="container-fluid">
     <div class="navbar-text text-left">
       <p>&#169; <%= Time.now.year %> The Art Institute of Chicago - Released under the Apache License, version 2.0</p>
+      <br>ENV: <%= Figaro.env.LAKESHORE_ENV %>
+      <br>SHA: <%= link_to(GIT_SHA, "https://github.com/aic-collections/aicdams-lakeshore/commit/#{GIT_SHA}") %>
+      <br>Branch: <%= BRANCH %>
+      <br>Updated: <%= LAST_DEPLOYED %>
     </div>
     <div class="navbar-right">
       <div class="navbar-text text-right">
