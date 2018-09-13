@@ -11,7 +11,7 @@ module PrependedRenderers::WithRightsAttributeToHtml
     if parsed_uri.nil?
       ERB::Util.h(value)
     else
-      %(<a href=#{ERB::Util.h(value)} target="_blank">#{CurationConcerns::LicenseService.new.label(value) { value } }</a>)
+      %(<a href=#{ERB::Util.h(value)} target="_blank">#{CurationConcerns::LicenseService.new.label(value) { value }}</a>)
     end
   end
 end
