@@ -43,6 +43,8 @@ module Lakeshore
       Sufia::UploadedFile.include UploadedFile
       Riiif::ImagesController.prepend PrependedControllers::WithStrippedDownFileSetId
       Riiif::HTTPFileResolver.prepend PrependedFileResolvers::WithTimeStamp
+      CurationConcerns::QaSelectService.prepend PrependedServices::WithStrongerLabel
+      CurationConcerns::Renderers::RightsAttributeRenderer.prepend PrependedRenderers::WithRightsAttributeToHtml
     end
   end
 
