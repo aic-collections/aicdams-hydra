@@ -32,7 +32,14 @@
           <%= rel.permission_badge %>
           <%= publish_channels_to_badges(rel.publish_channels) %>
         </td>
-        <td><%= rel.uid %></td>
+        <td>
+          <% if rel.viewable? %>
+            <%= link_to rel.uid, polymorphic_path([main_app, rel]) %>
+            <%= link_to(fa_icon("external-link"), polymorphic_path([main_app, rel]), target: "_blank") %>
+          <% else %>
+            <%= rel.uid %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
