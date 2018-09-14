@@ -21,12 +21,12 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
              data-name="#{input_html_options[:name]}">+ Add</a>
           <table class="table-condensed">
             <thead>
-            <tr>
-              <th>Pref.</th>
-              <th>Thumbnail</th>
-              <th>Title</th>
-              <th>Actions</th>
-            </tr>
+              <tr>
+                <th>Pref.</th>
+                <th>Thumbnail</th>
+                <th>Title</th>
+                <th>Actions</th>
+              </tr>
             </thead>
           </table>
           <table class="table-condensed am #{attribute_name}">
@@ -40,8 +40,7 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
       <<-HTML
           <td><div class="#{star_or_not(resources[index])}"></div></td>
           <td>#{render_thumbnail(resources[index])}</td>
-          <td>
-            #{resources[index].pref_label}
+          <td>#{template.link_to(resources[index].pref_label, Rails.application.routes.url_helpers.curation_concerns_generic_work_path(resources[index].id)) }
       #{yield}
           </td>
           <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
