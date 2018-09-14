@@ -35,7 +35,7 @@ export class AssetManager {
   removeRow(selector) {
     var table = $(selector).closest('table')
     var row = $(selector).closest('tr')
-    if ( $(table).find('tr').length == 1 ) {
+    if ( $(table).find('tbody tr').length == 1 ) {
       this.nullInput(row)
     }
     else {
@@ -59,18 +59,18 @@ export class AssetManager {
       '<tr>' +
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
-        '<td>' +
-           this.selectedAssetText + this.hiddenInput +
-        '</td>' +
+        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + '</td>' +
+        '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</td>';
 
     var documentations_html =
         '<tr>' +
         '<td>' + image_tag + '</td>' +
-        '<td>' +
-        this.selectedAssetText + this.hiddenInput +
-        '</td>' +
+        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + '</td>' +
+        '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
         '</td>';
 

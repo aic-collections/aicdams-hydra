@@ -19,7 +19,7 @@
           [ "Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work" ], "Work"), { class: "autocomplete_model", style: "width: 110px;" } %>
       </td>
       <td>
-        <%= f.input :representations_for, as: :hidden_multi_select, hint: false, label: false, input_html: { class: 'form-control' }, required: false %>
+        <%= f.input :representations_for, as: :citi_resources_multi_select, hint: false, label: false, input_html: { class: 'form-control' }, required: false %>
       </td>
     </tr>
   </table>
@@ -43,7 +43,7 @@
           [ "Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work" ], "Work"), { class: "autocomplete_model", style: "width: 110px;" } %>
       </td>
       <td>
-          <%= f.input :documents_for, as: :hidden_multi_select, hint: false, label: false, input_html: { class: 'form-control' }, required: false %>
+          <%= f.input :documents_for, as: :citi_resources_multi_select, hint: false, label: false, input_html: { class: 'form-control' }, required: false %>
       </td>
     </tr>
   </table>

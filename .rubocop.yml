@@ -102,6 +102,7 @@ Style/PredicateName:
     - 'app/presenters/concerns/citi_presenter_behaviors.rb'
     - 'app/models/parameterized_relationships.rb'
     - 'app/forms/curation_concerns/generic_work_form.rb'
+    - 'app/models/concerns/solr_document_extensions.rb'
 
 Style/FileName:
   Exclude:

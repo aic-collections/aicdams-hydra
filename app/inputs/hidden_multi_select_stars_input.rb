@@ -19,18 +19,20 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
              data-attribute="#{attribute_name}"
              data-model="#{object.model.class.to_s.downcase}"
              data-name="#{input_html_options[:name]}">+ Add</a>
-          <table class="table-condensed">
+          <table class="table table-striped am #{attribute_name}">
             <thead>
-            <tr>
-              <th>Pref.</th>
-              <th>Thumbnail</th>
-              <th>Title</th>
-              <th>Actions</th>
-            </tr>
+              <tr>
+                <th>Pref.</th>
+                <th>Thumbnail</th>
+                <th>Title</th>
+                <th>Visibility & Publishing</th>
+                <th>UID</th>
+                <th>Actions</th>
+              </tr>
             </thead>
-          </table>
-          <table class="table-condensed am #{attribute_name}">
-            #{yield}
+            <tbody>
+              #{yield}
+            </tbody>
           </table>
       HTML
     end
@@ -41,8 +43,12 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
           <td><div class="#{star_or_not(resources[index])}"></div></td>
           <td>#{render_thumbnail(resources[index])}</td>
           <td>
-            #{resources[index].pref_label}
-      #{yield}
+            #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+            #{yield}
+          </td>
+          <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
+          <td>
+            #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
           </td>
           <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
       HTML
