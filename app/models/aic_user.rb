@@ -63,7 +63,7 @@ class AICUser < CitiResource
 
       def find_nick_by_solr(nick)
         return nil unless nick
-        docs = ActiveFedora::SolrService.query("nick_ssim:#{nick}", fq: 'has_model_ssim:"AICUser"')
+        docs = ActiveFedora::SolrService.query("nick_ssim:#{nick}", rows: 1, fq: 'has_model_ssim:"AICUser"')
         return nil if docs.empty?
         SolrDocument.new(docs.first)
       end
