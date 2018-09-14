@@ -26,6 +26,7 @@
         <td>
           <% if rel.viewable? %>
             <%= link_to rel.to_s, polymorphic_path([main_app, rel]) %>
+            <%= link_to(fa_icon("external-link"), polymorphic_path([main_app, rel]), target: "_blank") %>
           <% else %>
             <%= rel.to_s %>
           <% end %>
