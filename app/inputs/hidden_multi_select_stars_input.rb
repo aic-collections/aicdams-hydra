@@ -25,7 +25,6 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
                 <th>Pref.</th>
                 <th>Thumbnail</th>
                 <th>Title</th>
-                <th>Actions</th>
               </tr>
             </thead>
           </table>
