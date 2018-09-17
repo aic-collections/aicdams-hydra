@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
   include ActionView::Helpers::AssetTagHelper
+  include AssetRelationshipHelper
   def input_type
     'hidden_multi_select_stars'
   end
@@ -19,17 +20,16 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
              data-attribute="#{attribute_name}"
              data-model="#{object.model.class.to_s.downcase}"
              data-name="#{input_html_options[:name]}">+ Add</a>
-          <table class="table-condensed">
+          <table class="table-condensed am #{attribute_name}">
             <thead>
               <tr>
                 <th>Pref.</th>
                 <th>Thumbnail</th>
                 <th>Title</th>
                 <th>Visibility & Publishing</th>
+                <th>Actions</th>
               </tr>
             </thead>
-          </table>
-          <table class="table-condensed am #{attribute_name}">
             #{yield}
           </table>
       HTML
@@ -43,6 +43,7 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
           <td>#{template.link_to(resources[index].pref_label, Rails.application.routes.url_helpers.curation_concerns_generic_work_path(resources[index].id)) }
       #{yield}
           </td>
+          <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
           <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
       HTML
     end
