@@ -2,6 +2,7 @@
 class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
   include ActionView::Helpers::AssetTagHelper
   include AssetRelationshipHelper
+  include FontAwesome::Rails::IconHelper
   def input_type
     'hidden_multi_select_stars'
   end
@@ -41,6 +42,7 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
           <td><div class="#{star_or_not(resources[index])}"></div></td>
           <td>#{render_thumbnail(resources[index])}</td>
           <td>#{template.link_to(resources[index].pref_label, Rails.application.routes.url_helpers.curation_concerns_generic_work_path(resources[index].id)) }
+              #{template.link_to(fa_icon("external-link"), Rails.application.routes.url_helpers.curation_concerns_generic_work_path(resources[index].id), target: "_blank")}
       #{yield}
           </td>
           <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
