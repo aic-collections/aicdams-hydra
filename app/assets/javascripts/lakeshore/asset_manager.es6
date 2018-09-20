@@ -35,7 +35,7 @@ export class AssetManager {
   removeRow(selector) {
     var table = $(selector).closest('table')
     var row = $(selector).closest('tr')
-    if ( $(table).find('tr').length == 1 ) {
+    if ( $(table).find('tbody tr').length == 1 ) {
       this.nullInput(row)
     }
     else {
