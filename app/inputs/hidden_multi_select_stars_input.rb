@@ -22,7 +22,7 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
              data-attribute="#{attribute_name}"
              data-model="#{object.model.class.to_s.downcase}"
              data-name="#{input_html_options[:name]}">+ Add</a>
-          <table class="table-condensed am #{attribute_name}">
+          <table class="table table-striped am #{attribute_name}">
             <thead>
               <tr>
                 <th>Pref.</th>
