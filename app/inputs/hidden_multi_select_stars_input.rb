@@ -33,7 +33,9 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
                 <th>Actions</th>
               </tr>
             </thead>
-            #{yield}
+            <tbody>
+              #{yield}
+            </tbody>
           </table>
       HTML
     end
