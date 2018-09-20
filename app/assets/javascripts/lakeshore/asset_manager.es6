@@ -59,9 +59,9 @@ export class AssetManager {
       '<tr>' +
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
-        '<td>' +
-           this.selectedAssetText + this.hiddenInput +
-        '</td>' +
+        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + '</td>' +
+        '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</td>';
 
