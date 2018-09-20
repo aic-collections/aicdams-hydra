@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 class HiddenMultiSelectInput < MultiValueInput
+  include AssetRelationshipHelper
+  include FontAwesome::Rails::IconHelper
+  include Rails.application.routes.url_helpers
   def input_type
     'hidden_multi_select'
   end
@@ -18,8 +21,19 @@ class HiddenMultiSelectInput < MultiValueInput
            data-attribute="#{attribute_name}"
            data-model="#{object.model.class.to_s.downcase}"
            data-name="#{input_html_options[:name]}">+ Add</a>
-        <table class="table-condensed am #{attribute_name}">
-          #{yield}
+        <table class="table table-striped am #{attribute_name}">
+          <thead>
+            <tr>
+              <th>Thumbnail</th>
+              <th>Title</th>
+              <th>Visibility & Publishing</th>
+              <th>UID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            #{yield}
+          </tbody>
         </table>
       HTML
     end
@@ -37,9 +51,16 @@ class HiddenMultiSelectInput < MultiValueInput
       <<-HTML
         <td>#{render_thumbnail(resources[index])}</td>
         <td>
-          #{resources[index].pref_label}
+          #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id))}
+          #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
           #{yield}
         </td>
+        <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
+        <td>
+          #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id))}
+          #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+        </td>
+
         <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
       HTML
     end
