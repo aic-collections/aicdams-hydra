@@ -68,9 +68,9 @@ export class AssetManager {
     var documentations_html =
         '<tr>' +
         '<td>' + image_tag + '</td>' +
-        '<td>' +
-        this.selectedAssetText + this.hiddenInput +
-        '</td>' +
+        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + '</td>' +
+        '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
         '</td>';
 
