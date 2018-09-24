@@ -46,7 +46,7 @@ class CitiResourcesMultiSelectInput < HiddenMultiSelectInput
     def inner_field_wrapper(_value, index)
       <<-HTML
         <td>
-          #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+          #{template.link_to(resources[index].uid, curation_concerns_work_path(resources[index].id), target: '_blank')}
         </td>
         <td>
           #{template.link_to(resources[index].pref_label, curation_concerns_work_path(resources[index].id), target: '_blank')}
