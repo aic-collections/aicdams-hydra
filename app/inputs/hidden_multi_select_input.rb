@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class HiddenMultiSelectInput < MultiValueInput
   include AssetRelationshipHelper
-  include FontAwesome::Rails::IconHelper
   include Rails.application.routes.url_helpers
   def input_type
     'hidden_multi_select'
@@ -51,14 +50,12 @@ class HiddenMultiSelectInput < MultiValueInput
       <<-HTML
         <td>#{render_thumbnail(resources[index])}</td>
         <td>
-          #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id))}
-          #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+          #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
           #{yield}
         </td>
         <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
         <td>
-          #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id))}
-          #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+          #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
         </td>
 
         <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
@@ -97,7 +94,7 @@ class HiddenMultiSelectInput < MultiValueInput
     # @todo Further optimizations would make this method take only a SolrDocument
     def render_thumbnail(resource)
       solr_document = resource.is_a?(SolrDocument) ? resource : SolrDocument.new(resource.to_solr)
-      template.render_thumbnail_tag(solr_document)
+      template.render_thumbnail_tag(solr_document, {}, {target: '_blank'})
     end
 
     def value_for_input(value)
