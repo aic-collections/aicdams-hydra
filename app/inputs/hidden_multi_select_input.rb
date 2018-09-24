@@ -94,7 +94,7 @@ class HiddenMultiSelectInput < MultiValueInput
     # @todo Further optimizations would make this method take only a SolrDocument
     def render_thumbnail(resource)
       solr_document = resource.is_a?(SolrDocument) ? resource : SolrDocument.new(resource.to_solr)
-      template.render_thumbnail_tag(solr_document, {}, {target: '_blank'})
+      template.render_thumbnail_tag(solr_document, {}, target: '_blank')
     end
 
     def value_for_input(value)

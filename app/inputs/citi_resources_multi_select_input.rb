@@ -53,7 +53,7 @@ class CitiResourcesMultiSelectInput < HiddenMultiSelectInput
           #{yield}
         </td>
         <td>
-          #{(template.link_to(resources[index].main_ref_number, curation_concerns_work_path(resources[index].id), target: '_blank')) if resources[index].has_model == "Work"}
+          #{template.link_to(resources[index].main_ref_number, curation_concerns_work_path(resources[index].id), target: '_blank') if resources[index].has_model == 'Work'}
         </td>
         <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
       HTML
