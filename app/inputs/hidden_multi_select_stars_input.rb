@@ -43,14 +43,12 @@ class HiddenMultiSelectStarsInput < HiddenMultiSelectInput
           <td><div class="#{star_or_not(resources[index])}"></div></td>
           <td>#{render_thumbnail(resources[index])}</td>
           <td>
-            #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id))}
-            #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+            #{template.link_to(resources[index].pref_label, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
             #{yield}
           </td>
           <td>#{template.render_visibility_link resources[index]} #{publish_channels_to_badges(resources[index].publish_channels)}</td>
           <td>
-            #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id))}
-            #{template.link_to(fa_icon('external-link'), curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
+            #{template.link_to(resources[index].uid, curation_concerns_generic_work_path(resources[index].id), target: '_blank')}
           </td>
           <td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>
       HTML
