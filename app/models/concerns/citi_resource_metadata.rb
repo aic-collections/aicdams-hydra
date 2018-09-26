@@ -13,6 +13,7 @@ module CitiResourceMetadata
 
       def find_by_citi_uid_with_solr(id)
         docs = ActiveFedora::SolrService.query("#{Solrizer.solr_name('citi_uid', :symbol)}:#{id}",
+                                               rows: 1,
                                                fq: "has_model_ssim:#{self}")
         return nil if docs.empty?
         SolrDocument.new(docs.first)
