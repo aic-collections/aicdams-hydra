@@ -102,7 +102,13 @@ $(function() {
 });
 
 $(function() {
+    var modal_not_needed = false;
     $('.check-if-preferred').on("click", function(e) {
+
+        // if
+        if (modal_not_needed) {
+            return; // let the event bubble away
+        }
 
         // stop normal activity
         e.preventDefault();
@@ -117,9 +123,29 @@ $(function() {
 
             if (numberOfResults > 0) {
 
-                $("#myModal").modal();
+                // get tbody element
+                var tableRef = document.getElementById('deleteAsset').getElementsByTagName('tbody')[0];
+
+                // Insert a row in the table at the last row
+                var newRow = tableRef.insertRow(tableRef.rows.length);
+
+                // Insert a cell in the row at index 0
+                var newCell = newRow.insertCell(0);
+
+                // Append a anchor to the cell
+                var newAnchor = document.createElement("a");
+                newAnchor.setAttribute('href', `/concern/works/${results[0].id}/edit`);
+                newAnchor.setAttribute('target', '_blank');
+                newAnchor.innerHTML = results[0].pref_label_tesim;
+                newCell.appendChild(newAnchor);
+
+                $("#deleteAsset").modal();
             } else {
-                return true;
+                var confirmMessage = $('[data-asset-id]').data("confirm");
+                if (confirm(confirmMessage)) {
+                    modal_not_needed = true; // set flag
+                    $('.check-if-preferred').trigger('click');
+                }
             }
         });
     });
