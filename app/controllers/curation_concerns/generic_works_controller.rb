@@ -34,7 +34,7 @@ class CurationConcerns::GenericWorksController < ApplicationController
 
   def relationships
     id = params[:id]
-    solr_hits = ActiveFedora::SolrService.query("preferred_representation_ssim:#{id}", rows: 100, fl:["id"])
+    solr_hits = ActiveFedora::SolrService.query("preferred_representation_ssim:#{id}", rows: 100, fl:["id", "pref_label_tesim"])
     render json: solr_hits
   end
 
