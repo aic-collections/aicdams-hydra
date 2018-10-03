@@ -32,6 +32,12 @@ class CurationConcerns::GenericWorksController < ApplicationController
            locals: { presenter: presenter }
   end
 
+  def relationships
+    id = params[:id]
+    solr_hits = ActiveFedora::SolrService.query("preferred_representation_ssim:#{id}", rows: 100, fl:["id"])
+    render json: solr_hits
+  end
+
   protected
 
     # Overrides Sufia to manage file sets which have their ACLs directly linked to the parent asset.
