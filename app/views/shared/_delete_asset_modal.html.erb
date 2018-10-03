@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="deleteAsset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,19 +9,12 @@
         <p>This asset cannot be deleted until another preferred representation is chosen for the following CITI Resources:</p>
         <table class="table table-striped">
           <tbody>
-          <%# presenters.each do |rel| %>
-<!--            <tr>-->
-<!--              <td><%#= link_to rel.to_s, edit_polymorphic_path([main_app, rel]), target: '_blank' %></td>-->
-<!--              <td><%#= rel.uid %></td>-->
-<!--            </tr>-->
-          <%# end %>
-
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Proceed</button>
       </div>
     </div>
   </div>
