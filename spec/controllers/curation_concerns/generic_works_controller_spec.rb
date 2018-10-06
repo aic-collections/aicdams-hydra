@@ -44,13 +44,8 @@ describe CurationConcerns::GenericWorksController do
       let!(:asset2) { create(:asset, user: user, title: ["Title"], pref_label: "Good Title") }
       before { allow_any_instance_of(InboundRelationships).to receive(:present?).and_return(true) }
 
-      it "will not delete the resource" do
-        expect { delete :destroy, id: asset2 }.not_to change { GenericWork.count }
-      end
-
-      it "will report to user that assets weren't deleted" do
-        delete :destroy, id: asset2
-        expect(flash[:error]).to eq("These assets were not deleted because they have resources linking to them: #{[asset2.title].join}.")
+      it "will delete the resource" do
+        expect { delete :destroy, id: asset2 }.to change { GenericWork.count }
       end
     end
 
