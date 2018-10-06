@@ -105,7 +105,7 @@ $(function() {
     var modal_not_needed = false;
     $('.check-if-preferred').on("click", function(e) {
 
-        // if
+        // if this function has already run, just return
         if (modal_not_needed) {
             return; // let the event bubble away
         }
@@ -126,6 +126,9 @@ $(function() {
                 // get tbody element
                 var tableRef = document.getElementById('deleteAsset').getElementsByTagName('tbody')[0];
 
+                // reset rows of tbody
+                tableRef.innerHTML = "";
+
                 // Insert a row in the table at the last row
                 var newRow = tableRef.insertRow(tableRef.rows.length);
 
@@ -134,18 +137,15 @@ $(function() {
 
                 // Append a anchor to the cell
                 var newAnchor = document.createElement("a");
-                newAnchor.setAttribute('href', `/concern/works/${results[0].id}/edit`);
+                newAnchor.setAttribute('href', results[0].edit_path);
                 newAnchor.setAttribute('target', '_blank');
                 newAnchor.innerHTML = results[0].pref_label_tesim;
                 newCell.appendChild(newAnchor);
 
                 $("#deleteAsset").modal();
             } else {
-                var confirmMessage = $('[data-asset-id]').data("confirm");
-                if (confirm(confirmMessage)) {
-                    modal_not_needed = true; // set flag
-                    $('.check-if-preferred').trigger('click');
-                }
+                modal_not_needed = true; // set flag
+                $('.check-if-preferred').trigger('click');
             }
         });
     });
