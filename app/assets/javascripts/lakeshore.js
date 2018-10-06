@@ -118,7 +118,7 @@ $(function() {
         var assetId = $('[data-asset-id]').data("asset-id");
 
         // make a call to the server and see if the asset is a preferred of any CR's
-        $.getJSON( `/assets/${assetId}/relationships/`, function(results) {
+        $.getJSON( "/assets/" + assetId + "/relationships/", function(results) {
             var numberOfResults = results.length;
 
             if (numberOfResults > 0) {
