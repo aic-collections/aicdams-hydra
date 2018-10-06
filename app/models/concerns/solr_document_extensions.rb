@@ -10,6 +10,10 @@ module SolrDocumentExtensions
   include SolrDocumentExtensions::Asset
   include SolrDocumentExtensions::Resource
 
+  def has_model
+    Array(self[Solrizer.solr_name('has_model', :symbol)]).first
+  end
+
   def pref_label
     Array(self[Solrizer.solr_name('pref_label', :stored_searchable)]).first
   end

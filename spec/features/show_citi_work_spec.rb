@@ -34,8 +34,6 @@ describe "Displaying a CITI work" do
     expect(page).to have_selector("td", text: place.pref_label)
     expect(page).to have_selector("h3", text: "Representations")
     expect(page).to have_link(asset.pref_label)
-    expect(page).to have_selector("th", text: "Non-Object Caption")
-    expect(page).to have_selector("td", text: asset.caption)
     expect(page).to have_link("Add Representations")
     expect(page).to have_link("Add Documentation")
   end

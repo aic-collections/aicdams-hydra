@@ -6,12 +6,10 @@
       <% if need_star %>
         <th>Pref.</th>
       <% end %>
-      <th>Preview</th>
-      <th>Document Type</th>
-      <th>Link</th>
+      <th>Thumbnail</th>
+      <th>Title</th>
       <th>Visibility & Publishing</th>
       <th>UID</th>
-      <th>Non-Object Caption</th>
     </tr>
     <% presenters.each do |rel| %>
       <tr>
@@ -22,10 +20,9 @@
           </td>
         <% end %>
         <td><%= image_tag(rel.solr_document['thumbnail_path_ss']) %></td>
-        <td><%= rel.document_types %></td>
         <td>
           <% if rel.viewable? %>
-            <%= link_to rel.to_s, polymorphic_path([main_app, rel]) %>
+            <%= link_to rel.to_s, polymorphic_path([main_app, rel]), target: '_blank' %>
           <% else %>
             <%= rel.to_s %>
           <% end %>
@@ -34,8 +31,13 @@
           <%= rel.permission_badge %>
           <%= publish_channels_to_badges(rel.publish_channels) %>
         </td>
-        <td><%= rel.uid %></td>
-        <td><%= rel.caption %></td>
+        <td>
+          <% if rel.viewable? %>
+            <%= link_to rel.uid, polymorphic_path([main_app, rel]), target: '_blank' %>
+          <% else %>
+            <%= rel.uid %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

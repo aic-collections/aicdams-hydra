@@ -91,7 +91,7 @@ table.autocomplete-components table.table-condensed {
 }
 
 div.autocomplete-components {
-  width: 650px;
+  width: inherit;
 }
 
 div.autocomplete-components div.autocomplete.bigdrop {
@@ -105,7 +105,6 @@ div.autocomplete-components table.table-condensed {
 table.autocomplete-components a.btn,
 div.autocomplete-components a.btn {
   width: 86px;
-  float: right;
 }
 
 h3.asset-relationships {
@@ -171,4 +170,8 @@ p.unauthorized_asset_display.asset_title {
 
 table.relationships .label, #documents .label {
   display: inline-block;
+}
+
+img.media-object {
+  max-width: 200px;
 }

@@ -100,3 +100,53 @@ $(function() {
         move_star_to_top(parent_table, current_row);
     });
 });
+
+$(function() {
+    var modal_not_needed = false;
+    $('.check-if-preferred').on("click", function(e) {
+
+        // if this function has already run, just return
+        if (modal_not_needed) {
+            return; // let the event bubble away
+        }
+
+        // stop normal activity
+        e.preventDefault();
+        e.stopPropagation();
+
+        // get id of asset involved
+        var assetId = $('[data-asset-id]').data("asset-id");
+
+        // make a call to the server and see if the asset is a preferred of any CR's
+        $.getJSON( "/assets/" + assetId + "/relationships/", function(results) {
+            var numberOfResults = results.length;
+
+            if (numberOfResults > 0) {
+
+                // get tbody element
+                var tableRef = document.getElementById('deleteAsset').getElementsByTagName('tbody')[0];
+
+                // reset rows of tbody
+                tableRef.innerHTML = "";
+
+                // Insert a row in the table at the last row
+                var newRow = tableRef.insertRow(tableRef.rows.length);
+
+                // Insert a cell in the row at index 0
+                var newCell = newRow.insertCell(0);
+
+                // Append a anchor to the cell
+                var newAnchor = document.createElement("a");
+                newAnchor.setAttribute('href', results[0].edit_path);
+                newAnchor.setAttribute('target', '_blank');
+                newAnchor.innerHTML = results[0].pref_label_tesim;
+                newCell.appendChild(newAnchor);
+
+                $("#deleteAsset").modal();
+            } else {
+                modal_not_needed = true; // set flag
+                $('.check-if-preferred').trigger('click');
+            }
+        });
+    });
+});
