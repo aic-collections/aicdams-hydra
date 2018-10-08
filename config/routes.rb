@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     resources :agents, :exhibitions, :places, :shipments, :transactions, :works, :generic_works, only: [:index]
   end
 
+  get "assets/:id/relationships/", to: "curation_concerns/generic_works#relationships"
+
   curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 
