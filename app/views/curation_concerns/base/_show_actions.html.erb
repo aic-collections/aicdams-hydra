@@ -4,7 +4,7 @@
   <% end %>
   <% if presenter.editor? %>
       <%= link_to "Edit", edit_polymorphic_path([main_app, presenter]), class: 'btn btn-default' %>
-      <%= link_to "Delete", [main_app, presenter], class: 'btn btn-danger', data: { confirm: "Delete this #{presenter.human_readable_type}?" }, method: :delete if presenter.deleteable? %>
+      <%= link_to "Delete", [main_app, presenter], class: 'btn btn-danger check-if-preferred', data: { asset_id: presenter.id, confirm: "Delete this #{presenter.human_readable_type}?" }, method: :delete if presenter.deleteable? %>
   <% end %>
   <% if presenter.imaging_uid.present? %>
     <a href="<%= Figaro.env.phoenix_host %>/order/create/batch/<%= presenter.imaging_uid.first %>" class='btn btn-default'>Create Lab Work</a>

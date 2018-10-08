@@ -76,6 +76,11 @@ module ApplicationHelper
     ["Agent", "Exhibition", "Place", "Shipment", "Transaction", "Work"]
   end
 
+  def minus_current_user_dept(all_departments)
+    current_user_dept = all_departments.key(current_user.department)
+    all_departments.except(current_user_dept)
+  end
+
   private
 
     def default_use_uris

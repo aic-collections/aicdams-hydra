@@ -1,0 +1,26 @@
+<div class="modal fade" id="deleteAsset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">This asset cannot yet be deleted.</h4>
+      </div>
+      <div class="modal-body">
+        <p>This asset cannot be deleted until another preferred representation is chosen for the following CITI Resources:</p>
+        <table class="table table-striped">
+          <tbody>
+          </tbody>
+        </table>
+        <p>
+          Please open the link to the resource(s) above and, for each of them, either remove this asset
+          as the preferred representation, or choose a new preferred representation. Don't forget to save!
+          When you are done, click on "Proceed" to continue deleting the asset.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="$('.check-if-preferred').trigger('click');">Proceed</button>
+      </div>
+    </div>
+  </div>
+</div>

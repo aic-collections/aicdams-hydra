@@ -15,13 +15,11 @@ class CurationConcerns::GenericWorksController < ApplicationController
   end
 
   def destroy
-    asset_with_relationships = []
     if curation_concern.asset_has_relationships?
-      asset_with_relationships << curation_concern.to_s
-    else
-      curation_concern.destroy
+      management_service.add_or_remove_representations([])
     end
-    report_status_and_redirect(asset_with_relationships, batch: false)
+    curation_concern.destroy
+    report_status_and_redirect([], batch: false)
   end
 
   def deny_access
@@ -30,6 +28,19 @@ class CurationConcerns::GenericWorksController < ApplicationController
            formats: [:html],
            status: 401,
            locals: { presenter: presenter }
+  end
+
+  def relationships
+    id = params[:id]
+    query = "preferred_representation_ssim:#{id}"
+    params = { rows: 100, fl: ["id", "pref_label_tesim"] }
+    solr_hits = ActiveFedora::SolrService.query(query, params).map do |solr_hit|
+      solr_hit_hash = solr_hit.to_h
+      cr = ActiveFedora::Base.find(solr_hit_hash["id"])
+      solr_hit_hash[:edit_path] = edit_polymorphic_path([main_app, cr])
+      solr_hit_hash
+    end
+    render json: solr_hits
   end
 
   protected
@@ -59,5 +70,9 @@ class CurationConcerns::GenericWorksController < ApplicationController
       @form = form_class.new(curation_concern, current_ability)
       @form.current_ability = current_ability
       @form.action_name = action_name
+    end
+
+    def management_service
+      @management_service ||= InboundRelationshipManagementService.new(curation_concern, current_user)
     end
 end
