@@ -124,25 +124,29 @@ $(function() {
             if (numberOfResults > 0) {
 
                 // get tbody element
-                var tableRef = document.getElementById('deleteAsset').getElementsByTagName('tbody')[0];
+                var tbodyRef = document.getElementById('deleteAsset').getElementsByTagName('tbody')[0];
 
                 // reset rows of tbody
-                tableRef.innerHTML = "";
+                tbodyRef.innerHTML = "";
 
-                // Insert a row in the table at the last row
-                var newRow = tableRef.insertRow(tableRef.rows.length);
+                results.forEach(function(element) {
 
-                // Insert a cell in the row at index 0
-                var newCell = newRow.insertCell(0);
+                    // Insert a row in the table at the last row
+                    var newRow = tbodyRef.insertRow(tbodyRef.rows.length);
 
-                // Append a anchor to the cell
-                var newAnchor = document.createElement("a");
-                newAnchor.setAttribute('href', results[0].edit_path);
-                newAnchor.setAttribute('target', '_blank');
-                newAnchor.innerHTML = results[0].pref_label_tesim;
-                newCell.appendChild(newAnchor);
+                    // Insert a cell in the row at index 0
+                    var newCell = newRow.insertCell(0);
+
+                    // Append a anchor to the cell
+                    var newAnchor = document.createElement("a");
+                    newAnchor.setAttribute('href', element.edit_path);
+                    newAnchor.setAttribute('target', '_blank');
+                    newAnchor.innerHTML = element.pref_label_tesim;
+                    newCell.appendChild(newAnchor);
+                });
 
                 $("#deleteAsset").modal();
+
             } else {
                 modal_not_needed = true; // set flag
                 $('.check-if-preferred').trigger('click');
