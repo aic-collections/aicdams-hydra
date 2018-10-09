@@ -115,7 +115,7 @@ $(function() {
         e.stopPropagation();
 
         // get id of asset involved
-        var assetId = $('[data-asset-id]').data("asset-id");
+        var assetId = $(this).data("asset-id");
 
         // make a call to the server and see if the asset is a preferred of any CR's
         $.getJSON( "/assets/" + assetId + "/relationships/", function(results) {
