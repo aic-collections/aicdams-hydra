@@ -102,11 +102,13 @@ $(function() {
 });
 
 $(function() {
-    var modal_not_needed = false;
+    var check_not_needed = false;
     $('.check-if-preferred').on("click", function(e) {
+        // get original anchor, so we can trigger a click again after we set the bypass flag
+        var originalAtag = $(this);
 
         // if this function has already run, just return
-        if (modal_not_needed) {
+        if (check_not_needed) {
             return; // let the event bubble away
         }
 
@@ -137,7 +139,7 @@ $(function() {
                     // Insert a cell in the row at index 0
                     var newCell = newRow.insertCell(0);
 
-                    // Append a anchor to the cell
+                    // Append an anchor to the cell
                     var newAnchor = document.createElement("a");
                     newAnchor.setAttribute('href', element.edit_path);
                     newAnchor.setAttribute('target', '_blank');
@@ -148,8 +150,8 @@ $(function() {
                 $("#deleteAsset").modal();
 
             } else {
-                modal_not_needed = true; // set flag
-                $('.check-if-preferred').trigger('click');
+                check_not_needed = true; // set bypass flag if we already got this far
+                originalAtag.trigger('click');
             }
         });
     });
