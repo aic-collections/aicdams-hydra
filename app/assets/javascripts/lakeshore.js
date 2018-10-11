@@ -102,6 +102,10 @@ $(function() {
 });
 
 $(function() {
+    $('#deleteAsset').on('hidden.bs.modal', function () {
+        $('.single-asset-delete').removeClass('single-asset-delete');
+    })
+
     var check_not_needed = false;
     $('.check-if-preferred').on("click", function(e) {
         // get original anchor, so we can trigger a click again after we set the bypass flag
