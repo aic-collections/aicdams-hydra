@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" onclick="$('.single-asset-delete').removeClass('single-asset-delete');" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">This asset cannot yet be deleted.</h4>
       </div>
       <div class="modal-body">
@@ -18,7 +18,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('.single-asset-delete').removeClass('single-asset-delete');">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="$('.single-asset-delete').trigger('click');">Proceed</button>
       </div>
     </div>
