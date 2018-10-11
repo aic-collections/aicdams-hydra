@@ -107,6 +107,9 @@ $(function() {
         // get original anchor, so we can trigger a click again after we set the bypass flag
         var originalAtag = $(this);
 
+        // add a class to the element to signify the active asset trying to be deleted
+        originalAtag.addClass("single-asset-delete");
+
         // if this function has already run, just return
         if (check_not_needed) {
             return; // let the event bubble away
