@@ -51,6 +51,11 @@ export class AutocompleteControl {
   }
 
   formatAssetSelection(asset) {
-    return '<span data-img="'+asset.thumbnail+'">' + asset.label + ' (' + asset.uid + ')' + '</span>'
-  }
+      var spanElement = document.createElement('span');
+      spanElement.dataset.uid = asset.uid;
+      spanElement.dataset.img = asset.thumbnail;
+      spanElement.dataset.mainRefNumber = asset.main_ref_number ? asset.main_ref_number : '';
+      spanElement.innerHTML = asset.label + ' (' + asset.uid + ')';
+      return spanElement.outerHTML;
+      }
 }
