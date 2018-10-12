@@ -17,6 +17,7 @@ class HiddenMultiSelectInput < MultiValueInput
         <input type="hidden" class="autocomplete bigdrop #{attribute_name}" data-placeholder="#{placeholder}" data-endpoint="#{endpoint}" data-minchars="#{minchars}"
            id="#{input_html_options[:id]}">
         <a href="#" class="am-add btn btn-success"
+           data-input-class="hidden_multi_select"
            data-attribute="#{attribute_name}"
            data-model="#{object.model.class.to_s.downcase}"
            data-name="#{input_html_options[:name]}">+ Add</a>
