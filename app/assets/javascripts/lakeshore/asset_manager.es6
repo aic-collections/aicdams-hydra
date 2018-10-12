@@ -65,7 +65,7 @@ export class AssetManager {
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
         '<td>' + anchorElement.outerHTML + this.hiddenInput + '</td>' +
-        '<td>' + '</td>' +
+        '<td>' + this.visibility + '</td>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
@@ -74,7 +74,7 @@ export class AssetManager {
       '<tr>' +
         '<td>' + image_tag + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
-        '<td>' + '</td>' +
+        '<td>' + this.mainRefNumber + this.publishing + '</td>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
@@ -83,7 +83,7 @@ export class AssetManager {
       '<tr>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
-        '<td>' + this.mainRefNumber + '</td>' +
+        '<td>' + this.mainRefNumber + this.publishing + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
 
@@ -132,6 +132,14 @@ export class AssetManager {
 
   get mainRefNumber() {
       return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().mainRefNumber
+  }
+
+  get visibility() {
+      return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().visibility
+  }
+
+  get publishing() {
+      return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().publishing
   }
 
 }

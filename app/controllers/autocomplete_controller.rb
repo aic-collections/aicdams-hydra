@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 class AutocompleteController < ActionController::Base
+  include Sufia::SufiaHelperBehavior
   respond_to :json
 
   def index
-    respond_to do |format|
-      format.json do
-        res = Blacklight.default_index.connection.get('select', params: build_query(params[:q]))
-        data = res["response"]["docs"].map { |x| format_response(SolrDocument.new(x)) }
-        render json: data
-      end
-    end
+    res = Blacklight.default_index.connection.get('select', params: build_query(params[:q]))
+    @data = res["response"]["docs"].map { |x| SolrDocument.new(x) }
   end
 
   private
@@ -24,18 +20,7 @@ class AutocompleteController < ActionController::Base
       }
     end
 
-    def format_response(doc)
-      {
-        id: (aic_type =~ /Asset/ ? doc.fedora_uri : doc.id),
-        label: doc.pref_label,
-        main_ref_number: doc.main_ref_number,
-        uid: doc.uid,
-        thumbnail: doc.thumbnail_path,
-        show_path: polymorphic_path([main_app, doc])
-      }
-    end
-
     def aic_type
-      params.fetch(:model, "Asset")
+      @aic_type = params.fetch(:model, "Asset")
     end
 end

@@ -52,6 +52,8 @@ export class AutocompleteControl {
 
   formatAssetSelection(asset) {
       var spanElement = document.createElement('span');
+      spanElement.dataset.publishing = asset.publishing;
+      spanElement.dataset.visibility = asset.visibility;
       spanElement.dataset.showPath = asset.show_path;
       spanElement.dataset.uid = asset.uid;
       spanElement.dataset.img = asset.thumbnail;
