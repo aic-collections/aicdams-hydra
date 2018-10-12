@@ -16,7 +16,8 @@ export class AssetManager {
       event.preventDefault()
       $this.data = $(this).data();
       var parent_div_class = $(this).closest("div").attr('class');
-      $('table.'+$this.data.attribute).append($this.assetRow(parent_div_class));
+      var input_class = $this.data.inputClass
+      $('table.'+$this.data.attribute).append($this.assetRow(parent_div_class, input_class));
       var sel = '.' + $this.data.attribute
       $(sel).select2('val', '')
     })
@@ -51,31 +52,47 @@ export class AssetManager {
     $(row).html($(input))
   }
 
-  assetRow(parent_div) {
+  assetRow(parent_div, input_class) {
     var image_tag = this.selectedAssetImage ? '<img src="' + this.selectedAssetImage + '" />' : '';
     var pref_rep_star = '<div class="aic-star-off"></div>';
+
+    var anchorElement = document.createElement('a');
+    anchorElement.setAttribute('href', "#");
+    anchorElement.innerHTML = this.selectedAssetText;
 
     var representations_html =
       '<tr>' +
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
-        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + anchorElement.outerHTML + this.hiddenInput + '</td>' +
         '<td>' + '</td>' +
         '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
-      '</td>';
+      '</tr>';
 
     var documentations_html =
-        '<tr>' +
+      '<tr>' +
         '<td>' + image_tag + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
         '<td>' + '</td>' +
         '<td>' + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
-        '</td>';
+      '</tr>';
 
-    if (parent_div.indexOf("work_representation_uris") >= 0) {
+    var citi_resource_html =
+      '<tr>' +
+        '<td>' + this.selectedUid + '</td>' +
+        '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
+        '<td>' + this.mainRefNumber + '</td>' +
+        '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
+      '</tr>';
+
+
+
+    if (input_class === "hidden_multi_select_stars") {
         return representations_html;
+    } else if (input_class === "citi_resources_multi_select") {
+        return citi_resource_html;
     } else {
         return documentations_html;
     }
@@ -95,8 +112,16 @@ export class AssetManager {
     return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().img
   }
 
+  get selectedUid() {
+    return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().uid
+  }
+
   get selectedAssetUti() {
     return $('input.autocomplete.'+this.data.attribute).val()
+  }
+
+  get mainRefNumber() {
+      return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().mainRefNumber
   }
 
 }
