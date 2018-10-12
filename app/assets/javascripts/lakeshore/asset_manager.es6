@@ -66,7 +66,7 @@ export class AssetManager {
         '<td>' + image_tag + '</td>' +
         '<td>' + anchorElement.outerHTML + this.hiddenInput + '</td>' +
         '<td>' + '</td>' +
-        '<td>' + '</td>' +
+        '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
 
@@ -75,7 +75,7 @@ export class AssetManager {
         '<td>' + image_tag + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
         '<td>' + '</td>' +
-        '<td>' + '</td>' +
+        '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
 
@@ -105,7 +105,12 @@ export class AssetManager {
   }
 
   get selectedAssetText() {
-    return $('.'+this.data.attribute).find('.select2-chosen').text()
+      var text = $('.'+this.data.attribute).find('.select2-chosen').text();
+      var anchorElement = document.createElement('a');
+      anchorElement.innerHTML = text;
+      anchorElement.setAttribute('href', $('.'+this.data.attribute).find('.select2-chosen').find('span').data().showPath );
+      anchorElement.setAttribute('target', "_blank")
+      return anchorElement.outerHTML;
   }
 
   get selectedAssetImage() {
@@ -113,7 +118,12 @@ export class AssetManager {
   }
 
   get selectedUid() {
-    return $('.'+this.data.attribute).find('.select2-chosen').find('span').data().uid
+    var text = $('.'+this.data.attribute).find('.select2-chosen').find('span').data().uid;
+    var anchorElement = document.createElement('a');
+    anchorElement.innerHTML = text;
+    anchorElement.setAttribute('href', $('.'+this.data.attribute).find('.select2-chosen').find('span').data().showPath );
+    anchorElement.setAttribute('target', "_blank")
+    return anchorElement.outerHTML;
   }
 
   get selectedAssetUti() {
