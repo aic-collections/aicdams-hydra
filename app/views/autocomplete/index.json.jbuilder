@@ -6,5 +6,5 @@ json.array! @data do |doc|
   json.thumbnail doc.thumbnail_path
   json.show_path polymorphic_path([main_app, doc])
   json.visibility render_visibility_link(doc)
-  json.publishing publish_channels_to_badges(doc)
+  json.publishing publish_channels_to_badges(doc.publish_channels)
 end
