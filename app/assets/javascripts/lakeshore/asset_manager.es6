@@ -65,7 +65,7 @@ export class AssetManager {
         '<td>' + pref_rep_star + '</td>' +
         '<td>' + image_tag + '</td>' +
         '<td>' + anchorElement.outerHTML + this.hiddenInput + '</td>' +
-        '<td>' + this.visibility + '</td>' +
+        '<td>' + this.visibility + this.publishing + '</td>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
@@ -74,7 +74,7 @@ export class AssetManager {
       '<tr>' +
         '<td>' + image_tag + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
-        '<td>' + this.mainRefNumber + this.publishing + '</td>' +
+        '<td>' + this.visibility + this.publishing + '</td>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
@@ -83,7 +83,7 @@ export class AssetManager {
       '<tr>' +
         '<td>' + this.selectedUid + '</td>' +
         '<td>' + this.selectedAssetText + this.hiddenInput + '</td>' +
-        '<td>' + this.mainRefNumber + this.publishing + '</td>' +
+        '<td>' + this.mainRefNumber + '</td>' +
         '<td><a href="#" class="btn btn-danger am-delete">- Remove</a></td>' +
       '</tr>';
 
