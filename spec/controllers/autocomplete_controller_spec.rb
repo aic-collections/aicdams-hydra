@@ -2,6 +2,7 @@
 require 'rails_helper'
 
 describe AutocompleteController do
+  render_views
   describe "#index" do
     context "when searching for assets" do
       let!(:asset) { create(:asset, pref_label: "Autocomplete example") }
