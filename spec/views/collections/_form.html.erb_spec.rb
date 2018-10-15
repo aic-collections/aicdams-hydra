@@ -8,6 +8,7 @@ describe "collections/_form.html.erb" do
   before(:all) { LakeshoreTesting.restore }
 
   before do
+    allow(view).to receive(:minus_current_user_dept).and_return(Department.options)
     assign(:form, form)
     stub_template 'collections/_form_metadata.html.erb' => ''
     render
