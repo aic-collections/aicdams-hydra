@@ -11,9 +11,7 @@ describe CurationConcerns::GenericWorkForm do
   describe "delegates" do
     it { is_expected.to delegate_method(:dept_created).to(:model) }
     it { is_expected.to delegate_method(:attachment_uris).to(:model) }
-    it { is_expected.to delegate_method(:attachments).to(:model) }
     it { is_expected.to delegate_method(:constituent_of_uris).to(:model) }
-    it { is_expected.to delegate_method(:constituent_of).to(:model) }
     it { is_expected.to delegate_method(:copyright_representatives).to(:model) }
     it { is_expected.to delegate_method(:imaging_uid_placeholder).to(:model) }
   end
@@ -132,12 +130,30 @@ describe CurationConcerns::GenericWorkForm do
     end
   end
 
+  context "when the asset is an attachment for" do
+    let!(:resource)    { create(:asset) }
+    let!(:asset)       { create(:asset, attachments: [resource.uri]) }
+
+    describe "#attachments" do
+      its(:attachments) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
+    end
+  end
+
   context "when the asset has a constituent" do
     let!(:asset)    { create(:asset) }
     let!(:resource) { create(:asset, constituent_of_uris: [asset.uri]) }
 
     describe "#has_constituent_part" do
       its(:has_constituent_part) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
+    end
+  end
+
+  context "when the asset is a constituent of" do
+    let!(:resource)    { create(:asset) }
+    let!(:asset)       { create(:asset, constituent_of_uris: [resource.uri]) }
+
+    describe "#constituent_of" do
+      its(:constituent_of) { is_expected.to contain_exactly(kind_of(SolrDocument)) }
     end
   end
 
