@@ -66,11 +66,13 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
   context "with existing attachments" do
     let(:asset1) { build(:asset, id: '1', pref_label: "First asset", uid: "uid-1") }
     let(:asset2) { build(:asset, id: '2', pref_label: "Second asset") }
+    let(:asset1_solr_doc) { SolrDocument.new(asset1.to_solr) }
+    let(:asset2_solr_doc) { SolrDocument.new(asset2.to_solr) }
 
     before do
       allow_any_instance_of(HiddenMultiSelectInput).to receive(:render_thumbnail).and_return("thumbnail")
       allow(asset).to receive(:attachments).and_return([asset1, asset2])
-      allow(form).to receive(:attachments_for).and_return([asset1, asset2])
+      allow(form).to receive(:attachments_for).and_return([asset1_solr_doc, asset2_solr_doc])
     end
 
     it "displays the existing uris" do
@@ -92,11 +94,13 @@ describe 'curation_concerns/base/_form_relationships.html.erb' do
   context "with existing constituents" do
     let(:asset1) { build(:asset, id: '1', pref_label: "First asset", uid: "uid-1") }
     let(:asset2) { build(:asset, id: '2', pref_label: "Second asset") }
+    let(:asset1_solr_doc) { SolrDocument.new(asset1.to_solr) }
+    let(:asset2_solr_doc) { SolrDocument.new(asset2.to_solr) }
 
     before do
       allow_any_instance_of(HiddenMultiSelectInput).to receive(:render_thumbnail).and_return("thumbnail")
       allow(asset).to receive(:constituent_of).and_return([asset1, asset2])
-      allow(form).to receive(:has_constituent_part).and_return([asset1, asset2])
+      allow(form).to receive(:has_constituent_part).and_return([asset1_solr_doc, asset2_solr_doc])
     end
 
     it "displays the existing uris" do

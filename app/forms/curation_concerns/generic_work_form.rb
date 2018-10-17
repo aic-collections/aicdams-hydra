@@ -4,8 +4,8 @@ module CurationConcerns
     include AssetFormBehaviors
     include PropertyPermissions
 
-    delegate :dept_created, :attachment_uris, :attachments, :copyright_representatives,
-             :imaging_uid_placeholder, :constituent_of, :constituent_of_uris, to: :model
+    delegate :dept_created, :attachment_uris, :copyright_representatives,
+             :imaging_uid_placeholder, :constituent_of_uris, to: :model
 
     attr_accessor :action_name, :current_ability
 
@@ -77,8 +77,18 @@ module CurationConcerns
     end
 
     # @return [Array<SolrDocument>]
+    def attachments
+      model.attachments.map { |asset| SolrDocument.new(asset.to_solr) }
+    end
+
+    # @return [Array<SolrDocument>]
     def has_constituent_part
       representing_resource.constituents
+    end
+
+    # @return [Array<SolrDocument>]
+    def constituent_of
+      model.constituent_of.map { |asset| SolrDocument.new(asset.to_solr) }
     end
 
     def preferred_representation_for
