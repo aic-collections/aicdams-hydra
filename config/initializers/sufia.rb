@@ -111,6 +111,11 @@ Sufia.config do |config|
   # config.translate_id_to_uri = lambda { |id|
   #  "#{ActiveFedora.fedora.host}#{ActiveFedora.fedora.base_path}/#{Sufia::Noid.treeify(id)}" }
 
+  # Lock manager configuration
+  config.lock_retry_count = 1000
+  config.lock_time_to_live = 10_000
+  config.lock_retry_delay = 2000
+
   # If browse-everything has been configured, load the configs.  Otherwise, set to nil.
   begin
     if defined? BrowseEverything
