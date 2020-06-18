@@ -18,7 +18,7 @@ class CatalogController < ApplicationController
   end
 
   def self.file_size_field
-    solr_name("file_size", :stored_sortable, type: :integer)
+    solr_name("file_size", :stored_sortable, type: :long)
   end
 
   # disable the bookmark control from displaying in gallery view

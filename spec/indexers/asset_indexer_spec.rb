@@ -82,8 +82,10 @@ describe AssetIndexer do
     context 'with an intermediate file set' do
       let(:indexer)  { described_class.new(asset) }
       let(:member) { instance_double(AssetIndexer::Member, id: "intermediate", type: [AICType.IntermediateFileSet]) }
+      let(:fs) { instance_double(FileSet, file_size: "1234") }
 
       before { allow(indexer).to receive(:cached_members).and_return([member]) }
+      before { allow(asset).to receive(:intermediate_file_set).and_return([fs]) }
 
       specify do
         solr_doc = indexer.generate_solr_document
@@ -92,6 +94,7 @@ describe AssetIndexer do
         expect(solr_doc["original_ids_ssim"]).to be_empty
         expect(solr_doc["preservation_ids_ssim"]).to be_empty
         expect(solr_doc["legacy_ids_ssim"]).to be_empty
+        expect(solr_doc[Solrizer.solr_name("file_size", :stored_sortable, type: :long)]).to eq "1234"
       end
     end
 
@@ -100,6 +103,7 @@ describe AssetIndexer do
       let(:member) { instance_double(AssetIndexer::Member, id: "original", type: [AICType.OriginalFileSet]) }
 
       before { allow(indexer).to receive(:cached_members).and_return([member]) }
+      before { allow(asset).to receive(:intermediate_file_set).and_return([]) }
 
       specify do
         solr_doc = indexer.generate_solr_document
@@ -108,6 +112,7 @@ describe AssetIndexer do
         expect(solr_doc["original_ids_ssim"]).to contain_exactly("original")
         expect(solr_doc["preservation_ids_ssim"]).to be_empty
         expect(solr_doc["legacy_ids_ssim"]).to be_empty
+        expect(solr_doc[Solrizer.solr_name("file_size", :stored_sortable, type: :long)]).to be_nil
       end
     end
 
